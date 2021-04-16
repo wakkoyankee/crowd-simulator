@@ -2331,3 +2331,292 @@ java.lang.IndexOutOfBoundsException: Index: 1, Size: 1
 
 !ENTRY slf4j.api 4 0 2021-04-16 18:41:15.709
 !MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:51:52.654
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:52:20.924
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY org.eclipse.jface.text 4 0 2021-04-16 18:52:39.626
+!MESSAGE org.eclipse.core.runtime.OperationCanceledException
+!STACK 0
+java.util.concurrent.CompletionException: org.eclipse.core.runtime.OperationCanceledException
+	at java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+Caused by: org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.internalReadOnly(XtextDocument.java:539)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.readOnly(XtextDocument.java:496)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument.readOnly(XtextDocument.java:135)
+	at org.eclipse.xtext.util.concurrent.IReadAccess.tryReadOnly(IReadAccess.java:49)
+	at org.eclipse.xtext.ui.codemining.AbstractXtextCodeMiningProvider.lambda$0(AbstractXtextCodeMiningProvider.java:89)
+	... 6 more
+
+!ENTRY org.eclipse.jface.text 4 0 2021-04-16 18:52:39.658
+!MESSAGE org.eclipse.core.runtime.OperationCanceledException
+!STACK 0
+java.util.concurrent.CompletionException: org.eclipse.core.runtime.OperationCanceledException
+	at java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+Caused by: org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.internalReadOnly(XtextDocument.java:539)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.readOnly(XtextDocument.java:496)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument.readOnly(XtextDocument.java:135)
+	at org.eclipse.xtext.util.concurrent.IReadAccess.tryReadOnly(IReadAccess.java:49)
+	at org.eclipse.xtext.ui.codemining.AbstractXtextCodeMiningProvider.lambda$0(AbstractXtextCodeMiningProvider.java:89)
+	... 6 more
+
+!ENTRY org.eclipse.jface.text 4 0 2021-04-16 18:52:39.665
+!MESSAGE org.eclipse.core.runtime.OperationCanceledException
+!STACK 0
+java.util.concurrent.CompletionException: org.eclipse.core.runtime.OperationCanceledException
+	at java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+Caused by: org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.internalReadOnly(XtextDocument.java:539)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.readOnly(XtextDocument.java:496)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument.readOnly(XtextDocument.java:135)
+	at org.eclipse.xtext.util.concurrent.IReadAccess.tryReadOnly(IReadAccess.java:49)
+	at org.eclipse.xtext.ui.codemining.AbstractXtextCodeMiningProvider.lambda$0(AbstractXtextCodeMiningProvider.java:89)
+	... 6 more
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:24.862
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:24.923
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:53:25.020
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:25.024
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:25.360
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:25.458
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl. Reconciliation of the editor is forced.
+
+!ENTRY org.eclipse.core.resources 4 2 2021-04-16 18:53:55.183
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.eclipse.core.internal.resources.ResourceException: Resource '/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl' does not exist.
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+	at org.eclipse.xtext.resource.XtextResourceSet.getResource(XtextResourceSet.java:265)
+	at org.eclipse.xtext.resource.SynchronizedXtextResourceSet.getResource(SynchronizedXtextResourceSet.java:25)
+	at io.sarl.lang.ui.editor.SARLEditorErrorTickUpdater.getXtextResource(SARLEditorErrorTickUpdater.java:105)
+	at io.sarl.lang.ui.editor.SARLEditorErrorTickUpdater.modelChanged(SARLEditorErrorTickUpdater.java:121)
+	at org.eclipse.jface.text.source.AnnotationModel.fireModelChanged(AnnotationModel.java:592)
+	at org.eclipse.jface.text.source.AnnotationModel.fireModelChanged(AnnotationModel.java:556)
+	at org.eclipse.ui.texteditor.ResourceMarkerAnnotationModel.update(ResourceMarkerAnnotationModel.java:114)
+	at org.eclipse.ui.texteditor.ResourceMarkerAnnotationModel$ResourceChangeListener.resourceChanged(ResourceMarkerAnnotationModel.java:58)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:305)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:295)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:158)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:380)
+	at org.eclipse.core.internal.resources.Workspace.checkpoint(Workspace.java:575)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:265)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:298)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:99)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:219)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:89)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Resource '/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:204)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:273)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:266)
+	at org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl$WorkbenchHelper.createPlatformResourceInputStream(PlatformResourceURIHandlerImpl.java:207)
+	at org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl.createInputStream(PlatformResourceURIHandlerImpl.java:525)
+	at org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl.createInputStream(ExtensibleURIConverterImpl.java:360)
+	at org.eclipse.xtext.resource.XtextResourceSet$1.createInputStream(XtextResourceSet.java:298)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1314)
+	at org.eclipse.xtext.resource.persistence.StorageAwareResource.load(StorageAwareResource.java:79)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoad(ResourceSetImpl.java:259)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
+	... 24 more
+Caused by: java.lang.Exception: Resource '/crs_sim/src/main/java/crs_sim/environment/QuadTree.sarl' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	... 36 more
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:55.514
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:55.751
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:55.807
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:53:55.851
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:56.291
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:56.453
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:56.454
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:53:56.486
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:02.802
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:48.779
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:49.055
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:49.114
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:54:49.190
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:49.269
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:49.560
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:49.632
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:53.943
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:54:53.946
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:33.731
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:34.016
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:34.080
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:55:34.207
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:34.247
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:34.536
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:34.611
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 18:55:36.838
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:57:03.712
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:58:39.248
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 18:59:56.299
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:00:01.483
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:02:19.202
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:06:01.580
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:06:30.662
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:12:50.161
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:13:04.325
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:14:21.280
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:26:45.178
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:27:50.670
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:22.652
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:22.655
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:22.722
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:22.794
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:23.125
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:23.252
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:23.319
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:28:23.388
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:23.781
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:23.856
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:26.496
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-16 19:28:26.497
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/EnvironmentAgent.sarl. Reconciliation of the editor is forced.
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:28:28.718
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY slf4j.api 4 0 2021-04-16 19:29:04.633
+!MESSAGE Unexpected URLConnection defaultUseCaches enabled

@@ -1,0 +1,11 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+/** 
+ * @author Thomas
+ * 
+ */
+class QuadTree {
+}

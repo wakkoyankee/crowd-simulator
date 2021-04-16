@@ -3,7 +3,8 @@
  */
 package crs_sim.environment
 
-import crs_sim.^agent.Protester
+import crs_sim.body.ProtestorBody
+import crs_sim.body.CRSBody
 import crs_sim.body.Building
 import crs_sim.body.EnvObject
 import io.sarl.core.AgentKilled
@@ -22,8 +23,6 @@ import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import org.arakhne.afc.math.tree.node.QuadTreeNode.DefaultQuadTreeNode
 
-import crs_sim.body.ProtestorBody
-import crs_sim.body.CRSBody
 
 /** 
  * @author hadrien
@@ -46,7 +45,7 @@ agent EnvironmentAgent {
 		collec.add(new Building)
 		collec.add(new CRSBody)
 		collec.add(new ProtestorBody)
-		tree = new DefaultQuadTreeNode(collec);
+		tree = new DefaultQuadTreeNode(collec)
 	}
 
 	on Destroy {

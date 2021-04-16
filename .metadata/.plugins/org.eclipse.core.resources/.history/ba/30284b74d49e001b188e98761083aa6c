@@ -1,0 +1,36 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import org.arakhne.afc.math.tree.node.QuadTreeNode
+
+/** 
+ * @author Thomas
+ * 
+ */
+	public static class DefaultQuadTreeNode<D> extends QuadTreeNode<D, DefaultQuadTreeNode<D>> {
+	
+			private static final long serialVersionUID = -3283371007433469124L;
+	
+			/** Construct a node.
+			 */
+			public DefaultQuadTreeNode() {
+				super();
+			}
+	
+			/** Construct a node.
+		 * @param data are the initial user data
+		 */
+			public DefaultQuadTreeNode(Collection<D> data) {
+				super(data);
+	}
+	
+	/** Construct a node.
+	 * @param data are the initial user data
+	 */
+	public DefaultQuadTreeNode(D data) {
+				super(data);
+			}
+	
+		}

@@ -1,0 +1,17 @@
+/** 
+ * 
+ */
+package crs_sim.utils
+
+/** 
+ * @author Thomas
+ * 
+ */
+class DefaultTreeBuilder {
+	
+	private new {
+		
+	}
+	
+	// mettre que du static
+}
