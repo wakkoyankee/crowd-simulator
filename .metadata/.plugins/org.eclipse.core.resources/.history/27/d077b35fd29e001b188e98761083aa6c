@@ -1,0 +1,15 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+import java.awt.geom.Point2D
+
+/** 
+ * @author Thomas
+ * 
+ */
+class EnvObject {
+	var position : Point2D;
+	var uuid : int;
+}

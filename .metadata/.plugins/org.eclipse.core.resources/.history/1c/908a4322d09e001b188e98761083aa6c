@@ -1,0 +1,16 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+/** 
+ * @author Thomas
+ * 
+ */
+class Building extends EnvObject{
+	
+	new (test:int){
+		
+	}
+	
+}

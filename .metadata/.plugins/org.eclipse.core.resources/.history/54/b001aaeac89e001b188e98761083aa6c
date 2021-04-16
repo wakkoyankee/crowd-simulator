@@ -1,0 +1,18 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import org.arakhne.afc.math.tree.node.QuadTreeNode.DefaultQuadTreeNode
+import java.util.ArrayList
+
+/** 
+ * @author Thomas
+ * 
+ */
+class Test {
+	
+	public DefaultQuadTreeNode n = new DefaultQuadTreeNode();
+	
+	 	
+}

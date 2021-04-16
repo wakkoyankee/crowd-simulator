@@ -1,0 +1,16 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import org.arakhne.afc.math.tree.node.QuadTreeNode
+
+/** 
+ * @author Thomas
+ * 
+ */
+class Test extends QuadTreeNode{
+	
+	
+	
+}

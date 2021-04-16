@@ -1,5 +1,9 @@
 package crs_sim.environment;
 
+import crs_sim.body.Building;
+import crs_sim.body.CRSBody;
+import crs_sim.body.EnvObject;
+import crs_sim.body.ProtestorBody;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.ContextJoined;
@@ -22,9 +26,11 @@ import io.sarl.lang.core.Agent;
 import io.sarl.lang.core.AtomicSkillReference;
 import io.sarl.lang.core.BuiltinCapacitiesProvider;
 import io.sarl.lang.core.DynamicSkillProvider;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 import javax.inject.Inject;
+import org.arakhne.afc.math.tree.node.QuadTreeNode;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -35,14 +41,26 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlElementType(19)
 @SuppressWarnings("all")
 public class EnvironmentAgent extends Agent {
+  private QuadTreeNode.DefaultQuadTreeNode tree;
+  
+  private ArrayList<EnvObject> collec = new ArrayList<EnvObject>();
+  
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent was started.");
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent environment was started.");
+    Building _building = new Building();
+    this.collec.add(_building);
+    CRSBody _cRSBody = new CRSBody();
+    this.collec.add(_cRSBody);
+    ProtestorBody _protestorBody = new ProtestorBody();
+    this.collec.add(_protestorBody);
+    QuadTreeNode.DefaultQuadTreeNode<EnvObject> _defaultQuadTreeNode = new QuadTreeNode.DefaultQuadTreeNode<EnvObject>(this.collec);
+    this.tree = _defaultQuadTreeNode;
   }
   
   private void $behaviorUnit$Destroy$1(final Destroy occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent was stopped.");
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent environment was stopped.");
   }
   
   private void $behaviorUnit$AgentSpawned$2(final AgentSpawned occurrence) {
@@ -187,6 +205,21 @@ public class EnvironmentAgent extends Agent {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
     ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$6(occurrence));
+  }
+  
+  @Override
+  @Pure
+  @SyntheticMember
+  public boolean equals(final Object obj) {
+    return super.equals(obj);
+  }
+  
+  @Override
+  @Pure
+  @SyntheticMember
+  public int hashCode() {
+    int result = super.hashCode();
+    return result;
   }
   
   @SyntheticMember

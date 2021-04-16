@@ -17,7 +17,12 @@
 	<dependency>
 	    <groupId>org.arakhne.afc.core</groupId>
 	    <artifactId>mathtree</artifactId>
-	    <version>17.0</version>
+	    <version>16.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.arakhne.afc.core</groupId>
+	    <artifactId>mathgeom</artifactId>
+	    <version>16.0</version>
 	</dependency>
   </dependencies>
   <build>

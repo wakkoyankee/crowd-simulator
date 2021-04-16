@@ -1,0 +1,16 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+/** 
+ * @author Thomas
+ * 
+ */
+class ProtestorBody extends MobileObject{
+	
+	new {
+		
+	}
+	
+}

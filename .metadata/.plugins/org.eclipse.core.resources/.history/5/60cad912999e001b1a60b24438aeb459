@@ -1,0 +1,44 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import org.arakhne.afc.math.tree.node.QuadTreeNode
+import org.arakhne.afc.math.tree.TreeNode
+import org.arakhne.afc.math.tree.node.AbstractTreeNode
+
+/** 
+ * @author Thomas
+ * 
+ */
+class Test extends QuadTreeNode{
+	
+	override compareTo(arg0 : Object) : int {
+		return void;
+	}
+	
+	override indexOf(child : TreeNode) : int {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override moveTo(newParent : TreeNode, index : int) : boolean {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override removeChild(child : TreeNode) : boolean {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override setChildAt(index : int, newChild : AbstractTreeNode) : boolean throws IndexOutOfBoundsException {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override setChildAt(index : int, child : TreeNode) : boolean throws IndexOutOfBoundsException {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+
+	protected override setChildAtWithoutEventFiring(index : int, child : AbstractTreeNode) throws IndexOutOfBoundsException {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+}

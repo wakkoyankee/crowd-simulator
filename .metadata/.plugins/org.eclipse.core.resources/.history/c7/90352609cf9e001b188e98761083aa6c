@@ -1,0 +1,12 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+/** 
+ * @author Thomas
+ * 
+ */
+class MobileObject {
+	
+}
