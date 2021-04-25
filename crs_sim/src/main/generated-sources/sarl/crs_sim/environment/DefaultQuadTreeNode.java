@@ -18,6 +18,8 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class DefaultQuadTreeNode extends QuadTreeNode<EnvObject, DefaultQuadTreeNode> {
   private Rectangle2d area;
   
+  private QuadTreeNode tree;
+  
   public DefaultQuadTreeNode() {
     super();
   }
@@ -26,8 +28,9 @@ public class DefaultQuadTreeNode extends QuadTreeNode<EnvObject, DefaultQuadTree
    * Construct a node.
    * @param data are the initial user data
    */
-  public DefaultQuadTreeNode(final Collection<EnvObject> data) {
-    super(data);
+  public DefaultQuadTreeNode(final Collection<EnvObject> collec) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method buildTree(DefaultQuadTreeNode, Collection<EnvObject>) is undefined for the type Class<DefaultTreeBuilder>");
   }
   
   public void insert(final EnvObject object) {
@@ -49,5 +52,5 @@ public class DefaultQuadTreeNode extends QuadTreeNode<EnvObject, DefaultQuadTree
   }
   
   @SyntheticMember
-  private static final long serialVersionUID = -1893959734L;
+  private static final long serialVersionUID = -1749294451L;
 }

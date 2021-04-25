@@ -3,14 +3,25 @@
  */
 package crs_sim.utils
 
+import crs_sim.body.EnvObject
+import java.util.Collection
+import crs_sim.environment.DefaultQuadTreeNode
+
 /** 
  * @author Thomas
  * 
  */
+// static utils class  
 class DefaultTreeBuilder {
 	
 	// to force the class to be static
 	private new {}
 	
-	// mettre que du static
+	def buildTree(tree : DefaultQuadTreeNode, collec : Collection<EnvObject>) : DefaultQuadTreeNode	 {
+		for (element : collec){
+			tree.insert(element)	
+		}
+		return tree;
+	}
+	
 }

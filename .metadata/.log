@@ -2620,3 +2620,1361 @@ Caused by: java.lang.Exception: Resource '/crs_sim/src/main/java/crs_sim/environ
 
 !ENTRY slf4j.api 4 0 2021-04-16 19:29:04.633
 !MESSAGE Unexpected URLConnection defaultUseCaches enabled
+!SESSION 2021-04-25 16:19:39.314 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_291
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:36:26.449
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:36:26.769
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:36:26.830
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:36:27.014
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:36:27.295
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:36:27.371
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:37:30.066
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY org.eclipse.jface.text 4 0 2021-04-25 16:37:50.032
+!MESSAGE org.eclipse.core.runtime.OperationCanceledException
+!STACK 0
+java.util.concurrent.CompletionException: org.eclipse.core.runtime.OperationCanceledException
+	at java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+Caused by: org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.internalReadOnly(XtextDocument.java:540)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.readOnly(XtextDocument.java:497)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument.readOnly(XtextDocument.java:136)
+	at org.eclipse.xtext.util.concurrent.IReadAccess.tryReadOnly(IReadAccess.java:50)
+	at org.eclipse.xtext.ui.codemining.AbstractXtextCodeMiningProvider.lambda$0(AbstractXtextCodeMiningProvider.java:89)
+	... 6 more
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:13.786
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:14.234
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:14.239
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:14.317
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:14.628
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:14.696
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 16:38:19.160
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY org.eclipse.jface.text 4 0 2021-04-25 16:54:21.341
+!MESSAGE org.eclipse.core.runtime.OperationCanceledException
+!STACK 0
+java.util.concurrent.CompletionException: org.eclipse.core.runtime.OperationCanceledException
+	at java.util.concurrent.CompletableFuture.encodeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture.completeThrowable(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+	at java.util.concurrent.CompletableFuture$AsyncSupply.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+Caused by: org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.internalReadOnly(XtextDocument.java:540)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument$XtextDocumentLocker.readOnly(XtextDocument.java:497)
+	at org.eclipse.xtext.ui.editor.model.XtextDocument.readOnly(XtextDocument.java:136)
+	at org.eclipse.xtext.util.concurrent.IReadAccess.tryReadOnly(IReadAccess.java:50)
+	at org.eclipse.xtext.ui.codemining.AbstractXtextCodeMiningProvider.lambda$0(AbstractXtextCodeMiningProvider.java:89)
+	... 6 more
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:22:50.472
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:22:51.874
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:22:51.936
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:23:09.834
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:23:09.896
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:23:12.451
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:15.508
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:17.572
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:17.677
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:30.340
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:30.406
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:32.900
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:32.960
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:43.041
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:43.099
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:49.757
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:49.819
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:50.747
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:50.807
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:51.909
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:24:51.971
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:01.363
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:01.446
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:31.916
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:31.982
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:48.749
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:48.825
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:48.893
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:25:49.231
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:34:09.016
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:34:10.103
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:25.730
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:25.794
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:26.863
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:26.928
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:30.592
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:30.658
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:32.330
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:36:32.392
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:00.327
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:00.398
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:07.598
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:07.660
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:09.976
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:10.037
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:15.983
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:16.042
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:17.361
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:37:17.425
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:17.346
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:17.406
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:27.317
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:27.376
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:27.968
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:28.029
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:30.252
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:30.312
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:30.949
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:31.014
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:31.699
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:31.758
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:35.180
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:35.239
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:36.043
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:36.105
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:37.812
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:37.870
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:40.178
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:40.327
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:45.703
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:45.764
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:51.380
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:51.441
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:56.623
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:56.682
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:57.774
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:57.840
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:59.583
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:40:59.642
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:01.424
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:01.483
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:02.657
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:02.721
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:05.073
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:05.131
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:10.355
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:10.414
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:12.130
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:12.188
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:14.161
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:14.221
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:14.964
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:15.024
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:23.989
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:24.046
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:30.725
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:30.783
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:31.889
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:32.008
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:35.159
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:35.301
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:40.640
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:40.699
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:54.716
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:41:54.775
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:34.391
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:34.455
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:35.887
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:35.946
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:53.941
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:54.002
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:55.462
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:55.520
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:56.365
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:42:56.488
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:43:14.255
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:43:14.313
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:43:17.532
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:43:17.591
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:44:34.267
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:44:34.328
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+CTRL+ARROW_UP:
+Binding(ALT+CTRL+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.copyLineUp,Duplicate Lines,
+		Duplicates the selected lines and leaves the selection unchanged,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1941632,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+CTRL+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.copyLineUp,Duplicate Lines,
+		Duplicates the selected lines and leaves the selection unchanged,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1941632,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+CTRL+ARROW_DOWN:
+Binding(ALT+CTRL+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.copyLineDown,Copy Lines,
+		Duplicates the selected lines and moves the selection to the copy,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@9a20ff7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+CTRL+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.copyLineDown,Copy Lines,
+		Duplicates the selected lines and moves the selection to the copy,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@9a20ff7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+INSERT:
+Binding(CTRL+SHIFT+INSERT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleInsertMode,Toggle Insert Mode,
+		Toggle insert mode,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7c27eb6b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+INSERT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleInsertMode,Toggle Insert Mode,
+		Toggle insert mode,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7c27eb6b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+CR:
+Binding(CTRL+SHIFT+CR,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.smartEnterInverse,Insert Line Above Current Line,
+		Adds a new line above the current line,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3973a926,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+CR,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.smartEnterInverse,Insert Line Above Current Line,
+		Adds a new line above the current line,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3973a926,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+ARROW_LEFT:
+Binding(CTRL+SHIFT+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.wordPrevious,Select Previous Word,
+		Select the previous word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@18770dbc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.wordPrevious,Select Previous Word,
+		Select the previous word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@18770dbc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+ARROW_RIGHT:
+Binding(CTRL+SHIFT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.wordNext,Select Next Word,
+		Select the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@13364f2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.wordNext,Select Next Word,
+		Select the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@13364f2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+F10:
+Binding(CTRL+F10,
+	ParameterizedCommand(Command(org.eclipse.ui.window.showViewMenu,Show View Menu,
+		Show the view menu,
+		Category(org.eclipse.ui.category.window,Window,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@420cbb0c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+F10,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.showRulerContextMenu,Show Ruler Context Menu,
+		Show the context menu for the ruler,
+		Category(org.eclipse.ui.category.window,Window,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@669200f2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+F10,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.showRulerContextMenu,Show Ruler Context Menu,
+		Show the context menu for the ruler,
+		Category(org.eclipse.ui.category.window,Window,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@669200f2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+END:
+Binding(CTRL+END,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.textEnd,Text End,
+		Go to the end of the text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4628fb71,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+END,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.textEnd,Text End,
+		Go to the end of the text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4628fb71,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+BS:
+Binding(CTRL+BS,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.deletePreviousWord,Delete Previous Word,
+		Delete the previous word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5c2603b2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+BS,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.deletePreviousWord,Delete Previous Word,
+		Delete the previous word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5c2603b2,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+ARROW_UP:
+Binding(CTRL+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.scroll.lineUp,Scroll Line Up,
+		Scroll up one line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7b5517e1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.scroll.lineUp,Scroll Line Up,
+		Scroll up one line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7b5517e1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+ARROW_DOWN:
+Binding(CTRL+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.scroll.lineDown,Scroll Line Down,
+		Scroll down one line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@d361de9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.scroll.lineDown,Scroll Line Down,
+		Scroll down one line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@d361de9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+ARROW_LEFT:
+Binding(CTRL+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.wordPrevious,Previous Word,
+		Go to the previous word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@c448c4d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+ARROW_LEFT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.wordPrevious,Previous Word,
+		Go to the previous word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@c448c4d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+ARROW_RIGHT:
+Binding(CTRL+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.wordNext,Next Word,
+		Go to the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@609325e4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.wordNext,Next Word,
+		Go to the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@609325e4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+HOME:
+Binding(CTRL+HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.textStart,Text Start,
+		Go to the beginning of the text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@33aacc08,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.textStart,Text Start,
+		Go to the beginning of the text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@33aacc08,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+J:
+Binding(CTRL+SHIFT+J,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findIncrementalReverse,Incremental Find Reverse,
+		Incremental find reverse,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@e4e46c1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+J,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findIncrementalReverse,Incremental Find Reverse,
+		Incremental find reverse,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@e4e46c1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+K:
+Binding(CTRL+SHIFT+K,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findPrevious,Find Previous,
+		Find previous item,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@264085a1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+K,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findPrevious,Find Previous,
+		Find previous item,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@264085a1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+CTRL+J:
+Binding(ALT+CTRL+J,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.join.lines,Join Lines,
+		Join lines of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5f853888,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+CTRL+J,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.join.lines,Join Lines,
+		Join lines of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5f853888,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+SHIFT+A:
+Binding(ALT+SHIFT+A,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleBlockSelectionMode,Toggle Block Selection,
+		Toggle block / column selection in the current text editor,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3a2a75fc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+SHIFT+A,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleBlockSelectionMode,Toggle Block Selection,
+		Toggle block / column selection in the current text editor,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3a2a75fc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+J:
+Binding(CTRL+J,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findIncremental,Incremental Find,
+		Incremental find,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@462e4436,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+J,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findIncremental,Incremental Find,
+		Incremental find,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@462e4436,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+K:
+Binding(CTRL+K,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findNext,Find Next,
+		Find next item,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6461acdf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+K,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.findNext,Find Next,
+		Find next item,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6461acdf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+L:
+Binding(CTRL+L,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.line,Go to Line,
+		Go to a specified line of text,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@125699a3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+L,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.line,Go to Line,
+		Go to a specified line of text,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@125699a3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+D:
+Binding(CTRL+D,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.delete.line,Delete Line,
+		Delete a line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7bba8b80,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+D,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.delete.line,Delete Line,
+		Delete a line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7bba8b80,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+DEL:
+Binding(CTRL+SHIFT+DEL,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.delete.line.to.end,Delete to End of Line,
+		Delete to the end of a line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4f817f35,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+DEL,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.delete.line.to.end,Delete to End of Line,
+		Delete to the end of a line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4f817f35,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+X:
+Binding(CTRL+SHIFT+X,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.upperCase,To Upper Case,
+		Changes the selection to upper case,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@26ef254e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+X,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.upperCase,To Upper Case,
+		Changes the selection to upper case,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@26ef254e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+SHIFT+Y:
+Binding(CTRL+SHIFT+Y,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.lowerCase,To Lower Case,
+		Changes the selection to lower case,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@d23bb1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+Y,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.lowerCase,To Lower Case,
+		Changes the selection to lower case,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@d23bb1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.deleteNextWord,Delete Next Word,
+		Delete the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2f9b46a0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.deleteNextWord,Delete Next Word,
+		Delete the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2f9b46a0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+/:
+Binding(ALT+/,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.hippieCompletion,Word Completion,
+		Context insensitive completion,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6ba7ecb1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+/,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.hippieCompletion,Word Completion,
+		Context insensitive completion,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6ba7ecb1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+ARROW_UP:
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineUp,Move Lines Up,
+		Moves the selected lines up,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@343d71de,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineUp,Move Lines Up,
+		Moves the selected lines up,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@343d71de,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for ALT+ARROW_DOWN:
+Binding(ALT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineDown,Move Lines Down,
+		Moves the selected lines down,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2523cb5b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineDown,Move Lines Down,
+		Moves the selected lines down,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2523cb5b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for SHIFT+END:
+Binding(SHIFT+END,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.lineEnd,Select Line End,
+		Select to the end of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@50782719,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(SHIFT+END,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.lineEnd,Select Line End,
+		Select to the end of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@50782719,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for SHIFT+CR:
+Binding(SHIFT+CR,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.smartEnter,Insert Line Below Current Line,
+		Adds a new line below the current line,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4ee9bc3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(SHIFT+CR,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.smartEnter,Insert Line Below Current Line,
+		Adds a new line below the current line,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4ee9bc3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for SHIFT+HOME:
+Binding(SHIFT+HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.lineStart,Select Line Start,
+		Select to the beginning of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5b82b901,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(SHIFT+HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.select.lineStart,Select Line Start,
+		Select to the beginning of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5b82b901,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for END:
+Binding(END,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.lineEnd,Line End,
+		Go to the end of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@60c0d839,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(END,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.lineEnd,Line End,
+		Go to the end of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@60c0d839,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for INSERT:
+Binding(INSERT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleOverwrite,Toggle Overwrite,
+		Toggle overwrite mode,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@71917bd7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(INSERT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleOverwrite,Toggle Overwrite,
+		Toggle overwrite mode,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@71917bd7,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.974
+!MESSAGE A conflict occurred for F2:
+Binding(F2,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@151c6a5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(F2,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.showInformation,Show Tooltip Description,
+		Displays information for the current caret location in a focused hover,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4f552d3f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(F2,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.showInformation,Show Tooltip Description,
+		Displays information for the current caret location in a focused hover,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4f552d3f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-04-25 17:44:35.975
+!MESSAGE A conflict occurred for HOME:
+Binding(HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.lineStart,Line Start,
+		Go to the start of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@293225fc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(HOME,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.lineStart,Line Start,
+		Go to the start of the line of text,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@293225fc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.xtext.ui.embeddedTextEditorScope,,,system)
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:44:49.353
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:44:49.417
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:03.101
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:09.925
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:10.480
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:10.482
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:10.485
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:10.962
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:10.986
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:10.993
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:20.146
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:21.233
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:29.564
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:29.950
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:30.020
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:30.086
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:30.449
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:41.529
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:42.177
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:50.618
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:50.679
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:55.867
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:55.928
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:58.578
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:45:58.642
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:00.689
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:00.751
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:02.270
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:02.332
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:12.933
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:13.001
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:49.848
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:49.905
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:51.750
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:51.807
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:55.544
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:46:55.603
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:02.014
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:02.082
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:05.995
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:06.427
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:06.503
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:06.506
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:47:06.938
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:48:45.643
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:42.152
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:49.051
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:50.148
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:50.229
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:51.459
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:51.480
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:51.481
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:51.526
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:58.714
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:59.792
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:52:59.873
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:53:05.989
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:53:06.858
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:53:06.934
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:53:24.649
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:54:15.577
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:54:16.644
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:54:16.697
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:54:18.613
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 17:54:18.666
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:03:40.853
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:03:40.860
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:03:40.868
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:03:40.878
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:04:08.892
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:04:09.239
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:04:09.431
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:06:29.685
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:06:29.740
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:06:30.252
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:06:30.305
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:06:30.778
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:06:30.841
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:08:00.764
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/environment/DefaultQuadTreeNode.sarl. Reconciliation of the editor is forced.
+
+!ENTRY io.sarl.lang.ui 4 0 2021-04-25 18:08:02.025
+!MESSAGE Possible inconsistency problem between the editor and the resource platform:/resource/crs_sim/src/main/java/crs_sim/utils/DefaultTreeBuilder.sarl. Reconciliation of the editor is forced.

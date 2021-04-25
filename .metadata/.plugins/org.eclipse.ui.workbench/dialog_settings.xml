@@ -11,5 +11,13 @@
 		<item key="DIALOG_Y_ORIGIN" value="132"/>
 	</section>
 	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.jdt.ui.java/org.eclipse.jdt.debug.ui.java"/>
+			<item value="org.eclipse.jdt.ui.java/org.eclipse.jdt.junit"/>
+			<item value="io.sarl.eclipse.category.wizards"/>
+			<item value="io.sarl.eclipse.category.wizards/io.sarl.project.JavaFXExamples"/>
+		</list>
 	</section>
 </section>

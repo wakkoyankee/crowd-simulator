@@ -8,13 +8,17 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="insert"/>
+			<item value="first"/>
+			<item value="hei"/>
+			<item value="build"/>
 			<item value="compare"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="801"/>
+		<item key="DIALOG_X_ORIGIN" value="633"/>
 		<item key="DIALOG_Y_ORIGIN" value="222"/>
 		<item key="DIALOG_WIDTH" value="336"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
