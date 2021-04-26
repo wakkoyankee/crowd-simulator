@@ -28,6 +28,7 @@ agent CRS {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		info("The agent CRS was started.")
+		
 	}
 
 	on Destroy {
