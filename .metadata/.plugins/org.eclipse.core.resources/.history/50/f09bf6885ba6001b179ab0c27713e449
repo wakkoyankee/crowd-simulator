@@ -1,0 +1,40 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import crs_sim.body.EnvObject
+import java.util.Collection
+import org.arakhne.afc.math.tree.node.QuadTreeNode
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import crs_sim.utils.ParamSimu
+import crs_sim.utils.DefaultTreeBuilder
+
+/** 
+ * @author Thomas
+ * 
+ */ class DefaultQuadTreeNode extends QuadTreeNode<EnvObject, DefaultQuadTreeNode> {
+
+		val area : Rectangle2d
+		
+		new (area : Rectangle2d) {
+			super();
+			this.area = area
+		}
+
+		/** Construct a node.
+	 * @param data are the initial user data
+	 */
+		new (collec : Collection<EnvObject>, area : Rectangle2d) {
+			super(collec)
+			this.area = area
+			//area = new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
+		}
+		
+		def insert(object :EnvObject) : void{
+			// rules of insertion
+			// set pour ajouter un fils
+			// add pour un objet
+		}
+		
+}

@@ -1,0 +1,94 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import crs_sim.body.EnvObject
+import crs_sim.utils.CRS_Sim_Utils
+import crs_sim.utils.ParamSimu
+import java.util.Collection
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.tree.node.AbstractParentlessTreeNode.DataCollection
+import org.arakhne.afc.math.tree.node.QuadTreeNode
+
+/** 
+ * @author Thomas
+ * 
+ */
+class QTNode extends QuadTreeNode<EnvObject, QTNode>{
+
+		val area : Rectangle2d
+		
+		new (area : Rectangle2d) {
+			super();
+			this.area = area
+		}
+
+		/** Construct a node.
+	 * @param data are the initial user data
+	 */
+		new (collec : Collection<EnvObject>, area : Rectangle2d) {
+			super(collec)
+			this.area = area
+		}
+		
+		def insert(object :EnvObject) : void{			
+			
+			if (CRS_Sim_Utils.AinB(object.getArea(), area) 
+				&& getUserDataCount() <= ParamSimu.maxObjectsPerChild) {
+				addUserData(object) 		// ajouter dans l'object courant
+			} else if (CRS_Sim_Utils.AinB(object.getArea(), area) 
+				&& getUserDataCount() > ParamSimu.maxObjectsPerChild) {
+					
+				if(getNotNullChildCount()<=0 /*je n ai pas d enfants getFirstChild() == null?*/){
+					 initChilds()
+					 //essayer de dispatcher les éléments dans les fils
+				}
+				switch (CRS_Sim_Utils.childFit(object.area,area)){
+					case 0:
+						//fit nowhere
+						addUserData(object)
+					case 1:
+						firstChild.insert(object)
+					case 2:
+						secondChild.insert(object)					
+					case 3:
+						thirdChild.insert(object)
+					case 4:
+						fourthChild.insert(object)
+				}
+			} else {
+				// does not fit un current node
+				throw new Exception(
+				"Objet : " + object.getClass.getName + 
+				" Position : " + object.getPosition + " ne rentre pas dans le noeud courant");
+			}			
+		}
+		
+		def initChilds() {
+			var rect = new Rectangle2d()
+			if(firstChild != null && secondChild != null &&
+				thirdChild != null && fourthChild != null
+			) return false
+			else{
+				// NW
+				rect.setFromCorners(area.getMinX, area.getMinY, area.getMaxX/2, area.getMaxY/2)						
+				setFirstChild(new QTNode(rect))
+						
+				// NE
+				rect.setFromCorners(area.getMaxX/2, area.getMinY, area.getMaxX, area.getMaxY/2)
+				setSecoundChild(new QTNode(rect))
+				// SW
+				setThirdChild(
+					new QTNode(new Rectangle2d().setFromCorners(
+										area.getMinX,double(area.getMaxY/2),
+										double(area.getMaxX/2),area.getMaxY )))
+				// SE
+				setFourthChild(
+					new QTNode(new Rectangle2d().setFromCorners(
+										double(area.getMaxX/2),double(area.getMaxY/2)
+										area.getMaxX,area.getMaxY )))
+				return true
+			}
+		}
+}

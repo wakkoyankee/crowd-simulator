@@ -14,10 +14,21 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlSpecification("0.11")
 @SarlElementType(10)
 @SuppressWarnings("all")
-public class EnvObject {
+public abstract class EnvObject {
   private Point2d position;
   
   private UUID uuid;
+  
+  @Pure
+  public Point2d getPosition() {
+    return this.position;
+  }
+  
+  public void setPosition(final Point2d position) {
+    this.position = position;
+  }
+  
+  public abstract void getArea();
   
   @Override
   @Pure

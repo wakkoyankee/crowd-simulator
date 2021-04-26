@@ -4,6 +4,9 @@ import crs_sim.body.Building;
 import crs_sim.body.CRSBody;
 import crs_sim.body.EnvObject;
 import crs_sim.body.ProtestorBody;
+import crs_sim.environment.QTNode;
+import crs_sim.utils.CRS_Sim_Utils;
+import crs_sim.utils.ParamSimu;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.ContextJoined;
@@ -30,7 +33,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 import javax.inject.Inject;
-import org.arakhne.afc.math.tree.node.QuadTreeNode;
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
+import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -41,21 +45,20 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlElementType(19)
 @SuppressWarnings("all")
 public class EnvironmentAgent extends Agent {
-  private QuadTreeNode.DefaultQuadTreeNode tree;
+  private QTNode rootTree;
   
   private ArrayList<EnvObject> collec = new ArrayList<EnvObject>();
   
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent environment was started.");
-    Building _building = new Building();
-    this.collec.add(_building);
-    CRSBody _cRSBody = new CRSBody();
-    this.collec.add(_cRSBody);
-    ProtestorBody _protestorBody = new ProtestorBody();
-    this.collec.add(_protestorBody);
-    QuadTreeNode.DefaultQuadTreeNode<EnvObject> _defaultQuadTreeNode = new QuadTreeNode.DefaultQuadTreeNode<EnvObject>(this.collec);
-    this.tree = _defaultQuadTreeNode;
+    CollectionExtensions.<CRSBody>addAll(this.collec, ParamSimu.initCollecCRS);
+    CollectionExtensions.<ProtestorBody>addAll(this.collec, ParamSimu.initCollecProtestor);
+    CollectionExtensions.<Building>addAll(this.collec, ParamSimu.initCollecBuilding);
+    Rectangle2d _rectangle2d = new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY);
+    QTNode _qTNode = new QTNode(_rectangle2d);
+    this.rootTree = _qTNode;
+    CRS_Sim_Utils.buildTree(this.rootTree, this.collec);
   }
   
   private void $behaviorUnit$Destroy$1(final Destroy occurrence) {

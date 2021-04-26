@@ -3,10 +3,9 @@
  */
 package crs_sim.environment
 
-import crs_sim.body.ProtestorBody
-import crs_sim.body.CRSBody
-import crs_sim.body.Building
 import crs_sim.body.EnvObject
+import crs_sim.utils.CRS_Sim_Utils
+import crs_sim.utils.ParamSimu
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
@@ -21,8 +20,7 @@ import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
-import org.arakhne.afc.math.tree.node.QuadTreeNode.DefaultQuadTreeNode
-
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 
 /** 
  * @author hadrien
@@ -34,7 +32,7 @@ import org.arakhne.afc.math.tree.node.QuadTreeNode.DefaultQuadTreeNode
 agent EnvironmentAgent {
 	uses Logging
 	
-	var tree : DefaultQuadTreeNode;
+	var rootTree : QTNode;
 	
 	var collec = new ArrayList<EnvObject>();
 	
@@ -42,10 +40,13 @@ agent EnvironmentAgent {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		info("The agent environment was started.")
-		collec.add(new Building)
-		collec.add(new CRSBody)
-		collec.add(new ProtestorBody)
-		tree = new DefaultQuadTreeNode(collec)
+		collec.addAll(ParamSimu.initCollecCRS)
+		collec.addAll(ParamSimu.initCollecProtestor)
+		collec.addAll(ParamSimu.initCollecBuilding)
+		rootTree = new QTNode(
+			new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
+		)
+		CRS_Sim_Utils.buildTree(rootTree, collec)
 	}
 
 	on Destroy {

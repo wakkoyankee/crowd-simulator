@@ -1,0 +1,20 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+/** 
+ * @author Thomas
+ * 
+ */
+class CRSBody extends MobileObject{
+	
+	new (position : Point2d){
+		this.position = position
+	}
+	
+	def getArea(){
+		return position // will be replaced by a circle (or other) later
+	}
+	
+}

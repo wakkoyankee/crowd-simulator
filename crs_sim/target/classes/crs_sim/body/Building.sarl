@@ -3,14 +3,23 @@
  */
 package crs_sim.body
 
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+
 /** 
  * @author Thomas
  * 
  */
-class Building extends EnvObject{
+class Building extends EnvObject {
+
+	val area : Rectangle2d
+
+	new (area : Rectangle2d) {
+		super();
+		this.area = area
+	}
 	
-	new {
-		
+	def getArea(){
+		return area
 	}
 	
 }

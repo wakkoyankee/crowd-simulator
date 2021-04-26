@@ -1,0 +1,74 @@
+/** 
+ * 
+ */
+package crs_sim.utils
+
+import crs_sim.body.EnvObject
+import crs_sim.environment.QTNode
+import java.util.Collection
+import org.arakhne.afc.math.geometry.d2.d.Point2d
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import java.awt.Point
+
+/** 
+ * @author Thomas
+ * 
+ */
+// static utils class  
+class CRS_Sim_Utils extends Rectangle2d {
+	
+	// to force the class to be static
+	private new {}
+	
+	// rootTree must be given into parameter
+	// insert will put at the right place the given objects
+	static def buildTree(tree : QTNode, collec : Collection<EnvObject>){
+		for (element : collec){
+			tree.insert(element)	
+		}
+	}
+	
+	// true if A is fully inside B
+	static def AinB(A : Rectangle2d, B : Rectangle2d) : boolean {
+		return !intersectsRectangleRectangle(
+			A.getMinX, A.getMinY, A.getMaxX, A.getMaxY,
+			B.getMinX, B.getMinY, B.getMaxX, B.getMaxY			
+		);
+	}
+	
+	// true if A is inside B
+	static def AinB(A : Point2d, B : Rectangle2d) : boolean {
+		return A.getX > B.getMinX && A.getX < B.getMaxX 
+			&& A.getY > B.getMinY && A.getY < B.getMaxY;
+	}
+
+	// to check if the rectangle is in the area
+	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
+	static def childFit(rect : Rectangle2d, area : Rectangle2d) : int {
+		if (containsRectangleRectangle(
+			rect.getMinX,
+			rect.getMinY,
+			rect.getMaxX,
+			rect.getMaxX,
+			area.getMinX,
+			area.getMinY,
+			area.getMaxX,
+			area.getMaxX
+		))
+			return 1
+		else if()
+			return 2
+		else if ()
+			return 3
+		else if ()
+			return 4
+		return 0;
+	}
+
+	// to check if the point is in the area
+	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
+	static def childFit(point : Point2d, area : Rectangle2d) : int {
+		return 0;
+	}	
+	
+}

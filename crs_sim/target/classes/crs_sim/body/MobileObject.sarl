@@ -7,6 +7,6 @@ package crs_sim.body
  * @author Thomas
  * 
  */
-class MobileObject extends EnvObject{
+abstract class MobileObject extends EnvObject{
 	var speed : float;
 }

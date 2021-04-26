@@ -12,7 +12,7 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlSpecification("0.11")
 @SarlElementType(10)
 @SuppressWarnings("all")
-public class MobileObject extends EnvObject {
+public abstract class MobileObject extends EnvObject {
   private float speed;
   
   @Override

@@ -3,14 +3,20 @@
  */
 package crs_sim.body
 
+import org.arakhne.afc.math.geometry.d2.d.Point2d
+
 /** 
  * @author Thomas
  * 
  */
 class CRSBody extends MobileObject{
 	
-	new {
-		
+	new (position : Point2d){
+		this.position = position
+	}
+	
+	def getArea(){
+		return position // will be replaced by a circle (or other) later
 	}
 	
 }

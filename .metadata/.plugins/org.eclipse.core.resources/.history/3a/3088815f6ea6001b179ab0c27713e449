@@ -1,0 +1,20 @@
+package crs_sim.utils;
+
+import java.util.Collection;
+
+import org.arakhne.afc.math.geometry.d2.d.Point2d;
+
+import crs_sim.body.Building;
+
+public class ParamSimu {
+	public static final double mapSizeX = 1000;
+	public static final double mapSizeY = 1000;
+	public static final double maxObjectsPerChild = 4;
+	public static final Collection<Point2d> initCollecCRS = {
+			new Point2d(10, 10),
+			new Point2d(10, 20),
+			new Point2d(10, 30)
+	};
+	public static final Collection<Point2d> initCollecProtestor = null;
+	public static final Collection<Building> initCollecBuilding = null;
+}
