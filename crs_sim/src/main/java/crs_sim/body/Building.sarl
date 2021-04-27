@@ -19,7 +19,7 @@ class Building extends EnvObject {
 	}
 	
 	def getArea(){
-		return area
+		return this.area
 	}
 	
 }

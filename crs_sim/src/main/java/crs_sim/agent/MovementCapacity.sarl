@@ -1,0 +1,15 @@
+/** 
+ * 
+ */
+package crs_sim.^agent
+
+import io.sarl.lang.core.DefaultSkill
+
+/** 
+ * @author hadrien
+ * 
+ */
+ @DefaultSkill(typeof(crs_sim.^agent.MovementSkill))
+capacity MovementCapacity {
+	def influenceKinematic()
+}

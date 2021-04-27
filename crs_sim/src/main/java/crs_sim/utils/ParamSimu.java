@@ -11,7 +11,7 @@ public class ParamSimu {
 	public static final double mapSizeX = 1000;
 	public static final double mapSizeY = 1000;
 	public static final double maxObjectsPerChild = 4;
-	public static final CRSBody[] initCollecCRS = {
+	/*public static final CRSBody[] initCollecCRS = {
 			new CRSBody(new Point2d(10, 10)),
 			new CRSBody(new Point2d(10, 20)),
 			new CRSBody(new Point2d(10, 30))
@@ -25,5 +25,5 @@ public class ParamSimu {
 			new Building(new Rectangle2d(100,100,40,20)),
 			new Building(new Rectangle2d(100,200,40,20)),
 			new Building(new Rectangle2d(100,300,40,20))
-	};
+	};*/
 }

@@ -1,18 +1,15 @@
 /** 
  * 
  */
-package crs_sim.environment
+package crs_sim.^agent
 
-import crs_sim.^agent.Protestor
-import crs_sim.body.EnvObject
-import crs_sim.utils.ParamSimu
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
+import io.sarl.core.Behaviors
 import io.sarl.core.ContextJoined
 import io.sarl.core.ContextLeft
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
-import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
@@ -20,43 +17,51 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
-import java.util.ArrayList
 
 /** 
- * @author hadrien
+ * @author Thomas
  * 
  */
- 
- //papyrus
- 
-agent EnvironmentAgent {
+agent Protestor {
 	uses Logging
-	uses Lifecycle
+	uses Behaviors
 	
-	//var rootTree : QTNode
-	
-	var collec = new ArrayList<EnvObject>();
-	
+	var Behavior : int
+	var Tolerance : int
+
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
-		info("The agent environment was started.")
-		/*collec.addAll(ParamSimu.initCollecCRS)
-		collec.addAll(ParamSimu.initCollecProtestor)
-		collec.addAll(ParamSimu.initCollecBuilding)*/
-		//rootTree = new QTNode(
-		//	new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
-		//)
-		//CRS_Sim_Utils.buildTree(rootTree, collec)
-		
-		spawn(Protestor,1,2)
+		info("The agent Protester was started.")
+		var a = occurrence.parameters.get(0) as Integer
+		var n = new Neutral(this)
+		n.registerBehavior
+		n.unregisterBehavior
 	}
 
 	on Destroy {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("The agent environment was stopped.")
+		info("The agent Protester was stopped.")
 	}
+	
+	
+	/* INITIALISATION PERSONALITE */
+	def setPersonality(B: int , T : int){
+		this.Behavior = B
+		this.Tolerance = T
+		
+	}
+	
+	def setBehavior(B : int) {
+		this.Behavior = B
+	} 
+	
+	def setTolerance(T : int) {
+		this.Tolerance = T
+	}
+
+
 
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
