@@ -49,7 +49,33 @@ agent EnvironmentAgent {
 		//)
 		//CRS_Sim_Utils.buildTree(rootTree, collec)
 		
-		spawn(Protestor,1,2)
+		//// CREATION ENVIRONEMENT  ////
+		
+		
+		// // SPAWN DES AGENTS  ////
+		
+		spawn(Protestor, 1, 2)
+		
+		//// BOUCLE DE SIMULATION ////
+		
+		// var t : int = 0
+		
+		//while(1){
+		
+			//get perceptions
+			//actions -> new list
+			// for all agents
+				// send perception
+				// get actions
+			//reactions -> resolveconflict (env , actions)
+			// for all reactions
+				//apply(env, reaction)
+			
+			// t += 1
+			
+		//}
+		
+
 	}
 
 	on Destroy {

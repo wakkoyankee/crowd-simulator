@@ -11,6 +11,8 @@ public class ParamSimu {
 	public static final double mapSizeX = 1000;
 	public static final double mapSizeY = 1000;
 	public static final double maxObjectsPerChild = 4;
+	public static final int maxPanic = 30;
+	public static final int minAggressive = 70;
 	/*public static final CRSBody[] initCollecCRS = {
 			new CRSBody(new Point2d(10, 10)),
 			new CRSBody(new Point2d(10, 20)),

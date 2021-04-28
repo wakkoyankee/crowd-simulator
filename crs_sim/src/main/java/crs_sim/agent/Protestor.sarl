@@ -28,15 +28,34 @@ agent Protestor {
 	
 	var Behavior : int
 	var Tolerance : int
+	var P : Panic
+	var N : Neutral
+	var A : Aggressive
+
+	val maxPanic : int = 30
+	val minAggressive : int = 70
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		info("The agent Protester was started.")
-		var a = occurrence.parameters.get(0) as Integer
-		var n = new Neutral(this)
-		n.registerBehavior
-		n.unregisterBehavior
+		
+		this.Behavior = occurrence.parameters.get(0) as Integer
+		this.Tolerance = occurrence.parameters.get(1) as Integer
+		
+		if(this.Behavior < this.maxPanic){
+			this.P = new Panic(this)
+			this.P.registerBehavior
+		}
+		else if (this.Behavior > this.minAggressive){
+			this.A = new Aggressive(this)
+			this.A.registerBehavior
+		}
+		else{
+			this.N = new Neutral(this)
+			this.N.registerBehavior
+		}
+
 	}
 
 	on Destroy {
