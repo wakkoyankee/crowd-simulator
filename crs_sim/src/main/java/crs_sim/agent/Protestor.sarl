@@ -17,6 +17,7 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
+import crs_sim.utils.ParamSimu
 
 /** 
  * @author Thomas
@@ -28,12 +29,10 @@ agent Protestor {
 	
 	var Behavior : int
 	var Tolerance : int
+	
 	var P : Panic
 	var N : Neutral
 	var A : Aggressive
-
-	val maxPanic : int = 30
-	val minAggressive : int = 70
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
@@ -43,11 +42,12 @@ agent Protestor {
 		this.Behavior = occurrence.parameters.get(0) as Integer
 		this.Tolerance = occurrence.parameters.get(1) as Integer
 		
-		if(this.Behavior < this.maxPanic){
+		if(this.Behavior < ParamSimu.maxPanic){
 			this.P = new Panic(this)
+			info("here")
 			this.P.registerBehavior
 		}
-		else if (this.Behavior > this.minAggressive){
+		else if (this.Behavior > ParamSimu.minAggressive){
 			this.A = new Aggressive(this)
 			this.A.registerBehavior
 		}
@@ -55,7 +55,6 @@ agent Protestor {
 			this.N = new Neutral(this)
 			this.N.registerBehavior
 		}
-
 	}
 
 	on Destroy {

@@ -21,6 +21,7 @@ import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
+import crs_sim.ui.Window
 
 /** 
  * @author hadrien
@@ -74,6 +75,10 @@ agent EnvironmentAgent {
 			// t += 1
 			
 		//}
+		
+		
+		//Test UI //
+		var win = new Window()
 		
 
 	}
