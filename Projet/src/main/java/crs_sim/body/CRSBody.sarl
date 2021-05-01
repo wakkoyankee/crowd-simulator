@@ -1,0 +1,33 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
+
+/** 
+ * @author Thomas
+ * 
+ */
+class CRSBody extends MobileObject {
+	val position : Circle2d
+
+	new (position : Circle2d) {
+		this.position = position
+	}
+
+	def getArea() : Shape2d<?> {
+		return position as Shape2d 		// will be replaced by a circle (or other) later
+	}
+//	val position : Circle2d
+//	
+//	new (position : Circle2d) {
+//		this.position = position
+//	}
+//	
+//	def getArea(): Shape2d<?> {
+//		return position // will be replaced by a circle (or other) later
+//	}
+	
+}

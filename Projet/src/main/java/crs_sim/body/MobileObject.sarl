@@ -1,0 +1,15 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+import org.eclipse.xtend.lib.annotations.Accessors
+
+/** 
+ * @author Thomas
+ * 
+ */
+abstract class MobileObject extends EnvObject {
+	@Accessors(PUBLIC_SETTER, PUBLIC_GETTER)
+	var speed : float;
+}

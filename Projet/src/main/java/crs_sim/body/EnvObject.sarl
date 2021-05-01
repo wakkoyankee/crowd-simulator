@@ -1,0 +1,38 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+import java.util.UUID
+import org.arakhne.afc.math.geometry.d2.d.Point2d
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import org.eclipse.xtend.lib.annotations.Accessors
+
+/** 
+ * @author Thomas
+ * 
+ */
+abstract class EnvObject {
+	
+	@Accessors(PUBLIC_SETTER, PUBLIC_GETTER)
+	var uuid : UUID;
+	
+	abstract def getArea(): Shape2d<?>
+}
+
+
+class ex{
+	var a : Rectangle2d
+	var b : Point2d
+	var c : Rectangle2d
+	
+	def toto (){
+		if(a.contains(b)){//intersection
+			
+		}
+		if(a.intersects(c)){//intersection entre 2 shapes
+			
+		}
+	}
+}

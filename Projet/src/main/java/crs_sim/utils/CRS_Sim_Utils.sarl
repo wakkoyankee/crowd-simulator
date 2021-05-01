@@ -1,0 +1,126 @@
+/** 
+ * 
+ */
+package crs_sim.utils
+
+import crs_sim.body.EnvObject
+import crs_sim.environment.QTNode
+import java.util.Collection
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
+
+/** 
+ * @author Thomas
+ * 
+ */
+// static utils class  
+class CRS_Sim_Utils extends Rectangle2d {
+	
+	// to force the class to be static
+	private new {}
+	
+	// rootTree must be given into parameter
+	// insert will put at the right place the given objects
+	static def buildTree(tree : QTNode, collec : Collection<EnvObject>){
+		for (element : collec){
+			tree.insert(element)	
+		}
+	}
+	
+	static def AinB(A: Shape2d, B: Shape2d) : boolean {
+		if(A instanceof Rectangle2d && B instanceof Rectangle2d){
+			return A.intersects(B)
+		} else if (A instanceof Point2d && B instanceof Rectangle2d){
+			return B.contains(A)
+		} else if (A instanceof Circle2d && B instanceof Rectangle2d){
+			return B.intersects(A)
+		}
+		return false
+	}	
+	
+	// true if A is fully inside B
+	static def AinB_RR(A : Rectangle2d, B : Rectangle2d) : boolean {
+		return !intersectsRectangleRectangle(
+			A.getMinX, A.getMinY, A.getMaxX, A.getMaxY,
+			B.getMinX, B.getMinY, B.getMaxX, B.getMaxY			
+		);
+	}
+	
+	// true if A is inside B
+	static def AinB(A : Point2d, B : Rectangle2d) : boolean {
+		return A.getX > B.getMinX && A.getX < B.getMaxX 
+			&& A.getY > B.getMinY && A.getY < B.getMaxY;
+	}
+	
+	static def childFit(A : Shape2d<?>, B : Shape2d<?>) : int {
+		if (A instanceof Rectangle2d && B instanceof Rectangle2d) {
+			return childFit(A as Rectangle2d, B as Rectangle2d)
+		} else if (A instanceof Point2d && B instanceof Rectangle2d) {
+			return childFit(A as Point2d, B as Rectangle2d)
+		} else if (A instanceof Circle2d && B instanceof Rectangle2d) {
+			return childFit(new Point2d((A as Circle2d).centerX, (A as Circle2d).centerY),
+				B as Rectangle2d)
+		}
+		return 0
+	}
+	
+	// to check if the rectangle is in the area
+	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
+	static def childFit(rect : Rectangle2d, area : Rectangle2d) : int {
+		// = NW
+		if (containsRectangleRectangle(
+			area.getMinX, area.getMinY, area.getMaxX/2, area.getMaxY/2,
+			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
+		))
+			return 1
+		// = NE
+		else if (containsRectangleRectangle(
+			area.getMaxX/2, area.getMinY, area.getMaxX, area.getMaxY/2,
+			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
+		))
+			return 2
+		// = SW
+		else if (containsRectangleRectangle(
+			area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY,
+			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
+		))
+			return 3
+		// = SE
+		else if(containsRectangleRectangle(
+			area.getMaxX/2, area.getMaxY/2, area.getMaxX, area.getMaxY,
+			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
+		))
+			return 4
+		return 0;
+	}
+	
+	// to check if the point is in the area
+	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
+	static def childFit(point : Point2d, area : Rectangle2d) : int {
+		if (containsRectanglePoint(
+			area.getMinX, area.getMinY, area.getMaxX / 2, area.getMaxY / 2,
+			point.getX, point.getY
+		))
+			return 1
+		else if (containsRectanglePoint(
+			area.getMaxX / 2, area.getMinY, area.getMaxX, area.getMaxY / 2,
+			point.getX, point.getY
+		))
+			return 2
+		else if (containsRectanglePoint(
+			area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY,
+			point.getX, point.getY
+		))
+			return 3
+		else if (containsRectanglePoint(
+			area.getMaxX/2, area.getMaxY/2, area.getMaxX, area.getMaxY,
+			point.getX, point.getY
+		))
+			return 4
+		
+		return 0;
+	}	
+	
+}

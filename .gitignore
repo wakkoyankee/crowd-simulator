@@ -1,8 +1,4 @@
-crs_sim/.metadata
-crs_sim/.settings
-crs_sim/target
-crs_sim/.classpath
-crs_sim/.project
-crs_sim/src/test
-crs_sim/src/main/generated-sources
-
+Projet/.settings
+Projet/target
+Projet/.classpath
+Projet/.project

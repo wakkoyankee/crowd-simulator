@@ -1,0 +1,172 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import crs_sim.^agent.Protestor
+import crs_sim.body.EnvObject
+import crs_sim.ui.Window
+import crs_sim.utils.CRS_Sim_Utils
+import crs_sim.utils.ParamSimu
+import io.sarl.core.AgentKilled
+import io.sarl.core.AgentSpawned
+import io.sarl.core.ContextJoined
+import io.sarl.core.ContextLeft
+import io.sarl.core.Destroy
+import io.sarl.core.Initialize
+import io.sarl.core.Lifecycle
+import io.sarl.core.Logging
+import io.sarl.core.MemberJoined
+import io.sarl.core.MemberLeft
+import io.sarl.core.ParticipantJoined
+import io.sarl.core.ParticipantLeft
+import io.sarl.core.SpaceCreated
+import io.sarl.core.SpaceDestroyed
+import java.util.ArrayList
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+
+/** 
+ * @author hadrien
+ * 
+ */
+ 
+ //papyrus
+ 
+agent EnvironmentAgent {
+	uses Logging
+	uses Lifecycle
+	
+	var rootTree : QTNode
+	
+	var collec = new ArrayList<EnvObject>();
+	
+	on Initialize {
+		// Event trigger before the agent begin to live or to be used.
+		// You should put all the initialization statements in this block of code.
+		info("The agent environment was started.")
+
+		// collec.addAll(ParamSimu.initCollecCRS)
+		// collec.addAll(ParamSimu.initCollecProtestor)
+		// collec.addAll(ParamSimu.initCollecBuilding)
+		collec.addAll(ParamSimu.initCollecProtestor)
+		collec.addAll(ParamSimu.initCollecCRS)
+		collec.addAll(ParamSimu.initplaceDesJacobins)
+		rootTree = new QTNode(
+			new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
+		)
+		CRS_Sim_Utils.buildTree(rootTree, collec)
+
+		println("Père : " + rootTree)
+		println("NW : " + rootTree.firstChild)
+		println("NE : " + rootTree.secondChild)
+		println("SW : " + rootTree.thirdChild)
+		println("SE : " + rootTree.fourthChild)
+
+		// println("Test A in B : " + Rectangle2afp.containsRectangleRectangle(300, 200, 350, 250,
+		// 0, 0, 500, 500));
+		//
+		// println("Test B in A : " + Rectangle2afp.containsRectangleRectangle(
+		// 0,
+		// 0,
+		// 500,
+		// 500,
+		// 300,
+		// 200,
+		// 350,
+		// 250
+// ));
+		
+//		println("Test 1 : " + new Rectangle2d(100, 100, 40, 20).intersects(new Rectangle2d(0, 0, 1000, 1000)))
+		// println("Test 2 : " + new Rectangle2d(0, 0, 1000, 1000).intersects(new Rectangle2d(100, 100, 40, 20)))
+		// println("Test 3 : " + new Rectangle2d(100, 100, 40, 20).intersects(new Rectangle2d(110, 110, 40, 20)))
+		// println("Test 4 : " + new Rectangle2d(110, 110, 40, 20).intersects(new Rectangle2d(100, 100, 40, 20)))
+		// println("Test 5: " + new Rectangle2d(0, 0, 10, 10).intersects(new Rectangle2d(20, 20, 10, 10)))
+		// println("Test 6 : " + new Rectangle2d(20, 20, 10, 10).intersects(new Rectangle2d(0, 0, 10, 10)))
+		//// CREATION ENVIRONEMENT  ////
+		
+		
+		// // SPAWN DES AGENTS  ////
+		
+		spawn(Protestor, 1, 2)
+		
+		//// BOUCLE DE SIMULATION ////
+		
+		// var t : int = 0
+		
+		//while(1){
+		
+			//get perceptions
+			//actions -> new list
+			// for all agents
+				// send perception
+				// get actions
+			//reactions -> resolveconflict (env , actions)
+			// for all reactions
+				//apply(env, reaction)
+			
+			// t += 1
+			
+		//}
+		
+		
+		//Test UI //
+		var win = new Window()
+		
+
+	}
+
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent environment was stopped.")
+	}
+
+	on AgentSpawned {
+		// A new agent has been spawned in our context.
+	}
+
+	on AgentKilled {
+		// A new agent has been killed in our context.
+	}
+
+	on ContextJoined {
+		// Event trigger when an agent of the level joins a shared context.
+		// Sent to a agent of the same level.
+	}
+
+	on ContextLeft {
+		// Event trigger when an agent of the level jleaves a shared context.
+		// Sent to a agent of the same level.
+	}
+
+	on MemberJoined {
+		// Event trigger when an agent joins one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+
+	on MemberLeft {
+		// Event trigger when an agent leaves one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+
+	on MemberLeft {
+		// Event trigger when an agent leaves one of our shared super-holons.
+		// Sent to all members of the considered super-holon.
+	}
+
+	on SpaceCreated {
+		// Event trigger when a space is created into one of the contexts where the agent is.
+	}
+
+	on SpaceDestroyed {
+		// Event trigger when a space is destroyed from one of the contexts where the agent is.
+	}
+
+	on ParticipantJoined {
+		// Event trigger when a participant has joined a space.
+	}
+
+	on ParticipantLeft {
+		// Event trigger when a participant has left a space.
+	}
+}
