@@ -18,6 +18,8 @@ import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import crs_sim.utils.ParamSimu
+import io.sarl.core.DefaultContextInteractions
+import crs_sim.environment.Hello
 
 /** 
  * @author Thomas
@@ -26,6 +28,7 @@ import crs_sim.utils.ParamSimu
 agent Protestor {
 	uses Logging
 	uses Behaviors
+	uses DefaultContextInteractions
 	
 	var Behavior : int
 	var Tolerance : int
@@ -42,9 +45,10 @@ agent Protestor {
 		this.Behavior = occurrence.parameters.get(0) as Integer
 		this.Tolerance = occurrence.parameters.get(1) as Integer
 		
+		info(this.Behavior + " " + this.Tolerance)
+		
 		if(this.Behavior < ParamSimu.maxPanic){
 			this.P = new Panic(this)
-			info("here")
 			this.P.registerBehavior
 		}
 		else if (this.Behavior > ParamSimu.minAggressive){
@@ -63,6 +67,9 @@ agent Protestor {
 		info("The agent Protester was stopped.")
 	}
 	
+	on Hello {
+		info("Hello")
+	}
 	
 	/* INITIALISATION PERSONALITE */
 	def setPersonality(B: int , T : int){

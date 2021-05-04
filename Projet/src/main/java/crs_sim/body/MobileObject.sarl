@@ -11,5 +11,5 @@ import org.eclipse.xtend.lib.annotations.Accessors
  */
 abstract class MobileObject extends EnvObject {
 	@Accessors(PUBLIC_SETTER, PUBLIC_GETTER)
-	var speed : float;
+	var speed : float
 }

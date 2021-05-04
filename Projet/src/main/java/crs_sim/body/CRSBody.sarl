@@ -20,14 +20,5 @@ class CRSBody extends MobileObject {
 	def getArea() : Shape2d<?> {
 		return position as Shape2d 		// will be replaced by a circle (or other) later
 	}
-//	val position : Circle2d
-//	
-//	new (position : Circle2d) {
-//		this.position = position
-//	}
-//	
-//	def getArea(): Shape2d<?> {
-//		return position // will be replaced by a circle (or other) later
-//	}
 	
 }

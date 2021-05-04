@@ -1,6 +1,9 @@
 package crs_sim.utils;
 
+import java.util.ArrayList;
+
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
+import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
 
 import crs_sim.body.Building;
@@ -13,6 +16,7 @@ public class ParamSimu {
 	public static final double maxObjectsPerChild = 4;
 	public static final int maxPanic = 30;
 	public static final int minAggressive = 70;
+	public static final int nbProtestors = 3;
 
 	public static final ProtestorBody[]  initCollecProtestor = {
 			new ProtestorBody(new Circle2d(375, 375, 1)),
@@ -54,4 +58,12 @@ public class ParamSimu {
 			new Building(new Rectangle2d(475,700,75,300)), // Bat 9
 			new Building(new Rectangle2d(700,650,300,350)), // Bat 10
 	};
+	
+	public static ArrayList<Point2d> Destroyables; //Besoin d'une liste dynamique ici
+	public static Point2d NeutralObjective = new Point2d(300,300);
+	
+	
+	
+	
+	
 }

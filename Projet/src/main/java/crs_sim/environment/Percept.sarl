@@ -1,0 +1,16 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import java.util.ArrayList
+
+/** 
+ * @author hadrien
+ * 
+ */
+class Percept {
+	var name : String
+	var data : ArrayList<Double> //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
+
+}

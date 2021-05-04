@@ -20,19 +20,3 @@ abstract class EnvObject {
 	
 	abstract def getArea(): Shape2d<?>
 }
-
-
-class ex{
-	var a : Rectangle2d
-	var b : Point2d
-	var c : Rectangle2d
-	
-	def toto (){
-		if(a.contains(b)){//intersection
-			
-		}
-		if(a.intersects(c)){//intersection entre 2 shapes
-			
-		}
-	}
-}
