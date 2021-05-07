@@ -16,6 +16,8 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
+import io.sarl.core.DefaultContextInteractions
+import crs_sim.environment.PerceptionEvent
 
 /** 
  * @author hadrien
@@ -23,11 +25,18 @@ import io.sarl.core.SpaceDestroyed
  */
 behavior Panic {
 	uses Logging
-
+	uses DefaultContextInteractions
+	
 	on Initialize {
 		// Event trigger before the behavior begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		info("Panic behavior was started.")
+	}
+
+	on PerceptionEvent {
+		info("Panic hello")
+		info("Time : " + occurrence.time)
+		
 	}
 
 	on Destroy {

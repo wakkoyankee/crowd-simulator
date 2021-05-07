@@ -19,12 +19,14 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import crs_sim.utils.ParamSimu
 import io.sarl.core.DefaultContextInteractions
-import crs_sim.environment.Hello
+import java.util.UUID
 
 /** 
  * @author Thomas
  * 
  */
+//event spawned 
+ 
 agent Protestor {
 	uses Logging
 	uses Behaviors
@@ -59,6 +61,8 @@ agent Protestor {
 			this.N = new Neutral(this)
 			this.N.registerBehavior
 		}
+		//var envID : UUID = occurrence.parameters.get(2) as UUID
+		//emit(new spawned)[it.UUID == envID]
 	}
 
 	on Destroy {
@@ -67,9 +71,6 @@ agent Protestor {
 		info("The agent Protester was stopped.")
 	}
 	
-	on Hello {
-		info("Hello")
-	}
 	
 	/* INITIALISATION PERSONALITE */
 	def setPersonality(B: int , T : int){

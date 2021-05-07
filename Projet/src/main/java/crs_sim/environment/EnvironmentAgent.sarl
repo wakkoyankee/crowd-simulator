@@ -36,7 +36,6 @@ import crs_sim.utils.GraphSearch_Utils
  */
  
  // papyrus
-event Hello
  
 agent EnvironmentAgent {
 	uses Logging
@@ -45,8 +44,9 @@ agent EnvironmentAgent {
 	uses Schedules
 	
 	var rootTree : QTNode
-	
-	var collec = new ArrayList<EnvObject>();
+	var collec = new ArrayList<EnvObject>()
+	var agentSpawned : int = 0
+	var ids : ArrayList<UUID>
 	
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
@@ -98,49 +98,18 @@ agent EnvironmentAgent {
 		// // SPAWN DES AGENTS  ////
 		
 		var rand : Random = new Random()
-		var ids : ArrayList<UUID> = new ArrayList()
-		
+		this.ids = new ArrayList()
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
 			var b: int = rand.nextInt(101)
 			var t: int = rand.nextInt(11)
 			info(b + " " + t)
 			var uuid = UUID::randomUUID
-			ids.add(uuid)
+			this.ids.add(uuid)
 			Protestor.spawnInContextWithID(uuid, defaultContext,b ,t)
-		}
-
-		in(2.seconds) [
-			emit(new Hello)[it.UUID == ids.get(0)]
-		]
-
-		
-		
-		//// BOUCLE DE SIMULATION ////
-		
-		// var t : int = 0
-		
-		//while(1){
-		
-			//get perceptions
-			//actions -> new list
-			// for all agents
-				// send perception
-				// get actions
-			//reactions -> resolveconflict (env , actions)
-			// for all reactions
-				//apply(env, reaction)
-			
-			// t += 1
-			
-		//}
-		
-		
-		//Test UI //
-		var win = new Window()
-		
-
+		}	
 	}
 
+	
 	on Destroy {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
@@ -149,7 +118,58 @@ agent EnvironmentAgent {
 
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
+		this.agentSpawned++
+		if(this.agentSpawned == ParamSimu.nbProtestors){
+			info("All agents have spawned")
+			StartSim()
+		}
+		
+		
 	}
+
+	def StartSim() {
+
+		//// BOUCLE DE SIMULATION ////
+		
+		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
+			//getList 
+			var id = this.ids.get(i)
+			emit(new PerceptionEvent(3))[it.UUID == id]
+		}
+		
+		
+		// var t : int = 0
+		
+		// while(1){
+		
+			// get perceptions
+			// actions -> new list
+			// for all agents
+				// send perception
+				// get actions
+			// reactions -> resolveconflict (env , actions)
+		// for all reactions
+				// apply(env, reaction)
+		// t += 1
+			
+		
+		
+		
+		// Test UI //
+		var win = new Window()
+		var visibleObj : ArrayList<Percept> = new ArrayList<Percept>()
+		for (envObj : collec) {
+			if (envObj.area instanceof Rectangle2d) {
+				var tmp : Rectangle2d = envObj.area as Rectangle2d
+				// visibleObj.add(envObj.area.getMinX(), envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
+				info(tmp.getMinX)
+			} else {
+				// visibleObj.add(new Percept(envObj.area.getMinX(), envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
+			}
+		}
+	}
+
+
 
 	on AgentKilled {
 		// A new agent has been killed in our context.

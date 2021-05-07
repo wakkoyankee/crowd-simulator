@@ -16,6 +16,7 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
+import crs_sim.environment.PerceptionEvent
 
 /** 
  * @author hadrien
@@ -34,6 +35,10 @@ behavior Aggressive {
 		// Event trigger when the behavior is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
 		info("Aggressive behavior was stopped.")
+	}
+
+	on PerceptionEvent {
+		info("Agg hello")
 	}
 
 	on AgentSpawned {
