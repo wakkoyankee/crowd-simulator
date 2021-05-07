@@ -3,7 +3,9 @@
  */
 package crs_sim.environment
 
-import java.util.ArrayList
+import java.util.UUID
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
 
 /** 
  * @author hadrien
@@ -11,29 +13,24 @@ import java.util.ArrayList
  */
 class Percept {
 	var name : String
-	var data : ArrayList<Float> //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
+	val uuid : UUID
+	var shape : Shape2d //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
 	var beh : String
 	
-	new(minx : float, miny : float , width : float, height : float){ //rectangle
-		name = "rectangle"
-		data.add(minx)
-		data.add(miny)
-		data.add(width)
-		data.add(height)
+	new(shape : Shape2d, uuid : UUID){
+		this.shape = shape
+		this.uuid = uuid
+		if(shape instanceof Rectangle2d){
+			this.name = "building"
+		}
 	}
 
-	new(x : float, y : float, r : float) { // circle
-		name = "circle"
-		data.add(x)
-		data.add(y)
-		data.add(r)
-	}
-
-	new(x : float, y : float, r : float, beh : String) { // circle protestor
-		name = "circle"
+	new(shape : Shape2d, uuid : UUID, name : String, beh : String) {
+		this.shape = shape
+		this.uuid = uuid
+		this.name = name
 		this.beh = beh
-		data.add(x)
-		data.add(y)
-		data.add(r)
 	}
+	
+
 }
