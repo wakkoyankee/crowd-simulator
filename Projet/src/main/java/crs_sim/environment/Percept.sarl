@@ -11,6 +11,6 @@ import java.util.ArrayList
  */
 class Percept {
 	var name : String
-	var data : ArrayList<Double> //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
+	var data : ArrayList<Double> //si 4 données rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
 
 }

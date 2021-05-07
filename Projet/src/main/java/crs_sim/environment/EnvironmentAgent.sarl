@@ -21,13 +21,14 @@ import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
 import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
+import io.sarl.core.Schedules
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import java.util.Random
 import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
-import io.sarl.core.Schedules
+import crs_sim.utils.GraphSearch_Utils
 
 /** 
  * @author hadrien
@@ -62,6 +63,8 @@ agent EnvironmentAgent {
 			new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
 		)
 		CRS_Sim_Utils.buildTree(rootTree, collec)
+
+		GraphSearch_Utils.DFS(rootTree)
 
 		println("Père : " + rootTree)
 		println("NW : " + rootTree.firstChild)
