@@ -29,6 +29,7 @@ class CRS_Sim_Utils extends Rectangle2d {
 		}
 	}
 	
+	// to redirect in the appropriate according to the param type
 	static def AinB(A: Shape2d, B: Shape2d) : boolean {
 		if(A instanceof Rectangle2d && B instanceof Rectangle2d){
 			return A.intersects(B)
@@ -53,7 +54,8 @@ class CRS_Sim_Utils extends Rectangle2d {
 		return A.getX > B.getMinX && A.getX < B.getMaxX 
 			&& A.getY > B.getMinY && A.getY < B.getMaxY;
 	}
-	
+
+	// to redirect in the appropriate according to the param type
 	static def childFit(A : Shape2d<?>, B : Shape2d<?>) : int {
 		if (A instanceof Rectangle2d && B instanceof Rectangle2d) {
 			return childFit(A as Rectangle2d, B as Rectangle2d)

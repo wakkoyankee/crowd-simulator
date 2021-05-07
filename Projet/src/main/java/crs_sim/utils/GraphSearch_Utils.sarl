@@ -1,0 +1,36 @@
+/** 
+ * 
+ */
+package crs_sim.utils
+
+import crs_sim.environment.QTNode
+import java.util.Iterator
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.tree.Tree
+import org.arakhne.afc.math.tree.iterator.DataDepthFirstForestIterator
+import org.arakhne.afc.math.tree.iterator.DepthFirstNodeOrder
+
+/** 
+ * @author Thomas
+ * 
+ */
+class GraphSearch_Utils {
+
+	// to force the class to be static
+		
+	private new {}
+	
+	//QTNode is the first node where the search begin
+	static def DFS(node : QTNode): void{
+//		var dfs : DataDepthFirstForestIterator<QTNode>
+////		DepthFirstNodeOrder order = 
+//		var iterator : Iterator<Tree<QTNode, ?>>
+//		dfs = new DataDepthFirstForestIterator(0, iterator)
+//		print(dfs.hasNext)
+	}
+
+	def perceptionDFS(node : QTNode, circle : Circle2d): void{
+	
+	}	
+	
+}
