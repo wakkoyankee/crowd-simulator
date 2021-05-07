@@ -3,12 +3,13 @@
  */
 package crs_sim.utils
 
+import crs_sim.environment.Percept
 import crs_sim.environment.QTNode
+import java.util.ArrayList
 import java.util.Iterator
+import java.util.List
+import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
-import org.arakhne.afc.math.tree.Tree
-import org.arakhne.afc.math.tree.iterator.DataDepthFirstForestIterator
-import org.arakhne.afc.math.tree.iterator.DepthFirstNodeOrder
 
 /** 
  * @author Thomas
@@ -17,20 +18,151 @@ import org.arakhne.afc.math.tree.iterator.DepthFirstNodeOrder
 class GraphSearch_Utils {
 
 	// to force the class to be static
-		
-	private new {}
-	
-	//QTNode is the first node where the search begin
-	static def DFS(node : QTNode): void{
-//		var dfs : DataDepthFirstForestIterator<QTNode>
-////		DepthFirstNodeOrder order = 
-//		var iterator : Iterator<Tree<QTNode, ?>>
-//		dfs = new DataDepthFirstForestIterator(0, iterator)
-//		print(dfs.hasNext)
+	private new {
 	}
 
-	def perceptionDFS(node : QTNode, circle : Circle2d): void{
+	// QTNode is the first node where the search begin
+	//	static def DFS(node : QTNode): void{
+	// //		var dfs : DataDepthFirstForestIterator<QTNode>
+	// ////		DepthFirstNodeOrder order =
+	// //		var iterator : Iterator<Tree<QTNode, ?>>
+	// //		dfs = new DataDepthFirstForestIterator(0, iterator)
+	// //		print(dfs.hasNext)
+	//	}
 	
-	}	
-	
+	// iterative BFS
+	static def BFS(root : QTNode) : List<Percept> {
+		var result : List<Percept>
+		var stack : List<QTNode>
+		var currentNode : QTNode
+
+		result = new ArrayList<Percept>
+		stack = new ArrayList<QTNode>
+
+		currentNode = root
+		if (!currentNode.isLeaf) {
+			stack.add(currentNode.firstChild)
+			stack.add(currentNode.secondChild)
+			stack.add(currentNode.thirdChild)
+			stack.add(currentNode.fourthChild)
+		}
+		result.addAll(currentNode.getBodies) // à faire dans les bodies
+		while (!stack.isEmpty) {
+			currentNode = stack.get(0)
+			stack.remove(0)
+			if (!currentNode.isLeaf) {
+				stack.add(currentNode.firstChild)
+				stack.add(currentNode.secondChild)
+				stack.add(currentNode.thirdChild)
+				stack.add(currentNode.fourthChild)
+			}
+			result.addAll(currentNode.getBodies) 	// à faire dans les bodies
+		}
+		return result;
+	}
+
+	// perception iterative BFS
+	static def PerceptBFSUnoptimized(root : QTNode, perception: Circle2d) : List<Percept> {
+		var result : List<Percept>
+		var stack : List<QTNode>
+		var currentNode : QTNode
+
+		result = new ArrayList<Percept>
+		stack = new ArrayList<QTNode>
+
+		currentNode = root
+		if (!currentNode.isLeaf) {
+			stack.add(currentNode.firstChild)
+			stack.add(currentNode.secondChild)
+			stack.add(currentNode.thirdChild)
+			stack.add(currentNode.fourthChild)
+		}
+		result.addAll(currentNode.getPercept(perception))
+		while (!stack.isEmpty) {
+			currentNode = stack.get(0)
+			stack.remove(0)
+			if (!currentNode.isLeaf) {
+				stack.add(currentNode.firstChild)
+				stack.add(currentNode.secondChild)
+				stack.add(currentNode.thirdChild)
+				stack.add(currentNode.fourthChild)
+			}
+			result.addAll(currentNode.getPercept(perception))
+		}
+		print(result.size)
+		for (var i = 0; i < result.size; i++) {
+			print(result.get(i).shape)
+		}
+		return result;
+	}
+
+	// perception iterative BFS
+	static def PerceptBFS(root : QTNode, perception : Circle2d) : List<Percept> {
+		var result : List<Percept>
+		var stack : List<QTNode>
+		var currentNode : QTNode
+
+		result = new ArrayList<Percept>
+		stack = new ArrayList<QTNode>
+
+		currentNode = root
+		if (!currentNode.isLeaf) {
+			if (perception.intersects(currentNode.firstChild.area))
+				stack.add(currentNode.firstChild)
+			if (perception.intersects(currentNode.secondChild.area))
+				stack.add(currentNode.secondChild)
+			if (perception.intersects(currentNode.thirdChild.area))
+				stack.add(currentNode.thirdChild)
+			if (perception.intersects(currentNode.fourthChild.area))
+				stack.add(currentNode.fourthChild)
+		}
+		result.addAll(currentNode.getPercept(perception))
+		while (!stack.isEmpty) {
+			currentNode = stack.get(0)
+			stack.remove(0)
+			if (!currentNode.isLeaf) {
+				if (perception.intersects(currentNode.firstChild.area))
+					stack.add(currentNode.firstChild)
+				if (perception.intersects(currentNode.secondChild.area))
+					stack.add(currentNode.secondChild)
+				if (perception.intersects(currentNode.thirdChild.area))
+					stack.add(currentNode.thirdChild)
+				if (perception.intersects(currentNode.fourthChild.area))
+					stack.add(currentNode.fourthChild)
+			}
+			result.addAll(currentNode.getPercept(perception)) 	// à faire dans les bodies
+		}
+		print(result.size)
+		for(var i = 0; i<result.size; i++){
+			print(result.get(i).shape)
+		}
+		return result;
+	}
+
+	//	// iterative DFS
+//	static def DFS(root : QTNode) : List<Percept> {
+//		var result : List<Percept>
+//		var terminated : List<UUID>
+//		var currentNode : Iterator<QTNode>
+//
+//		result = new ArrayList<Percept>
+//		terminated = new ArrayList<UUID>
+//
+//		currentNode = root.iterator
+//		if (!currentNode.hasNext)
+//			terminated.add(currentNode.uuid) // uuid du noeud pas des bodies
+//		result.add(currentNode.getPercept) // à faire dans les bodies
+//		while (!terminated.contains(root.uuid)) {
+//			currentNode = currentNode.getNextDFSChild.iterator // getNextDFSChild will give the first direct
+//			// child not terminated or will search higher the next one
+//			if (!currentNode.hasNext)
+//				terminated.add(currentNode.uuid) // uuid du noeud pas des bodies
+//			result.add(currentNode.getPercept) 			// à faire dans les bodies
+//		}
+//		return result
+//	}
+//
+//	static def perceptionDFS(node : QTNode, circle : Circle2d) : List<Percept> {
+//	}
+
 }

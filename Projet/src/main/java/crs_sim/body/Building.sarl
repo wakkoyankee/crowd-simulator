@@ -22,5 +22,9 @@ class Building extends EnvObject {
 	def getArea(): Shape2d<?> {
 		return this.area
 	}
+
+	def setArea(area : Shape2d<?>) : void {
+		this.area = area
+	}
 	
 }

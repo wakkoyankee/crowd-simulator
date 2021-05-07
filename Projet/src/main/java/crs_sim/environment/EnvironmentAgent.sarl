@@ -84,8 +84,13 @@ agent EnvironmentAgent {
 			new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
 		)
 		CRS_Sim_Utils.buildTree(rootTree, collec)
-
-		GraphSearch_Utils.DFS(rootTree)
+		
+		print("\nBFS\n")
+		GraphSearch_Utils.BFS(rootTree)
+		print("\nPerceptBFSUnoptimized\n")
+		GraphSearch_Utils.PerceptBFSUnoptimized(rootTree,new Circle2d(350,350,150))
+		print("\nPerceptBFS\n")
+		GraphSearch_Utils.PerceptBFS(rootTree, new Circle2d(350, 350, 150))
 
 		println("Père : " + rootTree)
 		println("NW : " + rootTree.firstChild)

@@ -15,8 +15,9 @@ import org.eclipse.xtend.lib.annotations.Accessors
  */
 abstract class EnvObject {
 	
-	@Accessors(PUBLIC_SETTER, PUBLIC_GETTER)
+	@Accessors
 	var uuid : UUID;
 	
-	abstract def getArea(): Shape2d<?>
+	abstract def getArea() : Shape2d<?>
+	abstract def setArea(area: Shape2d<?>) : void
 }

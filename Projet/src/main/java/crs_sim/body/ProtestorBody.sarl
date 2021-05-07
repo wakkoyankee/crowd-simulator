@@ -27,6 +27,10 @@ class ProtestorBody extends MobileObject {
 	def getArea() : Shape2d<?> {
 		return position as Shape2d 	// will be replaced by a circle (or other) later
 	}
+
+	def setArea(area : Shape2d<?>) : void {
+		this.area = area
+	}
 	
 	def getBeh() : String{
 		this.beh

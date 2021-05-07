@@ -6,16 +6,21 @@ package crs_sim.environment
 import crs_sim.body.EnvObject
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
+import java.util.ArrayList
 import java.util.Collection
+import java.util.List
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.tree.node.QuadTreeNode
+import org.eclipse.xtend.lib.annotations.Accessors
 
 /** 
  * @author Thomas
  * 
  */
-class QTNode extends QuadTreeNode<EnvObject, QTNode>{
+class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 
+		@Accessors(PUBLIC_GETTER)
 		val area : Rectangle2d
 		
 		new (area : Rectangle2d) {
@@ -93,4 +98,50 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode>{
 				return true
 			}
 		}
+
+	def getBodies() : List<Percept> {
+		var objects = getAllUserData
+		var result : List<Percept> = new ArrayList<Percept>
+		for (object : objects) {
+				result.add(new Percept(
+					object.area,
+					object.uuid,
+					null, // ça va changer
+					null // ça va changer
+				))						
+		}
+		return result.toList
+	}
+
+	def getPercept(perception : Circle2d): List<Percept> {
+		var objects = getAllUserData
+		var result : List<Percept> = new ArrayList<Percept>
+		for (object : objects){
+			if (perception.intersects(object.area))
+				result.add(new Percept(
+					object.area,
+					object.uuid,
+					null,//ça va changer
+					null//ça va changer
+				))					
+		}
+		return result.toList
+	}
+
+	def moveBody(body: EnvObject, newLocX: int, newLocY: int){
+		print("attention marche mal et permet de déplacer uniquement des pnj")
+		if (body.area instanceof Circle2d) {
+//			body.area as Circle2d		
+			body.area = new Circle2d(newLocX, newLocY, 1)
+			//			body.area.setX()
+//			body.area.setY()
+//			body.area.setRadius()
+		} else if (body.area instanceof Rectangle2d){
+			
+		}else
+			print("What is that body I do not know it get it out of me\n")
+			'
+'
+		
+	}
 }

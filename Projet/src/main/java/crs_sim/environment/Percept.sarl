@@ -6,6 +6,7 @@ package crs_sim.environment
 import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import org.eclipse.xtend.lib.annotations.Accessors
 
 /** 
  * @author hadrien
@@ -14,6 +15,7 @@ import org.arakhne.afc.math.geometry.d2.d.Shape2d
 class Percept {
 	var name : String
 	val uuid : UUID
+	@Accessors 
 	var shape : Shape2d //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
 	var beh : String
 	
