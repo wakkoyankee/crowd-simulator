@@ -18,10 +18,12 @@ public class ParamSimu {
 	public static final int minAggressive = 70;
 	public static final int nbProtestors = 3;
 
-	public static final ProtestorBody[]  initCollecProtestor = {
-			new ProtestorBody(new Circle2d(375, 375, 1)),
-			new ProtestorBody(new Circle2d(425, 375, 1)),
-			new ProtestorBody(new Circle2d(475, 375, 1))
+	
+	public static ArrayList<ProtestorBody>  CollecProtestor = new ArrayList<ProtestorBody>();
+	public static final  Circle2d[] initCollecProtestor= {
+			new Circle2d(375, 375, 1),
+			new Circle2d(425, 375, 1),
+			new Circle2d(475, 375, 1)
 	};
 //	public static final ProtestorBody[]  initCollecProtestor = {
 //			new ProtestorBody(new Point2d(375, 375)),

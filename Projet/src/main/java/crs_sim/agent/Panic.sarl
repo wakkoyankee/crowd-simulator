@@ -36,6 +36,9 @@ behavior Panic {
 	on PerceptionEvent {
 		info("Panic hello")
 		info("Time : " + occurrence.time)
+
+		// comment register  les skills etc..
+		//changement sur l'agent
 		
 	}
 

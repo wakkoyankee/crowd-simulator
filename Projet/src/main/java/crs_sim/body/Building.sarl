@@ -4,6 +4,7 @@
 package crs_sim.body
 
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
 
 /** 
  * @author Thomas
@@ -18,7 +19,7 @@ class Building extends EnvObject {
 		this.area = area
 	}
 	
-	def getArea(): org.arakhne.afc.math.geometry.d2.d.Shape2d<? extends java.lang.Object> {
+	def getArea(): Shape2d<?> {
 		return this.area
 	}
 	

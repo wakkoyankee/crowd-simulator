@@ -5,6 +5,7 @@ package crs_sim.environment
 
 import crs_sim.^agent.Protestor
 import crs_sim.body.EnvObject
+import crs_sim.body.ProtestorBody
 import crs_sim.ui.Window
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
@@ -27,6 +28,7 @@ import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import java.util.Random
 import java.util.UUID
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import crs_sim.utils.GraphSearch_Utils
 
@@ -49,14 +51,33 @@ agent EnvironmentAgent {
 	var ids : ArrayList<UUID>
 	
 	on Initialize {
-		// Event trigger before the agent begin to live or to be used.
-		// You should put all the initialization statements in this block of code.
-		info("The agent environment was started.")
 
+		info("The agent environment was started.")
+	
+		var rand : Random = new Random()
+		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
+		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
+		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
+			var r1 = rand.nextInt(101)
+			var r2 =  rand.nextInt(11)
+			b.set(i, r1)
+			t.set(i, r2)
+			if (r1 < ParamSimu.maxPanic) {
+				ParamSimu.CollecProtestor.add(new ProtestorBody(ParamSimu.initCollecProtestor.get(i), "panic"))
+			} else if (r1 > ParamSimu.minAggressive) {
+				ParamSimu.CollecProtestor.add(new ProtestorBody(ParamSimu.initCollecProtestor.get(i), "agg"))
+			} else {
+				ParamSimu.CollecProtestor.add(new ProtestorBody(ParamSimu.initCollecProtestor.get(i), "neutral"))
+			}
+		}
+		
+
+		//// CREATION ENVIRONEMENT  ////
+		
 		// collec.addAll(ParamSimu.initCollecCRS)
 		// collec.addAll(ParamSimu.initCollecProtestor)
 		// collec.addAll(ParamSimu.initCollecBuilding)
-		collec.addAll(ParamSimu.initCollecProtestor)
+		collec.addAll(ParamSimu.CollecProtestor)
 		collec.addAll(ParamSimu.initCollecCRS)
 		collec.addAll(ParamSimu.initplaceDesJacobins)
 		rootTree = new QTNode(
@@ -92,21 +113,17 @@ agent EnvironmentAgent {
 		// println("Test 4 : " + new Rectangle2d(110, 110, 40, 20).intersects(new Rectangle2d(100, 100, 40, 20)))
 		// println("Test 5: " + new Rectangle2d(0, 0, 10, 10).intersects(new Rectangle2d(20, 20, 10, 10)))
 		// println("Test 6 : " + new Rectangle2d(20, 20, 10, 10).intersects(new Rectangle2d(0, 0, 10, 10)))
-		//// CREATION ENVIRONEMENT  ////
+				
+		//// SPAWN DES AGENTS  ////
 		
-		
-		// // SPAWN DES AGENTS  ////
-		
-		var rand : Random = new Random()
 		this.ids = new ArrayList()
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var b: int = rand.nextInt(101)
-			var t: int = rand.nextInt(11)
-			info(b + " " + t)
 			var uuid = UUID::randomUUID
 			this.ids.add(uuid)
-			Protestor.spawnInContextWithID(uuid, defaultContext,b ,t)
-		}	
+			Protestor.spawnInContextWithID(uuid, defaultContext, b.get(i), t.get(i))
+		}
+		
+		
 	}
 
 	
@@ -136,7 +153,6 @@ agent EnvironmentAgent {
 			var id = this.ids.get(i)
 			emit(new PerceptionEvent(3))[it.UUID == id]
 		}
-		
 		
 		// var t : int = 0
 		

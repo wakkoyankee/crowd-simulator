@@ -12,6 +12,7 @@ import java.util.ArrayList
 class Percept {
 	var name : String
 	var data : ArrayList<Float> //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
+	var beh : String
 	
 	new(minx : float, miny : float , width : float, height : float){ //rectangle
 		name = "rectangle"
@@ -21,8 +22,16 @@ class Percept {
 		data.add(height)
 	}
 
-	new(x : float, y : float, r : float) { // rectangle
+	new(x : float, y : float, r : float) { // circle
 		name = "circle"
+		data.add(x)
+		data.add(y)
+		data.add(r)
+	}
+
+	new(x : float, y : float, r : float, beh : String) { // circle protestor
+		name = "circle"
+		this.beh = beh
 		data.add(x)
 		data.add(y)
 		data.add(r)

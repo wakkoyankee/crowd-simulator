@@ -31,4 +31,7 @@ class ProtestorBody extends MobileObject {
 	def getBeh() : String{
 		this.beh
 	}
+	def setBeh(beh : String){
+		this.beh = beh
+	}
 }
