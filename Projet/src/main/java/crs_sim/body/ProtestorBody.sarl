@@ -13,12 +13,22 @@ import org.arakhne.afc.math.geometry.d2.d.Shape2d
 class ProtestorBody extends MobileObject {
 	
 	var position : Circle2d
+	var beh : String
 	
+	new (position : Circle2d, beh : String) {
+		this.position = position
+		this.beh = beh
+	}
+
 	new (position : Circle2d) {
 		this.position = position
 	}
 	
 	def getArea() : Shape2d<?> {
 		return position as Shape2d 	// will be replaced by a circle (or other) later
+	}
+	
+	def getBeh() : String{
+		this.beh
 	}
 }

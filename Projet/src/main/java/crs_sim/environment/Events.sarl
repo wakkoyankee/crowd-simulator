@@ -1,0 +1,22 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import java.util.ArrayList
+
+/** 
+ * @author hadrien
+ * 
+ */
+event PerceptionEvent {
+	//val body : Percept
+	//val perceptions : ArrayList<Percept>
+	val time : int
+
+	new (/*p : ArrayList<Percept>, b : Percept, */t : int) {
+		//this.perceptions = p
+		//this.body = b
+		this.time = t
+	}
+}
