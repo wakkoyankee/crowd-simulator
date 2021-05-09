@@ -24,7 +24,14 @@ import crs_sim.environment.PerceptionEvent
  */
 behavior Neutral {
 	uses Logging
+	
+	var memory : Memory
 
+	new (owner : Protestor, memory : Memory) {
+		super(owner)
+		this.memory = memory
+	}
+	
 	on Initialize {
 		// Event trigger before the behavior begin to live or to be used.
 		// You should put all the initialization statements in this block of code.

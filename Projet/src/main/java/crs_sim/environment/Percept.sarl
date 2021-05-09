@@ -3,6 +3,7 @@
  */
 package crs_sim.environment
 
+import crs_sim.utils.Types
 import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
@@ -14,25 +15,23 @@ import org.eclipse.xtend.lib.annotations.Accessors
  */
 class Percept {
 	@Accessors
-	var name : String
+	var name : Types
 	val uuid : UUID
 	@Accessors 
 	var shape : Shape2d //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
-	var beh : String
 	
 	new(shape : Shape2d, uuid : UUID){
 		this.shape = shape
 		this.uuid = uuid
 		if(shape instanceof Rectangle2d){
-			this.name = "building"
+			this.name = Types.building
 		}
 	}
 
-	new(shape : Shape2d, uuid : UUID, name : String, beh : String) {
+	new(shape : Shape2d, uuid : UUID, name : Types) {
 		this.shape = shape
 		this.uuid = uuid
 		this.name = name
-		this.beh = beh
 	}
 	
 

@@ -8,7 +8,9 @@ import crs_sim.body.EnvObject
 import crs_sim.body.ProtestorBody
 import crs_sim.ui.Window
 import crs_sim.utils.CRS_Sim_Utils
+import crs_sim.utils.GraphSearch_Utils
 import crs_sim.utils.ParamSimu
+import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
@@ -27,10 +29,10 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import java.util.Random
-import java.util.UUID
+import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
-import crs_sim.utils.GraphSearch_Utils
 
 /** 
  * @author hadrien
@@ -46,14 +48,19 @@ agent EnvironmentAgent {
 	uses Schedules
 	
 	var rootTree : QTNode
-	var collec = new ArrayList<EnvObject>()
+	
 	var agentSpawned : int = 0
-	var ids : ArrayList<UUID>
+	var protestorList : ArrayList<ProtestorBody>
+	
+	var win : Window
+	var protestorResp = new AtomicInteger(0)//faire un .incremement()
 	
 	on Initialize {
 
 		info("The agent environment was started.")
 	
+		// INIT BEHAVIORS, TOLERANCES AND PROTESTORBODY LIST
+		this.protestorList = new ArrayList()
 		var rand : Random = new Random()
 		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
@@ -62,13 +69,15 @@ agent EnvironmentAgent {
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
+			var pb : ProtestorBody
 			if (r1 < ParamSimu.maxPanic) {
-				ParamSimu.CollecProtestor.add(new ProtestorBody(ParamSimu.initCollecProtestor.get(i), "panic"))
+				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_panic)	
 			} else if (r1 > ParamSimu.minAggressive) {
-				ParamSimu.CollecProtestor.add(new ProtestorBody(ParamSimu.initCollecProtestor.get(i), "agg"))
+				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_agg)
 			} else {
-				ParamSimu.CollecProtestor.add(new ProtestorBody(ParamSimu.initCollecProtestor.get(i), "neutral"))
+				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_neutral)
 			}
+			this.protestorList.add(pb)
 		}
 		
 
@@ -77,7 +86,8 @@ agent EnvironmentAgent {
 		// collec.addAll(ParamSimu.initCollecCRS)
 		// collec.addAll(ParamSimu.initCollecProtestor)
 		// collec.addAll(ParamSimu.initCollecBuilding)
-		collec.addAll(ParamSimu.CollecProtestor)
+		var collec = new ArrayList<EnvObject>()
+		collec.addAll(this.protestorList)
 		collec.addAll(ParamSimu.initCollecCRS)
 		collec.addAll(ParamSimu.initplaceDesJacobins)
 		rootTree = new QTNode(
@@ -85,58 +95,29 @@ agent EnvironmentAgent {
 		)
 		CRS_Sim_Utils.buildTree(rootTree, collec)
 		
-		print("\nBFS\n")
-		GraphSearch_Utils.BFS(rootTree)
-		print("\nPerceptBFSUnoptimized\n")
-		GraphSearch_Utils.PerceptBFSUnoptimized(rootTree,new Circle2d(350,350,150))
-		print("\nPerceptBFS\n")
-		GraphSearch_Utils.PerceptBFS(rootTree, new Circle2d(350, 350, 150))
+		//print("\nBFS\n")
+		//GraphSearch_Utils.BFS(rootTree)
+		//print("\nPerceptBFSUnoptimized\n")
+		//GraphSearch_Utils.PerceptBFSUnoptimized(rootTree,new Circle2d(350,350,150))
+		//print("\nPerceptBFS\n")
+		//GraphSearch_Utils.PerceptBFS(rootTree, new Circle2d(350, 350, 150))
 
 		println("Père : " + rootTree)
 		println("NW : " + rootTree.firstChild)
 		println("NE : " + rootTree.secondChild)
 		println("SW : " + rootTree.thirdChild)
 		println("SE : " + rootTree.fourthChild)
-
-		// println("Test A in B : " + Rectangle2afp.containsRectangleRectangle(300, 200, 350, 250,
-		// 0, 0, 500, 500));
-		//
-		// println("Test B in A : " + Rectangle2afp.containsRectangleRectangle(
-		// 0,
-		// 0,
-		// 500,
-		// 500,
-		// 300,
-		// 200,
-		// 350,
-		// 250
-// ));
-		
-//		println("Test 1 : " + new Rectangle2d(100, 100, 40, 20).intersects(new Rectangle2d(0, 0, 1000, 1000)))
-		// println("Test 2 : " + new Rectangle2d(0, 0, 1000, 1000).intersects(new Rectangle2d(100, 100, 40, 20)))
-		// println("Test 3 : " + new Rectangle2d(100, 100, 40, 20).intersects(new Rectangle2d(110, 110, 40, 20)))
-		// println("Test 4 : " + new Rectangle2d(110, 110, 40, 20).intersects(new Rectangle2d(100, 100, 40, 20)))
-		// println("Test 5: " + new Rectangle2d(0, 0, 10, 10).intersects(new Rectangle2d(20, 20, 10, 10)))
-		// println("Test 6 : " + new Rectangle2d(20, 20, 10, 10).intersects(new Rectangle2d(0, 0, 10, 10)))
+			
+		// // INIT UI ////
+		this.win = new Window()
 				
 		//// SPAWN DES AGENTS  ////
 		
-		this.ids = new ArrayList()
-		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var uuid = UUID::randomUUID
-			this.ids.add(uuid)
-			Protestor.spawnInContextWithID(uuid, defaultContext, b.get(i), t.get(i))
+		for (var i = 0; i < this.protestorList.size(); i++) {
+			Protestor.spawnInContextWithID(this.protestorList.get(i).getUuid(), defaultContext, b.get(i), t.get(i))
 		}
-		
-		
 	}
 
-	
-	on Destroy {
-		// Event trigger when the agent is destroyed from the system.
-		// You should put all the resource releasing statements in this block of code.
-		info("The agent environment was stopped.")
-	}
 
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
@@ -145,18 +126,18 @@ agent EnvironmentAgent {
 			info("All agents have spawned")
 			StartSim()
 		}
-		
-		
 	}
 
 	def StartSim() {
 
 		//// BOUCLE DE SIMULATION ////
 		
-		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
+		for (var i = 0; i < this.protestorList.size(); i++) {
 			//getList 
-			var id = this.ids.get(i)
-			emit(new PerceptionEvent(3))[it.UUID == id]
+			var id = this.protestorList.get(i).getUuid()
+			var body = this.protestorList.get(i).getArea()
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
+			emit(new PerceptionEvent(body, percept, 0))[it.UUID == id]
 		}
 		
 		// var t : int = 0
@@ -171,27 +152,42 @@ agent EnvironmentAgent {
 			// reactions -> resolveconflict (env , actions)
 		// for all reactions
 				// apply(env, reaction)
-		// t += 1
-			
+		// t += 1	
 		
-		
-		
+	}
+	
+	def redraw() {
+
 		// Test UI //
-		var win = new Window()
-		var visibleObj : ArrayList<Percept> = new ArrayList<Percept>()
-		for (envObj : collec) {
-			if (envObj.area instanceof Rectangle2d) {
-				var tmp : Rectangle2d = envObj.area as Rectangle2d
-				// visibleObj.add(envObj.area.getMinX(), envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
+		
+		var Objs : ArrayList<Percept> = new ArrayList<Percept>()
+		/*for (envObj : collec) {
+			var o = envObj.area
+			if (o instanceof Rectangle2d) {
+				var tmp = envObj.area as Rectangle2d
+				//bjs.add(tmp.getMinX())
+				//, envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
 				info(tmp.getMinX)
+				var x = o.minX
+				var x2 = tmp.minX
 			} else {
 				// visibleObj.add(new Percept(envObj.area.getMinX(), envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
 			}
-		}
+		}*/
 	}
 
 
+	on InfluenceEvent{
+		//this.protestorResp.increment()
+		//agentResp++
+		//f()
+	}
 
+	on Destroy {
+		// Event trigger when the agent is destroyed from the system.
+		// You should put all the resource releasing statements in this block of code.
+		info("The agent environment was stopped.")
+	}
 	on AgentKilled {
 		// A new agent has been killed in our context.
 	}

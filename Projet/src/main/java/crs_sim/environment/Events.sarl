@@ -3,20 +3,28 @@
  */
 package crs_sim.environment
 
-import java.util.ArrayList
+import java.util.List
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
 
 /** 
  * @author hadrien
  * 
  */
 event PerceptionEvent {
-	//val body : Percept
-	//val perceptions : ArrayList<Percept>
-	val time : int
+	var body : Shape2d<?>
+	var perceptions : List<Percept>
+	var time : int
 
-	new (/*p : ArrayList<Percept>, b : Percept, */t : int) {
-		//this.perceptions = p
-		//this.body = b
+	new (b : Shape2d<?>, p : List<Percept>, t : int) {
+		this.perceptions = p
+		this.body = b
 		this.time = t
+	}
+}
+
+event InfluenceEvent {
+	val agentType : String
+	new(at : String){
+		this.agentType = at
 	}
 }

@@ -3,6 +3,7 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.PerceptionEvent
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
@@ -16,7 +17,6 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
-import crs_sim.environment.PerceptionEvent
 
 /** 
  * @author hadrien
@@ -25,6 +25,13 @@ import crs_sim.environment.PerceptionEvent
 behavior Aggressive {
 	uses Logging
 
+	var memory : Memory
+
+	new (owner : Protestor, memory : Memory) {
+		super(owner)
+		this.memory = memory
+	}
+	
 	on Initialize {
 		// Event trigger before the behavior begin to live or to be used.
 		// You should put all the initialization statements in this block of code.

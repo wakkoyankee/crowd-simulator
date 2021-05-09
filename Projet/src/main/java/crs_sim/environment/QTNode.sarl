@@ -106,8 +106,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				result.add(new Percept(
 					object.area,
 					object.uuid,
-					null, // ça va changer
-					null // ça va changer
+					null //ca va changer
 				))						
 		}
 		return result.toList
@@ -121,7 +120,6 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				result.add(new Percept(
 					object.area,
 					object.uuid,
-					null,//ça va changer
 					null//ça va changer
 				))					
 		}

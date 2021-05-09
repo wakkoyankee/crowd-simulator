@@ -3,8 +3,10 @@
  */
 package crs_sim.body
 
+import crs_sim.utils.Types
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import org.eclipse.xtend.lib.annotations.Accessors
 
 /** 
  * @author Thomas
@@ -13,11 +15,12 @@ import org.arakhne.afc.math.geometry.d2.d.Shape2d
 class ProtestorBody extends MobileObject {
 	
 	var position : Circle2d
-	var beh : String
+	@Accessors
+	var protestorType : Types
 	
-	new (position : Circle2d, beh : String) {
+	new (position : Circle2d, protestorType : Types) {
 		this.position = position
-		this.beh = beh
+		this.protestorType = protestorType
 	}
 
 	new (position : Circle2d) {
@@ -32,10 +35,4 @@ class ProtestorBody extends MobileObject {
 		this.area = area
 	}
 	
-	def getBeh() : String{
-		this.beh
-	}
-	def setBeh(beh : String){
-		this.beh = beh
-	}
 }

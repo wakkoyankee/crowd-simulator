@@ -18,6 +18,7 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import io.sarl.core.DefaultContextInteractions
 import crs_sim.environment.PerceptionEvent
+import io.sarl.lang.core.Agent
 
 /** 
  * @author hadrien
@@ -26,6 +27,13 @@ import crs_sim.environment.PerceptionEvent
 behavior Panic {
 	uses Logging
 	uses DefaultContextInteractions
+	
+	var memory : Memory
+	
+	new (owner : Agent, memory : Memory) {
+		super(owner)
+		this.memory = memory
+	}
 	
 	on Initialize {
 		// Event trigger before the behavior begin to live or to be used.
@@ -37,6 +45,9 @@ behavior Panic {
 		info("Panic hello")
 		info("Time : " + occurrence.time)
 
+
+		//preprocessing
+		//movememnt
 		// comment register  les skills etc..
 		//changement sur l'agent
 		

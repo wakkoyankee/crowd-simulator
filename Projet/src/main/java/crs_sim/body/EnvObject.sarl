@@ -16,7 +16,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 abstract class EnvObject {
 	
 	@Accessors
-	var uuid : UUID;
+	val uuid : UUID = UUID::randomUUID;
 	
 	abstract def getArea() : Shape2d<?>
 	abstract def setArea(area: Shape2d<?>) : void

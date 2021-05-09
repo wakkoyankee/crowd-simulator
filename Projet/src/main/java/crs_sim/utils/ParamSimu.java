@@ -19,7 +19,6 @@ public class ParamSimu {
 	public static final int nbProtestors = 3;
 
 	
-	public static ArrayList<ProtestorBody>  CollecProtestor = new ArrayList<ProtestorBody>();
 	public static final  Circle2d[] initCollecProtestor= {
 			new Circle2d(375, 375, 1),
 			new Circle2d(425, 375, 1),

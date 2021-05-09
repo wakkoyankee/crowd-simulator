@@ -1,0 +1,16 @@
+/** 
+ * 
+ */
+package crs_sim.utils
+
+/** 
+ * @author hadrien
+ * 
+ */
+enum Types {
+	building,
+	crs,
+	protestor_agg,
+	protestor_panic,
+	protestor_neutral
+}
