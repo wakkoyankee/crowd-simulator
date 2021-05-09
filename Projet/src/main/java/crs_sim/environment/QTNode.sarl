@@ -6,6 +6,7 @@ package crs_sim.environment
 import crs_sim.body.EnvObject
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
+import crs_sim.utils.Types
 import java.util.ArrayList
 import java.util.Collection
 import java.util.List
@@ -120,8 +121,22 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				result.add(new Percept(
 					object.area,
 					object.uuid,
-					null//ça va changer
+					Types.protestor_neutral // ça va changer
 				))					
+		}
+		return result.toList
+	}
+
+	def getPercept(perception : Rectangle2d) : List<Percept> {
+		var objects = getAllUserData
+		var result : List<Percept> = new ArrayList<Percept>
+		for (object : objects) {
+			if (perception.intersects(object.area))
+				result.add(new Percept(
+					object.area,
+					object.uuid,
+					Types.building // ça va changer
+				))
 		}
 		return result.toList
 	}

@@ -3,10 +3,14 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.InfluenceEvent
+import crs_sim.environment.PerceptionEvent
+import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
 import io.sarl.core.ContextLeft
+import io.sarl.core.DefaultContextInteractions
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
 import io.sarl.core.Logging
@@ -16,9 +20,8 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
-import io.sarl.core.DefaultContextInteractions
-import crs_sim.environment.PerceptionEvent
 import io.sarl.lang.core.Agent
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
  * @author hadrien
@@ -29,6 +32,7 @@ behavior Panic {
 	uses DefaultContextInteractions
 	
 	var memory : Memory
+	var moveS : MovementSkill
 	
 	new (owner : Agent, memory : Memory) {
 		super(owner)
@@ -39,13 +43,15 @@ behavior Panic {
 		// Event trigger before the behavior begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		info("Panic behavior was started.")
+		this.moveS = new MovementSkill
+		setSkill(this.moveS)
 	}
 
 	on PerceptionEvent {
 		info("Panic hello")
 		info("Time : " + occurrence.time)
-
-
+		var move : Vector2d = this.moveS.influenceKinematic(3)
+		emit(new InfluenceEvent(owner.getID(), Types.protestor_panic, move))[it.UUID == occurrence.envUuid]
 		//preprocessing
 		//movememnt
 		// comment register  les skills etc..

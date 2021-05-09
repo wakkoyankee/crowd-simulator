@@ -31,8 +31,8 @@ import java.util.ArrayList
 import java.util.Random
 import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
-import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
  * @author hadrien
@@ -54,6 +54,8 @@ agent EnvironmentAgent {
 	
 	var win : Window
 	var protestorResp = new AtomicInteger(0)//faire un .incremement()
+	var protestorMoves : ArrayList<Vector2d>
+	
 	
 	on Initialize {
 
@@ -62,22 +64,22 @@ agent EnvironmentAgent {
 		// INIT BEHAVIORS, TOLERANCES AND PROTESTORBODY LIST
 		this.protestorList = new ArrayList()
 		var rand : Random = new Random()
-		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
+		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 = rand.nextInt(101)
+			var r1 = rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
 			var pb : ProtestorBody
 			if (r1 < ParamSimu.maxPanic) {
-				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_panic)	
+				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_panic)
 			} else if (r1 > ParamSimu.minAggressive) {
 				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_agg)
 			} else {
 				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_neutral)
 			}
-			this.protestorList.add(pb)
+			this.protestorList.add(pb)//Ajout le protestor body cree
 		}
 		
 
@@ -110,6 +112,7 @@ agent EnvironmentAgent {
 			
 		// // INIT UI ////
 		this.win = new Window()
+		redraw()
 				
 		//// SPAWN DES AGENTS  ////
 		
@@ -120,7 +123,7 @@ agent EnvironmentAgent {
 
 
 	on AgentSpawned {
-		// A new agent has been spawned in our context.
+		// Quand tout les protestors on spawn lance la simu
 		this.agentSpawned++
 		if(this.agentSpawned == ParamSimu.nbProtestors){
 			info("All agents have spawned")
@@ -132,12 +135,13 @@ agent EnvironmentAgent {
 
 		//// BOUCLE DE SIMULATION ////
 		
-		for (var i = 0; i < this.protestorList.size(); i++) {
-			//getList 
+		
+		//// PERCEPTION ////
+		for (var i = 0; i < this.protestorList.size(); i++) { // comment donner l'objectif au protestor ?
 			var id = this.protestorList.get(i).getUuid()
 			var body = this.protestorList.get(i).getArea()
 			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
-			emit(new PerceptionEvent(body, percept, 0))[it.UUID == id]
+			emit(new PerceptionEvent(body, percept, 0, getID()))[it.UUID == id]
 		}
 		
 		// var t : int = 0
@@ -159,28 +163,29 @@ agent EnvironmentAgent {
 	def redraw() {
 
 		// Test UI //
+		// Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
+		this.win.update(GraphSearch_Utils.PerceptBFS(this.rootTree,new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)) as ArrayList)
 		
-		var Objs : ArrayList<Percept> = new ArrayList<Percept>()
-		/*for (envObj : collec) {
-			var o = envObj.area
-			if (o instanceof Rectangle2d) {
-				var tmp = envObj.area as Rectangle2d
-				//bjs.add(tmp.getMinX())
-				//, envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
-				info(tmp.getMinX)
-				var x = o.minX
-				var x2 = tmp.minX
-			} else {
-				// visibleObj.add(new Percept(envObj.area.getMinX(), envObj.area.getMinY(), envObj.area.getMaxX()-envObj.area.getMinX(),envObj.area.getMaxY()-envObj.area.getMinY())
-			}
-		}*/
+		//Iterer dans l'abre recup tout les elements avec getPercept et envoyer 
 	}
 
 
-	on InfluenceEvent{
-		//this.protestorResp.increment()
-		//agentResp++
-		//f()
+	on InfluenceEvent{//reponse des agents
+		var cpt = this.protestorResp.getAndIncrement()
+		
+		//Trouver le protestor A AMELIORER
+		//bouge le protestor des la reponse A CHANGER
+		for(var i: int  = 0; i< this.protestorList.size();i++){
+			if (protestorList.get(i).getUuid() == occurrence.uuid) {
+				//rootTree.moveBody(protestorList.get(i), occurrence.move.ix, occurrence.move.iy)//bon appelle ?? ne marche pas
+				break
+			}
+		}
+		
+		if(cpt == this.protestorList.size()){ // relance la simu apres
+			this.protestorResp.set(0)
+			//StartSim()
+		}
 	}
 
 	on Destroy {

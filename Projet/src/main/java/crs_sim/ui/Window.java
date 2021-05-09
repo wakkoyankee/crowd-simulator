@@ -3,12 +3,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.arakhne.afc.math.geometry.d2.d.Circle2d;
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
+
 import crs_sim.environment.Percept;
 import crs_sim.utils.ParamSimu;
+import crs_sim.utils.Types;
 
 public class Window {
 	public JFrame _win;
@@ -33,7 +38,7 @@ public class Window {
 	
 	class Panel extends JPanel {
 		
-		public ArrayList<Percept> bodies;
+		public List<Percept> bodies;
 
         Panel(int width, int height) { // l'ordre est peut etre pas bon
             // set a preferred size for the custom panel.
@@ -43,7 +48,32 @@ public class Window {
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(0,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
+            for(Percept body : bodies) {
+            	if(body.getName() == Types.building) {
+            		g.setColor(Color.BLACK); 
+            		Rectangle2d r = (Rectangle2d)body.getShape();
+            		g.drawRect((int) r.getMinX(),(int) r.getMinY(),(int) r.getMaxX(),(int) r.getMaxY());
+            	}else if(body.getName() == Types.crs) {
+            		g.setColor(Color.BLUE); 
+            		Circle2d c = (Circle2d) body.getShape();
+            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            	}else if(body.getName() == Types.protestor_agg) {
+            		g.setColor(Color.RED); 
+            		Circle2d c = (Circle2d) body.getShape();
+            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            	}else if(body.getName() == Types.protestor_panic) {
+            		g.setColor(Color.YELLOW); 
+            		Circle2d c = (Circle2d) body.getShape();
+            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            	}else {//protestor neutral
+            		g.setColor(Color.PINK); 
+            		Circle2d c = (Circle2d) body.getShape();
+            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            	}
+            	
+            }
             //for all bodies in arraylist
             // if rectangle
             //g.setColor(Color.RED);  
@@ -51,16 +81,12 @@ public class Window {
             //else circle
             //g.fillOval(c.x, c.y, c.diameter, c.diameter)
             
-            g.setColor(Color.LIGHT_GRAY);
-            g.fillRect((int) ((1960-ParamSimu.mapSizeX)/2),
-            		0,
-            		(int) ParamSimu.mapSizeX,
-            		(int) ParamSimu.mapSizeY);
-            g.setColor(Color.BLACK);
+            
+            /*g.setColor(Color.BLACK);
             g.drawRect((int) ((1960-ParamSimu.mapSizeX)/2),
             		0,
             		(int) ParamSimu.mapSizeX,
-            		(int) ParamSimu.mapSizeY);
+            		(int) ParamSimu.mapSizeY);*/
             
 //            for(Percept body: bodies) {
 //            	if(body.getName() == "Protestor") {

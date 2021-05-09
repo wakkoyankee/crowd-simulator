@@ -3,8 +3,11 @@
  */
 package crs_sim.environment
 
+import crs_sim.utils.Types
 import java.util.List
+import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
  * @author hadrien
@@ -14,17 +17,23 @@ event PerceptionEvent {
 	var body : Shape2d<?>
 	var perceptions : List<Percept>
 	var time : int
+	var envUuid : UUID
 
-	new (b : Shape2d<?>, p : List<Percept>, t : int) {
+	new (b : Shape2d<?>, p : List<Percept>, t : int , envUuid : UUID) {
 		this.perceptions = p
 		this.body = b
 		this.time = t
+		this.envUuid = envUuid
 	}
 }
 
 event InfluenceEvent {
-	val agentType : String
-	new(at : String){
-		this.agentType = at
+	val uuid : UUID
+	val agentType : Types
+	val move : Vector2d
+	new(uuid : UUID, agentType : Types, move : Vector2d){
+		this.uuid = uuid
+		this.agentType = agentType
+		this.move = move
 	}
 }

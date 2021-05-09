@@ -3,8 +3,8 @@
  */
 package crs_sim.^agent
 
-import crs_sim.^agent.MovementCapacity
 import io.sarl.core.Logging
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
  * @author hadrien
@@ -31,7 +31,9 @@ skill MovementSkill implements MovementCapacity {
 		info("Uninstalling the skill")
 	}
 
-	override influenceKinematic {
+	override influenceKinematic(i : int) : Vector2d {
 		// TODO Auto-generated code.
+		println("SKILL APPELLE" + i)
+		return new Vector2d(1,1)
 	}
 }

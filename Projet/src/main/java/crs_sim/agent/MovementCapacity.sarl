@@ -4,12 +4,13 @@
 package crs_sim.^agent
 
 import io.sarl.lang.core.DefaultSkill
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
  * @author hadrien
  * 
  */
- @DefaultSkill(typeof(crs_sim.^agent.MovementSkill))
+ @DefaultSkill(typeof(MovementSkill))
 capacity MovementCapacity {
-	def influenceKinematic()
+	def influenceKinematic(i : int) : Vector2d
 }

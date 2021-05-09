@@ -9,7 +9,9 @@ import io.sarl.lang.annotation.SyntheticMember;
 import io.sarl.lang.core.Agent;
 import io.sarl.lang.core.AtomicSkillReference;
 import io.sarl.lang.core.Skill;
+import org.arakhne.afc.math.geometry.d2.d.Vector2d;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 /**
@@ -35,7 +37,9 @@ public class MovementSkill extends Skill implements MovementCapacity {
   }
   
   @Override
-  public void influenceKinematic() {
+  public Vector2d influenceKinematic(final int i) {
+    InputOutput.<String>println(("SKILL APPELLE" + Integer.valueOf(i)));
+    return new Vector2d(1, 1);
   }
   
   @Extension
