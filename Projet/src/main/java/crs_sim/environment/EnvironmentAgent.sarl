@@ -164,7 +164,7 @@ agent EnvironmentAgent {
 
 		// Test UI //
 		// Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
-		this.win.update(GraphSearch_Utils.PerceptBFS(this.rootTree,new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)) as ArrayList)
+		this.win.update(GraphSearch_Utils.BFS(this.rootTree) as ArrayList)
 		
 		//Iterer dans l'abre recup tout les elements avec getPercept et envoyer 
 	}
