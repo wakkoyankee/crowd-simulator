@@ -5,6 +5,7 @@ package crs_sim.body
 
 import crs_sim.utils.Types
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -31,8 +32,22 @@ class ProtestorBody extends MobileObject {
 		return position as Shape2d 	// will be replaced by a circle (or other) later
 	}
 
+	def getPoition : Point2d {
+		return new Point2d(position.centerX, position.centerY);
+	}
+	
 	def setArea(area : Shape2d<?>) : void {
 		this.area = area
+	}
+	
+	def setArea(x : int, y : int) : void {
+		position.setX(x)
+		position.setY(y)
+	}
+
+	def setArea(point : Point2d) : void {
+		position.setX(point.x)
+		position.setY(point.y)
 	}
 	
 }

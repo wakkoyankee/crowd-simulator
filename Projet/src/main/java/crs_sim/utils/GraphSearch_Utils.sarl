@@ -19,17 +19,8 @@ class GraphSearch_Utils {
 	// to force the class to be static
 	private new {
 	}
-
-	// QTNode is the first node where the search begin
-	//	static def DFS(node : QTNode): void{
-	// //		var dfs : DataDepthFirstForestIterator<QTNode>
-	// ////		DepthFirstNodeOrder order =
-	// //		var iterator : Iterator<Tree<QTNode, ?>>
-	// //		dfs = new DataDepthFirstForestIterator(0, iterator)
-	// //		print(dfs.hasNext)
-	//	}
 	
-	// iterative BFS
+	// iterative BFS (useful to display the map)
 	static def BFS(root : QTNode) : List<Percept> {
 		var result : List<Percept>
 		var stack : List<QTNode>

@@ -5,7 +5,6 @@ package crs_sim.body
 
 import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Point2d
-import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -19,5 +18,8 @@ abstract class EnvObject {
 	val uuid : UUID = UUID::randomUUID;
 	
 	abstract def getArea() : Shape2d<?>
+	abstract def getPoition : Point2d
 	abstract def setArea(area: Shape2d<?>) : void
+	abstract def setArea(x : int, y : int) : void
+	abstract def setArea(point: Point2d) : void
 }

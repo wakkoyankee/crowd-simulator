@@ -4,6 +4,7 @@
 package crs_sim.environment
 
 import crs_sim.body.EnvObject
+import crs_sim.body.MobileObject
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
@@ -14,6 +15,7 @@ import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.tree.node.QuadTreeNode
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 
 /** 
  * @author Thomas
@@ -64,9 +66,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				}
 			} else {
 				// does not fit un current node
-//				throw new Exception(
-//				"Objet : " + object.getClass.getName + 
-//				/*" Position : " + object.area + */" ne rentre pas dans le noeud courant");
+				getParentNode().insert(object)
 			}			
 		}
 		
@@ -83,17 +83,17 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 						
 				// NE
 				setSecondChild(new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX, area.getMaxY / 2)
+					new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX/2, area.getMaxY / 2)
 				))
 				
 				// SW
 				setThirdChild(new QTNode(
-					new Rectangle2d(area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY)
+					new Rectangle2d(area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY/2)
 				))
 				
 				// SE
 				setFourthChild(	new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX, area.getMaxY)
+					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX/2, area.getMaxY/2)
 				))
 				
 				return true
@@ -126,21 +126,36 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 		}
 		return result.toList
 	}
-
-	def moveBody(body: EnvObject, newLocX: int, newLocY: int){
-		print("attention marche mal et permet de déplacer uniquement des pnj")
-		if (body.area instanceof Circle2d) {
-//			body.area as Circle2d		
-			body.area = new Circle2d(newLocX, newLocY, 1)
-			//			body.area.setX()
-//			body.area.setY()
-//			body.area.setRadius()
-		} else if (body.area instanceof Rectangle2d){
+	
+	// should be called by the source node (otherwise we may can't find the object)
+	def moveBodyPasOpti(body: MobileObject, point: Point2d): void{
+		//the body your looking for is in this node
+		if (allUserData.contains(body)) {
+			//body remain in this node after changing his position
+			if (CRS_Sim_Utils.AinB(point, area))
+				body.setArea(point)
+			//body will be in an other node
+			else {
+				removeUserData(body)
+				body.setArea(point)
+				insert(body)
+			}
+		}else{
+			// searching in which child the body is
+			switch (CRS_Sim_Utils.childFit(body.poition,area)) {
+				case 0:
+					print("buddy your body is lost.. RIP")
+				case 1:
+					firstChild.moveBodyPasOpti(body,point)
+				case 2:
+					secondChild.moveBodyPasOpti(body, point)
+				case 3:
+					thirdChild.moveBodyPasOpti(body, point)
+				case 4:
+					fourthChild.moveBodyPasOpti(body, point)
+			}
+		}
 			
-		}else
-			print("What is that body I do not know it get it out of me\n")
-			'
-'
 		
 	}
 }

@@ -3,6 +3,7 @@
  */
 package crs_sim.body
 
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 
@@ -22,9 +23,21 @@ class Building extends EnvObject {
 	def getArea(): Shape2d<?> {
 		return this.area
 	}
+	
+	def getPoition : Point2d {
+		print("You can't ask the position of a Building")
+		return null;
+	}
 
 	def setArea(area : Shape2d<?>) : void {
 		this.area = area
 	}
 	
+	def setArea(x : int, y : int) : void {
+		print("It's a building.. youcan't move buildings bro!")
+	}
+
+	def setArea(point: Point2d) : void {
+		print("It's a building.. youcan't move buildings bro!")
+	}
 }
