@@ -18,6 +18,8 @@ public class ParamSimu {
 	public static final int minAggressive = 70;
 	public static final int nbProtestors = 3;
 
+	//objectif neutre
+	//objectif agg
 	
 	public static final  Circle2d[] initCollecProtestor= {
 			new Circle2d(375, 375, 1),

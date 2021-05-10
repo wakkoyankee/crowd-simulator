@@ -138,47 +138,6 @@ class GraphSearch_Utils {
 		return result;
 	}
 
-	static def PerceptBFS(root : QTNode, perception : Rectangle2d) : List<Percept> {
-		var result : List<Percept>
-		var stack : List<QTNode>
-		var currentNode : QTNode
-
-		result = new ArrayList<Percept>
-		stack = new ArrayList<QTNode>
-
-		currentNode = root
-		if (!currentNode.isLeaf) {
-			if (perception.intersects(currentNode.firstChild.area))
-				stack.add(currentNode.firstChild)
-			if (perception.intersects(currentNode.secondChild.area))
-				stack.add(currentNode.secondChild)
-			if (perception.intersects(currentNode.thirdChild.area))
-				stack.add(currentNode.thirdChild)
-			if (perception.intersects(currentNode.fourthChild.area))
-				stack.add(currentNode.fourthChild)
-		}
-		result.addAll(currentNode.getPercept(perception))
-		while (!stack.isEmpty) {
-			currentNode = stack.get(0)
-			stack.remove(0)
-			if (!currentNode.isLeaf) {
-				if (perception.intersects(currentNode.firstChild.area))
-					stack.add(currentNode.firstChild)
-				if (perception.intersects(currentNode.secondChild.area))
-					stack.add(currentNode.secondChild)
-				if (perception.intersects(currentNode.thirdChild.area))
-					stack.add(currentNode.thirdChild)
-				if (perception.intersects(currentNode.fourthChild.area))
-					stack.add(currentNode.fourthChild)
-			}
-			result.addAll(currentNode.getPercept(perception)) 	// à faire dans les bodies
-		}
-		print(result.size)
-		for (var i = 0; i < result.size; i++) {
-			print(result.get(i).shape)
-		}
-		return result;
-	}
 
 	//	// iterative DFS
 //	static def DFS(root : QTNode) : List<Percept> {

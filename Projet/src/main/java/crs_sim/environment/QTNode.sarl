@@ -127,20 +127,6 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 		return result.toList
 	}
 
-	def getPercept(perception : Rectangle2d) : List<Percept> {
-		var objects = getAllUserData
-		var result : List<Percept> = new ArrayList<Percept>
-		for (object : objects) {
-			if (perception.intersects(object.area))
-				result.add(new Percept(
-					object.area,
-					object.uuid,
-					Types.building // ça va changer
-				))
-		}
-		return result.toList
-	}
-
 	def moveBody(body: EnvObject, newLocX: int, newLocY: int){
 		print("attention marche mal et permet de déplacer uniquement des pnj")
 		if (body.area instanceof Circle2d) {
