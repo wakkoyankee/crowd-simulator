@@ -17,23 +17,18 @@ event PerceptionEvent {
 	var body : Shape2d<?>
 	var perceptions : List<Percept>
 	var time : int
-	var envUuid : UUID
 
-	new (b : Shape2d<?>, p : List<Percept>, t : int , envUuid : UUID) {
+	new (b : Shape2d<?>, p : List<Percept>, t : int) {
 		this.perceptions = p
 		this.body = b
 		this.time = t
-		this.envUuid = envUuid
 	}
 }
 
+
 event InfluenceEvent {
-	val uuid : UUID
-	val agentType : Types
-	val move : Vector2d
-	new(uuid : UUID, agentType : Types, move : Vector2d){
-		this.uuid = uuid
-		this.agentType = agentType
-		this.move = move
+	val influence : Influence
+	new(influence : Influence){
+		this.influence = influence
 	}
 }

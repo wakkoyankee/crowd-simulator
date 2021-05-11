@@ -1,0 +1,28 @@
+/** 
+ * 
+ */
+package crs_sim.environment
+
+import crs_sim.utils.Types
+import java.util.UUID
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
+import org.eclipse.xtend.lib.annotations.Accessors
+
+/** 
+ * @author hadrien
+ * 
+ */
+class Influence {
+	@Accessors
+	var uuid : UUID
+	@Accessors
+	var agentType : Types
+	@Accessors
+	var move : Vector2d
+	
+	new(uuid : UUID, agentType : Types, move : Vector2d){
+		this.uuid = uuid
+		this.agentType = agentType
+		this.move = move
+	}
+}

@@ -9,8 +9,16 @@ package crs_sim.utils
  */
 enum Types {
 	building,
+	destroyable,
 	crs,
 	protestor_agg,
 	protestor_panic,
 	protestor_neutral
+}
+
+enum Action {
+	move,
+	destroy,
+	arrest,
+	smoke
 }
