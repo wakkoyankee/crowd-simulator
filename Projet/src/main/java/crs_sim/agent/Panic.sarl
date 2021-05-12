@@ -51,6 +51,7 @@ behavior Panic {
 	on PerceptionEvent {
 		info("Panic hello")
 		info("Time : " + occurrence.time)
+
 //		var move : Vector2d = this.moveS.influenceKinematic(3)
 		//emit(new InfluenceEvent(owner.getID(), Types.protestor_panic, move))[it.UUID == occurrence.source.UUID]
 
@@ -59,6 +60,7 @@ behavior Panic {
 		//var move : Vector2d = this.moveS.influenceKinematic(3)
 		//var influence : Influence = new Influence(getID(), Types.protestor_panic, move)
 		//emit(new InfluenceEvent(influence))[it.UUID == occurrence.source.UUID]
+
 
 		//preprocessing
 		//movememnt
