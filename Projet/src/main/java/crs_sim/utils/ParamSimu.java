@@ -17,6 +17,11 @@ public class ParamSimu {
 	public static final int maxPanic = 30;
 	public static final int minAggressive = 70;
 	public static final int nbProtestors = 3;
+	public static final int PanicForce = 1;
+	public static final int NeutralForce = 1;
+	public static final int AgressiveForce = 1;
+	public static final int BuildingForce = 1;
+	public static final int CRSForce = 1;
 
 	//objectif neutre
 	//objectif agg
