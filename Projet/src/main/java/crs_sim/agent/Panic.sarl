@@ -3,6 +3,7 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.Influence
 import crs_sim.environment.InfluenceEvent
 import crs_sim.environment.PerceptionEvent
 import crs_sim.utils.Types
@@ -53,6 +54,11 @@ behavior Panic {
 //		var move : Vector2d = this.moveS.influenceKinematic(3)
 		//emit(new InfluenceEvent(owner.getID(), Types.protestor_panic, move))[it.UUID == occurrence.source.UUID]
 
+
+
+		//var move : Vector2d = this.moveS.influenceKinematic(3)
+		//var influence : Influence = new Influence(getID(), Types.protestor_panic, move)
+		//emit(new InfluenceEvent(influence))[it.UUID == occurrence.source.UUID]
 
 		//preprocessing
 		//movememnt

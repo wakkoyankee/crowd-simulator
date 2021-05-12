@@ -71,7 +71,7 @@ agent EnvironmentAgent {
 		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 = rand.nextInt(101) 
+			var r1 = 20//rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -113,7 +113,7 @@ agent EnvironmentAgent {
 		println("SE : " + rootTree.fourthChild)
 		print(collec.get(5) + " : \n")
 		print(collec.get(5).area)
-		rootTree.moveBodyPasOpti(collec.get(5) as MobileObject, new Point2d(800, 800))
+		//rootTree.moveBodyPasOpti(collec.get(5) as MobileObject, new Point2d(800, 800))
 		print(collec.get(5) + " en 800 800: \n")
 		print(collec.get(5).area)
 		
@@ -131,8 +131,8 @@ agent EnvironmentAgent {
 		println("SE : " + rootTree.fourthChild)
 			
 		// // INIT UI ////
-//		this.win = new Window()
-//		redraw()
+		this.win = new Window()
+		//redraw()
 				
 		// // SPAWN DES AGENTS  ////
 		var cpt : int = 0
@@ -158,8 +158,7 @@ agent EnvironmentAgent {
 	def StartSim() {
 
 		//// BOUCLE DE SIMULATION ////
-		
-		
+	
 		// // PERCEPTION ////
 		for (entry : this.protestorList.entrySet()) {
 			var id = entry.getKey()
@@ -201,37 +200,27 @@ agent EnvironmentAgent {
 	}
 
 
-	on InfluenceEvent{//reponse des agents
-		var cpt = this.protestorResp.getAndIncrement()
+	on InfluenceEvent { // reponse des agents
+	
+		var cpt = this.protestorResp.incrementAndGet()
 		this.influenceList.add(occurrence.influence)
-		if (cpt == this.protestorList.size()) { //si tout les protestors on donné leur influence
+		println(this.protestorList.size())
+		if (cpt == this.protestorList.size()) { // si tout les protestors on donné leur influence
 			this.protestorResp.set(0)
 			
 				//resolveinf
 			
-			for(influence : this.influenceList){ // que des influences de movements pour l'instant
+			for (influence : this.influenceList) { // que des influences de movements pour l'instant
 				var body = this.protestorList.get(influence.getUuid())
 				var move = body.getArea() as Circle2d + influence.getMove() // a  verifié si on peut just add point2d avec vector2d
-				
 				this.rootTree.moveBodyPasOpti(body, new Point2d(move.getX(), move.getY()))
 			}
 			this.influenceList.clear()
 				// StartSim()
 		}
-		
-		
-		
-		//Trouver le protestor A AMELIORER
-		//bouge le protestor des la reponse A CHANGER
-		for(var i: int  = 0; i< this.protestorList.size();i++){
-			if (protestorList.get(i).getUuid() == occurrence.source.UUID) {//pas besoin de 
-				//rootTree.moveBody(protestorList.get(i), occurrence.move.ix, occurrence.move.iy)//bon appelle ?? ne marche pas
-				break
-			}
-		}
-		
-		
+			
 	}
+	
 	def resolveInfluences{
 		
 	}
