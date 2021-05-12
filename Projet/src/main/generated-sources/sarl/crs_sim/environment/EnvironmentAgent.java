@@ -5,7 +5,6 @@ import crs_sim.agent.Protestor;
 import crs_sim.body.Building;
 import crs_sim.body.CRSBody;
 import crs_sim.body.EnvObject;
-import crs_sim.body.MobileObject;
 import crs_sim.body.ProtestorBody;
 import crs_sim.environment.Influence;
 import crs_sim.environment.InfluenceEvent;
@@ -95,7 +94,7 @@ public class EnvironmentAgent extends Agent {
     int[] t = new int[ParamSimu.nbProtestors];
     for (int i = 0; (i < ParamSimu.nbProtestors); i++) {
       {
-        int r1 = rand.nextInt(101);
+        int r1 = 20;
         int r2 = rand.nextInt(11);
         b[i] = r1;
         t[i] = r2;
@@ -143,10 +142,7 @@ public class EnvironmentAgent extends Agent {
     InputOutput.<String>print(_plus);
     InputOutput.<Shape2d<?>>print(collec.get(5).getArea());
     EnvObject _get_1 = collec.get(5);
-    Point2d _point2d = new Point2d(800, 800);
-    this.rootTree.moveBodyPasOpti(((MobileObject) _get_1), _point2d);
-    EnvObject _get_2 = collec.get(5);
-    String _plus_1 = (_get_2 + " en 800 800: \n");
+    String _plus_1 = (_get_1 + " en 800 800: \n");
     InputOutput.<String>print(_plus_1);
     InputOutput.<Shape2d<?>>print(collec.get(5).getArea());
     InputOutput.<String>println(("Père : " + this.rootTree));
@@ -158,6 +154,8 @@ public class EnvironmentAgent extends Agent {
     InputOutput.<String>println(("SW : " + _thirdChild_1));
     QTNode _fourthChild_1 = this.rootTree.getFourthChild();
     InputOutput.<String>println(("SE : " + _fourthChild_1));
+    Window _window = new Window();
+    this.win = _window;
     int cpt = 0;
     Set<Map.Entry<UUID, ProtestorBody>> _entrySet_1 = this.protestorList.entrySet();
     for (final Map.Entry<UUID, ProtestorBody> entry_1 : _entrySet_1) {
@@ -223,8 +221,9 @@ public class EnvironmentAgent extends Agent {
   }
   
   private void $behaviorUnit$InfluenceEvent$2(final InfluenceEvent occurrence) {
-    int cpt = this.protestorResp.getAndIncrement();
+    int cpt = this.protestorResp.incrementAndGet();
     this.influenceList.add(occurrence.influence);
+    InputOutput.<Integer>println(Integer.valueOf(this.protestorList.size()));
     int _size = this.protestorList.size();
     if ((cpt == _size)) {
       this.protestorResp.set(0);
@@ -241,14 +240,6 @@ public class EnvironmentAgent extends Agent {
         }
       }
       this.influenceList.clear();
-    }
-    for (int i = 0; (i < this.protestorList.size()); i++) {
-      UUID _uuid = this.protestorList.get(Integer.valueOf(i)).getUuid();
-      UUID _uUID = occurrence.getSource().getUUID();
-      boolean _equals = Objects.equal(_uuid, _uUID);
-      if (_equals) {
-        break;
-      }
     }
   }
   
