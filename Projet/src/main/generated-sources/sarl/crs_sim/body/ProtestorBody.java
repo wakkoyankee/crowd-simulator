@@ -1,12 +1,14 @@
 package crs_sim.body;
 
 import crs_sim.body.MobileObject;
+import crs_sim.utils.Types;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
-import java.util.Objects;
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
+import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Shape2d;
+import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 /**
@@ -18,11 +20,12 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class ProtestorBody extends MobileObject {
   private Circle2d position;
   
-  private String beh;
+  @Accessors
+  private Types protestorType;
   
-  public ProtestorBody(final Circle2d position, final String beh) {
+  public ProtestorBody(final Circle2d position, final Types protestorType) {
     this.position = position;
-    this.beh = beh;
+    this.protestorType = protestorType;
   }
   
   public ProtestorBody(final Circle2d position) {
@@ -33,24 +36,30 @@ public class ProtestorBody extends MobileObject {
     return this.position;
   }
   
-  @Pure
-  public String getBeh() {
-    return this.beh;
+  public Point2d getPoition() {
+    double _centerX = this.position.getCenterX();
+    double _centerY = this.position.getCenterY();
+    return new Point2d(_centerX, _centerY);
+  }
+  
+  public void setArea(final Shape2d<?> area) {
+    this.setArea(area);
+  }
+  
+  public void setArea(final int x, final int y) {
+    this.position.setX(x);
+    this.position.setY(y);
+  }
+  
+  public void setArea(final Point2d point) {
+    this.position.setX(point.getX());
+    this.position.setY(point.getY());
   }
   
   @Override
   @Pure
   @SyntheticMember
   public boolean equals(final Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    ProtestorBody other = (ProtestorBody) obj;
-    if (!Objects.equals(this.beh, other.beh))
-      return false;
     return super.equals(obj);
   }
   
@@ -59,8 +68,15 @@ public class ProtestorBody extends MobileObject {
   @SyntheticMember
   public int hashCode() {
     int result = super.hashCode();
-    final int prime = 31;
-    result = prime * result + Objects.hashCode(this.beh);
     return result;
+  }
+  
+  @Pure
+  public Types getProtestorType() {
+    return this.protestorType;
+  }
+  
+  public void setProtestorType(final Types protestorType) {
+    this.protestorType = protestorType;
   }
 }

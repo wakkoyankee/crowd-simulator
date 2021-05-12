@@ -1,8 +1,10 @@
 package crs_sim.agent;
 
 import crs_sim.agent.Aggressive;
+import crs_sim.agent.Memory;
 import crs_sim.agent.Neutral;
 import crs_sim.agent.Panic;
+import crs_sim.utils.ParamSimu;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.Behaviors;
@@ -33,52 +35,55 @@ import javax.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Pure;
 
-/**
- * @author Thomas
- */
 @SarlSpecification("0.11")
 @SarlElementType(19)
 @SuppressWarnings("all")
 public class Protestor extends Agent {
-  private int Behavior;
-  
-  private int Tolerance;
-  
   private Panic P;
   
   private Neutral N;
   
   private Aggressive A;
   
+  private Memory memory;
+  
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Protestor to Agent"
-      + "\nType mismatch: cannot convert from Panic to Behavior");
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent Protester was started.");
+    Object _get = occurrence.parameters[0];
+    Object _get_1 = occurrence.parameters[1];
+    Memory _memory = new Memory(((((Integer) _get)) == null ? 0 : (((Integer) _get)).intValue()), ((((Integer) _get_1)) == null ? 0 : (((Integer) _get_1)).intValue()));
+    this.memory = _memory;
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
+    int _behavior = this.memory.getBehavior();
+    String _plus = (Integer.valueOf(_behavior) + " ");
+    int _tolerance = this.memory.getTolerance();
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1.info((_plus + Integer.valueOf(_tolerance)));
+    int _behavior_1 = this.memory.getBehavior();
+    if ((_behavior_1 < ParamSimu.maxPanic)) {
+      Panic _panic = new Panic(this, this.memory);
+      this.P = _panic;
+      Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+      _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.registerBehavior(this.P);
+    } else {
+      int _behavior_2 = this.memory.getBehavior();
+      if ((_behavior_2 > ParamSimu.minAggressive)) {
+        Aggressive _aggressive = new Aggressive(this, this.memory);
+        this.A = _aggressive;
+        Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+        _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1.registerBehavior(this.A);
+      } else {
+        Neutral _neutral = new Neutral(this, this.memory);
+        this.N = _neutral;
+        Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_2 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+        _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_2.registerBehavior(this.N);
+      }
+    }
   }
   
   private void $behaviorUnit$Destroy$1(final Destroy occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent Protester was stopped.");
-  }
-  
-  /**
-   * INITIALISATION PERSONALITE
-   */
-  protected int setPersonality(final int B, final int T) {
-    int _xblockexpression = (int) 0;
-    {
-      this.Behavior = B;
-      _xblockexpression = this.Tolerance = T;
-    }
-    return _xblockexpression;
-  }
-  
-  protected void setBehavior(final int B) {
-    this.Behavior = B;
-  }
-  
-  protected void setTolerance(final int T) {
-    this.Tolerance = T;
   }
   
   private void $behaviorUnit$AgentSpawned$2(final AgentSpawned occurrence) {
@@ -257,17 +262,6 @@ public class Protestor extends Agent {
   @Pure
   @SyntheticMember
   public boolean equals(final Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Protestor other = (Protestor) obj;
-    if (other.Behavior != this.Behavior)
-      return false;
-    if (other.Tolerance != this.Tolerance)
-      return false;
     return super.equals(obj);
   }
   
@@ -276,9 +270,6 @@ public class Protestor extends Agent {
   @SyntheticMember
   public int hashCode() {
     int result = super.hashCode();
-    final int prime = 31;
-    result = prime * result + Integer.hashCode(this.Behavior);
-    result = prime * result + Integer.hashCode(this.Tolerance);
     return result;
   }
   
