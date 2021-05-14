@@ -67,11 +67,12 @@ public class ParamSimu {
 			new Building(new Rectangle2d(700,650,300,350)), // Bat 10
 	};
 	
-	public static ArrayList<Rectangle2d> Destroyables; //Besoin d'une liste dynamique ici
-	public static Point2d NeutralObjective = new Point2d(300,300);
+	public static final Rectangle2d neutralObj = new Rectangle2d(600,600,300,300); //au pif
 	
-	
-	
-	
-	
+	public static final Rectangle2d[] aggObjs = {
+			new Rectangle2d(700,375,300,200), // Bat 6
+			new Rectangle2d(0,700,300,300), // Bat 7
+			new Rectangle2d(350,700,75,300) // Bat 8
+
+	};
 }

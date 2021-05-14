@@ -22,7 +22,7 @@ class CRSBody extends MobileObject {
 		return position as Shape2d 		// will be replaced by a circle (or other) later
 	}
 
-	def getPoition : Point2d {
+	def getPosition : Point2d {
 		return new Point2d(position.centerX, position.centerY);
 	}
 

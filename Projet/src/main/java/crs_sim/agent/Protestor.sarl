@@ -3,11 +3,14 @@
  */
 package crs_sim.^agent
 
+import crs_sim.utils.ParamSimu
+import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.Behaviors
 import io.sarl.core.ContextJoined
 import io.sarl.core.ContextLeft
+import io.sarl.core.DefaultContextInteractions
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
 import io.sarl.core.Logging
@@ -17,9 +20,6 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
-import crs_sim.utils.ParamSimu
-import io.sarl.core.DefaultContextInteractions
-import java.util.UUID
 import org.eclipse.xtend.lib.annotations.Accessors
 
 /** 
@@ -47,7 +47,7 @@ agent Protestor {
 	var P : Panic
 	var N : Neutral
 	var A : Aggressive
-	
+	var currBeh : Types
 
 	
 	var memory : Memory
@@ -65,17 +65,47 @@ agent Protestor {
 		if (this.memory.getBehavior() < ParamSimu.maxPanic) {
 			this.P = new Panic(this, memory)
 			this.P.registerBehavior
+			this.currBeh = Types.protestor_panic
 		}
 		else if (this.memory.getBehavior() > ParamSimu.minAggressive) {
 			this.A = new Aggressive(this,memory)
 			this.A.registerBehavior
+			this.currBeh = Types.protestor_agg
 		}
 		else{
 			this.N = new Neutral(this,memory)
 			this.N.registerBehavior
+			this.currBeh = Types.protestor_neutral
 		}
 		//var envID : UUID = occurrence.parameters.get(2) as UUID
 		//emit(new spawned)[it.UUID == envID]
+	}
+	
+	def changeBehavior(newBeh : Types):void{
+		if(this.currBeh == Types.protestor_panic)
+		{this.P.unregisterBehavior}
+		else if(this.currBeh == Types.protestor_agg)
+		{this.A.unregisterBehavior}
+		else
+		{this.N.unregisterBehavior}
+		
+		if (newBeh == Types.protestor_panic) 
+		{
+			this.P = new Panic(this, memory)
+			this.P.registerBehavior
+		}
+		else if (newBeh == Types.protestor_agg) 
+		{
+			this.A = new Aggressive(this, memory)
+			this.A.registerBehavior
+		}
+		else 
+		{
+			this.N = new Neutral(this, memory)
+			this.N.registerBehavior
+		}
+		this.currBeh = newBeh
+		println(memory.getBehavior()+" LA")
 	}
 
 	on Destroy {

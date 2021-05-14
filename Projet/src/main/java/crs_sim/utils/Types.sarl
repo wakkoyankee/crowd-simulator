@@ -20,5 +20,7 @@ enum Action {
 	move,
 	destroy,
 	arrest,
-	smoke
+	smoke,
+	despawn,
+	changeBeh
 }

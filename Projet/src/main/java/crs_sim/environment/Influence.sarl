@@ -3,6 +3,7 @@
  */
 package crs_sim.environment
 
+import crs_sim.utils.Action
 import crs_sim.utils.Types
 import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
@@ -19,10 +20,36 @@ class Influence {
 	var agentType : Types
 	@Accessors
 	var move : Vector2d
+	@Accessors
+	var action : Action
+	@Accessors
+	var target : UUID
 	
-	new(uuid : UUID, agentType : Types, move : Vector2d){
+	new(uuid : UUID, action: Action, move : Vector2d){ //movement
+		this.uuid = uuid
+		this.move = move
+		this.action = action
+	}
+
+	new(uuid : UUID, action: Action, agentType : Types) { //changetype
 		this.uuid = uuid
 		this.agentType = agentType
-		this.move = move
+		this.action = action
 	}
+
+	new(uuid : UUID, action : Action, target : UUID) { // arrest or destroy
+		this.uuid = uuid
+		this.target = target
+		this.action = action
+	}
+
+	new(uuid : UUID, action : Action) { // despawn
+		this.uuid = uuid
+		this.action = action
+	}
+	
+	
+	
+	
+	
 }

@@ -142,7 +142,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			}
 		}else{
 			// searching in which child the body is
-			switch (CRS_Sim_Utils.childFit(body.poition,area)) {
+			switch (CRS_Sim_Utils.childFit(body.position,area)) {
 				case 0:
 					print("buddy your body is lost.. RIP")
 				case 1:

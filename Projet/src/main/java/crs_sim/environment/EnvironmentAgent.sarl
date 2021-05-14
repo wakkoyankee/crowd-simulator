@@ -4,10 +4,11 @@
 package crs_sim.environment
 
 import crs_sim.^agent.Protestor
+import crs_sim.body.Destroyable
 import crs_sim.body.EnvObject
-import crs_sim.body.MobileObject
 import crs_sim.body.ProtestorBody
 import crs_sim.ui.Window
+import crs_sim.utils.Action
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.GraphSearch_Utils
 import crs_sim.utils.ParamSimu
@@ -38,6 +39,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
 
 /** 
  * @author hadrien
@@ -61,6 +63,8 @@ agent EnvironmentAgent {
 	var protestorResp = new AtomicInteger(0)//faire un .incremement()
 	var influenceList : List<Influence> = new ArrayList<Influence>()
 	
+	var aggObjs : TreeMap<UUID,Destroyable>
+	
 	on Initialize {
 
 		info("The agent environment was started.")
@@ -71,7 +75,7 @@ agent EnvironmentAgent {
 		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 = 20//rand.nextInt(101) 
+			var r1 = 10//rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -85,6 +89,14 @@ agent EnvironmentAgent {
 			}
 			
 			this.protestorList.put(pb.getUuid(),pb)//Ajout le protestor body cree
+		}
+		
+		// INIT AGG OBJS //
+		
+		this.aggObjs = new TreeMap<UUID, Destroyable>
+		for (rect : ParamSimu.aggObjs){
+			var d = new Destroyable(rect)
+			this.aggObjs.put(d.getUuid(),d)
 		}
 		
 
@@ -103,6 +115,10 @@ agent EnvironmentAgent {
 		CRS_Sim_Utils.buildTree(rootTree, collec)
 		
 		for (entry : this.protestorList.entrySet()) { // ADD PROTESTORS TO TREE
+			rootTree.insert(entry.getValue())
+		}
+
+		for (entry : this.aggObjs.entrySet()) { // ADD Destroyables TO TREE
 			rootTree.insert(entry.getValue())
 		}
 
@@ -131,7 +147,7 @@ agent EnvironmentAgent {
 		println("SE : " + rootTree.fourthChild)
 			
 		// // INIT UI ////
-		this.win = new Window()
+		//this.win = new Window()
 		//redraw()
 				
 		// // SPAWN DES AGENTS  ////
@@ -140,9 +156,6 @@ agent EnvironmentAgent {
 			Protestor.spawnInContextWithID(entry.getKey(), defaultContext, b.get(cpt), t.get(cpt))
 			cpt++
 		}
-		/*for (var i = 0; i < this.protestorList.size(); i++) {
-			Protestor.spawnInContextWithID(this.protestorList.get(i).getUuid(), defaultContext, b.get(i), t.get(i))
-		}*/
 	}
 
 
@@ -164,29 +177,17 @@ agent EnvironmentAgent {
 			var id = entry.getKey()
 			var body = entry.getValue().getArea()
 			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
-			emit(new PerceptionEvent(body, percept, 0))[it.UUID == id]
+			var obj : Shape2d<?>
+			var uuidObj :UUID = null
+			if (entry.getValue().getProtestorType() == Types.protestor_agg){
+				obj = ParamSimu.neutralObj
+			}else{
+				//get closest aggobj
+				obj = this.aggObjs.firstEntry().getValue().getArea()
+				uuidObj = this.aggObjs.firstKey()
+			}
+			emit(new PerceptionEvent(body, percept, obj, uuidObj, 0))[it.UUID == id]
 		}
-		
-		/*for (var i = 0; i < this.protestorList.size(); i++) { // comment donner l'objectif au protestor ?
-			var id = this.protestorList.get(i).getUuid()
-			var body = this.protestorList.get(i).getArea()
-			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
-			emit(new PerceptionEvent(body, percept, 0, getID()))[it.UUID == id]
-		}*/
-		
-		// var t : int = 0
-		
-		// while(1){
-		
-			// get perceptions
-			// actions -> new list
-			// for all agents
-				// send perception
-				// get actions
-			// reactions -> resolveconflict (env , actions)
-		// for all reactions
-				// apply(env, reaction)
-		// t += 1	
 		
 	}
 	
@@ -204,7 +205,6 @@ agent EnvironmentAgent {
 	
 		var cpt = this.protestorResp.incrementAndGet()
 		this.influenceList.add(occurrence.influence)
-		println(this.protestorList.size())
 		if (cpt == this.protestorList.size()) { // si tout les protestors on donné leur influence
 			this.protestorResp.set(0)
 			
@@ -212,9 +212,18 @@ agent EnvironmentAgent {
 			
 			for (influence : this.influenceList) { // que des influences de movements pour l'instant
 				var body = this.protestorList.get(influence.getUuid())
+				//if(influence.getAction() == Action.move){
+					
+				//}
+				
+				
 				var move = body.getArea() as Circle2d + influence.getMove() // a  verifié si on peut just add point2d avec vector2d
 				this.rootTree.moveBodyPasOpti(body, new Point2d(move.getX(), move.getY()))
 			}
+			
+			//if all destoyables gone stop simu crs lose
+			//else continue turning until there are still protestors
+			
 			this.influenceList.clear()
 				// StartSim()
 		}
