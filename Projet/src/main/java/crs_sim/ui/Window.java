@@ -2,6 +2,8 @@ package crs_sim.ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -10,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
@@ -57,31 +60,10 @@ public class Window {
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(ParamSimu.mapLeftOffset,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
            
-            try {
-				crsURL = new File("texturePack/CRS.gif").toURI().toURL();
-            	gjURL = new File("texturePack/GJ.gif").toURI().toURL();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
             
-            Icon icon = new ImageIcon(crsURL);
-    	    JLabel label = new JLabel(icon);
-    	    label.setBounds(0, 0, 50, 50);
-    	    _pan.add(label);
+            
     	    
             for(Percept body : bodies) {
-//            	if(body.getShape() instanceof Rectangle2d) {
-//            		g.setColor(Color.BLACK); 
-//            		Rectangle2d r = (Rectangle2d)body.getShape();
-//            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
-//            	}else if(body.getShape() instanceof Circle2d) {
-//            		g.setColor(Color.BLUE); 
-//            		Circle2d c = (Circle2d) body.getShape();
-//            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
-//            	}
-//            	
-//            	
             	
             	if(body.getName() == Types.building) {
             		g.setColor(Color.BLACK); 
@@ -103,10 +85,25 @@ public class Window {
             		g.setColor(Color.PINK); 
             		Circle2d c = (Circle2d) body.getShape();
             		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+            	}else if(body.getName() == Types.destroyable) {
+            		g.setColor(Color.RED); 
+            		Rectangle2d r = (Rectangle2d) body.getShape();
+            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
             	}
             	
             }
             
+            try {
+				crsURL = new File("texturePack/CRS.gif").toURI().toURL();
+            	gjURL = new File("texturePack/GJ.gif").toURI().toURL();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            Icon icon = new ImageIcon(gjURL);            
+    	    JLabel label = new JLabel(icon);
+    	    label.setBounds(0, 0, 200, 200);
+    	    _win.getContentPane().add(label);            
         }
         
         public void setBodies(List<Percept> bodies) {

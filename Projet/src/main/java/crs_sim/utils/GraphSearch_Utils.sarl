@@ -128,7 +128,59 @@ class GraphSearch_Utils {
 //		}
 		return result;
 	}
+	
+	static def printGraphDebug(root : QTNode, fullInfoShape : boolean) : void {
+		var listResult : List<Percept>
+		var circle : Circle2d
+		var rect : Rectangle2d 
+		listResult = BFS(root)
+		print("\n___________________________________DEBUG_GRAPH_START___________________________________")
+		for(result : listResult){
+			println("\n\nType : " + result.name)
+			println("UUID : " + result.uuid)
+			if (fullInfoShape)
+				println("Shape : " + result.shape)
+			else{
+				if (result.shape instanceof Circle2d) {
+					circle = result.shape as Circle2d
+					println("X : " + circle.getX + "  Y : " + circle.getY)
+				} else if(result.shape instanceof Rectangle2d){
+					rect = result.shape as Rectangle2d
+					println("X : " + circle.minX + "  Y : " + circle.minY + "  top left corner")
+				}
+			}
+				
+		}
+		print("___________________________________DEBUG_GRAPH_END___________________________________\n")
+		
+	}
 
+	static def printGraphDebug(root : QTNode, fullInfoShape : boolean,type : Types) : void {
+		var listResult : List<Percept>
+		var circle : Circle2d
+		var rect : Rectangle2d
+		listResult = BFS(root)
+		print("\n___________________________________DEBUG_GRAPH_START___________________________________")
+		for (result : listResult) {
+			if(result.name == type){
+				println("\n\nType : " + result.name)
+				println("UUID : " + result.uuid)
+				if (fullInfoShape)
+					println("Shape : " + result.shape)
+				else {
+					if (result.shape instanceof Circle2d) {
+						circle = result.shape as Circle2d
+						println("X : " + circle.getX + "  Y : " + circle.getY)
+					} else if (result.shape instanceof Rectangle2d) {
+						rect = result.shape as Rectangle2d
+						println("X : " + circle.minX + "  Y : " + circle.minY + "  top left corner")
+					}
+				}
+			}
+		}
+		print("___________________________________DEBUG_GRAPH_END___________________________________\n")
+
+	}
 
 	//	// iterative DFS
 //	static def DFS(root : QTNode) : List<Percept> {

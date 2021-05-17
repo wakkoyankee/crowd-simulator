@@ -8,7 +8,6 @@ import crs_sim.body.Destroyable
 import crs_sim.body.EnvObject
 import crs_sim.body.ProtestorBody
 import crs_sim.ui.Window
-import crs_sim.utils.Action
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.GraphSearch_Utils
 import crs_sim.utils.ParamSimu
@@ -37,9 +36,9 @@ import java.util.TreeMap
 import java.util.UUID
 import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
-import org.arakhne.afc.math.geometry.d2.d.Point2d
 
 /** 
  * @author hadrien
@@ -64,6 +63,8 @@ agent EnvironmentAgent {
 	var influenceList : List<Influence> = new ArrayList<Influence>()
 	
 	var aggObjs : TreeMap<UUID,Destroyable>
+	
+	var bodiesDespawned : ArrayList<EnvObject>
 	
 	on Initialize {
 
@@ -94,9 +95,8 @@ agent EnvironmentAgent {
 		// INIT AGG OBJS //
 		
 		this.aggObjs = new TreeMap<UUID, Destroyable>
-		for (rect : ParamSimu.aggObjs){
-			var d = new Destroyable(rect)
-			this.aggObjs.put(d.getUuid(),d)
+		for (destroyable : ParamSimu.aggObjs){
+			this.aggObjs.put(destroyable.getUuid(), destroyable)
 		}
 		
 
@@ -114,6 +114,7 @@ agent EnvironmentAgent {
 		)
 		CRS_Sim_Utils.buildTree(rootTree, collec)
 		
+		
 		for (entry : this.protestorList.entrySet()) { // ADD PROTESTORS TO TREE
 			rootTree.insert(entry.getValue())
 		}
@@ -121,8 +122,8 @@ agent EnvironmentAgent {
 		for (entry : this.aggObjs.entrySet()) { // ADD Destroyables TO TREE
 			rootTree.insert(entry.getValue())
 		}
-
-//		println("Père : " + rootTree)
+		
+		//		println("Père : " + rootTree)
 //		println("NW : " + rootTree.firstChild)
 //		println("NE : " + rootTree.secondChild)
 //		println("SW : " + rootTree.thirdChild)
@@ -149,13 +150,13 @@ agent EnvironmentAgent {
 		// // INIT UI ////
 		this.win = new Window()
 		redraw()
-				
 		// // SPAWN DES AGENTS  ////
 		var cpt : int = 0
 		for (entry : this.protestorList.entrySet()) { // CREATE PROTESTOR AGENT
 			Protestor.spawnInContextWithID(entry.getKey(), defaultContext, b.get(cpt), t.get(cpt))
 			cpt++
 		}
+		GraphSearch_Utils.printGraphDebug(rootTree, true)
 	}
 
 
@@ -218,7 +219,7 @@ agent EnvironmentAgent {
 				
 				
 				var move = body.getArea() as Circle2d + influence.getMove() // a  verifié si on peut just add point2d avec vector2d
-				this.rootTree.moveBodyPasOpti(body, new Point2d(move.getX(), move.getY()))
+				this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
 			}
 			
 			//if all destoyables gone stop simu crs lose

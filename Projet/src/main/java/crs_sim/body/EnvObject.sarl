@@ -18,7 +18,7 @@ abstract class EnvObject {
 	@Accessors
 	val uuid : UUID = UUID::randomUUID;
 	
-	abstract def getArea() : Shape2d<?>
+	abstract def getArea : Shape2d<?>
 	abstract def getType : Types
 	abstract def getPosition : Point2d
 	abstract def setArea(area: Shape2d<?>) : void

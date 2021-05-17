@@ -16,6 +16,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class Percept {
 	@Accessors
 	var name : Types
+	@Accessors
 	val uuid : UUID
 	@Accessors 
 	var shape : Shape2d //si 4 donnée rectangle si 3 cercle comme ca pas besoin de stocker rectangle2D et cercle2D
