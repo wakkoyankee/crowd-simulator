@@ -1,5 +1,7 @@
 package crs_sim.agent;
 
+import crs_sim.agent.Memory;
+import crs_sim.agent.MovementSkill;
 import crs_sim.environment.PerceptionEvent;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
@@ -34,9 +36,21 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlElementType(21)
 @SuppressWarnings("all")
 public class Panic extends Behavior {
+  private Memory memory;
+  
+  private MovementSkill moveS;
+  
+  public Panic(final Agent owner, final Memory memory) {
+    super(owner);
+    this.memory = memory;
+  }
+  
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Panic behavior was started.");
+    MovementSkill _movementSkill = new MovementSkill();
+    this.moveS = _movementSkill;
+    this.<MovementSkill>setSkill(this.moveS);
   }
   
   private void $behaviorUnit$PerceptionEvent$1(final PerceptionEvent occurrence) {
@@ -217,8 +231,18 @@ public class Panic extends Behavior {
     ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$PerceptionEvent$1(occurrence));
   }
   
+  @Override
+  @Pure
   @SyntheticMember
-  public Panic(final Agent agent) {
-    super(agent);
+  public boolean equals(final Object obj) {
+    return super.equals(obj);
+  }
+  
+  @Override
+  @Pure
+  @SyntheticMember
+  public int hashCode() {
+    int result = super.hashCode();
+    return result;
   }
 }

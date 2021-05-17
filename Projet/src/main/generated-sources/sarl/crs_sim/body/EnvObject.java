@@ -5,8 +5,8 @@ import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
 import java.util.Objects;
 import java.util.UUID;
+import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Shape2d;
-import org.eclipse.xtend.lib.annotations.AccessorType;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -17,10 +17,18 @@ import org.eclipse.xtext.xbase.lib.Pure;
 @SarlElementType(10)
 @SuppressWarnings("all")
 public abstract class EnvObject {
-  @Accessors({ AccessorType.PUBLIC_SETTER, AccessorType.PUBLIC_GETTER })
-  private UUID uuid;
+  @Accessors
+  private final UUID uuid = UUID.randomUUID();
   
   public abstract Shape2d<?> getArea();
+  
+  public abstract Point2d getPoition();
+  
+  public abstract void setArea(final Shape2d<?> area);
+  
+  public abstract void setArea(final int x, final int y);
+  
+  public abstract void setArea(final Point2d point);
   
   @Override
   @Pure
@@ -56,9 +64,5 @@ public abstract class EnvObject {
   @Pure
   public UUID getUuid() {
     return this.uuid;
-  }
-  
-  public void setUuid(final UUID uuid) {
-    this.uuid = uuid;
   }
 }

@@ -5,6 +5,7 @@ import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
+import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Shape2d;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -23,6 +24,26 @@ public class CRSBody extends MobileObject {
   
   public Shape2d<?> getArea() {
     return this.position;
+  }
+  
+  public Point2d getPoition() {
+    double _centerX = this.position.getCenterX();
+    double _centerY = this.position.getCenterY();
+    return new Point2d(_centerX, _centerY);
+  }
+  
+  public void setArea(final Shape2d<?> area) {
+    this.setArea(area);
+  }
+  
+  public void setArea(final int x, final int y) {
+    this.position.setX(x);
+    this.position.setY(y);
+  }
+  
+  public void setArea(final Point2d point) {
+    this.position.setX(point.getX());
+    this.position.setY(point.getY());
   }
   
   @Override

@@ -121,7 +121,6 @@ agent EnvironmentAgent {
 			rootTree.insert(entry.getValue())
 		}
 
-<<<<<<< HEAD
 //		println("Père : " + rootTree)
 //		println("NW : " + rootTree.firstChild)
 //		println("NE : " + rootTree.secondChild)
@@ -132,18 +131,6 @@ agent EnvironmentAgent {
 //		rootTree.moveBodyPasOpti(collec.get(5) as MobileObject, new Point2d(800, 800))
 //		print(collec.get(5) + " en 800 800: \n")
 //		print(collec.get(5).area)
-=======
-		println("Père : " + rootTree)
-		println("NW : " + rootTree.firstChild)
-		println("NE : " + rootTree.secondChild)
-		println("SW : " + rootTree.thirdChild)
-		println("SE : " + rootTree.fourthChild)
-		print(collec.get(5) + " : \n")
-		print(collec.get(5).area)
-		//rootTree.moveBodyPasOpti(collec.get(5) as MobileObject, new Point2d(800, 800))
-		print(collec.get(5) + " en 800 800: \n")
-		print(collec.get(5).area)
->>>>>>> 87623e2babc987181b1d865db17b53c153c82afe
 		
 		//print("\nBFS\n")
 		//GraphSearch_Utils.BFS(rootTree)
@@ -159,18 +146,8 @@ agent EnvironmentAgent {
 //		println("SE : " + rootTree.fourthChild)
 			
 		// // INIT UI ////
-<<<<<<< HEAD
-<<<<<<< HEAD
 		this.win = new Window()
 		redraw()
-=======
-		//this.win = new Window()
-		//redraw()
->>>>>>> 87623e2babc987181b1d865db17b53c153c82afe
-=======
-		//this.win = new Window()
-		//redraw()
->>>>>>> 87623e2babc987181b1d865db17b53c153c82afe
 				
 		// // SPAWN DES AGENTS  ////
 		var cpt : int = 0
