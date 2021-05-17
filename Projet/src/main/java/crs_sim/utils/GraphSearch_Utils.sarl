@@ -79,10 +79,10 @@ class GraphSearch_Utils {
 			}
 			result.addAll(currentNode.getPercept(perception))
 		}
-		print(result.size)
-		for (var i = 0; i < result.size; i++) {
-			print(result.get(i).shape)
-		}
+//		print(result.size)
+//		for (var i = 0; i < result.size; i++) {
+//			print(result.get(i).shape)
+//		}
 		return result;
 	}
 
@@ -122,10 +122,10 @@ class GraphSearch_Utils {
 			}
 			result.addAll(currentNode.getPercept(perception)) 	// à faire dans les bodies
 		}
-		print(result.size)
-		for(var i = 0; i<result.size; i++){
-			print(result.get(i).shape)
-		}
+//		print(result.size)
+//		for(var i = 0; i<result.size; i++){
+//			print(result.get(i).shape)
+//		}
 		return result;
 	}
 

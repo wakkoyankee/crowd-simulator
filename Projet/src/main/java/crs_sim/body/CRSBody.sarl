@@ -3,6 +3,7 @@
  */
 package crs_sim.body
 
+import crs_sim.utils.Types
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
@@ -13,17 +14,23 @@ import org.arakhne.afc.math.geometry.d2.d.Shape2d
  */
 class CRSBody extends MobileObject {
 	val position : Circle2d
+	var type : Types
 
-	new (position : Circle2d) {
+	new (position : Circle2d, type: Types) {
 		this.position = position
+		this.type = type
 	}
 
 	def getArea() : Shape2d<?> {
 		return position as Shape2d 		// will be replaced by a circle (or other) later
 	}
 
-	def getPoition : Point2d {
+	def getPosition : Point2d {
 		return new Point2d(position.centerX, position.centerY);
+	}
+
+	def getType : Types {
+		return type
 	}
 
 	def setArea(area : Shape2d<?>) : void {

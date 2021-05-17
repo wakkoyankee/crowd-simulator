@@ -3,6 +3,7 @@
  */
 package crs_sim.body
 
+import crs_sim.utils.Types
 import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
@@ -19,7 +20,10 @@ abstract class EnvObject {
 	
 	abstract def getArea() : Shape2d<?>
 	abstract def getPoition : Point2d
+	abstract def getType : Types
+	abstract def getPosition : Point2d
 	abstract def setArea(area: Shape2d<?>) : void
 	abstract def setArea(x : int, y : int) : void
 	abstract def setArea(point: Point2d) : void
+	
 }

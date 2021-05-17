@@ -9,8 +9,8 @@ import crs_sim.utils.Types
 import io.sarl.core.Logging
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
-import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
@@ -38,13 +38,12 @@ skill MovementSkill implements MovementCapacity {
 		info("Uninstalling the skill")
 	}
 
-	override influenceKinematic(position : Point2d, linearSpeed : double, maxLinearSpeed : double,
-			ListOfTarget : ArrayList<Percept>) : Vector2d {
+	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d {
 		// TODO Auto-generated code.
 //		println("SKILL APPELLE" + i)
 //		return new Vector2d(1, 1)
-		var obj : Point2d = new Point2d(200,200)
-		var v = new Vector2d(obj.getX() - position.getX(), obj.getY() - position.getY());
+
+		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
 		for (target : ListOfTarget) {
 			if (target.getName() == Types.protestor_panic){
 				var shape : Circle2d = target.getShape() as Circle2d

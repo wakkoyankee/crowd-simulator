@@ -7,15 +7,14 @@ import crs_sim.body.EnvObject
 import crs_sim.body.MobileObject
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
-import crs_sim.utils.Types
 import java.util.ArrayList
 import java.util.Collection
 import java.util.List
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.tree.node.QuadTreeNode
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.arakhne.afc.math.geometry.d2.d.Point2d
 
 /** 
  * @author Thomas
@@ -107,7 +106,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				result.add(new Percept(
 					object.area,
 					object.uuid,
-					null //ca va changer
+					object.type
 				))						
 		}
 		return result.toList
@@ -121,7 +120,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				result.add(new Percept(
 					object.area,
 					object.uuid,
-					Types.protestor_neutral // ça va changer
+					object.type // ça va changer
 				))					
 		}
 		return result.toList
@@ -142,7 +141,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			}
 		}else{
 			// searching in which child the body is
-			switch (CRS_Sim_Utils.childFit(body.poition,area)) {
+			switch (CRS_Sim_Utils.childFit(body.position,area)) {
 				case 0:
 					print("buddy your body is lost.. RIP")
 				case 1:

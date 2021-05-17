@@ -17,11 +17,11 @@ class ProtestorBody extends MobileObject {
 	
 	var position : Circle2d
 	@Accessors
-	var protestorType : Types
+	var type : Types
 	
-	new (position : Circle2d, protestorType : Types) {
+	new (position : Circle2d, type : Types) {
 		this.position = position
-		this.protestorType = protestorType
+		this.type = type
 	}
 
 	new (position : Circle2d) {
@@ -32,8 +32,16 @@ class ProtestorBody extends MobileObject {
 		return position as Shape2d 	// will be replaced by a circle (or other) later
 	}
 
-	def getPoition : Point2d {
+	def getPosition : Point2d {
 		return new Point2d(position.centerX, position.centerY);
+	}
+
+	def getType : Types {
+		return type
+	}
+	
+	def setType(type : Types) {
+		this.type = type
 	}
 	
 	def setArea(area : Shape2d<?>) : void {

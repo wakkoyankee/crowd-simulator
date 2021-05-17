@@ -2,7 +2,6 @@ package crs_sim.ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -31,7 +30,7 @@ public class Window {
 		this._win.add(_pan);
 	}
 	
-	public void update(ArrayList<Percept> bodies) {
+	public void update(List<Percept> bodies) {
 		this._pan.setBodies(bodies);
 		this._pan.updateUI();
 	}
@@ -49,58 +48,47 @@ public class Window {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(Color.LIGHT_GRAY);
-            g.fillRect(0,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
+            g.fillRect(ParamSimu.mapLeftOffset,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
+
             for(Percept body : bodies) {
+//            	if(body.getShape() instanceof Rectangle2d) {
+//            		g.setColor(Color.BLACK); 
+//            		Rectangle2d r = (Rectangle2d)body.getShape();
+//            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
+//            	}else if(body.getShape() instanceof Circle2d) {
+//            		g.setColor(Color.BLUE); 
+//            		Circle2d c = (Circle2d) body.getShape();
+//            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+//            	}
+//            	
+//            	
             	if(body.getName() == Types.building) {
             		g.setColor(Color.BLACK); 
             		Rectangle2d r = (Rectangle2d)body.getShape();
-            		g.drawRect((int) r.getMinX(),(int) r.getMinY(),(int) r.getMaxX(),(int) r.getMaxY());
+            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
             	}else if(body.getName() == Types.crs) {
             		g.setColor(Color.BLUE); 
             		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
             	}else if(body.getName() == Types.protestor_agg) {
             		g.setColor(Color.RED); 
             		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
             	}else if(body.getName() == Types.protestor_panic) {
             		g.setColor(Color.YELLOW); 
             		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
-            	}else {//protestor neutral
+            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+            	}else if(body.getName() == Types.protestor_neutral){//protestor neutral
             		g.setColor(Color.PINK); 
             		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX(),(int) c.getY(),(int) c.getRadius()*2,(int) c.getRadius()*2);
+            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
             	}
             	
             }
-            //for all bodies in arraylist
-            // if rectangle
-            //g.setColor(Color.RED);  
-            //g.fillRect(230,80,10,10); 
-            //else circle
-            //g.fillOval(c.x, c.y, c.diameter, c.diameter)
-            
-            
-            /*g.setColor(Color.BLACK);
-            g.drawRect((int) ((1960-ParamSimu.mapSizeX)/2),
-            		0,
-            		(int) ParamSimu.mapSizeX,
-            		(int) ParamSimu.mapSizeY);*/
-            
-//            for(Percept body: bodies) {
-//            	if(body.getName() == "Protestor") {
-//            		g.fillOval(0, 0, 10, 10);
-//            	} else if (body.getName() == "Building") {
-//                    g.fillRect(0, 0, 10, 10);
-//            	} else if(body.getName() == "CRS") {
-//            		g.fillOval(0, 0, 10, 10);
-//            	}
-//            }
             
         }
         
-        public void setBodies(ArrayList<Percept> bodies) {
+        public void setBodies(List<Percept> bodies) {
         	this.bodies = bodies;
         }
     }

@@ -16,24 +16,23 @@ import org.arakhne.afc.math.geometry.d2.d.Vector2d
 event PerceptionEvent {
 	var body : Shape2d<?>
 	var perceptions : List<Percept>
+	var obj : Shape2d<?>
+	var uuidObj : UUID
 	var time : int
-	var envUuid : UUID
 
-	new (b : Shape2d<?>, p : List<Percept>, t : int , envUuid : UUID) {
+	new (b : Shape2d<?>, p : List<Percept>, obj : Shape2d<?>, uuidObj: UUID, t : int) {
 		this.perceptions = p
 		this.body = b
+		this.obj = obj
+		this.uuidObj = uuidObj
 		this.time = t
-		this.envUuid = envUuid
 	}
 }
 
+
 event InfluenceEvent {
-	val uuid : UUID
-	val agentType : Types
-	val move : Vector2d
-	new(uuid : UUID, agentType : Types, move : Vector2d){
-		this.uuid = uuid
-		this.agentType = agentType
-		this.move = move
+	var influence : Influence
+	new(influence : Influence){
+		this.influence = influence
 	}
 }

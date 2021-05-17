@@ -3,48 +3,43 @@
  */
 package crs_sim.body
 
-import crs_sim.utils.Types
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 
 /** 
- * @author Thomas
+ * @author hadrien
  * 
  */
-class Building extends EnvObject {
+class Destroyable extends EnvObject{
 
 	val area : Rectangle2d
-	var type : Types
+	var life : int
 
-	new (area : Rectangle2d, type : Types) {
+	new (area : Rectangle2d) {
 		super();
 		this.area = area
-		this.type = type
+		this.life = 100
 	}
-	
-	def getArea(): Shape2d<?> {
+
+	def getArea() : Shape2d<?> {
 		return this.area
 	}
-	
+
 	def getPosition : Point2d {
 		print("You can't ask the position of a Building")
 		return null;
 	}
 
-	def getType : Types {
-		return type
-	}
-	
 	def setArea(area : Shape2d<?>) : void {
 		this.area = area
 	}
-	
+
 	def setArea(x : int, y : int) : void {
 		print("It's a building.. youcan't move buildings bro!")
 	}
 
-	def setArea(point: Point2d) : void {
+	def setArea(point : Point2d) : void {
 		print("It's a building.. youcan't move buildings bro!")
 	}
 }

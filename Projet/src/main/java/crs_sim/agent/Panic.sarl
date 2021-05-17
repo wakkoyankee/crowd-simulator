@@ -3,8 +3,12 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.Influence
 import crs_sim.environment.InfluenceEvent
+import crs_sim.environment.Percept
 import crs_sim.environment.PerceptionEvent
+import crs_sim.utils.Action
+import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
@@ -20,7 +24,9 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
-import io.sarl.lang.core.Agent
+import java.util.ArrayList
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
@@ -33,15 +39,14 @@ behavior Panic {
 	
 	var memory : Memory
 	var moveS : MovementSkill
+	val map =new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
 	
-	new (owner : Agent, memory : Memory) {
+	new (owner : Protestor, memory : Memory) {
 		super(owner)
 		this.memory = memory
 	}
 	
 	on Initialize {
-		// Event trigger before the behavior begin to live or to be used.
-		// You should put all the initialization statements in this block of code.
 		info("Panic behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
@@ -49,14 +54,65 @@ behavior Panic {
 
 	on PerceptionEvent {
 		info("Panic hello")
-		info("Time : " + occurrence.time)
-//		var move : Vector2d = this.moveS.influenceKinematic(3)
-//		emit(new InfluenceEvent(owner.getID(), Types.protestor_panic, move))[it.UUID == occurrence.envUuid]
-		//preprocessing
-		//movememnt
-		// comment register  les skills etc..
-		//changement sur l'agent
+		//get parameters
+		var body = occurrence.body as Circle2d
+		var perceptions = occurrence.perceptions as ArrayList
+		var obj = occurrence.obj as Rectangle2d
+
+		//check if out of the map first
+		if (!body.intersects(map)) {
+			var inf = new Influence(owner.getID(), Action.despawn)
+			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
+			///////////////////////////////////////////////
+			//launch despawn of agent
+			return
+		}
+
 		
+		var beh = CalculateBeh(perceptions)
+		
+		if (beh == null) { //no change in behavior
+			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)
+			var inf = new Influence(owner.getID(), Action.move, move)
+			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
+		} else { //change in behavior
+			var inf = new Influence(owner.getID(),Action.changeBeh ,beh)
+			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
+			Behaviourchange(beh)
+		}
+		
+	}
+	
+	def CalculateBeh(perceptions : ArrayList<Percept>) {
+		var numP = 0
+		var numA = 0
+		var numN = 0
+		var numC = 0
+		for (percept : perceptions) {
+			switch percept.getName() {
+				case Types.protestor_panic: numP++
+				case Types.protestor_agg: numA++
+				case Types.protestor_neutral: numN++
+				case Types.crs: numC++
+			}
+		}
+		// //behavior calculation
+		//this.memory.setBehavior()
+		var b = this.memory.getBehavior()
+		if(b >= ParamSimu.maxPanic){
+			if (b > ParamSimu.minAggressive) {
+				return Types.protestor_agg
+			}else{
+				return Types.protestor_neutral
+			}
+		}else{
+			return null
+		}
+	}
+	
+	def Behaviourchange(newbeh : Types){
+		var o = owner as Protestor
+		o.changeBehavior(newbeh)
 	}
 
 	on Destroy {
