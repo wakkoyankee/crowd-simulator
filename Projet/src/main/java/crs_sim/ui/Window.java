@@ -2,9 +2,14 @@ package crs_sim.ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.File;
+import java.net.URL;
 import java.util.List;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
@@ -38,6 +43,8 @@ public class Window {
 	class Panel extends JPanel {
 		
 		public List<Percept> bodies;
+		URL crsURL;
+		URL gjURL;
 
         Panel(int width, int height) { // l'ordre est peut etre pas bon
             // set a preferred size for the custom panel.
@@ -49,7 +56,20 @@ public class Window {
             super.paintComponent(g);
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(ParamSimu.mapLeftOffset,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
-
+           
+            try {
+				crsURL = new File("texturePack/CRS.gif").toURI().toURL();
+            	gjURL = new File("texturePack/GJ.gif").toURI().toURL();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            
+            Icon icon = new ImageIcon(crsURL);
+    	    JLabel label = new JLabel(icon);
+    	    label.setBounds(0, 0, 50, 50);
+    	    _pan.add(label);
+    	    
             for(Percept body : bodies) {
 //            	if(body.getShape() instanceof Rectangle2d) {
 //            		g.setColor(Color.BLACK); 
@@ -62,6 +82,7 @@ public class Window {
 //            	}
 //            	
 //            	
+            	
             	if(body.getName() == Types.building) {
             		g.setColor(Color.BLACK); 
             		Rectangle2d r = (Rectangle2d)body.getShape();

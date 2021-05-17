@@ -6,6 +6,7 @@ package crs_sim.body
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import crs_sim.utils.Types
 
 /** 
  * @author hadrien
@@ -31,6 +32,11 @@ class Destroyable extends EnvObject{
 		return null;
 	}
 
+	def getType : Types {
+		print("A destroyable doesn't have type")
+		return null
+	}
+	
 	def setArea(area : Shape2d<?>) : void {
 		this.area = area
 	}

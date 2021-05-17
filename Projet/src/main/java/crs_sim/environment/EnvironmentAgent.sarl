@@ -39,6 +39,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 
 /** 
  * @author hadrien
@@ -178,7 +179,7 @@ agent EnvironmentAgent {
 			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
 			var obj : Shape2d<?>
 			var uuidObj :UUID = null
-			if (entry.getValue().getProtestorType() == Types.protestor_agg){
+			if (entry.getValue().getType() == Types.protestor_agg) {
 				obj = ParamSimu.neutralObj
 			}else{
 				//get closest aggobj
