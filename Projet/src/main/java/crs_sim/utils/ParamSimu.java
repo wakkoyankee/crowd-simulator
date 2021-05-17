@@ -23,6 +23,7 @@ public class ParamSimu {
 	public static final int AgressiveForce = 1;
 	public static final int BuildingForce = 1;
 	public static final int CRSForce = 1;
+	public static final int TargetForce = 10;
 
 	//objectif neutre
 	//objectif agg
