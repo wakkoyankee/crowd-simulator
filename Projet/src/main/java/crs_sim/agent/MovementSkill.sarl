@@ -42,8 +42,10 @@ skill MovementSkill implements MovementCapacity {
 		// TODO Auto-generated code.
 //		println("SKILL APPELLE" + i)
 //		return new Vector2d(1, 1)
-
+		
 		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
+		v.setX(v.getX() / ((v.getX() + v.getY()) / ParamSimu.TargetForce))
+		v.setY(v.getY() / ((v.getX() + v.getY()) / ParamSimu.TargetForce))
 		for (target : ListOfTarget) {
 			if (target.getName() == Types.protestor_panic){
 				var shape : Circle2d = target.getShape() as Circle2d
