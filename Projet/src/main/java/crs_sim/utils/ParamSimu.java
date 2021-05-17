@@ -8,6 +8,7 @@ import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
 
 import crs_sim.body.Building;
 import crs_sim.body.CRSBody;
+import crs_sim.body.Destroyable;
 import crs_sim.body.ProtestorBody;
 
 public class ParamSimu {
@@ -70,10 +71,10 @@ public class ParamSimu {
 	
 	public static final Rectangle2d neutralObj = new Rectangle2d(600,600,300,300); //au pif
 	
-	public static final Rectangle2d[] aggObjs = {
-			new Rectangle2d(700,375,300,200), // Bat 6
-			new Rectangle2d(0,700,300,300), // Bat 7
-			new Rectangle2d(350,700,75,300) // Bat 8
+	public static final Destroyable[] aggObjs = {
+			new Destroyable(new Rectangle2d(700,375,300,200),Types.destroyable), // Bat 6
+			new Destroyable(new Rectangle2d(0,700,300,300),Types.destroyable), // Bat 7
+			new Destroyable(new Rectangle2d(350,700,75,300),Types.destroyable) // Bat 8
 
 	};
 }

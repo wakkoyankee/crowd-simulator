@@ -16,11 +16,13 @@ class Destroyable extends EnvObject{
 
 	val area : Rectangle2d
 	var life : int
+	var type : Types
 
-	new (area : Rectangle2d) {
+	new (area : Rectangle2d, type: Types) {
 		super();
 		this.area = area
 		this.life = 100
+		this.type = type
 	}
 
 	def getArea() : Shape2d<?> {
@@ -33,8 +35,7 @@ class Destroyable extends EnvObject{
 	}
 
 	def getType : Types {
-		print("A destroyable doesn't have type")
-		return null
+		return type
 	}
 	
 	def setArea(area : Shape2d<?>) : void {
