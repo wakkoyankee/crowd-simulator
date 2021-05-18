@@ -177,8 +177,9 @@ agent EnvironmentAgent {
 		// // PERCEPTION ////
 		for (entry : this.protestorList.entrySet()) {
 			var id = entry.getKey()
-			var body = entry.getValue().getArea()
-			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
+			var body = entry.getValue().getArea() as Circle2d
+			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptProtestor)
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
 			var obj : Shape2d<?>
 			var uuidObj :UUID = null
 			if (entry.getValue().getType() != Types.protestor_agg) {
@@ -189,7 +190,7 @@ agent EnvironmentAgent {
 				obj = this.aggObjs.firstEntry().getValue().getArea()
 				uuidObj = this.aggObjs.firstKey()
 			}
-			emit(new PerceptionEvent(body, percept, obj, uuidObj, 0))[it.UUID == id]
+			emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0))[it.UUID == id]
 		}
 		
 	}
@@ -228,7 +229,7 @@ agent EnvironmentAgent {
 			// else continue turning until there are still protestors
 			redraw()
 			this.influenceList.clear()
-			if(this.time++ <50){
+			if(this.time++ <100){
 				StartSim()
 				//trouver un wait meilleur
 			
