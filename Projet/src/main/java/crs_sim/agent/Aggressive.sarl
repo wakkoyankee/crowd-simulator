@@ -46,7 +46,7 @@ behavior Aggressive {
 	}
 	
 	on Initialize {
-		info("Aggressive behavior was started.")
+		//info("Aggressive behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
@@ -58,7 +58,7 @@ behavior Aggressive {
 	}
 
 	on PerceptionEvent {
-		info("Agg hello")
+		//info("Agg hello")
 		var obj = occurrence.obj as Rectangle2d
 		var body = occurrence.body as Circle2d
 		var perceptions = occurrence.perceptions as ArrayList

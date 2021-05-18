@@ -93,7 +93,7 @@ public class Window {
             	
             }
             
-            try {
+            /*try {
 				crsURL = new File("texturePack/CRS.gif").toURI().toURL();
             	gjURL = new File("texturePack/GJ.gif").toURI().toURL();
 			} catch (Exception e1) {
@@ -103,7 +103,7 @@ public class Window {
             Icon icon = new ImageIcon(gjURL);            
     	    JLabel label = new JLabel(icon);
     	    label.setBounds(0, 0, 200, 200);
-    	    _win.getContentPane().add(label);            
+    	    _win.getContentPane().add(label);*/            
         }
         
         public void setBodies(List<Percept> bodies) {

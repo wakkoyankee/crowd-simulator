@@ -46,7 +46,7 @@ behavior Neutral {
 	}
 	
 	on Initialize {
-		info("Neutral behavior was started.")
+		//info("Neutral behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
@@ -58,7 +58,7 @@ behavior Neutral {
 	}
 
 	on PerceptionEvent {
-		info("Neutral hello")
+		//info("Neutral hello")
 		var obj = occurrence.obj as Rectangle2d
 		var body = occurrence.body as Circle2d
 		var perceptions = occurrence.perceptions as ArrayList

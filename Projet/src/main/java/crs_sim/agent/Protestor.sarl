@@ -55,12 +55,12 @@ agent Protestor {
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
-		info("The agent Protester was started.")
+		//info("The agent Protester was started.")
 	
 		
 		this.memory = new Memory(occurrence.parameters.get(0) as Integer, occurrence.parameters.get(1) as Integer)
 		
-		info(this.memory.getBehavior() + " " + this.memory.getTolerance())
+		//info(this.memory.getBehavior() + " " + this.memory.getTolerance())
 		
 		if (this.memory.getBehavior() < ParamSimu.maxPanic) {
 			this.P = new Panic(this, memory)
@@ -105,7 +105,7 @@ agent Protestor {
 			this.N.registerBehavior
 		}
 		this.currBeh = newBeh
-		println(memory.getBehavior()+" LA")
+		//println(memory.getBehavior()+" LA")
 	}
 
 	on Destroy {

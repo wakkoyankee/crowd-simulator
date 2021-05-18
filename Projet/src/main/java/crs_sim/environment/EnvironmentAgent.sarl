@@ -65,6 +65,7 @@ agent EnvironmentAgent {
 	var aggObjs : TreeMap<UUID,Destroyable>
 	
 	var bodiesDespawned : ArrayList<EnvObject>
+	var time : int = 0
 	
 	on Initialize {
 
@@ -156,7 +157,7 @@ agent EnvironmentAgent {
 			Protestor.spawnInContextWithID(entry.getKey(), defaultContext, b.get(cpt), t.get(cpt))
 			cpt++
 		}
-		GraphSearch_Utils.printGraphDebug(rootTree, true)
+		GraphSearch_Utils.printGraphDebug(rootTree, false)
 	}
 
 
@@ -180,9 +181,10 @@ agent EnvironmentAgent {
 			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, body as Circle2d)
 			var obj : Shape2d<?>
 			var uuidObj :UUID = null
-			if (entry.getValue().getType() == Types.protestor_agg) {
+			if (entry.getValue().getType() != Types.protestor_agg) {
 				obj = ParamSimu.neutralObj
 			}else{
+				//if aggobj in percept -> attack else neutralobj
 				//get closest aggobj
 				obj = this.aggObjs.firstEntry().getValue().getArea()
 				uuidObj = this.aggObjs.firstKey()
@@ -223,10 +225,14 @@ agent EnvironmentAgent {
 			}
 			
 			//if all destoyables gone stop simu crs lose
-			//else continue turning until there are still protestors
-			
+			// else continue turning until there are still protestors
+			redraw()
 			this.influenceList.clear()
-				// StartSim()
+			if(this.time++ <50){
+				StartSim()
+				//trouver un wait meilleur
+			
+			}
 		}
 			
 	}

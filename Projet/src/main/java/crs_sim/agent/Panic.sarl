@@ -47,13 +47,13 @@ behavior Panic {
 	}
 	
 	on Initialize {
-		info("Panic behavior was started.")
+		//info("Panic behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
 
 	on PerceptionEvent {
-		info("Panic hello")
+		//info("Panic hello")
 		//get parameters
 		var body = occurrence.body as Circle2d
 		var perceptions = occurrence.perceptions as ArrayList

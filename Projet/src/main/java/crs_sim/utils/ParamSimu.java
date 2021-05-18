@@ -18,7 +18,7 @@ public class ParamSimu {
 	public static final double maxObjectsPerChild = 4;
 	public static final int maxPanic = 30;
 	public static final int minAggressive = 70;
-	public static final int nbProtestors = 3;
+	public static final int nbProtestors = 6;
 	public static final int PanicForce = 1;
 	public static final int NeutralForce = 1;
 	public static final int AgressiveForce = 1;
@@ -32,7 +32,10 @@ public class ParamSimu {
 	public static final  Circle2d[] initCollecProtestor= {
 			new Circle2d(375, 375, 1),
 			new Circle2d(425, 375, 1),
-			new Circle2d(475, 375, 1)
+			new Circle2d(475, 375, 1),
+			new Circle2d(500, 375, 1),
+			new Circle2d(525, 375, 1),
+			new Circle2d(575, 375, 1)
 	};
 //	public static final ProtestorBody[]  initCollecProtestor = {
 //			new ProtestorBody(new Point2d(375, 375)),
@@ -70,7 +73,7 @@ public class ParamSimu {
 			new Building(new Rectangle2d(700,650,300,350),Types.building), // Bat 10
 	};
 	
-	public static final Rectangle2d neutralObj = new Rectangle2d(600,600,300,300); //au pif
+	public static final Rectangle2d neutralObj = new Rectangle2d(900,900,30,30); //au pif
 	
 	public static final Destroyable[] aggObjs = {
 			new Destroyable(new Rectangle2d(700,375,300,200),Types.destroyable), // Bat 6

@@ -23,19 +23,19 @@ skill MovementSkill implements MovementCapacity {
 	def install {
 		// Function invoked when the skill is installed in the owner.
 		// You should put all the initialization statements in this block of code.
-		info("Installing the skill")
+		//info("Installing the skill")
 	}
 
 	def prepareUninstallation {
 		// Function invoked when the skill is preparing to be uninstalled from the owner, but before the owner is destroyed.
 		// You should put all the resource release statements that should be executed before the owner is destroyed.
-		info("Preparing the uninstallation of the skill")
+		//info("Preparing the uninstallation of the skill")
 	}
 
 	def uninstall {
 		// Function invoked when the skill is uninstalled from the owner, and after the owner is destroyed.
 		// You should put all the resource release statements in this block of code.
-		info("Uninstalling the skill")
+		//info("Uninstalling the skill")
 	}
 
 	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d {
