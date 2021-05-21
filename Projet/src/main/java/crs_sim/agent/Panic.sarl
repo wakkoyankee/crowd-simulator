@@ -69,7 +69,7 @@ behavior Panic {
 		}
 
 		
-		var beh = CalculateBeh(perceptions)
+		var beh = CalculateBeh(perceptions,body)
 		
 		if (beh == null) { //no change in behavior
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)

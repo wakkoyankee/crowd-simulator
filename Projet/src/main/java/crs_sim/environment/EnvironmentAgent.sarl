@@ -33,10 +33,11 @@ import io.sarl.core.Schedules
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
-import java.util.List
+import java.util.Queue
 import java.util.Random
 import java.util.TreeMap
 import java.util.UUID
+import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
@@ -65,7 +66,7 @@ agent EnvironmentAgent {
 	var win : Window
 	var protestorResp = new AtomicInteger(0)
 	var crsResp = new AtomicInteger(0)
-	var influenceList : List<Influence> = new ArrayList<Influence>()
+	var influenceList : Queue<Influence> = new ConcurrentLinkedQueue<Influence>()
 	
 	var aggObjs : TreeMap<UUID,Destroyable>
 	
@@ -239,13 +240,15 @@ agent EnvironmentAgent {
 
 	on InfluenceEvent { // reponse des agents
 		var cpt : int
+		
+		this.influenceList.add(occurrence.influence)
+		
 		if (occurrence.influence.isProtestor()) {
 			cpt = this.protestorResp.incrementAndGet() + this.crsResp.get()
 		}else{
 			cpt = this.crsResp.incrementAndGet() + this.protestorResp.get()
 		}
 		
-		this.influenceList.add(occurrence.influence)
 		if (cpt == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
 			this.protestorResp.set(0)
 			

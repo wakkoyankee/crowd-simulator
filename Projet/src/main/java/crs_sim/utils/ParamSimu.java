@@ -23,12 +23,9 @@ public class ParamSimu {
 	public static final int CRSForce = 1;
 	public static final int TargetForce = 10;
 	public static final int RadiusPerceptProtestor = 100;
-<<<<<<< HEAD
 	public static final int Speed = 10; //raporter la distance de la speed au temps en seconde d'un tic 
 	public static final int PanicOnPanic = 5;
-=======
 	public static final int RadiusPerceptCrs = 100;
->>>>>>> 4b3bb0c0aa70f7002bbebfd1daa98dac05f079dc
 
 	//objectif neutre
 	//objectif agg
@@ -101,7 +98,7 @@ public class ParamSimu {
 			new Building(new Rectangle2d(700,650,300,350),Types.building), // Bat 10
 	};
 	
-	public static final Rectangle2d neutralObj = new Rectangle2d(900,900,30,30); //au pif
+	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); //au pif
 	
 	public static final Destroyable[] aggObjs = {
 			new Destroyable(new Rectangle2d(700,375,300,200),Types.destroyable), // Bat 6
