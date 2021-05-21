@@ -64,10 +64,42 @@ skill MovementSkill implements MovementCapacity {
 			}
 			if (target.getName() == Types.building) {
 				var shape : Rectangle2d = target.getShape() as Rectangle2d
-//				v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getX()) + v.getX())
-//				v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getY()) + v.getY())	
+				if (v.getX() < shape.getMinX()) {
+					if (v.getY() < shape.getMinY()) { // pointe sud ouest du rectangle
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMinX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMinY()) + v.getY())
+					}
+					else if (v.getY() > shape.getMaxY()) { // pointe nord ouest du rectangle
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMinX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMaxY()) + v.getY())
+					}
+					else { // cote ouest du rectangle
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMinX()) + v.getX())
+					}
+				}
+				else if (v.getX() > shape.getMaxX()) {
+					if (v.getY() < shape.getMinY()) { // pointe sud est du rectangle
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMaxX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMinY()) + v.getY())
+					} else if (v.getY() > shape.getMaxY()) { // pointe nord est du rectangle
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMaxX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMaxY()) + v.getY())
+					} else { // cote est du rectangle
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMaxX()) + v.getX())
+					}
+				}
+				else {
+					if (v.getY() < shape.getMinY()) { // cote sud du rectangle
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMinY()) + v.getY())
+					}
+					else { // cote nord du rectangle
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMaxY()) + v.getY())
+					}
+				}	
 			}
 		}
+		v.setX(v.getX() / ((v.getX() + v.getY()) / ParamSimu.Speed))
+		v.setY(v.getY() / ((v.getX() + v.getY()) / ParamSimu.Speed))
 		return v;
 		
 	}

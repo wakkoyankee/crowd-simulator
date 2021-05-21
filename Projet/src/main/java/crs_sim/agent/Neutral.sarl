@@ -64,7 +64,7 @@ behavior Neutral {
 		var perceptions = occurrence.perceptions as ArrayList
 		
 		if (body.intersects(obj)) { // atteint l'objectif
-			var inf = new Influence(owner.getID(), Action.despawn)
+			var inf = new Influence(owner.getID(), Action.despawn, Types.protestor_neutral)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			////////////////////////////////////////////////////////////////////
 			//despawn
@@ -76,7 +76,7 @@ behavior Neutral {
 		
 		if (beh == null) {//no behavior change
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)
-			var inf = new Influence(owner.getID(), Action.move, move)
+			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic, move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		}
 		else {//behavior change

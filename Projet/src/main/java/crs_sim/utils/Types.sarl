@@ -22,5 +22,7 @@ enum Action {
 	arrest,
 	smoke,
 	despawn,
+	standby,
 	changeBeh
 }
+
