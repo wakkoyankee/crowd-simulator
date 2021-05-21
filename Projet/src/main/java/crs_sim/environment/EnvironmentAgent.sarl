@@ -85,11 +85,10 @@ agent EnvironmentAgent {
 		// INIT BEHAVIORS, TOLERANCES AND PROTESTORBODY LIST
 		this.protestorList = new TreeMap<UUID, ProtestorBody>
 		var rand : Random = new Random()
-		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
-		
+		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  10 //rand.nextInt(101) 
+			var r1 =  10.0 //rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)

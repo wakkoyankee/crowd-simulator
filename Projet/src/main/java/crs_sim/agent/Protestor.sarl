@@ -30,10 +30,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 class Memory {
 	@Accessors
-	var Behavior : int
+	var Behavior : double
 	@Accessors
 	var Tolerance : int
-	new(b : int , t : int){
+	new(b : double , t : int){
 		this.Behavior = b
 		this.Tolerance = t
 	}
@@ -58,7 +58,7 @@ agent Protestor {
 		//info("The agent Protester was started.")
 	
 		
-		this.memory = new Memory(occurrence.parameters.get(0) as Integer, occurrence.parameters.get(1) as Integer)
+		this.memory = new Memory(occurrence.parameters.get(0) as Double, occurrence.parameters.get(1) as Integer)
 		
 		//info(this.memory.getBehavior() + " " + this.memory.getTolerance())
 		
