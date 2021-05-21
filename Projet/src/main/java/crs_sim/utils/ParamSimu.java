@@ -1,15 +1,11 @@
 package crs_sim.utils;
 
-import java.util.ArrayList;
-
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
-import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
 
 import crs_sim.body.Building;
 import crs_sim.body.CRSBody;
 import crs_sim.body.Destroyable;
-import crs_sim.body.ProtestorBody;
 
 public class ParamSimu {
 	public static final double mapSizeX = 1000;
@@ -18,7 +14,8 @@ public class ParamSimu {
 	public static final double maxObjectsPerChild = 4;
 	public static final int maxPanic = 30;
 	public static final int minAggressive = 70;
-	public static final int nbProtestors = 6;
+	public static final int nbProtestors = 30;
+	public static final int nbCRS = 3;
 	public static final int PanicForce = 1;
 	public static final int NeutralForce = 1;
 	public static final int AgressiveForce = 1;
@@ -34,9 +31,33 @@ public class ParamSimu {
 			new Circle2d(375, 375, 1),
 			new Circle2d(425, 375, 1),
 			new Circle2d(475, 375, 1),
-			new Circle2d(500, 375, 1),
 			new Circle2d(525, 375, 1),
-			new Circle2d(575, 375, 1)
+			new Circle2d(575, 375, 1),
+			new Circle2d(625, 375, 1),
+			new Circle2d(375, 425, 1),
+			new Circle2d(425, 425, 1),
+			new Circle2d(475, 425, 1),
+			new Circle2d(525, 425, 1),
+			new Circle2d(575, 425, 1),
+			new Circle2d(625, 425, 1),
+			new Circle2d(375, 475, 1),
+			new Circle2d(425, 475, 1),
+			new Circle2d(475, 475, 1),
+			new Circle2d(525, 475, 1),
+			new Circle2d(575, 475, 1),
+			new Circle2d(625, 475, 1),
+			new Circle2d(375, 525, 1),
+			new Circle2d(425, 525, 1),
+			new Circle2d(475, 525, 1),
+			new Circle2d(525, 525, 1),
+			new Circle2d(575, 525, 1),
+			new Circle2d(625, 525, 1),
+			new Circle2d(375, 575, 1),
+			new Circle2d(425, 575, 1),
+			new Circle2d(475, 575, 1),
+			new Circle2d(525, 575, 1),
+			new Circle2d(575, 575, 1),
+			new Circle2d(625, 575, 1)
 	};
 //	public static final ProtestorBody[]  initCollecProtestor = {
 //			new ProtestorBody(new Point2d(375, 375)),

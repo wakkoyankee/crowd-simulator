@@ -130,6 +130,11 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 	def moveBody(body: MobileObject, point: Point2d): void{
 		//the body your looking for is in this node
 		if (allUserData.contains(body)) {
+			// do we try to move out of the map ?
+			if (point.x > ParamSimu.mapSizeX || point.x < ParamSimu.mapSizeX || point.y > ParamSimu.mapSizeY ||
+				point.y < ParamSimu.mapSizeY){
+					println("Il faut supprimer l'élément (pas encore implémenté potentiellement a sup)")
+			}
 			//body remain in this node after changing his position
 			if (CRS_Sim_Utils.AinB(point, area))
 				body.setArea(point)
@@ -139,22 +144,40 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				body.setArea(point)
 				insert(body)
 			}
-		}else{
+		} else {
+			print("Le résultat de childFit est : " +
+				CRS_Sim_Utils.childFit(body.position, area) + "\n")
 			// searching in which child the body is
-			switch (CRS_Sim_Utils.childFit(body.position,area)) {
-				case 0:
-					print("buddy your body is lost.. RIP")
-				case 1:
-					firstChild.moveBody(body, point)
-				case 2:
-					secondChild.moveBody(body, point)
-				case 3:
-					thirdChild.moveBody(body, point)
-				case 4:
-					fourthChild.moveBody(body, point)
+			try {
+				switch (CRS_Sim_Utils.childFit(body.position,area)) {
+					case 0:
+						if (point.x > ParamSimu.mapSizeX || point.x < ParamSimu.mapSizeX
+							|| point.y > ParamSimu.mapSizeY || point.y < ParamSimu.mapSizeY	){
+								println("Body should be deleted
+									__body : " + body.type + " Position : " + body.position)
+							} else {
+								println("buddy your body is lost.. RIP
+								__body : " + body.type + " Position : " + body.position)
+							}
+						
+					case 1:
+						firstChild.moveBody(body, point)
+					case 2:
+						secondChild.moveBody(body, point)
+					case 3:
+						thirdChild.moveBody(body, point)
+					case 4:
+						fourthChild.moveBody(body, point)
+				}
+			} catch (e : Exception) {
+				print("Erreur de déplacement d'enfant \nLe résultat de childFit est : " +
+					CRS_Sim_Utils.childFit(body.position, area) + 
+					"body : " + body.type + " Position : " + body.position +"\n")
+				
 			}
 		}
 	}
+
 	
 	def deleteBody(body : EnvObject, save : List<EnvObject>) : void {
 		// the body your looking for is in this node

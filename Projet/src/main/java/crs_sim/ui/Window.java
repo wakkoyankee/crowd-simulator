@@ -2,17 +2,18 @@ package crs_sim.ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
@@ -25,17 +26,87 @@ import crs_sim.utils.Types;
 public class Window {
 	public JFrame _win;
 	public Panel _pan;
+	public JCheckBox modeAuto;
+	public JCheckBox modeDrole;
+	public JButton buttonNext;
+	public JButton buttonStart;
+	// one label instance per body
+	JLabel[] labelCRS = new JLabel[ParamSimu.nbProtestors + ParamSimu.nbCRS];
+	JLabel[] labelGJPanic = new JLabel[ParamSimu.nbProtestors + ParamSimu.nbCRS];
+	JLabel[] labelGJNeutral = new JLabel[ParamSimu.nbProtestors + ParamSimu.nbCRS];
+	JLabel[] labelGJAgg = new JLabel[ParamSimu.nbProtestors + ParamSimu.nbCRS];
 
 	public Window() {
+
+		URL crsURL = null;
+		URL gjPanicURL= null;
+		URL gjNeutralURL= null;
+		URL gjAggURL= null;
+		Icon iconGJPanic= null;
+		Icon iconGJNeutral= null;
+		Icon iconGJAgg= null;
+		Icon iconCRS= null;
+		
 		this._win = new JFrame();
 		this._win.setTitle("CRS simulator");
-//		this._win.setSize((int)ParamSimu.mapSizeX, (int)ParamSimu.mapSizeY);
 		this._win.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this._win.setLocationRelativeTo(null);
 		this._win.setVisible(true);
-		
 		this._pan = new Panel((int)ParamSimu.mapSizeX, (int)ParamSimu.mapSizeY);
 		this._win.add(_pan);
+
+		buttonStart= new JButton("Start");
+		buttonStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){  
+	            System.out.println("click") ;
+	        }  
+		});
+		buttonNext = new JButton("Next");
+		buttonNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){  
+	            System.out.println("click") ;
+	        }  
+		});
+		modeAuto = new JCheckBox("Mode Auto");
+		modeAuto.setSelected(false);
+
+		modeDrole = new JCheckBox("Drole");
+		modeDrole.setSelected(false);
+
+		_pan.add(buttonStart);
+		_pan.add(buttonNext);
+		_pan.add(modeAuto);
+		_pan.add(modeDrole);
+		
+		
+		try {
+			crsURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
+			gjPanicURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\GJ.gif").toURI().toURL();
+			gjNeutralURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
+			gjAggURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		iconCRS = new ImageIcon(crsURL);
+		iconGJPanic = new ImageIcon(gjPanicURL);
+		iconGJNeutral = new ImageIcon(gjNeutralURL);
+		iconGJAgg = new ImageIcon(gjAggURL);
+	    for(int i = 0; i<(ParamSimu.nbCRS+ParamSimu.nbProtestors); i++) {
+	    	labelCRS[i] = new JLabel(iconCRS);
+	    	labelGJPanic[i] = new JLabel(iconGJPanic);
+	    	labelGJNeutral[i] = new JLabel(iconGJNeutral);
+	    	labelGJAgg[i] = new JLabel(iconGJAgg);
+	    	labelCRS[i].setVisible(false);
+	    	labelGJPanic[i].setVisible(false);
+	    	labelGJNeutral[i].setVisible(false);
+	    	labelGJAgg[i].setVisible(false);
+    	    _pan.add(labelCRS[i]);
+    	    _pan.add(labelGJPanic[i]);
+    	    _pan.add(labelGJNeutral[i]);
+    	    _pan.add(labelGJAgg[i]);
+	    }
+		
 	}
 	
 	public void update(List<Percept> bodies) {
@@ -46,8 +117,6 @@ public class Window {
 	class Panel extends JPanel {
 		
 		public List<Percept> bodies;
-		URL crsURL;
-		URL gjURL;
 
         Panel(int width, int height) { // l'ordre est peut etre pas bon
             // set a preferred size for the custom panel.
@@ -56,13 +125,16 @@ public class Window {
 
         @Override
         public void paintComponent(Graphics g) {
+        	int i = 0;
             super.paintComponent(g);
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(ParamSimu.mapLeftOffset,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
-           
-            
-            
-    	    
+
+            modeAuto.setLocation(75, 10);
+            modeDrole.setLocation(75, 50);
+    		buttonStart.setLocation(10, 10);
+    		buttonNext.setLocation(10, 50);
+    		
             for(Percept body : bodies) {
             	
             	if(body.getName() == Types.building) {
@@ -70,40 +142,48 @@ public class Window {
             		Rectangle2d r = (Rectangle2d)body.getShape();
             		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
             	}else if(body.getName() == Types.crs) {
+            		Circle2d c = (Circle2d) body.getShape();
             		g.setColor(Color.BLUE); 
-            		Circle2d c = (Circle2d) body.getShape();
             		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+//            		labelCRS[i].setVisible(true);
+//            		labelCRS[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
             	}else if(body.getName() == Types.protestor_agg) {
+            		Circle2d c = (Circle2d) body.getShape();
             		g.setColor(Color.RED); 
-            		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+//            		labelGJPanic[i].setVisible(false);
+//            		labelGJNeutral[i].setVisible(false);
+//            		labelGJAgg[i].setVisible(true);
+//            		labelGJAgg[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
             	}else if(body.getName() == Types.protestor_panic) {
+            		Circle2d c = (Circle2d) body.getShape();
             		g.setColor(Color.YELLOW); 
-            		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+//            		labelGJAgg[i].setVisible(false);
+//            		labelGJNeutral[i].setVisible(false);
+//            		labelGJPanic[i].setVisible(true);
+//            		labelGJPanic[i].setLocation((int) c.getX() + ParamSimu.mapLeftOffset, (int) c.getY());
             	}else if(body.getName() == Types.protestor_neutral){//protestor neutral
-            		g.setColor(Color.PINK); 
             		Circle2d c = (Circle2d) body.getShape();
-            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+            		g.setColor(Color.PINK); 
+            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+//            		labelGJAgg[i].setVisible(false);
+//            		labelGJPanic[i].setVisible(false);
+//            		labelGJNeutral[i].setVisible(true);
+//            		labelGJNeutral[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
             	}else if(body.getName() == Types.destroyable) {
             		g.setColor(Color.RED); 
             		Rectangle2d r = (Rectangle2d) body.getShape();
             		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
             	}
-            	
+            	i++;
             }
-            
-            /*try {
-				crsURL = new File("texturePack/CRS.gif").toURI().toURL();
-            	gjURL = new File("texturePack/GJ.gif").toURI().toURL();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-            Icon icon = new ImageIcon(gjURL);            
-    	    JLabel label = new JLabel(icon);
-    	    label.setBounds(0, 0, 200, 200);
-    	    _win.getContentPane().add(label);*/            
+            g.setColor(Color.GREEN);
+            g.fillRect((int) (ParamSimu.mapLeftOffset + ParamSimu.neutralObj.getMinX()),
+            		(int) (ParamSimu.neutralObj.getMinY()),
+            		(int) (ParamSimu.neutralObj.getMaxX() - ParamSimu.neutralObj.getMinX())
+            		,(int) (ParamSimu.neutralObj.getMaxY() - ParamSimu.neutralObj.getMinY()) );
+                   
         }
         
         public void setBodies(List<Percept> bodies) {
