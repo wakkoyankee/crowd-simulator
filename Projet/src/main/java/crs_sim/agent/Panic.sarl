@@ -83,7 +83,7 @@ behavior Panic {
 		
 	}
 	
-	def CalculateBeh(perceptions : ArrayList<Percept>) {
+	def CalculateBeh(perceptions : ArrayList<Percept>, position : Circle2d) {
 		var numP = 0
 		var numA = 0
 		var numN = 0
@@ -97,8 +97,25 @@ behavior Panic {
 			}
 		}
 		// //behavior calculation
-		//this.memory.setBehavior()
+		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
+		for (percept : perceptions){
+			if (percept.getName() == Types.protestor_panic) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				// b = b - ParamSimu.PanicOnPanic*(1 - ((Math.sqrt((shape.getX())**2 + (shape.getY())**2))*100 /ParamSimu.RadiusPerceptProtestor))
+			
+			}
+			if (percept.getName() == Types.protestor_neutral) {
+			
+			
+			}
+			if (percept.getName() == Types.protestor_agg) {
+			
+			
+			}
+		}
+		
+		
 		if(b >= ParamSimu.maxPanic){
 			if (b > ParamSimu.minAggressive) {
 				return Types.protestor_agg

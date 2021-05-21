@@ -26,6 +26,8 @@ public class ParamSimu {
 	public static final int CRSForce = 1;
 	public static final int TargetForce = 10;
 	public static final int RadiusPerceptProtestor = 100;
+	public static final int Speed = 10; //raporter la distance de la speed au temps en seconde d'un tic 
+	public static final int PanicOnPanic = 5;
 
 	//objectif neutre
 	//objectif agg

@@ -67,6 +67,9 @@ agent EnvironmentAgent {
 	var bodiesDespawned : ArrayList<EnvObject>
 	var time : int = 0
 	
+//	var b = [1,2,3,4,5,6]
+//	var c = b[0]
+	
 	on Initialize {
 
 		info("The agent environment was started.")
@@ -75,9 +78,10 @@ agent EnvironmentAgent {
 		this.protestorList = new TreeMap<UUID, ProtestorBody>
 		var rand : Random = new Random()
 		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
+		
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 = 10//rand.nextInt(101) 
+			var r1 =  10 //rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -229,11 +233,12 @@ agent EnvironmentAgent {
 			// else continue turning until there are still protestors
 			redraw()
 			this.influenceList.clear()
-			if(this.time++ <100){
-				StartSim()
-				//trouver un wait meilleur
-			
-			}
+//			if(this.time++ <100){
+//				
+//				//trouver un wait meilleur
+//			
+//			}
+			StartSim()
 		}
 			
 	}
