@@ -3,11 +3,15 @@
  */
 package crs_sim.environment
 
+import crs_sim.^agent.CRS
 import crs_sim.^agent.Protestor
+import crs_sim.body.CRSBody
 import crs_sim.body.Destroyable
 import crs_sim.body.EnvObject
+import crs_sim.body.MobileObject
 import crs_sim.body.ProtestorBody
 import crs_sim.ui.Window
+import crs_sim.utils.Action
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.GraphSearch_Utils
 import crs_sim.utils.ParamSimu
@@ -30,7 +34,6 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import java.util.List
-import java.util.Map
 import java.util.Random
 import java.util.TreeMap
 import java.util.UUID
@@ -55,17 +58,21 @@ agent EnvironmentAgent {
 	
 	var rootTree : QTNode
 	
-	var agentSpawned : int = 0
-	var protestorList : Map<UUID, ProtestorBody>
+	var agentSpawned = new AtomicInteger(0)
+	var protestorList : TreeMap<UUID, ProtestorBody>
+	var crsList : TreeMap<UUID, CRSBody>
 	
 	var win : Window
-	var protestorResp = new AtomicInteger(0)//faire un .incremement()
+	var protestorResp = new AtomicInteger(0)
+	var crsResp = new AtomicInteger(0)
 	var influenceList : List<Influence> = new ArrayList<Influence>()
 	
 	var aggObjs : TreeMap<UUID,Destroyable>
 	
 	var bodiesDespawned : ArrayList<EnvObject>
 	var time : int = 0
+	var nbPro = 0
+	var nbCrs = 0
 	
 //	var b = [1,2,3,4,5,6]
 //	var c = b[0]
@@ -128,6 +135,14 @@ agent EnvironmentAgent {
 			rootTree.insert(entry.getValue())
 		}
 		
+		this.crsList = new TreeMap<UUID, CRSBody>()
+		for(var i = 0; i< ParamSimu.initCollecCRS.length; i++){
+			this.crsList.put(ParamSimu.initCollecCRS.get(i).getUuid(), ParamSimu.initCollecCRS.get(i))
+		}
+		
+		this.nbPro = this.protestorList.size()
+		this.nbCrs = this.crsList.size()
+		
 		//		println("Père : " + rootTree)
 //		println("NW : " + rootTree.firstChild)
 //		println("NE : " + rootTree.secondChild)
@@ -161,14 +176,18 @@ agent EnvironmentAgent {
 			Protestor.spawnInContextWithID(entry.getKey(), defaultContext, b.get(cpt), t.get(cpt))
 			cpt++
 		}
+		
+		for (entry : this.crsList.entrySet()) { // CREATE PROTESTOR AGENT
+			CRS.spawnInContextWithID(entry.getKey(), defaultContext)
+		}
 		GraphSearch_Utils.printGraphDebug(rootTree, false)
 	}
 
 
 	on AgentSpawned {
 		// Quand tout les protestors on spawn lance la simu
-		this.agentSpawned++
-		if(this.agentSpawned == ParamSimu.nbProtestors){
+		var cpt = this.agentSpawned.incrementAndGet()
+		if(this.agentSpawned == this.nbPro+this.nbCrs){
 			info("All agents have spawned")
 			StartSim()
 		}
@@ -179,7 +198,7 @@ agent EnvironmentAgent {
 		//// BOUCLE DE SIMULATION ////
 	
 		// // PERCEPTION ////
-		for (entry : this.protestorList.entrySet()) {
+		for (entry : this.protestorList.entrySet()) {//PROTESTORS
 			var id = entry.getKey()
 			var body = entry.getValue().getArea() as Circle2d
 			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptProtestor)
@@ -197,6 +216,15 @@ agent EnvironmentAgent {
 			emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0))[it.UUID == id]
 		}
 		
+		for (entry : this.crsList.entrySet()) {//CRS
+			var id = entry.getKey()
+			var body = entry.getValue().getArea() as Circle2d
+			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptCrs)
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
+			emit(new PerceptionEvent(body as Shape2d<?>, percept, 0))[it.UUID == id]
+		}
+		
+		
 	}
 	
 	def redraw() {
@@ -210,23 +238,44 @@ agent EnvironmentAgent {
 
 
 	on InfluenceEvent { // reponse des agents
-	
-		var cpt = this.protestorResp.incrementAndGet()
+		var cpt : int
+		if (occurrence.influence.isProtestor()) {
+			cpt = this.protestorResp.incrementAndGet() + this.crsResp.get()
+		}else{
+			cpt = this.crsResp.incrementAndGet() + this.protestorResp.get()
+		}
+		
 		this.influenceList.add(occurrence.influence)
-		if (cpt == this.protestorList.size()) { // si tout les protestors on donné leur influence
+		if (cpt == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
 			this.protestorResp.set(0)
 			
 				//resolveinf
 			
-			for (influence : this.influenceList) { // que des influences de movements pour l'instant
-				var body = this.protestorList.get(influence.getUuid())
-				//if(influence.getAction() == Action.move){
+			for (influence : this.influenceList) {
+				var action : Action = influence.getAction()
+
+				if (action == Action.move) {//Movement
+					var body : MobileObject
+					if(influence.isProtestor()){
+						body = this.protestorList.get(influence.getUuid()) as ProtestorBody
+					} else {
+						body = this.crsList.get(influence.getUuid()) as CRSBody
+					}
+					var move = body.getArea() as Circle2d + influence.getMove() 
+					this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
 					
-				//}
-				
-				
-				var move = body.getArea() as Circle2d + influence.getMove() // a  verifié si on peut just add point2d avec vector2d
-				this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
+				} else if (action == Action.arrest) {
+					
+				} else if (action == Action.destroy) {
+					
+				} else if (action == Action.despawn){
+					
+				} else if (action == Action.smoke){
+					//nothing for now
+				} else if (action == Action.changeBeh){
+					
+				}
+	
 			}
 			
 			//if all destoyables gone stop simu crs lose
@@ -243,8 +292,19 @@ agent EnvironmentAgent {
 			
 	}
 	
-	def resolveInfluences{
-		
+	def resolveInfluences(influences : ArrayList<Influence>){//j'ai mal
+		for(influence : influences){
+			var action : Action = influence.getAction()
+			if(action == Action.move){
+				
+			}
+			else if(action == Action.arrest){
+				
+			}
+			else if(action == Action.destroy){
+				
+			}
+		}
 	}
 
 	on Destroy {
