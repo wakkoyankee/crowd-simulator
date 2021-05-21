@@ -26,6 +26,7 @@ public class ParamSimu {
 	public static final int CRSForce = 1;
 	public static final int TargetForce = 10;
 	public static final int RadiusPerceptProtestor = 100;
+	public static final int RadiusPerceptCrs = 100;
 
 	//objectif neutre
 	//objectif agg

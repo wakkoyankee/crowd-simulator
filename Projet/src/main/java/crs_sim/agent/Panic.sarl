@@ -61,7 +61,7 @@ behavior Panic {
 
 		//check if out of the map first
 		if (!body.intersects(map)) {
-			var inf = new Influence(owner.getID(), Action.despawn)
+			var inf = new Influence(owner.getID(), Action.despawn, Types.protestor_panic)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			///////////////////////////////////////////////
 			//launch despawn of agent
@@ -73,7 +73,7 @@ behavior Panic {
 		
 		if (beh == null) { //no change in behavior
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)
-			var inf = new Influence(owner.getID(), Action.move, move)
+			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { //change in behavior
 			var inf = new Influence(owner.getID(),Action.changeBeh ,beh)

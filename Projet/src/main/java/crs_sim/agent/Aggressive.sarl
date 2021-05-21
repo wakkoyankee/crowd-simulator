@@ -64,7 +64,7 @@ behavior Aggressive {
 		var perceptions = occurrence.perceptions as ArrayList
 		
 		if (body.getDistanceSquared(obj) <= 10) { // assez proche du destroyable pour l'attaqué
-			var inf = new Influence(owner.getID(), Action.destroy, occurrence.uuidObj)
+			var inf = new Influence(owner.getID(), Action.destroy, Types.protestor_agg, occurrence.uuidObj)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]	
 			return
 		}
@@ -74,7 +74,7 @@ behavior Aggressive {
 
 		if (beh == null) { //no change in behavior
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)
-			var inf = new Influence(owner.getID(), Action.move, move)
+			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { // change in behavior
 			var inf = new Influence(owner.getID(), Action.changeBeh, beh)
