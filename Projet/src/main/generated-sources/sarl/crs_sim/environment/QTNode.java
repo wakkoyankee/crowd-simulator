@@ -6,23 +6,17 @@ import crs_sim.body.MobileObject;
 import crs_sim.environment.Percept;
 import crs_sim.utils.CRS_Sim_Utils;
 import crs_sim.utils.ParamSimu;
-import crs_sim.utils.Types;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
 import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
-import org.arakhne.afc.math.geometry.d2.d.Shape2d;
 import org.arakhne.afc.math.tree.node.QuadTreeNode;
 import org.eclipse.xtend.lib.annotations.AccessorType;
 import org.eclipse.xtend.lib.annotations.Accessors;
-import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 /**
@@ -122,66 +116,32 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
   
   @Pure
   public List<Percept> getBodies() {
-    List<EnvObject> objects = this.getAllUserData();
-    List<Percept> result = new ArrayList<Percept>();
-    for (final EnvObject object : objects) {
-      Shape2d<?> _area = object.getArea();
-      UUID _uuid = object.getUuid();
-      Percept _percept = new Percept(_area, _uuid, 
-        null);
-      result.add(_percept);
-    }
-    return IterableExtensions.<Percept>toList(result);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field type is undefined for the type EnvObject");
   }
   
   @Pure
   public List<Percept> getPercept(final Circle2d perception) {
-    List<EnvObject> objects = this.getAllUserData();
-    List<Percept> result = new ArrayList<Percept>();
-    for (final EnvObject object : objects) {
-      boolean _intersects = perception.intersects(object.getArea());
-      if (_intersects) {
-        Shape2d<?> _area = object.getArea();
-        UUID _uuid = object.getUuid();
-        Percept _percept = new Percept(_area, _uuid, 
-          Types.protestor_neutral);
-        result.add(_percept);
-      }
-    }
-    return IterableExtensions.<Percept>toList(result);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field type is undefined for the type EnvObject");
   }
   
-  public void moveBodyPasOpti(final MobileObject body, final Point2d point) {
-    boolean _contains = this.getAllUserData().contains(body);
-    if (_contains) {
-      boolean _AinB = CRS_Sim_Utils.AinB(point, this.area);
-      if (_AinB) {
-        body.setArea(point);
-      } else {
-        this.removeUserData(body);
-        body.setArea(point);
-        this.insert(body);
-      }
-    } else {
-      int _childFit = CRS_Sim_Utils.childFit(body.getPoition(), this.area);
-      switch (_childFit) {
-        case 0:
-          InputOutput.<String>print("buddy your body is lost.. RIP");
-          break;
-        case 1:
-          this.getFirstChild().moveBodyPasOpti(body, point);
-          break;
-        case 2:
-          this.getSecondChild().moveBodyPasOpti(body, point);
-          break;
-        case 3:
-          this.getThirdChild().moveBodyPasOpti(body, point);
-          break;
-        case 4:
-          this.getFourthChild().moveBodyPasOpti(body, point);
-          break;
-      }
-    }
+  public void moveBody(final MobileObject body, final Point2d point) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field position is undefined for the type MobileObject"
+      + "\nThe method or field position is undefined for the type MobileObject"
+      + "\nThe method or field type is undefined for the type MobileObject"
+      + "\nThe method or field position is undefined for the type MobileObject"
+      + "\nThe method or field type is undefined for the type MobileObject"
+      + "\nThe method or field position is undefined for the type MobileObject"
+      + "\nThe method or field position is undefined for the type MobileObject"
+      + "\nThe method or field type is undefined for the type MobileObject"
+      + "\nThe method or field position is undefined for the type MobileObject");
+  }
+  
+  public void deleteBody(final EnvObject body, final List<EnvObject> save) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field position is undefined for the type EnvObject");
   }
   
   @Override
@@ -200,7 +160,7 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
   }
   
   @SyntheticMember
-  private static final long serialVersionUID = 1763480262L;
+  private static final long serialVersionUID = 2373604325L;
   
   @Pure
   public Rectangle2d getArea() {

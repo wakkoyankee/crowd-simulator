@@ -1,10 +1,12 @@
 package crs_sim.agent;
 
+import com.google.common.base.Objects;
 import crs_sim.agent.Aggressive;
 import crs_sim.agent.Memory;
 import crs_sim.agent.Neutral;
 import crs_sim.agent.Panic;
 import crs_sim.utils.ParamSimu;
+import crs_sim.utils.Types;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.Behaviors;
@@ -45,40 +47,76 @@ public class Protestor extends Agent {
   
   private Aggressive A;
   
+  private Types currBeh;
+  
   private Memory memory;
   
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
-    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent Protester was started.");
     Object _get = occurrence.parameters[0];
     Object _get_1 = occurrence.parameters[1];
     Memory _memory = new Memory(((((Integer) _get)) == null ? 0 : (((Integer) _get)).intValue()), ((((Integer) _get_1)) == null ? 0 : (((Integer) _get_1)).intValue()));
     this.memory = _memory;
-    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
     int _behavior = this.memory.getBehavior();
-    String _plus = (Integer.valueOf(_behavior) + " ");
-    int _tolerance = this.memory.getTolerance();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1.info((_plus + Integer.valueOf(_tolerance)));
-    int _behavior_1 = this.memory.getBehavior();
-    if ((_behavior_1 < ParamSimu.maxPanic)) {
+    if ((_behavior < ParamSimu.maxPanic)) {
       Panic _panic = new Panic(this, this.memory);
       this.P = _panic;
       Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
       _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.registerBehavior(this.P);
+      this.currBeh = Types.protestor_panic;
     } else {
-      int _behavior_2 = this.memory.getBehavior();
-      if ((_behavior_2 > ParamSimu.minAggressive)) {
+      int _behavior_1 = this.memory.getBehavior();
+      if ((_behavior_1 > ParamSimu.minAggressive)) {
         Aggressive _aggressive = new Aggressive(this, this.memory);
         this.A = _aggressive;
         Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
         _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1.registerBehavior(this.A);
+        this.currBeh = Types.protestor_agg;
       } else {
         Neutral _neutral = new Neutral(this, this.memory);
         this.N = _neutral;
         Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_2 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
         _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_2.registerBehavior(this.N);
+        this.currBeh = Types.protestor_neutral;
       }
     }
+  }
+  
+  protected void changeBehavior(final Types newBeh) {
+    boolean _equals = Objects.equal(this.currBeh, Types.protestor_panic);
+    if (_equals) {
+      Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+      _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER.unregisterBehavior(this.P);
+    } else {
+      boolean _equals_1 = Objects.equal(this.currBeh, Types.protestor_agg);
+      if (_equals_1) {
+        Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+        _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_1.unregisterBehavior(this.A);
+      } else {
+        Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_2 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+        _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_2.unregisterBehavior(this.N);
+      }
+    }
+    boolean _equals_2 = Objects.equal(newBeh, Types.protestor_panic);
+    if (_equals_2) {
+      Panic _panic = new Panic(this, this.memory);
+      this.P = _panic;
+      Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_3 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+      _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_3.registerBehavior(this.P);
+    } else {
+      boolean _equals_3 = Objects.equal(newBeh, Types.protestor_agg);
+      if (_equals_3) {
+        Aggressive _aggressive = new Aggressive(this, this.memory);
+        this.A = _aggressive;
+        Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_4 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+        _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_4.registerBehavior(this.A);
+      } else {
+        Neutral _neutral = new Neutral(this, this.memory);
+        this.N = _neutral;
+        Behaviors _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_5 = this.$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER();
+        _$CAPACITY_USE$IO_SARL_CORE_BEHAVIORS$CALLER_5.registerBehavior(this.N);
+      }
+    }
+    this.currBeh = newBeh;
   }
   
   private void $behaviorUnit$Destroy$1(final Destroy occurrence) {

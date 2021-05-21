@@ -1,21 +1,17 @@
 package crs_sim.environment;
 
 import com.google.common.base.Objects;
-import crs_sim.agent.Protestor;
-import crs_sim.body.Building;
 import crs_sim.body.CRSBody;
+import crs_sim.body.Destroyable;
 import crs_sim.body.EnvObject;
+import crs_sim.body.MobileObject;
 import crs_sim.body.ProtestorBody;
 import crs_sim.environment.Influence;
 import crs_sim.environment.InfluenceEvent;
-import crs_sim.environment.Percept;
-import crs_sim.environment.PerceptionEvent;
 import crs_sim.environment.QTNode;
 import crs_sim.ui.Window;
-import crs_sim.utils.CRS_Sim_Utils;
+import crs_sim.utils.Action;
 import crs_sim.utils.GraphSearch_Utils;
-import crs_sim.utils.ParamSimu;
-import crs_sim.utils.Types;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.ContextJoined;
@@ -37,32 +33,23 @@ import io.sarl.lang.annotation.PerceptGuardEvaluator;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
-import io.sarl.lang.core.Address;
 import io.sarl.lang.core.Agent;
 import io.sarl.lang.core.AtomicSkillReference;
 import io.sarl.lang.core.BuiltinCapacitiesProvider;
 import io.sarl.lang.core.DynamicSkillProvider;
-import io.sarl.lang.core.Scope;
-import io.sarl.lang.util.SerializableProxy;
-import java.io.ObjectStreamException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.Queue;
 import java.util.TreeMap;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.inject.Inject;
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
 import org.arakhne.afc.math.geometry.d2.d.Point2d;
-import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
 import org.arakhne.afc.math.geometry.d2.d.Shape2d;
 import org.arakhne.afc.math.geometry.d2.d.Vector2d;
-import org.eclipse.xtext.xbase.lib.CollectionExtensions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 /**
@@ -74,103 +61,38 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class EnvironmentAgent extends Agent {
   private QTNode rootTree;
   
-  private int agentSpawned = 0;
+  private AtomicInteger agentSpawned = new AtomicInteger(0);
   
-  private Map<UUID, ProtestorBody> protestorList;
+  private TreeMap<UUID, ProtestorBody> protestorList;
+  
+  private TreeMap<UUID, CRSBody> crsList;
   
   private Window win;
   
   private AtomicInteger protestorResp = new AtomicInteger(0);
   
-  private List<Influence> influenceList = new ArrayList<Influence>();
+  private AtomicInteger crsResp = new AtomicInteger(0);
+  
+  private Queue<Influence> influenceList = new ConcurrentLinkedQueue<Influence>();
+  
+  private TreeMap<UUID, Destroyable> aggObjs;
+  
+  private ArrayList<EnvObject> bodiesDespawned;
+  
+  private int time = 0;
+  
+  private int nbPro = 0;
+  
+  private int nbCrs = 0;
   
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
-    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent environment was started.");
-    TreeMap<UUID, ProtestorBody> _treeMap = new TreeMap<UUID, ProtestorBody>();
-    this.protestorList = _treeMap;
-    Random rand = new Random();
-    int[] b = new int[ParamSimu.nbProtestors];
-    int[] t = new int[ParamSimu.nbProtestors];
-    for (int i = 0; (i < ParamSimu.nbProtestors); i++) {
-      {
-        int r1 = 20;
-        int r2 = rand.nextInt(11);
-        b[i] = r1;
-        t[i] = r2;
-        ProtestorBody pb = null;
-        if ((r1 < ParamSimu.maxPanic)) {
-          Circle2d _get = ParamSimu.initCollecProtestor[i];
-          ProtestorBody _protestorBody = new ProtestorBody(_get, Types.protestor_panic);
-          pb = _protestorBody;
-        } else {
-          if ((r1 > ParamSimu.minAggressive)) {
-            Circle2d _get_1 = ParamSimu.initCollecProtestor[i];
-            ProtestorBody _protestorBody_1 = new ProtestorBody(_get_1, Types.protestor_agg);
-            pb = _protestorBody_1;
-          } else {
-            Circle2d _get_2 = ParamSimu.initCollecProtestor[i];
-            ProtestorBody _protestorBody_2 = new ProtestorBody(_get_2, Types.protestor_neutral);
-            pb = _protestorBody_2;
-          }
-        }
-        this.protestorList.put(pb.getUuid(), pb);
-      }
-    }
-    ArrayList<EnvObject> collec = new ArrayList<EnvObject>();
-    CollectionExtensions.<CRSBody>addAll(collec, ParamSimu.initCollecCRS);
-    CollectionExtensions.<Building>addAll(collec, ParamSimu.initplaceDesJacobins);
-    Rectangle2d _rectangle2d = new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY);
-    QTNode _qTNode = new QTNode(_rectangle2d);
-    this.rootTree = _qTNode;
-    CRS_Sim_Utils.buildTree(this.rootTree, collec);
-    Set<Map.Entry<UUID, ProtestorBody>> _entrySet = this.protestorList.entrySet();
-    for (final Map.Entry<UUID, ProtestorBody> entry : _entrySet) {
-      this.rootTree.insert(entry.getValue());
-    }
-    InputOutput.<String>println(("Père : " + this.rootTree));
-    QTNode _firstChild = this.rootTree.getFirstChild();
-    InputOutput.<String>println(("NW : " + _firstChild));
-    QTNode _secondChild = this.rootTree.getSecondChild();
-    InputOutput.<String>println(("NE : " + _secondChild));
-    QTNode _thirdChild = this.rootTree.getThirdChild();
-    InputOutput.<String>println(("SW : " + _thirdChild));
-    QTNode _fourthChild = this.rootTree.getFourthChild();
-    InputOutput.<String>println(("SE : " + _fourthChild));
-    EnvObject _get = collec.get(5);
-    String _plus = (_get + " : \n");
-    InputOutput.<String>print(_plus);
-    InputOutput.<Shape2d<?>>print(collec.get(5).getArea());
-    EnvObject _get_1 = collec.get(5);
-    String _plus_1 = (_get_1 + " en 800 800: \n");
-    InputOutput.<String>print(_plus_1);
-    InputOutput.<Shape2d<?>>print(collec.get(5).getArea());
-    InputOutput.<String>println(("Père : " + this.rootTree));
-    QTNode _firstChild_1 = this.rootTree.getFirstChild();
-    InputOutput.<String>println(("NW : " + _firstChild_1));
-    QTNode _secondChild_1 = this.rootTree.getSecondChild();
-    InputOutput.<String>println(("NE : " + _secondChild_1));
-    QTNode _thirdChild_1 = this.rootTree.getThirdChild();
-    InputOutput.<String>println(("SW : " + _thirdChild_1));
-    QTNode _fourthChild_1 = this.rootTree.getFourthChild();
-    InputOutput.<String>println(("SE : " + _fourthChild_1));
-    Window _window = new Window();
-    this.win = _window;
-    int cpt = 0;
-    Set<Map.Entry<UUID, ProtestorBody>> _entrySet_1 = this.protestorList.entrySet();
-    for (final Map.Entry<UUID, ProtestorBody> entry_1 : _entrySet_1) {
-      {
-        Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER();
-        DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
-        _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.spawnInContextWithID(Protestor.class, entry_1.getKey(), _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.getDefaultContext(), Integer.valueOf(b[cpt]), Integer.valueOf(t[cpt]));
-        cpt++;
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Class<Protestor> to Class<? extends Agent>");
   }
   
   private void $behaviorUnit$AgentSpawned$1(final AgentSpawned occurrence) {
-    this.agentSpawned++;
-    if ((this.agentSpawned == ParamSimu.nbProtestors)) {
+    int cpt = this.agentSpawned.incrementAndGet();
+    if ((this.agentSpawned != null ? (this.agentSpawned.intValue() == (this.nbPro + this.nbCrs)) : false)) {
       Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
       _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("All agents have spawned");
       this.StartSim();
@@ -178,72 +100,97 @@ public class EnvironmentAgent extends Agent {
   }
   
   protected void StartSim() {
-    Set<Map.Entry<UUID, ProtestorBody>> _entrySet = this.protestorList.entrySet();
-    for (final Map.Entry<UUID, ProtestorBody> entry : _entrySet) {
-      {
-        UUID id = entry.getKey();
-        Shape2d<?> body = entry.getValue().getArea();
-        List<Percept> percept = GraphSearch_Utils.PerceptBFS(this.rootTree, ((Circle2d) body));
-        DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
-        PerceptionEvent _perceptionEvent = new PerceptionEvent(body, percept, 0);
-        class $SerializableClosureProxy implements Scope<Address> {
-          
-          private final UUID id;
-          
-          public $SerializableClosureProxy(final UUID id) {
-            this.id = id;
-          }
-          
-          @Override
-          public boolean matches(final Address it) {
-            UUID _uUID = it.getUUID();
-            return Objects.equal(_uUID, id);
-          }
-        }
-        final Scope<Address> _function = new Scope<Address>() {
-          @Override
-          public boolean matches(final Address it) {
-            UUID _uUID = it.getUUID();
-            return Objects.equal(_uUID, id);
-          }
-          private Object writeReplace() throws ObjectStreamException {
-            return new SerializableProxy($SerializableClosureProxy.class, id);
-          }
-        };
-        _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_perceptionEvent, _function);
-      }
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getType() is undefined for the type ProtestorBody"
+      + "\n!= cannot be resolved");
   }
   
   protected void redraw() {
-    List<Percept> _BFS = GraphSearch_Utils.BFS(this.rootTree);
-    this.win.update(((ArrayList) _BFS));
+    this.win.update(GraphSearch_Utils.BFS(this.rootTree));
   }
   
   private void $behaviorUnit$InfluenceEvent$2(final InfluenceEvent occurrence) {
-    int cpt = this.protestorResp.incrementAndGet();
+    int cpt = 0;
     this.influenceList.add(occurrence.influence);
-    InputOutput.<Integer>println(Integer.valueOf(this.protestorList.size()));
-    int _size = this.protestorList.size();
-    if ((cpt == _size)) {
+    boolean _isProtestor = occurrence.influence.isProtestor();
+    if (_isProtestor) {
+      int _incrementAndGet = this.protestorResp.incrementAndGet();
+      int _get = this.crsResp.get();
+      cpt = (_incrementAndGet + _get);
+    } else {
+      int _incrementAndGet_1 = this.crsResp.incrementAndGet();
+      int _get_1 = this.protestorResp.get();
+      cpt = (_incrementAndGet_1 + _get_1);
+    }
+    if ((cpt == (this.nbPro + this.nbCrs))) {
       this.protestorResp.set(0);
       for (final Influence influence : this.influenceList) {
         {
-          ProtestorBody body = this.protestorList.get(influence.getUuid());
-          Shape2d<?> _area = body.getArea();
-          Vector2d _move = influence.getMove();
-          Circle2d move = ((Circle2d) _area).operator_plus(_move);
-          double _x = move.getX();
-          double _y = move.getY();
-          Point2d _point2d = new Point2d(_x, _y);
-          this.rootTree.moveBodyPasOpti(body, _point2d);
+          Action action = influence.getAction();
+          boolean _equals = Objects.equal(action, Action.move);
+          if (_equals) {
+            MobileObject body = null;
+            boolean _isProtestor_1 = influence.isProtestor();
+            if (_isProtestor_1) {
+              ProtestorBody _get_2 = this.protestorList.get(influence.getUuid());
+              body = _get_2;
+            } else {
+              CRSBody _get_3 = this.crsList.get(influence.getUuid());
+              body = _get_3;
+            }
+            Shape2d<?> _area = body.getArea();
+            Vector2d _move = influence.getMove();
+            Circle2d move = ((Circle2d) _area).operator_plus(_move);
+            double _x = move.getX();
+            double _y = move.getY();
+            Point2d _point2d = new Point2d(_x, _y);
+            this.rootTree.moveBody(body, _point2d);
+          } else {
+            boolean _equals_1 = Objects.equal(action, Action.arrest);
+            if (_equals_1) {
+            } else {
+              boolean _equals_2 = Objects.equal(action, Action.destroy);
+              if (_equals_2) {
+              } else {
+                boolean _equals_3 = Objects.equal(action, Action.despawn);
+                if (_equals_3) {
+                } else {
+                  boolean _equals_4 = Objects.equal(action, Action.smoke);
+                  if (_equals_4) {
+                  } else {
+                    boolean _equals_5 = Objects.equal(action, Action.changeBeh);
+                    if (_equals_5) {
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
+      this.redraw();
       this.influenceList.clear();
+      this.StartSim();
     }
   }
   
-  protected void resolveInfluences() {
+  protected void resolveInfluences(final ArrayList<Influence> influences) {
+    for (final Influence influence : influences) {
+      {
+        Action action = influence.getAction();
+        boolean _equals = Objects.equal(action, Action.move);
+        if (_equals) {
+        } else {
+          boolean _equals_1 = Objects.equal(action, Action.arrest);
+          if (_equals_1) {
+          } else {
+            boolean _equals_2 = Objects.equal(action, Action.destroy);
+            if (_equals_2) {
+            }
+          }
+        }
+      }
+    }
   }
   
   private void $behaviorUnit$Destroy$3(final Destroy occurrence) {
@@ -453,7 +400,11 @@ public class EnvironmentAgent extends Agent {
     if (getClass() != obj.getClass())
       return false;
     EnvironmentAgent other = (EnvironmentAgent) obj;
-    if (other.agentSpawned != this.agentSpawned)
+    if (other.time != this.time)
+      return false;
+    if (other.nbPro != this.nbPro)
+      return false;
+    if (other.nbCrs != this.nbCrs)
       return false;
     return super.equals(obj);
   }
@@ -464,7 +415,9 @@ public class EnvironmentAgent extends Agent {
   public int hashCode() {
     int result = super.hashCode();
     final int prime = 31;
-    result = prime * result + Integer.hashCode(this.agentSpawned);
+    result = prime * result + Integer.hashCode(this.time);
+    result = prime * result + Integer.hashCode(this.nbPro);
+    result = prime * result + Integer.hashCode(this.nbCrs);
     return result;
   }
   
