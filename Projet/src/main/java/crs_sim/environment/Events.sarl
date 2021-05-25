@@ -19,6 +19,7 @@ event PerceptionEvent {
 	var obj : Shape2d<?>
 	var uuidObj : UUID
 	var time : int
+	var isNeutralObj : boolean
 
 	new (b : Shape2d<?>, p : List<Percept>, obj : Shape2d<?>, uuidObj: UUID, t : int) {//protestor
 		this.perceptions = p
@@ -34,8 +35,15 @@ event PerceptionEvent {
 		this.obj = obj
 		this.time = t
 	}
-	
-	
+
+	new (b : Shape2d<?>, p : List<Percept>, obj : Shape2d<?>, uuidObj : UUID, t : int, isNeutralObj : boolean) {
+		this.perceptions = p
+		this.body = b
+		this.obj = obj
+		this.uuidObj = uuidObj
+		this.time = t
+		this.isNeutralObj = isNeutralObj
+	}
 }
 
 
@@ -44,4 +52,8 @@ event InfluenceEvent {
 	new(influence : Influence){
 		this.influence = influence
 	}
+}
+
+event DeathEvent{
+	new(){}
 }

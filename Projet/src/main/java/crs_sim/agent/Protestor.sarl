@@ -3,6 +3,7 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.DeathEvent
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
@@ -13,6 +14,7 @@ import io.sarl.core.ContextLeft
 import io.sarl.core.DefaultContextInteractions
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
+import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
@@ -43,7 +45,8 @@ agent Protestor {
 	uses Logging
 	uses Behaviors
 	uses DefaultContextInteractions
-	
+	uses Lifecycle
+
 	var P : Panic
 	var N : Neutral
 	var A : Aggressive
@@ -105,7 +108,13 @@ agent Protestor {
 			this.N.registerBehavior
 		}
 		this.currBeh = newBeh
+		
 		//println(memory.getBehavior()+" LA")
+	}
+	
+
+	on DeathEvent{
+		killMe
 	}
 
 	on Destroy {

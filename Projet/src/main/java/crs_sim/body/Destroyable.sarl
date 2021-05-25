@@ -3,10 +3,11 @@
  */
 package crs_sim.body
 
+import crs_sim.utils.Types
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
-import crs_sim.utils.Types
+import org.eclipse.xtend.lib.annotations.Accessors
 
 /** 
  * @author hadrien
@@ -15,6 +16,7 @@ import crs_sim.utils.Types
 class Destroyable extends EnvObject{
 
 	val area : Rectangle2d
+	@Accessors
 	var life : int
 	var type : Types
 
