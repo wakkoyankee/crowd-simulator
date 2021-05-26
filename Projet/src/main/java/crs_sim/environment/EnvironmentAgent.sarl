@@ -315,10 +315,7 @@ agent EnvironmentAgent {
 					
 				} else if (action == Action.smoke) {
 					// nothing for now
-				}
-					
-				}
-				
+				}				
 				else if (action == Action.despawn) {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
 					this.protestorList.remove(influence.getUuid())
