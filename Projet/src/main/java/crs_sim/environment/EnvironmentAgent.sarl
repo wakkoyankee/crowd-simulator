@@ -264,7 +264,7 @@ agent EnvironmentAgent {
 		if (cpt == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
 			this.protestorResp.set(0)
 
-			resolveInfluences(this.influenceList)//par references ?
+			//resolveInfluences(this.influenceList)//par references ?
 			
 			for (entry : this.influenceList.entrySet()) { 
 				var influence = entry.getValue()
