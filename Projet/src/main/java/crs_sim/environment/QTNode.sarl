@@ -82,17 +82,17 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 						
 				// NE
 				setSecondChild(new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX/2, area.getMaxY / 2)
+					new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX, area.getMaxY / 2)
 				))
 				
 				// SW
 				setThirdChild(new QTNode(
-					new Rectangle2d(area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY/2)
+					new Rectangle2d(area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY)
 				))
 				
 				// SE
 				setFourthChild(	new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX/2, area.getMaxY/2)
+					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX, area.getMaxY)
 				))
 				
 				return true
