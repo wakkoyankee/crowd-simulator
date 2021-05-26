@@ -65,8 +65,7 @@ agent EnvironmentAgent {
 	var crsList : TreeMap<UUID, CRSBody>
 	
 	var win : Window
-	var protestorResp = new AtomicInteger(0)
-	var crsResp = new AtomicInteger(0)
+	var agentResp = new AtomicInteger(0)
 	var influenceList : ConcurrentSkipListMap<UUID, Influence> = new ConcurrentSkipListMap<UUID, Influence>()
 	
 	var aggObjs : TreeMap<UUID,Destroyable>
@@ -89,7 +88,7 @@ agent EnvironmentAgent {
 		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  10.0 //rand.nextInt(101) 
+			var r1 =  50.0 //rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -251,20 +250,16 @@ agent EnvironmentAgent {
 
 
 	on InfluenceEvent { // reponse des agents
-		var cpt : int
 		
 		this.influenceList.put(occurrence.influence.getUuid(), occurrence.influence)
 		
-		if (occurrence.influence.isProtestor()) {
-			cpt = this.protestorResp.incrementAndGet() + this.crsResp.get()
-		}else{
-			cpt = this.crsResp.incrementAndGet() + this.protestorResp.get()
-		}
+	
 		
-		if (cpt == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
-			this.protestorResp.set(0)
+		if (this.agentResp.incrementAndGet() == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
+			this.agentResp.set(0)
 
-			resolveInfluences(this.influenceList)//par references ?
+			//resolveInfluences(this.influenceList)//par references ?
+			
 			
 			for (entry : this.influenceList.entrySet()) { 
 				var influence = entry.getValue()
@@ -277,12 +272,9 @@ agent EnvironmentAgent {
 					} else {
 						body = this.crsList.get(influence.getUuid()) as CRSBody
 					}
+					//println(influence.getMove())
 					var move = body.getArea() as Circle2d + influence.getMove() 
 					this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
-				} else if (action == Action.destroy) {
-				
-				} else if (action == Action.arrest) {
-				
 				}
 				
 				else if (action == Action.arrest) {
@@ -310,23 +302,10 @@ agent EnvironmentAgent {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
 					this.protestorList.remove(influence.getUuid())
 					//BESOIN DE L'ENLEVER DE L ENV
-				} else if (action == Action.changeBeh){
-					// change type from body
-					
+					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()) , null)
 				} else if (action == Action.smoke) {
 					// nothing for now
 				}				
-				else if (action == Action.despawn) {
-					emit(new DeathEvent())[it.UUID == influence.getUuid()]
-					this.protestorList.remove(influence.getUuid())
-					//BESOIN DE L'ENLEVER DE L ENV
-					
-				}
-				
-				else if (action == Action.smoke){
-					//nothing for now
-				}
-				
 				else if (action == Action.changeBeh){
 					var body = this.protestorList.get(influence.getUuid()) as ProtestorBody
 					body.setType(influence.getAgentType()) // copie ou ref ?
@@ -341,12 +320,14 @@ agent EnvironmentAgent {
 			// else continue turning until there are still protestors
 			redraw()
 			this.influenceList.clear()
-//			if(this.time++ <100){
-//				
-//				//trouver un wait meilleur
-//			
-//			}
-			StartSim()
+			this.time++
+			if (this.time < 2000) {
+				println(this.time)
+				StartSim()
+				//trouver un wait meilleur
+			
+			}
+			
 //			GraphSearch_Utils.printGraphDebug(rootTree, false)
 		}
 			

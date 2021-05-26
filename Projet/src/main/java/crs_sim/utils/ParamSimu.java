@@ -24,7 +24,7 @@ public class ParamSimu {
 	public static final int TargetForce = 10;
 	public static final int RadiusPerceptProtestor = 100;
 
-	public static final double Speed = 0.55; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	public static final double Speed = 0.40; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
 	public static final int PanicOnPanic = 5;
 	public static final int RadiusPerceptCrs = 100;
 
