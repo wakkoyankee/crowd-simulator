@@ -75,7 +75,9 @@ behavior Neutral {
 		var beh = CalculateBeh(perceptions)
 		
 		if (beh == null) {//no behavior change
+			
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)
+			//info(move)
 			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic, move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		}

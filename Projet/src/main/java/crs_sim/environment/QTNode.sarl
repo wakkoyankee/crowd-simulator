@@ -74,30 +74,30 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			if(firstChild != null && secondChild != null &&
 				thirdChild != null && fourthChild != null
 			) return false
-			else{
-				// NW				
+			else {
+				// NW
 				setFirstChild(new QTNode(
 					new Rectangle2d(area.getMinX, area.getMinY, area.getMaxX / 2, area.getMaxY / 2)
 				))
-						
+	
 				// NE
-				setSecondChild(new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX/2, area.getMaxY / 2)
+	                setSecondChild(new QTNode(
+	                    new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX / 2, area.getMaxY / 2)
 				))
-				
+	
 				// SW
 				setThirdChild(new QTNode(
-					new Rectangle2d(area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY/2)
+	                    new Rectangle2d(area.getMinX, area.getMaxY / 2, area.getMaxX / 2, area.getMaxY / 2)
 				))
-				
+	
 				// SE
-				setFourthChild(	new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX/2, area.getMaxY/2)
+				setFourthChild(new QTNode(
+					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX/2, area.getMaxY / 2)
 				))
-				
-				return true
-			}
+
+			return true
 		}
+	}
 
 	def getBodies() : List<Percept> {
 		var objects = getAllUserData
@@ -173,7 +173,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				print("Erreur de déplacement d'enfant \nLe résultat de childFit est : " +
 					CRS_Sim_Utils.childFit(body.position, area) + 
 					"body : " + body.type + " Position : " + body.position +"\n")
-				
+				print("ici")
 			}
 		}
 	}

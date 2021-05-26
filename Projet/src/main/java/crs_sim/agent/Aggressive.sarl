@@ -68,7 +68,7 @@ behavior Aggressive {
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]	
 			return
 		}
-		if (body.intersects(obj) && isNeutralObj) { // assez proche du destroyable pour l'attaqué
+		if (body.intersects(obj) && isNeutralObj) { // dans zone obj neutre despawn
 			var inf = new Influence(owner.getID(), Action.despawn, Types.protestor_agg)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			return
