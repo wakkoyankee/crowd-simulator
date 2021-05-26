@@ -279,12 +279,10 @@ agent EnvironmentAgent {
 					}
 					var move = body.getArea() as Circle2d + influence.getMove() 
 					this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
-					
-<<<<<<< HEAD
 				} else if (action == Action.destroy) {
 				
 				} else if (action == Action.arrest) {
-=======
+				
 				}
 				
 				else if (action == Action.arrest) {
@@ -305,8 +303,19 @@ agent EnvironmentAgent {
 								//FINIR PARTIE LES CASSEURS ON GAGNE
 							}
 						}
-					}
->>>>>>> fc000edf03e052b34aac8ee558e2adaba70f5b67
+					}					
+				}
+				
+				else if (action == Action.despawn) {
+					emit(new DeathEvent())[it.UUID == influence.getUuid()]
+					this.protestorList.remove(influence.getUuid())
+					//BESOIN DE L'ENLEVER DE L ENV
+				} else if (action == Action.changeBeh){
+					// change type from body
+					
+				} else if (action == Action.smoke) {
+					// nothing for now
+				}
 					
 				}
 				
@@ -315,14 +324,6 @@ agent EnvironmentAgent {
 					this.protestorList.remove(influence.getUuid())
 					//BESOIN DE L'ENLEVER DE L ENV
 					
-<<<<<<< HEAD
-				} else if (action == Action.changeBeh){
-					// change type from body
-					
-				} else if (action == Action.smoke) {
-					// nothing for now
-				} 
-=======
 				}
 				
 				else if (action == Action.smoke){
@@ -336,7 +337,6 @@ agent EnvironmentAgent {
 					
 					//BESOIN DE CHANGER DANS L'ENV AUSSI
 				}
->>>>>>> fc000edf03e052b34aac8ee558e2adaba70f5b67
 	
 			}
 			

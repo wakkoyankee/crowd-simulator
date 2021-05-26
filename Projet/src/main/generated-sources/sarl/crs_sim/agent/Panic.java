@@ -1,8 +1,16 @@
 package crs_sim.agent;
 
+import com.google.common.base.Objects;
 import crs_sim.agent.Memory;
 import crs_sim.agent.MovementSkill;
+import crs_sim.agent.Protestor;
+import crs_sim.environment.Influence;
+import crs_sim.environment.InfluenceEvent;
+import crs_sim.environment.Percept;
 import crs_sim.environment.PerceptionEvent;
+import crs_sim.utils.Action;
+import crs_sim.utils.ParamSimu;
+import crs_sim.utils.Types;
 import io.sarl.core.AgentKilled;
 import io.sarl.core.AgentSpawned;
 import io.sarl.core.ContextJoined;
@@ -22,10 +30,19 @@ import io.sarl.lang.annotation.PerceptGuardEvaluator;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
-import io.sarl.lang.core.Agent;
+import io.sarl.lang.core.Address;
 import io.sarl.lang.core.AtomicSkillReference;
 import io.sarl.lang.core.Behavior;
+import io.sarl.lang.core.Scope;
+import io.sarl.lang.util.SerializableProxy;
+import java.io.ObjectStreamException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
+import org.arakhne.afc.math.geometry.d2.d.Circle2d;
+import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
+import org.arakhne.afc.math.geometry.d2.d.Shape2d;
+import org.arakhne.afc.math.geometry.d2.d.Vector2d;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -40,24 +57,185 @@ public class Panic extends Behavior {
   
   private MovementSkill moveS;
   
-  public Panic(final Agent owner, final Memory memory) {
-    super(owner);
-    this.memory = memory;
+  private final Rectangle2d map = new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY);
+  
+  public Panic(final Protestor owner, final Memory memory) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Protestor to Agent");
   }
   
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
-    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Panic behavior was started.");
     MovementSkill _movementSkill = new MovementSkill();
     this.moveS = _movementSkill;
     this.<MovementSkill>setSkill(this.moveS);
   }
   
   private void $behaviorUnit$PerceptionEvent$1(final PerceptionEvent occurrence) {
-    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("Panic hello");
-    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER();
-    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1.info(("Time : " + Integer.valueOf(occurrence.time)));
+    Circle2d body = ((Circle2d) occurrence.body);
+    ArrayList perceptions = ((ArrayList) occurrence.perceptions);
+    Rectangle2d obj = ((Rectangle2d) occurrence.obj);
+    boolean _intersects = body.intersects(this.map);
+    if ((!_intersects)) {
+      UUID _iD = this.getOwner().getID();
+      Influence inf = new Influence(_iD, Action.despawn, Types.protestor_panic);
+      DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
+      InfluenceEvent _influenceEvent = new InfluenceEvent(inf);
+      class $SerializableClosureProxy implements Scope<Address> {
+        
+        private final UUID $_uUID;
+        
+        public $SerializableClosureProxy(final UUID $_uUID) {
+          this.$_uUID = $_uUID;
+        }
+        
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          return Objects.equal(_uUID, $_uUID);
+        }
+      }
+      final Scope<Address> _function = new Scope<Address>() {
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          UUID _uUID_1 = occurrence.getSource().getUUID();
+          return Objects.equal(_uUID, _uUID_1);
+        }
+        private Object writeReplace() throws ObjectStreamException {
+          return new SerializableProxy($SerializableClosureProxy.class, occurrence.getSource().getUUID());
+        }
+      };
+      _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_influenceEvent, _function);
+      return;
+    }
+    Types beh = this.CalculateBeh(perceptions, body);
+    boolean _equals = Objects.equal(beh, null);
+    if (_equals) {
+      Vector2d move = this.moveS.influenceKinematic(body, perceptions, obj);
+      UUID _iD_1 = this.getOwner().getID();
+      Influence inf_1 = new Influence(_iD_1, Action.move, Types.protestor_panic, move);
+      DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
+      InfluenceEvent _influenceEvent_1 = new InfluenceEvent(inf_1);
+      class $SerializableClosureProxy_1 implements Scope<Address> {
+        
+        private final UUID $_uUID;
+        
+        public $SerializableClosureProxy_1(final UUID $_uUID) {
+          this.$_uUID = $_uUID;
+        }
+        
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          return Objects.equal(_uUID, $_uUID);
+        }
+      }
+      final Scope<Address> _function_1 = new Scope<Address>() {
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          UUID _uUID_1 = occurrence.getSource().getUUID();
+          return Objects.equal(_uUID, _uUID_1);
+        }
+        private Object writeReplace() throws ObjectStreamException {
+          return new SerializableProxy($SerializableClosureProxy_1.class, occurrence.getSource().getUUID());
+        }
+      };
+      _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1.emit(_influenceEvent_1, _function_1);
+    } else {
+      UUID _iD_2 = this.getOwner().getID();
+      Influence inf_2 = new Influence(_iD_2, Action.changeBeh, beh);
+      DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_2 = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
+      InfluenceEvent _influenceEvent_2 = new InfluenceEvent(inf_2);
+      class $SerializableClosureProxy_2 implements Scope<Address> {
+        
+        private final UUID $_uUID;
+        
+        public $SerializableClosureProxy_2(final UUID $_uUID) {
+          this.$_uUID = $_uUID;
+        }
+        
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          return Objects.equal(_uUID, $_uUID);
+        }
+      }
+      final Scope<Address> _function_2 = new Scope<Address>() {
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          UUID _uUID_1 = occurrence.getSource().getUUID();
+          return Objects.equal(_uUID, _uUID_1);
+        }
+        private Object writeReplace() throws ObjectStreamException {
+          return new SerializableProxy($SerializableClosureProxy_2.class, occurrence.getSource().getUUID());
+        }
+      };
+      _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_2.emit(_influenceEvent_2, _function_2);
+      this.Behaviourchange(beh);
+    }
+  }
+  
+  public Types CalculateBeh(final ArrayList<Percept> perceptions, final Circle2d position) {
+    int numP = 0;
+    int numA = 0;
+    int numN = 0;
+    int numC = 0;
+    for (final Percept percept : perceptions) {
+      Types _name = percept.getName();
+      if (_name != null) {
+        switch (_name) {
+          case protestor_panic:
+            numP++;
+            break;
+          case protestor_agg:
+            numA++;
+            break;
+          case protestor_neutral:
+            numN++;
+            break;
+          case crs:
+            numC++;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    int b = this.memory.getBehavior();
+    for (final Percept percept_1 : perceptions) {
+      {
+        Types _name_1 = percept_1.getName();
+        boolean _equals = Objects.equal(_name_1, Types.protestor_panic);
+        if (_equals) {
+          Shape2d _shape = percept_1.getShape();
+          Circle2d shape = ((Circle2d) _shape);
+        }
+        Types _name_2 = percept_1.getName();
+        boolean _equals_1 = Objects.equal(_name_2, Types.protestor_neutral);
+        if (_equals_1) {
+        }
+        Types _name_3 = percept_1.getName();
+        boolean _equals_2 = Objects.equal(_name_3, Types.protestor_agg);
+        if (_equals_2) {
+        }
+      }
+    }
+    if ((b >= ParamSimu.maxPanic)) {
+      if ((b > ParamSimu.minAggressive)) {
+        return Types.protestor_agg;
+      } else {
+        return Types.protestor_neutral;
+      }
+    } else {
+      return null;
+    }
+  }
+  
+  public void Behaviourchange(final Types newbeh) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nCannot cast from Agent to Protestor");
   }
   
   private void $behaviorUnit$Destroy$2(final Destroy occurrence) {
