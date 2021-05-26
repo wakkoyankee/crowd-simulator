@@ -81,7 +81,7 @@ public class Window {
 		
 		try {
 			crsURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
-			gjPanicURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\GJ.gif").toURI().toURL();
+			gjPanicURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
 			gjNeutralURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
 			gjAggURL = new File("C:\\Users\\carte\\Desktop\\crowd-simulator\\Projet\\src\\main\\java\\crs_sim\\texturePack\\test.gif").toURI().toURL();
 		} catch (Exception e1) {
@@ -116,7 +116,7 @@ public class Window {
 	
 	class Panel extends JPanel {
 		
-		public List<Percept> bodies;
+		public List<Percept> bodies = null;
 
         Panel(int width, int height) { // l'ordre est peut etre pas bon
             // set a preferred size for the custom panel.
@@ -134,50 +134,51 @@ public class Window {
             modeDrole.setLocation(75, 50);
     		buttonStart.setLocation(10, 10);
     		buttonNext.setLocation(10, 50);
-    		
-            for(Percept body : bodies) {
-            	
-            	if(body.getName() == Types.building) {
-            		g.setColor(Color.BLACK); 
-            		Rectangle2d r = (Rectangle2d)body.getShape();
-            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
-            	}else if(body.getName() == Types.crs) {
-            		Circle2d c = (Circle2d) body.getShape();
-            		g.setColor(Color.BLUE); 
-            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
-//            		labelCRS[i].setVisible(true);
-//            		labelCRS[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
-            	}else if(body.getName() == Types.protestor_agg) {
-            		Circle2d c = (Circle2d) body.getShape();
-            		g.setColor(Color.RED); 
-            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
-//            		labelGJPanic[i].setVisible(false);
-//            		labelGJNeutral[i].setVisible(false);
-//            		labelGJAgg[i].setVisible(true);
-//            		labelGJAgg[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
-            	}else if(body.getName() == Types.protestor_panic) {
-            		Circle2d c = (Circle2d) body.getShape();
-            		g.setColor(Color.YELLOW); 
-            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
-//            		labelGJAgg[i].setVisible(false);
-//            		labelGJNeutral[i].setVisible(false);
-//            		labelGJPanic[i].setVisible(true);
-//            		labelGJPanic[i].setLocation((int) c.getX() + ParamSimu.mapLeftOffset, (int) c.getY());
-            	}else if(body.getName() == Types.protestor_neutral){//protestor neutral
-            		Circle2d c = (Circle2d) body.getShape();
-            		g.setColor(Color.PINK); 
-            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
-//            		labelGJAgg[i].setVisible(false);
-//            		labelGJPanic[i].setVisible(false);
-//            		labelGJNeutral[i].setVisible(true);
-//            		labelGJNeutral[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
-            	}else if(body.getName() == Types.destroyable) {
-            		g.setColor(Color.RED); 
-            		Rectangle2d r = (Rectangle2d) body.getShape();
-            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
-            	}
-            	i++;
-            }
+    		if(bodies != null) {
+	            for(Percept body : bodies) {
+	            	
+	            	if(body.getName() == Types.building) {
+	            		g.setColor(Color.BLACK); 
+	            		Rectangle2d r = (Rectangle2d)body.getShape();
+	            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
+	            	}else if(body.getName() == Types.crs) {
+	            		Circle2d c = (Circle2d) body.getShape();
+	            		g.setColor(Color.BLUE); 
+	            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+	//            		labelCRS[i].setVisible(true);
+	//            		labelCRS[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
+	            	}else if(body.getName() == Types.protestor_agg) {
+	            		Circle2d c = (Circle2d) body.getShape();
+	            		g.setColor(Color.RED); 
+	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+	//            		labelGJPanic[i].setVisible(false);
+	//            		labelGJNeutral[i].setVisible(false);
+	//            		labelGJAgg[i].setVisible(true);
+	//            		labelGJAgg[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
+	            	}else if(body.getName() == Types.protestor_panic) {
+	            		Circle2d c = (Circle2d) body.getShape();
+	            		g.setColor(Color.YELLOW); 
+	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+	//            		labelGJAgg[i].setVisible(false);
+	//            		labelGJNeutral[i].setVisible(false);
+	//            		labelGJPanic[i].setVisible(true);
+	//            		labelGJPanic[i].setLocation((int) c.getX() + ParamSimu.mapLeftOffset, (int) c.getY());
+	            	}else if(body.getName() == Types.protestor_neutral){//protestor neutral
+	            		Circle2d c = (Circle2d) body.getShape();
+	            		g.setColor(Color.PINK); 
+	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+	//            		labelGJAgg[i].setVisible(false);
+	//            		labelGJPanic[i].setVisible(false);
+	//            		labelGJNeutral[i].setVisible(true);
+	//            		labelGJNeutral[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
+	            	}else if(body.getName() == Types.destroyable) {
+	            		g.setColor(Color.RED); 
+	            		Rectangle2d r = (Rectangle2d) body.getShape();
+	            		g.fillRect((int) r.getMinX() + ParamSimu.mapLeftOffset,(int) r.getMinY(),(int) (r.getMaxX()-r.getMinX()),(int) (r.getMaxY()-r.getMinY()));
+	            	}
+	            	i++;
+	            }
+    		}
             g.setColor(Color.GREEN);
             g.fillRect((int) (ParamSimu.mapLeftOffset + ParamSimu.neutralObj.getMinX()),
             		(int) (ParamSimu.neutralObj.getMinY()),

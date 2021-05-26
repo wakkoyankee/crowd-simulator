@@ -33,16 +33,17 @@ import io.sarl.core.Schedules
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
-import java.util.Queue
 import java.util.Random
 import java.util.TreeMap
 import java.util.UUID
-import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.ConcurrentSkipListMap
 import java.util.concurrent.atomic.AtomicInteger
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Segment2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
+import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
  * @author hadrien
@@ -66,7 +67,7 @@ agent EnvironmentAgent {
 	var win : Window
 	var protestorResp = new AtomicInteger(0)
 	var crsResp = new AtomicInteger(0)
-	var influenceList : Queue<Influence> = new ConcurrentLinkedQueue<Influence>()
+	var influenceList : ConcurrentSkipListMap<UUID, Influence> = new ConcurrentSkipListMap<UUID, Influence>()
 	
 	var aggObjs : TreeMap<UUID,Destroyable>
 	
@@ -85,11 +86,10 @@ agent EnvironmentAgent {
 		// INIT BEHAVIORS, TOLERANCES AND PROTESTORBODY LIST
 		this.protestorList = new TreeMap<UUID, ProtestorBody>
 		var rand : Random = new Random()
-		var b : int[] = newIntArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
-		
+		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  10 //rand.nextInt(101) 
+			var r1 =  10.0 //rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -181,14 +181,14 @@ agent EnvironmentAgent {
 		for (entry : this.crsList.entrySet()) { // CREATE PROTESTOR AGENT
 			CRS.spawnInContextWithID(entry.getKey(), defaultContext)
 		}
-		GraphSearch_Utils.printGraphDebug(rootTree, false)
+//		GraphSearch_Utils.printGraphDebug(rootTree, false)
 	}
 
 
 	on AgentSpawned {
 		// Quand tout les protestors on spawn lance la simu
 		var cpt = this.agentSpawned.incrementAndGet()
-		if(this.agentSpawned == this.nbPro+this.nbCrs){
+		if(this.agentSpawned == this.nbPro + this.nbCrs){
 			info("All agents have spawned")
 			StartSim()
 		}
@@ -208,13 +208,25 @@ agent EnvironmentAgent {
 			var uuidObj :UUID = null
 			if (entry.getValue().getType() != Types.protestor_agg) {
 				obj = ParamSimu.neutralObj
+				emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0))[it.UUID == id]
 			}else{
-				//if aggobj in percept -> attack else neutralobj
+				var seeAggObj = false
+				for(p : percept){
+					if(p.getName()==Types.destroyable){
+						obj = p.getShape()
+						emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0,false))[it.UUID == id]
+						seeAggObj = true
+						break
+					}
+				}
+				if (!seeAggObj) {
+					obj = ParamSimu.neutralObj
+					emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0,true))[it.UUID == id]
+				}
+				//if aggobj in percept -> attack else neutralobj //???????
 				//get closest aggobj
-				obj = this.aggObjs.firstEntry().getValue().getArea()
-				uuidObj = this.aggObjs.firstKey()
 			}
-			emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0))[it.UUID == id]
+			
 		}
 		
 		for (entry : this.crsList.entrySet()) {//CRS
@@ -241,7 +253,7 @@ agent EnvironmentAgent {
 	on InfluenceEvent { // reponse des agents
 		var cpt : int
 		
-		this.influenceList.add(occurrence.influence)
+		this.influenceList.put(occurrence.influence.getUuid(), occurrence.influence)
 		
 		if (occurrence.influence.isProtestor()) {
 			cpt = this.protestorResp.incrementAndGet() + this.crsResp.get()
@@ -251,14 +263,15 @@ agent EnvironmentAgent {
 		
 		if (cpt == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
 			this.protestorResp.set(0)
+
+			resolveInfluences(this.influenceList)//par references ?
 			
-				//resolveinf
-			
-			for (influence : this.influenceList) {
+			for (entry : this.influenceList.entrySet()) { 
+				var influence = entry.getValue()
 				var action : Action = influence.getAction()
 
 				if (action == Action.move) {//Movement
-					var body : MobileObject
+					var body : MobileObject //voir si on peut ne pas refaire le calcul car deja fait dans resolve influences
 					if(influence.isProtestor()){
 						body = this.protestorList.get(influence.getUuid()) as ProtestorBody
 					} else {
@@ -267,17 +280,63 @@ agent EnvironmentAgent {
 					var move = body.getArea() as Circle2d + influence.getMove() 
 					this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
 					
-				} else if (action == Action.arrest) {
-					
+<<<<<<< HEAD
 				} else if (action == Action.destroy) {
-					
-				} else if (action == Action.despawn){
-					
-				} else if (action == Action.smoke){
-					//nothing for now
-				} else if (action == Action.changeBeh){
+				
+				} else if (action == Action.arrest) {
+=======
+				}
+				
+				else if (action == Action.arrest) {
+					emit(new DeathEvent())[it.UUID == influence.getTarget()]
+					this.protestorList.remove(influence.getTarget())
+					// BESOIN DE L'ENLEVER DE L ENV
+				}
+				
+				else if (action == Action.destroy) {
+					var obj = this.aggObjs.get(influence.getTarget())
+					var life = obj.getLife()
+					if(life>=10){
+						obj.setLife(life-10) //references ????
+						if(life -10 == 0){
+							this.aggObjs.remove(influence.getTarget())
+							//ENLEVER DANS L'ENV AUSSI
+							if(this.aggObjs.size()==0){
+								//FINIR PARTIE LES CASSEURS ON GAGNE
+							}
+						}
+					}
+>>>>>>> fc000edf03e052b34aac8ee558e2adaba70f5b67
 					
 				}
+				
+				else if (action == Action.despawn) {
+					emit(new DeathEvent())[it.UUID == influence.getUuid()]
+					this.protestorList.remove(influence.getUuid())
+					//BESOIN DE L'ENLEVER DE L ENV
+					
+<<<<<<< HEAD
+				} else if (action == Action.changeBeh){
+					// change type from body
+					
+				} else if (action == Action.smoke) {
+					// nothing for now
+				} 
+=======
+				}
+				
+				else if (action == Action.smoke){
+					//nothing for now
+				}
+				
+				else if (action == Action.changeBeh){
+					var body = this.protestorList.get(influence.getUuid()) as ProtestorBody
+					body.setType(influence.getAgentType()) // copie ou ref ?
+					this.protestorList.replace(influence.getUuid(),body)
+					
+					//BESOIN DE CHANGER DANS L'ENV AUSSI
+				}
+>>>>>>> fc000edf03e052b34aac8ee558e2adaba70f5b67
 	
 			}
 			
@@ -291,23 +350,56 @@ agent EnvironmentAgent {
 //			
 //			}
 			StartSim()
+//			GraphSearch_Utils.printGraphDebug(rootTree, false)
 		}
 			
 	}
 	
-	def resolveInfluences(influences : ArrayList<Influence>){//j'ai mal
-		for(influence : influences){
+	def resolveInfluences(influences : ConcurrentSkipListMap<UUID,Influence>){//corrige les intersections de mouvement
+		
+		//var moving_agents : TreeMap<UUID, Segment2d> = new TreeMap<UUID, Segment2d>()
+		var ids : ArrayList<UUID> = new ArrayList<UUID>()
+		var segs : ArrayList<Segment2d> = new ArrayList<Segment2d>()
+		for(entry : influences.entrySet()){
+			var influence = entry.getValue()
 			var action : Action = influence.getAction()
-			if(action == Action.move){
-				
-			}
-			else if(action == Action.arrest){
-				
-			}
-			else if(action == Action.destroy){
-				
+			if (action == Action.move) {
+				var body : MobileObject
+				if (influence.isProtestor()) {
+					body = this.protestorList.get(influence.getUuid()) as ProtestorBody
+				} else {
+					body = this.crsList.get(influence.getUuid()) as CRSBody
+				}
+				var pos : Circle2d = body.getArea() as Circle2d
+				var move = pos + influence.getMove()
+				ids.add(influence.getUuid())
+				segs.add(new Segment2d(new Point2d(pos.getX(), pos.getY()), new Point2d(move.getX(), move.getY())))
 			}
 		}
+		var rand : Random = new Random()
+		for(var i =0; i < segs.size()-1; i++){
+			for (var j = i + 1; j < segs.size(); j++){
+				var seg2 = segs.get(j)
+				if (segs.get(i).intersects(seg2)) {
+					var id : UUID
+					if(rand.nextInt(2)==0){
+						id = ids.get(i)
+						segs.set(i, null)
+						var inf = influences.get(id)
+						inf.setMove(new Vector2d(0, 0))
+						influences.replace(id, inf)
+						break
+					} else {
+						id = ids.get(j)
+						segs.set(j, null)
+						var inf = influences.get(id)
+						inf.setMove(new Vector2d(0, 0))
+						influences.replace(id, inf)
+					}
+				}
+			}
+		}
+		
 	}
 
 	on Destroy {

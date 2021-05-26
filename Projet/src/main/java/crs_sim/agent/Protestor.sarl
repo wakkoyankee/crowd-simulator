@@ -3,6 +3,7 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.DeathEvent
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
@@ -13,6 +14,7 @@ import io.sarl.core.ContextLeft
 import io.sarl.core.DefaultContextInteractions
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
+import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
@@ -30,10 +32,10 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 class Memory {
 	@Accessors
-	var Behavior : int
+	var Behavior : double
 	@Accessors
 	var Tolerance : int
-	new(b : int , t : int){
+	new(b : double , t : int){
 		this.Behavior = b
 		this.Tolerance = t
 	}
@@ -43,7 +45,8 @@ agent Protestor {
 	uses Logging
 	uses Behaviors
 	uses DefaultContextInteractions
-	
+	uses Lifecycle
+
 	var P : Panic
 	var N : Neutral
 	var A : Aggressive
@@ -58,7 +61,7 @@ agent Protestor {
 		//info("The agent Protester was started.")
 	
 		
-		this.memory = new Memory(occurrence.parameters.get(0) as Integer, occurrence.parameters.get(1) as Integer)
+		this.memory = new Memory(occurrence.parameters.get(0) as Double, occurrence.parameters.get(1) as Integer)
 		
 		//info(this.memory.getBehavior() + " " + this.memory.getTolerance())
 		
@@ -105,7 +108,13 @@ agent Protestor {
 			this.N.registerBehavior
 		}
 		this.currBeh = newBeh
+		
 		//println(memory.getBehavior()+" LA")
+	}
+	
+
+	on DeathEvent{
+		killMe
 	}
 
 	on Destroy {

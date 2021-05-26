@@ -133,7 +133,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			// do we try to move out of the map ?
 			if (point.x > ParamSimu.mapSizeX || point.x < ParamSimu.mapSizeX || point.y > ParamSimu.mapSizeY ||
 				point.y < ParamSimu.mapSizeY){
-					println("Il faut supprimer l'élément (pas encore implémenté potentiellement a sup)")
+//					println("Il faut supprimer l'élément (pas encore implémenté potentiellement a sup)")
 			}
 			//body remain in this node after changing his position
 			if (CRS_Sim_Utils.AinB(point, area))
@@ -145,8 +145,8 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				insert(body)
 			}
 		} else {
-			print("Le résultat de childFit est : " +
-				CRS_Sim_Utils.childFit(body.position, area) + "\n")
+//			print("Le résultat de childFit est : " +
+//				CRS_Sim_Utils.childFit(body.position, area) + "\n")
 			// searching in which child the body is
 			try {
 				switch (CRS_Sim_Utils.childFit(body.position,area)) {

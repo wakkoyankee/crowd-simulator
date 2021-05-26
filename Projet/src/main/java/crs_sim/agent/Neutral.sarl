@@ -67,7 +67,7 @@ behavior Neutral {
 			var inf = new Influence(owner.getID(), Action.despawn, Types.protestor_neutral)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			////////////////////////////////////////////////////////////////////
-			//despawn
+			//despawn called depuis env ou ici je c po
 			return
 		}
 		
