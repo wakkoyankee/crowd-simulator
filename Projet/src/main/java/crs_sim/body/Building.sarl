@@ -47,4 +47,9 @@ class Building extends EnvObject {
 	def setArea(point: Point2d) : void {
 		print("It's a building.. youcan't move buildings bro!")
 	}
+	
+	override setType(type : Types) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

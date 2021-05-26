@@ -47,4 +47,8 @@ class CRSBody extends MobileObject {
 		position.setY(point.y)
 	}
 
+	override setType(type : Types) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

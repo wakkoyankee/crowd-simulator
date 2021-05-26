@@ -71,27 +71,45 @@ class CRS_Sim_Utils extends Rectangle2d {
 	// to check if the rectangle is in the area
 	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
 	static def childFit(rect : Rectangle2d, area : Rectangle2d) : int {
+		var x1 = area.getMinX
+		var x2 = area.getMinX + (area.getMaxX - area.getMinX) / 2
+		var x3 = area.getMaxX
+		var y1 = area.getMinY
+		var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2
+		var y3 = area.getMaxY
 		// = NW
 		if (containsRectangleRectangle(
-			area.getMinX, area.getMinY, area.getMaxX/2, area.getMaxY/2,
+			x1,
+			y1,
+			x2 - 1,
+			y2 - 1,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
 			return 1
 		// = NE
 		else if (containsRectangleRectangle(
-			area.getMaxX/2, area.getMinY, area.getMaxX, area.getMaxY/2,
+			x2,
+			y1,
+			x3,
+			y2 - 1,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
 			return 2
 		// = SW
 		else if (containsRectangleRectangle(
-			area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY,
+			x1,
+			y2,
+			x2 - 1,
+			y3,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
 			return 3
 		// = SE
-		else if(containsRectangleRectangle(
-			area.getMaxX/2, area.getMaxY/2, area.getMaxX, area.getMaxY,
+		else if (containsRectangleRectangle(
+			x2,
+			y2,
+			x3,
+			y3,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
 			return 4
@@ -101,24 +119,30 @@ class CRS_Sim_Utils extends Rectangle2d {
 	// to check if the point is in the area
 	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
 	static def childFit(point : Point2d, area : Rectangle2d) : int {
+		var x1 = area.getMinX
+		var x2 = area.getMinX + (area.getMaxX - area.getMinX) / 2 
+		var x3 = area.getMaxX
+		var y1 = area.getMinY
+		var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2 
+		var y3 = area.getMaxY
 		if (containsRectanglePoint(
-			area.getMinX, area.getMinY, area.getMaxX / 2, area.getMaxY / 2,
-			point.getX, point.getY
+			x1, y1, x2 - 1, y2 -1,
+			point.getX as int, point.getY as int
 		))
 			return 1
 		else if (containsRectanglePoint(
-			area.getMaxX / 2, area.getMinY, area.getMaxX, area.getMaxY / 2,
-			point.getX, point.getY
+			x2, y1, x3, y2 - 1,
+			point.getX as int , point.getY as int
 		))
 			return 2
 		else if (containsRectanglePoint(
-			area.getMinX, area.getMaxY/2, area.getMaxX/2, area.getMaxY,
-			point.getX, point.getY
+			x1, y2, x2 - 1, y3,
+			point.getX as int, point.getY as int
 		))
 			return 3
 		else if (containsRectanglePoint(
-			area.getMaxX/2, area.getMaxY/2, area.getMaxX, area.getMaxY,
-			point.getX, point.getY
+			x2, y2, x3, y3,
+			point.getX as int, point.getY as int
 		))
 			return 4
 		

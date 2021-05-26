@@ -165,7 +165,7 @@ public class Window {
 	//            		labelGJPanic[i].setLocation((int) c.getX() + ParamSimu.mapLeftOffset, (int) c.getY());
 	            	}else if(body.getName() == Types.protestor_neutral){//protestor neutral
 	            		Circle2d c = (Circle2d) body.getShape();
-	            		g.setColor(Color.PINK); 
+	            		g.setColor(Color.GREEN); 
 	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
 	//            		labelGJAgg[i].setVisible(false);
 	//            		labelGJPanic[i].setVisible(false);

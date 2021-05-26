@@ -321,7 +321,7 @@ agent EnvironmentAgent {
 			redraw()
 			this.influenceList.clear()
 			this.time++
-			if (this.time < 2000) {
+			if (this.time < 1500) {
 				println(this.time)
 				StartSim()
 				//trouver un wait meilleur

@@ -5,8 +5,10 @@ package crs_sim.environment
 
 import crs_sim.body.EnvObject
 import crs_sim.body.MobileObject
+import crs_sim.body.ProtestorBody
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
+import crs_sim.utils.Types
 import java.util.ArrayList
 import java.util.Collection
 import java.util.List
@@ -71,28 +73,35 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 		
 		def initChilds() {
 			var rect = new Rectangle2d()
+			var x1 = area.getMinX
+			var x2 = area.getMinX + (area.getMaxX - area.getMinX) / 2
+			var x3 = area.getMaxX
+			var y1 = area.getMinY
+			var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2
+			var y3 = area.getMaxY
 			if(firstChild != null && secondChild != null &&
 				thirdChild != null && fourthChild != null
 			) return false
 			else {
+				// -1 is to avoid the childs to be one on another 
 				// NW
 				setFirstChild(new QTNode(
-					new Rectangle2d(area.getMinX, area.getMinY, area.getMaxX / 2, area.getMaxY / 2)
+					new Rectangle2d(x1, y1, x2 - 1, y2 - 1)
 				))
 	
 				// NE
 	                setSecondChild(new QTNode(
-	                    new Rectangle2d(area.getMaxX / 2, area.getMinY, area.getMaxX / 2, area.getMaxY / 2)
+	                    new Rectangle2d(x2, y1, x3, y2 - 1)
 				))
 	
 				// SW
 				setThirdChild(new QTNode(
-	                    new Rectangle2d(area.getMinX, area.getMaxY / 2, area.getMaxX / 2, area.getMaxY / 2)
+	                    new Rectangle2d(x1, y2, x2 - 1, y3)
 				))
 	
 				// SE
 				setFourthChild(new QTNode(
-					new Rectangle2d(area.getMaxX / 2, area.getMaxY / 2, area.getMaxX/2, area.getMaxY / 2)
+					new Rectangle2d(x2, y2, x3, y3)
 				))
 
 			return true
@@ -128,12 +137,15 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 	
 	// should be called by the source node (otherwise we may can't find the object)
 	def moveBody(body: MobileObject, point: Point2d): void{
+//		println("Target : " + point.x + " " + point.y)
 		//the body your looking for is in this node
 		if (allUserData.contains(body)) {
 			// do we try to move out of the map ?
-			if (point.x > ParamSimu.mapSizeX || point.x < ParamSimu.mapSizeX || point.y > ParamSimu.mapSizeY ||
-				point.y < ParamSimu.mapSizeY){
-//					println("Il faut supprimer l'élément (pas encore implémenté potentiellement a sup)")
+			if (point.x > ParamSimu.mapSizeX || point.x < 0 || point.y > ParamSimu.mapSizeY ||
+				point.y < 0){
+				println("C'est en dehors de la map ça " + body.type + " " /*+ body.area*/ + " ! C'est en x : " + point.x + " y : " + point.y)
+				println("Je te tp où tu étais")
+				return
 			}
 			//body remain in this node after changing his position
 			if (CRS_Sim_Utils.AinB(point, area))
@@ -151,10 +163,13 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			try {
 				switch (CRS_Sim_Utils.childFit(body.position,area)) {
 					case 0:
-						if (point.x > ParamSimu.mapSizeX || point.x < ParamSimu.mapSizeX
-							|| point.y > ParamSimu.mapSizeY || point.y < ParamSimu.mapSizeY	){
-								println("Body should be deleted
-									__body : " + body.type + " Position : " + body.position)
+						if (point.x > ParamSimu.mapSizeX || point.x < 0
+							|| point.y > ParamSimu.mapSizeY || point.y < 0) {
+								println(
+									"C'est en dehors de la map ça " + body.type + " " + body.uuid + " ! C'est en x : " +
+										point.x + " y : " + point.y)
+								println("Je te tp où tu étais")
+								return
 							} else {
 								println("buddy your body is lost.. RIP
 								__body : " + body.type + " Position : " + body.position)
@@ -172,32 +187,64 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			} catch (e : Exception) {
 				print("Erreur de déplacement d'enfant \nLe résultat de childFit est : " +
 					CRS_Sim_Utils.childFit(body.position, area) + 
-					"body : " + body.type + " Position : " + body.position +"\n")
-				print("ici")
+					"body : " + body.type + " Position : " + body.position +"\nTargetted spot : " + point + "\n\n")
 			}
 		}
 	}
 
-	
-	def deleteBody(body : EnvObject, save : List<EnvObject>) : void {
+	def changeBehavior(body : EnvObject, state : Types) : void {
+		if (body instanceof ProtestorBody) {
+			print("you can't change the behavior of something else than a protestor")
+			return
+		}
 		// the body your looking for is in this node
 		if (allUserData.contains(body)) {
-			save.add(body)//__________________serait cool de save d'autres infos genre date d'arrivée etc
-			removeUserData(body)
+			body.type = state;
 		} else {
 			// searching in which child the body is
 			switch (CRS_Sim_Utils.childFit(body.position,area)) {
 				case 0:
 					print("buddy your body is lost.. RIP")
 				case 1:
-					firstChild.deleteBody(body, save)
+					firstChild.changeBehavior(body, state)
 				case 2:
-					secondChild.deleteBody(body, save)
+					secondChild.changeBehavior(body, state)
 				case 3:
-					thirdChild.deleteBody(body, save)
+					thirdChild.changeBehavior(body, state)
 				case 4:
-					fourthChild.deleteBody(body, save)
+					fourthChild.changeBehavior(body, state)
 			}
 		}
 	}
+	
+	def deleteBody(body : EnvObject, save : List<EnvObject>) : void {
+		// the body your looking for is in this node
+		if (allUserData.contains(body)) {
+			save.add(body)//__________________serait cool de save d'autres infos genre date d'arrivée etc
+			removeUserData(body)
+			print("Body deleted : " + body)
+		} else {
+			try {
+				// searching in which child the body is
+				switch (CRS_Sim_Utils.childFit(body.position,area)) {
+					case 0:
+						print("buddy your body is lost.. RIP")
+					case 1:
+						firstChild.deleteBody(body, save)
+					case 2:
+						secondChild.deleteBody(body, save)
+					case 3:
+						thirdChild.deleteBody(body, save)
+					case 4:
+						fourthChild.deleteBody(body, save)
+				}
+			} catch (e : Exception) {
+				print("Erreur de suppression\nLe résultat de childFit est : " +
+						CRS_Sim_Utils.childFit(body.position, area) + "body : " + body.type + " Position : " +
+					body.position + "\n")
+			}
+		}
+	}
+	
+	
 }

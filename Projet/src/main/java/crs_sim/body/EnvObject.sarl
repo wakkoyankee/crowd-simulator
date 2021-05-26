@@ -23,6 +23,7 @@ abstract class EnvObject {
 	abstract def getPosition : Point2d
 	abstract def setArea(area: Shape2d<?>) : void
 	abstract def setArea(x : int, y : int) : void
-	abstract def setArea(point: Point2d) : void
+	abstract def setArea(point : Point2d) : void
+	abstract def setType(type : Types) : void
 	
 }
