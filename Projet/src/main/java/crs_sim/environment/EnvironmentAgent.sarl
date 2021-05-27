@@ -279,6 +279,7 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.arrest) {
 					emit(new DeathEvent())[it.UUID == influence.getTarget()]
+					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), null)
 					this.protestorList.remove(influence.getTarget())
 					// BESOIN DE L'ENLEVER DE L ENV
 				}
@@ -300,9 +301,10 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.despawn) {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
+					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), null)
 					this.protestorList.remove(influence.getUuid())
-					//BESOIN DE L'ENLEVER DE L ENV
-					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()) , null)
+					//BESOIN DE L'ENLEVER DE L ENVgetUuid
+					
 				} else if (action == Action.smoke) {
 					// nothing for now
 				}				
