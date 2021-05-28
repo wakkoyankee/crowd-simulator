@@ -10,6 +10,8 @@ import java.util.List
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import crs_sim.body.EnvObject
+import crs_sim.body.ProtestorBody
+import crs_sim.body.CRSBody
 
 /** 
  * @author Thomas
@@ -88,13 +90,17 @@ class GraphSearch_Utils {
 	}
 
 	// perception iterative BFS
-	static def PerceptBFS(root : QTNode, body : EnvObject) : List<Percept> {
+	static def PerceptBFS(root : QTNode, perception: Circle2d) : List<Percept> {
 		var result : List<Percept>
 		var stack : List<QTNode>
 		var currentNode : QTNode
-		var perception : Circle2d = body.area as Circle2d
-
-
+//		var perception : Circle2d = body.area as Circle2d
+//		if(body instanceof ProtestorBody)	
+//			perception.radius = ParamSimu.RadiusPerceptProtestor
+//		else if (body instanceof CRSBody)
+//			perception.radius = ParamSimu.RadiusPerceptCrs
+//		else
+//			println("La perception ne concerne que les agents humains")
 		result = new ArrayList<Percept>
 		stack = new ArrayList<QTNode>
 
@@ -125,7 +131,7 @@ class GraphSearch_Utils {
 			}
 			result.addAll(currentNode.getPercept(perception)) 	// à faire dans les bodies
 		}
-		result.remove(body)
+//		result.remove(body)
 //		print(result.size)
 //		for(var i = 0; i<result.size; i++){
 //			print(result.get(i).shape)
