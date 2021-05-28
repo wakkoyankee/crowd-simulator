@@ -37,21 +37,6 @@ skill MovementSkill implements MovementCapacity {
 		// You should put all the resource release statements in this block of code.
 		//info("Uninstalling the skill")
 	}
-	
-	def distance_vector(V : Vector2d) {
-		return Math.sqrt(V.getX() ** 2 + V.getY() ** 2)
-	}
-	
-	def percent_distance_vector(V : Vector2d, T : int){
-		return distance_vector(V) / T
-	}
-	
-	def normalize_vector(V : Vector2d, T : int){
-		V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / T))
-		V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / T))
-		return V
-	}
-	
 
 	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d {
 		// TODO Auto-generated code.
@@ -59,118 +44,62 @@ skill MovementSkill implements MovementCapacity {
 //		return new Vector2d(1, 1)
 		
 		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
-		print('nX. = ')
-		println(v.getX())
-		print('nY. = ')
-		println(v.getY())
-		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
-		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
-		print('nX = ')
-		println(v.getX())
-		print('nY = ')
-		println(v.getY())
+		v.setX(v.getX() / ((v.getX() + v.getY()) / ParamSimu.TargetForce))
+		v.setY(v.getY() / ((v.getX() + v.getY()) / ParamSimu.TargetForce))
 		for (target : ListOfTarget) {
 			if (target.getName() == Types.protestor_panic){
 				var shape : Circle2d = target.getShape() as Circle2d
-				var V : Vector2d = new Vector2d(position.getX() - shape.getX(), position.getY() - shape.getY())
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.PanicForce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.PanicForce))
-				v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-				v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
-				//v.setX(ParamSimu.NeutralForce * (position.getX() - shape.getX()) + v.getX())
-				// v.setY(ParamSimu.PanicForce * (position.getY() - shape.getY()) + v.getY())
+				v.setX(ParamSimu.PanicForce * (position.getX() - shape.getX()) + v.getX())
+				v.setY(ParamSimu.PanicForce * (position.getY() - shape.getY()) + v.getY())	
 			}
 			if (target.getName() == Types.protestor_neutral) {
 				var shape : Circle2d = target.getShape() as Circle2d
-				var V : Vector2d = new Vector2d(position.getX() - shape.getX(), position.getY() - shape.getY())
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.NeutralForce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.NeutralForce))
-				v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-				v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+				v.setX(ParamSimu.NeutralForce * (position.getX() - shape.getX()) + v.getX())
+				v.setY(ParamSimu.NeutralForce * (position.getY() - shape.getY()) + v.getY())
 			}
 			if (target.getName() == Types.protestor_agg) {
 				var shape : Circle2d = target.getShape() as Circle2d
-				var V : Vector2d = new Vector2d(position.getX() - shape.getX(), position.getY() - shape.getY())
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.AgressiveForce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.AgressiveForce))
-				v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-				v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+				v.setX(ParamSimu.AgressiveForce * (position.getX() - shape.getX()) + v.getX())
+				v.setY(ParamSimu.AgressiveForce * (position.getY() - shape.getY()) + v.getY())	
 			}
 			if (target.getName() == Types.building) {
 				var shape : Rectangle2d = target.getShape() as Rectangle2d
 				if (v.getX() < shape.getMinX()) {
 					if (v.getY() < shape.getMinY()) { // pointe sud ouest du rectangle
-//						var a : double = (position.getX() - shape.getMinX() + v.getX()) / 100
-//						var b : double = (position.getY() - shape.getMinY() + v.getY()) / 100
-//						v.setX(ParamSimu.BuildingForce * (1 - a))
-//						v.setY(ParamSimu.BuildingForce * (1 - b))
-						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMinY())
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-						v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMinX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMinY()) + v.getY())
 					}
 					else if (v.getY() > shape.getMaxY()) { // pointe nord ouest du rectangle
-						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMaxY())
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-						v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMinX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMaxY()) + v.getY())
 					}
 					else { // cote ouest du rectangle
-						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), 0)
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-						
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMinX()) + v.getX())
 					}
 				}
 				else if (v.getX() > shape.getMaxX()) {
 					if (v.getY() < shape.getMinY()) { // pointe sud est du rectangle
-						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMinY())
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-						v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMaxX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMinY()) + v.getY())
 					} else if (v.getY() > shape.getMaxY()) { // pointe nord est du rectangle
-						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMaxY())
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
-						v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMaxX()) + v.getX())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMaxY()) + v.getY())
 					} else { // cote est du rectangle
-						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), 0)
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
+						v.setX(ParamSimu.BuildingForce * (position.getX() - shape.getMaxX()) + v.getX())
 					}
 				}
 				else {
 					if (v.getY() < shape.getMinY()) { // cote sud du rectangle
-						var V : Vector2d = new Vector2d(0, position.getY() - shape.getMinY())
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMinY()) + v.getY())
 					}
 					else { // cote nord du rectangle
-						var V : Vector2d = new Vector2d(0, position.getY() - shape.getMaxY())
-						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
-						v.setY((V.getY() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getY())
+						v.setY(ParamSimu.BuildingForce * (position.getY() - shape.getMaxY()) + v.getY())
 					}
 				}	
 			}
 		}
-		print('X. = ')
-		println(v.getX())
-		print('Y. = ')
-		println(v.getY())
-		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.Speed))
-		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.Speed))
-		print('X = ')
-		println(v.getX())
-		print('Y = ')
-		println(v.getY())
+		v.setX(v.getX() / ((v.getX() + v.getY()) / ParamSimu.Speed))
+		v.setY(v.getY() / ((v.getX() + v.getY()) / ParamSimu.Speed))
 		return v;
 		
 	}
