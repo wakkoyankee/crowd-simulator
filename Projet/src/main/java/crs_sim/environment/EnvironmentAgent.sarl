@@ -201,8 +201,8 @@ agent EnvironmentAgent {
 		for (entry : this.protestorList.entrySet()) {//PROTESTORS
 			var id = entry.getKey()
 			var body = entry.getValue().getArea() as Circle2d
-			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptProtestor)
-			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
+//			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptProtestor)
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, entry.getValue())
 			var obj : Shape2d<?>
 			var uuidObj :UUID = null
 			if (entry.getValue().getType() != Types.protestor_agg) {
@@ -231,8 +231,8 @@ agent EnvironmentAgent {
 		for (entry : this.crsList.entrySet()) {//CRS
 			var id = entry.getKey()
 			var body = entry.getValue().getArea() as Circle2d
-			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptCrs)
-			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
+//			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptCrs)
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, entry.getValue())
 			emit(new PerceptionEvent(body as Shape2d<?>, percept, 0))[it.UUID == id]
 		}
 		

@@ -14,7 +14,7 @@ public class ParamSimu {
 	public static final double maxObjectsPerChild = 4;
 	public static final int maxPanic = 30;
 	public static final int minAggressive = 70;
-	public static final int nbProtestors = 3;
+	public static final int nbProtestors = 10;
 	public static final int nbCRS = 3;
 	public static final int PanicForce = 1;
 	public static final int NeutralForce = 1;
