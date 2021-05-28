@@ -11,7 +11,7 @@ public class ParamSimu {
 	public static final double mapSizeX = 1000;
 	public static final double mapSizeY = 1000;
 	public static final int mapLeftOffset = 460;
-	public static final double maxObjectsPerChild = 4;
+	public static final double maxObjectsPerChild = 5;
 	public static final int maxPanic = 30;
 	public static final int minAggressive = 70;
 	public static final int nbProtestors = 10;
@@ -24,7 +24,7 @@ public class ParamSimu {
 	public static final int TargetForce = 10;
 	public static final int RadiusPerceptProtestor = 100;
 
-	public static final double Speed = 1; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
 	public static final int PanicOnPanic = 5;
 	public static final int RadiusPerceptCrs = 100;
 
@@ -32,6 +32,152 @@ public class ParamSimu {
 	//objectif agg
 	
 	public static final  Circle2d[] initCollecProtestor= {
+//			//rt JT
+//			new Circle2d(950, 320, 1),
+//			new Circle2d(960, 320, 1),
+//			new Circle2d(970, 320, 1),
+//			new Circle2d(980, 320, 1),
+//			new Circle2d(990, 320, 1),
+//			// rt AP
+//			new Circle2d(50, 320, 1),
+//			new Circle2d(60, 320, 1),
+//			new Circle2d(70, 320, 1),
+//			new Circle2d(80, 320, 1),
+//			new Circle2d(90, 320, 1),
+//			// rt b
+//			new Circle2d(310, 50, 1),
+//			new Circle2d(315, 50, 1),
+//			new Circle2d(320, 50, 1),
+//			new Circle2d(325, 50, 1),
+//			new Circle2d(330, 50, 1),
+			// rt PEH
+//			new Circle2d(610, 50, 1),
+//			new Circle2d(615, 50, 1),
+//			new Circle2d(620, 50, 1),
+//			new Circle2d(625, 50, 1),
+//			new Circle2d(630, 50, 1),
+//			new Circle2d(635, 50, 1),
+//			new Circle2d(640, 50, 1),
+//			new Circle2d(645, 50, 1),
+//			new Circle2d(650, 50, 1),
+//			new Circle2d(655, 50, 1),
+//			new Circle2d(660, 50, 1),
+//			new Circle2d(665, 50, 1),
+//			new Circle2d(670, 50, 1),
+//			new Circle2d(675, 50, 1),
+//			new Circle2d(680, 50, 1),
+//			new Circle2d(685, 50, 1),
+//			new Circle2d(690, 50, 1),
+//			new Circle2d(695, 50, 1),
+//			new Circle2d(610, 75, 1),
+//			new Circle2d(615, 75, 1),
+//			new Circle2d(620, 75, 1),
+//			new Circle2d(625, 75, 1),
+//			new Circle2d(630, 75, 1),
+//			new Circle2d(635, 75, 1),
+//			new Circle2d(640, 75, 1),
+//			new Circle2d(645, 75, 1),
+//			new Circle2d(650, 75, 1),
+//			new Circle2d(655, 75, 1),
+//			new Circle2d(660, 75, 1),
+//			new Circle2d(665, 75, 1),
+//			new Circle2d(670, 75, 1),
+//			new Circle2d(675, 75, 1),
+//			new Circle2d(680, 75, 1),
+//			new Circle2d(685, 75, 1),
+//			new Circle2d(690, 75, 1),
+//			new Circle2d(695, 75, 1),
+//			new Circle2d(610, 100, 1),
+//			new Circle2d(615, 100, 1),
+//			new Circle2d(620, 100, 1),
+//			new Circle2d(625, 100, 1),
+//			new Circle2d(630, 100, 1),
+//			new Circle2d(635, 100, 1),
+//			new Circle2d(640, 100, 1),
+//			new Circle2d(645, 100, 1),
+//			new Circle2d(650, 100, 1),
+//			new Circle2d(655, 100, 1),
+//			new Circle2d(660, 100, 1),
+//			new Circle2d(665, 100, 1),
+//			new Circle2d(670, 100, 1),
+//			new Circle2d(675, 100, 1),
+//			new Circle2d(680, 100, 1),
+//			new Circle2d(685, 100, 1),
+//			new Circle2d(690, 100, 1),
+//			new Circle2d(695, 100, 1),
+//			new Circle2d(610, 150, 1),
+//			new Circle2d(615, 150, 1),
+//			new Circle2d(620, 150, 1),
+//			new Circle2d(625, 150, 1),
+//			new Circle2d(630, 150, 1),
+//			new Circle2d(635, 150, 1),
+//			new Circle2d(640, 150, 1),
+//			new Circle2d(645, 150, 1),
+//			new Circle2d(650, 150, 1),
+//			new Circle2d(655, 150, 1),
+//			new Circle2d(660, 150, 1),
+//			new Circle2d(665, 150, 1),
+//			new Circle2d(670, 150, 1),
+//			new Circle2d(675, 150, 1),
+//			new Circle2d(680, 150, 1),
+//			new Circle2d(685, 150, 1),
+//			new Circle2d(690, 150, 1),
+//			new Circle2d(695, 150, 1),
+//			new Circle2d(610, 200, 1),
+//			new Circle2d(615, 200, 1),
+//			new Circle2d(620, 200, 1),
+//			new Circle2d(625, 200, 1),
+//			new Circle2d(630, 200, 1),
+//			new Circle2d(635, 200, 1),
+//			new Circle2d(640, 200, 1),
+//			new Circle2d(645, 200, 1),
+//			new Circle2d(650, 200, 1),
+//			new Circle2d(655, 200, 1),
+//			new Circle2d(660, 200, 1),
+//			new Circle2d(665, 200, 1),
+//			new Circle2d(670, 200, 1),
+//			new Circle2d(675, 200, 1),
+//			new Circle2d(680, 200, 1),
+//			new Circle2d(685, 200, 1),
+//			new Circle2d(690, 200, 1),
+//			new Circle2d(695, 200, 1),
+//			new Circle2d(610, 250, 1),
+//			new Circle2d(615, 250, 1),
+//			new Circle2d(620, 250, 1),
+//			new Circle2d(625, 250, 1),
+//			new Circle2d(630, 250, 1),
+//			new Circle2d(635, 250, 1),
+//			new Circle2d(640, 250, 1),
+//			new Circle2d(645, 250, 1),
+//			new Circle2d(650, 250, 1),
+//			new Circle2d(655, 250, 1),
+//			new Circle2d(660, 250, 1),
+//			new Circle2d(665, 250, 1),
+//			new Circle2d(670, 250, 1),
+//			new Circle2d(675, 250, 1),
+//			new Circle2d(680, 250, 1),
+//			new Circle2d(685, 250, 1),
+//			new Circle2d(690, 250, 1),
+//			new Circle2d(695, 250, 1),
+//			new Circle2d(610, 300, 1),
+//			new Circle2d(615, 300, 1),
+//			new Circle2d(620, 300, 1),
+//			new Circle2d(625, 300, 1),
+//			new Circle2d(630, 300, 1),
+//			new Circle2d(635, 300, 1),
+//			new Circle2d(640, 300, 1),
+//			new Circle2d(645, 300, 1),
+//			new Circle2d(650, 300, 1),
+//			new Circle2d(655, 300, 1),
+//			new Circle2d(660, 300, 1),
+//			new Circle2d(665, 300, 1),
+//			new Circle2d(670, 300, 1),
+//			new Circle2d(675, 300, 1),
+//			new Circle2d(680, 300, 1),
+//			new Circle2d(685, 300, 1),
+//			new Circle2d(690, 300, 1),
+//			new Circle2d(695, 300, 1),
+			// place
 			new Circle2d(375, 375, 1),
 			new Circle2d(425, 375, 1),
 			new Circle2d(475, 375, 1),
@@ -102,9 +248,14 @@ public class ParamSimu {
 	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); //au pif
 	
 	public static final Destroyable[] aggObjs = {
-			new Destroyable(new Rectangle2d(700,375,300,200),Types.destroyable), // Bat 6
-			new Destroyable(new Rectangle2d(0,700,300,300),Types.destroyable), // Bat 7
-			new Destroyable(new Rectangle2d(350,700,75,300),Types.destroyable) // Bat 8
+			new Destroyable(new Rectangle2d(350,725,25,75),Types.destroyable), 
+			new Destroyable(new Rectangle2d(275,725,25,75),Types.destroyable),
+			new Destroyable(new Rectangle2d(350,825,25,75),Types.destroyable), 
+			new Destroyable(new Rectangle2d(275,825,25,75),Types.destroyable), 
+			new Destroyable(new Rectangle2d(200,625,75,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(200,700,75,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(100,625,75,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(100,700,75,25),Types.destroyable)  
 
 	};
 }

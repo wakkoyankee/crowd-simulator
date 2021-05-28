@@ -71,12 +71,12 @@ class CRS_Sim_Utils extends Rectangle2d {
 	// to check if the rectangle is in the area
 	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
 	static def childFit(rect : Rectangle2d, area : Rectangle2d) : int {
-		var x1 = area.getMinX
-		var x2 = area.getMinX + (area.getMaxX - area.getMinX) / 2
-		var x3 = area.getMaxX
-		var y1 = area.getMinY
-		var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2
-		var y3 = area.getMaxY
+		var x1 = (area.getMinX) as int
+		var x2 = (area.getMinX + (area.getMaxX - area.getMinX) / 2) as int
+		var x3 = (area.getMaxX) as int
+		var y1 = (area.getMinY) as int
+		var y2 = (area.getMinY + (area.getMaxY - area.getMinY) / 2) as int
+		var y3 = (area.getMaxY) as int
 		// = NW
 		if (containsRectangleRectangle(
 			x1,

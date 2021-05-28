@@ -73,12 +73,12 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 		
 		def initChilds() {
 			var rect = new Rectangle2d()
-			var x1 = area.getMinX
-			var x2 = area.getMinX + (area.getMaxX - area.getMinX) / 2
-			var x3 = area.getMaxX
-			var y1 = area.getMinY
-			var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2
-			var y3 = area.getMaxY
+			var x1 = (area.getMinX) as int
+			var x2 = (area.getMinX + (area.getMaxX - area.getMinX) / 2) as int
+			var x3 = (area.getMaxX) as int
+			var y1 = (area.getMinY) as int
+			var y2 = (area.getMinY + (area.getMaxY - area.getMinY) / 2) as int
+			var y3 = (area.getMaxY) as int
 			if(firstChild != null && secondChild != null &&
 				thirdChild != null && fourthChild != null
 			) return false
@@ -218,12 +218,13 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 		}
 	}
 	
-	def deleteBody(body : EnvObject, save : List<EnvObject>) : void {
+	def deleteBody(body : EnvObject, save : ArrayList<EnvObject>) : void {
 		// the body your looking for is in this node
 		if (allUserData.contains(body)) {
-			save.add(body)//__________________serait cool de save d'autres infos genre date d'arrivée etc
+//			save.add(body)//__________________serait cool de save d'autres infos genre date d'arrivée etc
 			removeUserData(body)
 			print("Body deleted : " + body)
+			return
 		} else {
 			try {
 				// searching in which child the body is
@@ -243,6 +244,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				print("Erreur de suppression\nLe résultat de childFit est : " +
 						CRS_Sim_Utils.childFit(body.position, area) + "body : " + body.type + " Position : " +
 					body.position + "\n")
+				print(e)
 			}
 		}
 	}

@@ -74,6 +74,7 @@ agent EnvironmentAgent {
 	var time : int = 0
 	var nbPro = 0
 	var nbCrs = 0
+	var save : ArrayList<EnvObject>
 	
 //	var b = [1,2,3,4,5,6]
 //	var c = b[0]
@@ -201,8 +202,8 @@ agent EnvironmentAgent {
 		for (entry : this.protestorList.entrySet()) {//PROTESTORS
 			var id = entry.getKey()
 			var body = entry.getValue().getArea() as Circle2d
-//			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptProtestor)
-			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, entry.getValue())
+			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptProtestor)
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
 			var obj : Shape2d<?>
 			var uuidObj :UUID = null
 			if (entry.getValue().getType() != Types.protestor_agg) {
@@ -231,8 +232,8 @@ agent EnvironmentAgent {
 		for (entry : this.crsList.entrySet()) {//CRS
 			var id = entry.getKey()
 			var body = entry.getValue().getArea() as Circle2d
-//			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptCrs)
-			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, entry.getValue())
+			var perceptionZone : Circle2d = new Circle2d(body.getX(), body.getY(), ParamSimu.RadiusPerceptCrs)
+			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
 			emit(new PerceptionEvent(body as Shape2d<?>, percept, 0))[it.UUID == id]
 		}
 		
@@ -279,7 +280,7 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.arrest) {
 					emit(new DeathEvent())[it.UUID == influence.getTarget()]
-					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), null)
+					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), save)
 					this.protestorList.remove(influence.getTarget())
 					// BESOIN DE L'ENLEVER DE L ENV
 				}
@@ -301,7 +302,7 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.despawn) {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
-					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), null)
+					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), save)
 					this.protestorList.remove(influence.getUuid())
 					//BESOIN DE L'ENLEVER DE L ENVgetUuid
 					
@@ -323,7 +324,7 @@ agent EnvironmentAgent {
 			redraw()
 			this.influenceList.clear()
 			this.time++
-			if (this.time < 1500) {
+			if (this.time < 15000) {
 				println(this.time)
 				StartSim()
 				//trouver un wait meilleur
