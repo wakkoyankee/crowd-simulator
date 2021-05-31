@@ -304,6 +304,7 @@ agent EnvironmentAgent {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
 					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), save)
 					this.protestorList.remove(influence.getUuid())
+					nbPro--;
 					//BESOIN DE L'ENLEVER DE L ENVgetUuid
 					
 				} else if (action == Action.smoke) {
