@@ -104,14 +104,14 @@ skill MovementSkill implements MovementCapacity {
 
 	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d {
 		// TODO Auto-generated code.
-//		//println("SKILL APPELLE" + i)
+		//println("SKILL APPELLE" + i)
 //		return new Vector2d(1, 1)
 		//println(Math.abs(0))
 		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
-		//print('tX. = ')
-		//println(v.getX())
-		//print('tY. = ')
-		//println(v.getY())
+		print('tX. = ')
+		println(obj.getMinX())
+		print('tY. = ')
+		println(obj.getMinY())
 		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
 		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
 		//print('tX = ')
@@ -130,6 +130,11 @@ skill MovementSkill implements MovementCapacity {
 				//println(v.getX())
 				//print('p.Y = ')
 				//println(v.getY())
+				if (position.getX() == shape.getX() && position.getY() == shape.getY()){
+					V.setX(0)
+					V.setY(0)
+				}
+				else {
 				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.PanicForce))
 				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.PanicForce))
 				//print('p..X = ')
@@ -144,6 +149,7 @@ skill MovementSkill implements MovementCapacity {
 				//println(v.getX())
 				//print('pY = ')
 				//println(v.getY())
+				}
 			}
 			if (target.getName() == Types.protestor_neutral) {
 				var shape : Circle2d = target.getShape() as Circle2d
@@ -184,6 +190,11 @@ skill MovementSkill implements MovementCapacity {
 			if (target.getName() == Types.protestor_agg) {
 				var shape : Circle2d = target.getShape() as Circle2d
 				var V : Vector2d = new Vector2d(position.getX() - shape.getX(), position.getY() - shape.getY())
+				if (position.getX() == shape.getX() && position.getY() == shape.getY()){
+					V.setX(0)
+					V.setY(0)
+				}
+				else {
 				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.AgressiveForce))
 				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.AgressiveForce))
 				v.setX((V.getX() * (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))) + v.getX())
@@ -192,6 +203,7 @@ skill MovementSkill implements MovementCapacity {
 		//println(v.getX())
 		//print('aY = ')
 		//println(v.getY())
+				}
 			}
 			if (target.getName() == Types.building) {
 				var shape : Rectangle2d = target.getShape() as Rectangle2d

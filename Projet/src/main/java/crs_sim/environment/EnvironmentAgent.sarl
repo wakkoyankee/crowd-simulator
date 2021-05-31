@@ -89,7 +89,7 @@ agent EnvironmentAgent {
 		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  50.0 //rand.nextInt(101) 
+			var r1 =  rand.nextInt(101) //50.0
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -285,20 +285,20 @@ agent EnvironmentAgent {
 					// BESOIN DE L'ENLEVER DE L ENV
 				}
 				
-				else if (action == Action.destroy) {
-					var obj = this.aggObjs.get(influence.getTarget())
-					var life = obj.getLife()
-					if(life>=10){
-						obj.setLife(life-10) //references ????
-						if(life -10 == 0){
-							this.aggObjs.remove(influence.getTarget())
-							//ENLEVER DANS L'ENV AUSSI
-							if(this.aggObjs.size()==0){
-								//FINIR PARTIE LES CASSEURS ON GAGNE
-							}
-						}
-					}					
-				}
+//				else if (action == Action.destroy) {
+//					var obj = this.aggObjs.get(influence.getTarget())
+//					var life = obj.getLife()
+//					if(life>=10){
+//						obj.setLife(life-10) //references ????
+//						if(life -10 == 0){
+//							this.aggObjs.remove(influence.getTarget())
+//							//ENLEVER DANS L'ENV AUSSI
+//							if(this.aggObjs.size()==0){
+//								//FINIR PARTIE LES CASSEURS ON GAGNE
+//							}
+//						}
+//					}					
+//				}
 				
 				else if (action == Action.despawn) {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
