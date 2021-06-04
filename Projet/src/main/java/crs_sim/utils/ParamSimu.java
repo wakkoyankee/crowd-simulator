@@ -12,9 +12,9 @@ public class ParamSimu {
 	public static final double mapSizeY = 1000;
 	public static final int mapLeftOffset = 460;
 	public static final double maxObjectsPerChild = 5;
-	public static final int maxPanic = 30;
-	public static final int minAggressive = 70;
-	public static final int nbProtestors = 35;
+	public static final int maxPanic = 10;
+	public static final int minAggressive = 90;
+	public static final int nbProtestors = 45;
 	public static final int nbCRS = 3;
 	public static final int PanicForce = 1;
 	public static final int NeutralForce = 1;
@@ -44,21 +44,21 @@ public class ParamSimu {
 			new Circle2d(70, 320, 1),
 			new Circle2d(80, 320, 1),
 			new Circle2d(90, 320, 1),
-			// rt b
+//			// rt b
 			new Circle2d(310, 50, 1),
 			new Circle2d(315, 50, 1),
 			new Circle2d(320, 50, 1),
 			new Circle2d(325, 50, 1),
 			new Circle2d(330, 50, 1),
-			// rt PEH
-			new Circle2d(610, 50, 1),
-			new Circle2d(615, 50, 1),
-			new Circle2d(620, 50, 1),
-			new Circle2d(625, 50, 1),
-			new Circle2d(630, 50, 1),
-			new Circle2d(635, 50, 1),
-			new Circle2d(640, 50, 1),
-			new Circle2d(645, 50, 1),
+//			// rt PEH
+//			new Circle2d(610, 50, 1),
+//			new Circle2d(615, 50, 1),
+//			new Circle2d(620, 50, 1),
+//			new Circle2d(625, 50, 1),
+//			new Circle2d(630, 50, 1),
+//			new Circle2d(635, 50, 1),
+//			new Circle2d(640, 50, 1),
+//			new Circle2d(645, 50, 1),
 //			new Circle2d(650, 50, 1),
 //			new Circle2d(655, 50, 1),
 //			new Circle2d(660, 50, 1),

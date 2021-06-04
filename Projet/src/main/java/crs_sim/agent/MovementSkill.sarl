@@ -44,9 +44,9 @@ skill MovementSkill implements MovementCapacity {
 	}
 	
 	def percent_distance_vector(V : Vector2d, T : int) : double{
-		println('% dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) / T)
-		println('dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) )
-		println('T = ' +  T)
+//		println('% dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) / T)
+//		println('dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) )
+//		println('T = ' +  T)
 		return Math.sqrt(V.getX() ** 2 + V.getY() ** 2) / T
 	}
 	
@@ -81,34 +81,50 @@ skill MovementSkill implements MovementCapacity {
 	
 	def colision_building(R : Rectangle2d, P : Circle2d, V : Vector2d){
 		var C = new Point2d(P.getX() + V.getX(), P.getY() + V.getY())
-		if (CRS_Sim_Utils.AinB(C, R)){
+		println('colision C x = ' + C.getX())
+		println('colision C y = ' + C.getY())
+		println('colision P x = ' + P.getX())
+		println('colision P y = ' + P.getY())
+		if (C.getX <= R.getMaxX && C.getX() >= R.getMinX && C.getY() <= R.getMaxY && C.getY() >= R.getMinY){
+			println('colision Vb x = ' + V.getX())
+			println('colision Vb y = ' + V.getY())
 			if (P.getX() >= R.getMaxX){
-				V.setX(V.getX()*((R.getMaxX() - P.getX()) / V.getX()))
-				V.setY(V.getY()*((R.getMaxX() - P.getX()) / V.getX()))
+				V.setX(V.getX()*(Math.abs(R.getMaxX() - P.getX()) / V.getX()))
+				V.setY(V.getY()*(Math.abs(R.getMaxX() - P.getX()) / V.getX()))
+				println('colision x = ' + V.getX())
+				println('colision y = ' + V.getY())
 			}
-			else if (P.getX() <= P.getMinX){
-				V.setX(V.getX()*((R.getMinX() - P.getX()) / V.getX()))
-				V.setY(V.getY()*((R.getMinX() - P.getX()) / V.getX()))
+			else if (P.getX() <= R.getMinX){
+				V.setX(V.getX()*(Math.abs(R.getMinX() - P.getX()) / V.getX()))
+				V.setY(V.getY()*(Math.abs(R.getMinX() - P.getX()) / V.getX()))
+				println('colision x = ' + V.getX())
+				println('colision y = ' + V.getY())
 			}
 			else if (P.getY() >= R.getMaxY){
-				V.setX(V.getX()*((R.getMaxY() - P.getY()) / V.getY()))
-				V.setY(V.getY()*((R.getMaxY() - P.getY()) / V.getY()))
+				V.setX(V.getX()*(Math.abs(R.getMaxY() - P.getY()) / V.getY()))
+				V.setY(V.getY()*(Math.abs(R.getMaxY() - P.getY()) / V.getY()))
+				println('colision x = ' + V.getX())
+				println('colision y = ' + V.getY())
 			}
-			else if (P.getY() <= P.getMinY){
-				V.setX(V.getX()*((R.getMinY() - P.getY()) / V.getY()))
-				V.setY(V.getY()*((R.getMinY() - P.getY()) / V.getY()))
+			else if (P.getY() <= R.getMinY){
+				V.setX(V.getX()*(Math.abs(R.getMinY() - P.getY()) / V.getY()))
+				V.setY(V.getY()*(Math.abs(R.getMinY() - P.getY()) / V.getY()))
+				println('colision x = ' + V.getX())
+				println('colision y = ' + V.getY())
 			}
 		}
+		
 	}
 
 	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d {
 		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
-		println('objectif x = ' + obj.getMinX())
-		println('objectif y = ' + obj.getMinY())
+//		println('objectif x = ' + obj.getMinX())
+//		println('objectif y = ' + obj.getMinY())
 		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
 		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
 		//println('tX = ' + v.getX())
 		//println('tY = ' + v.getY())
+		
 		for (target : ListOfTarget) {
 		//println('position = ' + position.getX())
 		//println('position = ' + position.getY())
@@ -183,17 +199,17 @@ skill MovementSkill implements MovementCapacity {
 			}
 			if (target.getName() == Types.building) {
 				var shape : Rectangle2d = target.getShape() as Rectangle2d
-				println('hey !')
+				//println('hey !')
 				if (position.getX() < shape.getMinX()) {
 					if (position.getY() < shape.getMinY()) { // pointe sud ouest du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMinY())
-						println('minminX position = ' + position.getX())
-						println('minminY position = ' + position.getY())
-						println('minminX shape = ' + shape.getMinX())
-						println('minminY shape = ' + shape.getMinY())
+//						println('minminX position = ' + position.getX())
+//						println('minminY position = ' + position.getY())
+//						println('minminX shape = ' + shape.getMinX())
+//						println('minminY shape = ' + shape.getMinY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('minminX = ' + V.getX())
-						println('minminY = ' + V.getY())
+//						println('minminX = ' + V.getX())
+//						println('minminY = ' + V.getY())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -206,8 +222,8 @@ skill MovementSkill implements MovementCapacity {
 					else if (position.getY() > shape.getMaxY()) { // pointe nord ouest du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMaxY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('minminX = ' + V.getX())
-						println('minmaxY = ' + V.getY())
+//						println('minminX = ' + V.getX())
+//						println('minmaxY = ' + V.getY())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -216,7 +232,7 @@ skill MovementSkill implements MovementCapacity {
 					else { // cote ouest du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), 0)
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('min0X = ' + V.getX())
+//						println('min0X = ' + V.getX())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
 						
@@ -226,8 +242,8 @@ skill MovementSkill implements MovementCapacity {
 					if (position.getY() < shape.getMinY()) { // pointe sud est du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMinY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('maxminX = ' + V.getX())
-						println('maxminY = ' + V.getY())
+//						println('maxminX = ' + V.getX())
+//						println('maxminY = ' + V.getY())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -236,8 +252,8 @@ skill MovementSkill implements MovementCapacity {
 					 else if (position.getY() > shape.getMaxY()) { // pointe nord est du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMaxY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('maxmaxX = ' + V.getX())
-						println('maxmaxY = ' + V.getY())
+//						println('maxmaxX = ' + V.getX())
+//						println('maxmaxY = ' + V.getY())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -246,7 +262,7 @@ skill MovementSkill implements MovementCapacity {
 					 else { // cote est du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), 0)
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('max0X = ' + V.getX())
+//						println('max0X = ' + V.getX())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
 					}
@@ -255,14 +271,14 @@ skill MovementSkill implements MovementCapacity {
 					if (position.getY() < shape.getMinY()) { // cote sud du rectangle
 						var V : Vector2d = new Vector2d(0, position.getY() - shape.getMinY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('0minY = ' + V.getY())
+//						println('0minY = ' + V.getY())
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setY((V.getY() * P) + v.getY())
 					}
 					else { // cote nord du rectangle
 						var V : Vector2d = new Vector2d(0, position.getY() - shape.getMaxY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('0maxY = ' + V.getY())
+//						println('0maxY = ' + V.getY())
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setY((V.getY() * P) + v.getY())
 					}
@@ -272,16 +288,28 @@ skill MovementSkill implements MovementCapacity {
 		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.Speed))
 		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.Speed))
 		
-		//print('X. = ')
-		//println(v.getX())
-		//print('Y. = ')
-		//println(v.getY())
+		//println('X. = ' + v.getX())
+		//println('Y. = ' + v.getY())
 		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.Speed))
 		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.Speed))
 		//print('X = ')
 		//println(v.getX())
 		//print('Y = ')
 		//println(v.getY())
+		
+		for (target : ListOfTarget) {
+			if (target.getName() == Types.building) {
+				var shape : Rectangle2d = target.getShape() as Rectangle2d
+				colision_building(shape, position, v)
+				//normal_building(shape, position, v)
+//				if (CRS_Sim_Utils.AinB(position.center, shape)){
+//					if ()
+//				}
+			}
+		}
+		
+		
+		
 		return v;
 		
 	}
