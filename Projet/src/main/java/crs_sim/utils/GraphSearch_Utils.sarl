@@ -9,9 +9,6 @@ import java.util.ArrayList
 import java.util.List
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
-import crs_sim.body.EnvObject
-import crs_sim.body.ProtestorBody
-import crs_sim.body.CRSBody
 
 /** 
  * @author Thomas

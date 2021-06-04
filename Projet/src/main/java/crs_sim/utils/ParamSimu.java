@@ -238,7 +238,7 @@ public class ParamSimu {
 			new Building(new Rectangle2d(700,0,300,300),Types.building), // Bat 3
 			new Building(new Rectangle2d(0,350,300,200),Types.building), // Bat 4
 			new Building(new Rectangle2d(0,600,300,50),Types.building), // Bat 5
-			new Building(new Rectangle2d(700,375,300,200),Types.building), // Bat 6
+			new Building(new Rectangle2d(750,375,250,200),Types.building), // Bat 6
 			new Building(new Rectangle2d(0,700,300,300),Types.building), // Bat 7
 			new Building(new Rectangle2d(350,700,75,300),Types.building), // Bat 8
 			new Building(new Rectangle2d(475,700,75,300),Types.building), // Bat 9
@@ -255,7 +255,8 @@ public class ParamSimu {
 			new Destroyable(new Rectangle2d(200,625,75,25),Types.destroyable), 
 			new Destroyable(new Rectangle2d(200,700,75,25),Types.destroyable), 
 			new Destroyable(new Rectangle2d(100,625,75,25),Types.destroyable), 
-			new Destroyable(new Rectangle2d(100,700,75,25),Types.destroyable)  
+			new Destroyable(new Rectangle2d(100,700,75,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(700,375,50,200),Types.destroyable)  
 
 	};
 }
