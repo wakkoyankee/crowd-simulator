@@ -51,8 +51,8 @@ class CRS_Sim_Utils extends Rectangle2d {
 	
 	// true if A is inside B
 	static def AinB(A : Point2d, B : Rectangle2d) : boolean {
-		return A.getX > B.getMinX && A.getX < B.getMaxX 
-			&& A.getY > B.getMinY && A.getY < B.getMaxY;
+		return (A.getX as int > B.getMinX as int) && ((A.getX as int) < B.getMaxX as int)
+			&& (A.getY as int > B.getMinY as int) && ((A.getY as int) < B.getMaxY as int);
 	}
 
 	// to redirect in the appropriate according to the param type
@@ -81,8 +81,8 @@ class CRS_Sim_Utils extends Rectangle2d {
 		if (containsRectangleRectangle(
 			x1,
 			y1,
-			x2 - 1,
-			y2 - 1,
+			x2,
+			y2,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
 			return 1
@@ -91,7 +91,7 @@ class CRS_Sim_Utils extends Rectangle2d {
 			x2,
 			y1,
 			x3,
-			y2 - 1,
+			y2,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
 			return 2
@@ -99,7 +99,7 @@ class CRS_Sim_Utils extends Rectangle2d {
 		else if (containsRectangleRectangle(
 			x1,
 			y2,
-			x2 - 1,
+			x2,
 			y3,
 			rect.getMinX, rect.getMinY, rect.getMaxX, rect.getMaxY
 		))
@@ -126,17 +126,17 @@ class CRS_Sim_Utils extends Rectangle2d {
 		var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2 
 		var y3 = area.getMaxY
 		if (containsRectanglePoint(
-			x1, y1, x2 - 1, y2 -1,
+			x1, y1, x2 , y2 ,
 			point.getX as int, point.getY as int
 		))
 			return 1
 		else if (containsRectanglePoint(
-			x2, y1, x3, y2 - 1,
+			x2, y1, x3, y2 ,
 			point.getX as int , point.getY as int
 		))
 			return 2
 		else if (containsRectanglePoint(
-			x1, y2, x2 - 1, y3,
+			x1, y2, x2 , y3,
 			point.getX as int, point.getY as int
 		))
 			return 3
@@ -147,6 +147,48 @@ class CRS_Sim_Utils extends Rectangle2d {
 			return 4
 		
 		return 0;
-	}	
+	}
 	
+	// to redirect in the appropriate according to the param type
+	static def childFitInsert(A : Shape2d<?>, B : Shape2d<?>) : int {
+		if (A instanceof Point2d && B instanceof Rectangle2d)
+			return childFitInsert(A as Point2d, B as Rectangle2d)
+		return 0
+	}
+	// to check if the point is in the area
+	// 0 = no fit 1 = NW 2 = NE 3 = SW 4 = SE
+	static def childFitInsert(point : Point2d, area : Rectangle2d) : int {
+		var x1 = area.getMinX
+		var x2 = area.getMinX + (area.getMaxX - area.getMinX) / 2 
+		var x3 = area.getMaxX
+		var y1 = area.getMinY
+		var y2 = area.getMinY + (area.getMaxY - area.getMinY) / 2 
+		var y3 = area.getMaxY
+		if(point.x == x2 && point.y == y2)
+			return 5
+		else if (containsRectanglePoint(
+			x1, y1, x2 , y2,
+			point.getX as int, point.getY as int
+		))
+			return 1
+		else if (containsRectanglePoint(
+			x2, y1, x3, y2,
+			point.getX as int , point.getY as int
+		))
+			return 2
+		else if (containsRectanglePoint(
+			x1, y2, x2, y3,
+			point.getX as int, point.getY as int
+		))
+			return 3
+		else if (containsRectanglePoint(
+			x2, y2, x3, y3,
+			point.getX as int, point.getY as int
+		))
+			return 4
+		
+		return 0;
+	}
+	
+		
 }
