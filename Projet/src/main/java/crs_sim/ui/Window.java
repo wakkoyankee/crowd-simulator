@@ -144,13 +144,13 @@ public class Window {
 	            	}else if(body.getName() == Types.crs) {
 	            		Circle2d c = (Circle2d) body.getShape();
 	            		g.setColor(Color.BLUE); 
-	            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset,(int) c.getY(),10,10);
+	            		g.fillOval((int)c.getX() + ParamSimu.mapLeftOffset - 5,(int) c.getY() - 5,10,10);
 	//            		labelCRS[i].setVisible(true);
 	//            		labelCRS[i].setLocation((int)(c.getX() + ParamSimu.mapLeftOffset), (int) c.getY());
 	            	}else if(body.getName() == Types.protestor_agg) {
 	            		Circle2d c = (Circle2d) body.getShape();
 	            		g.setColor(Color.RED); 
-	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset - 5),(int) c.getY() - 5,10,10);
 	//            		labelGJPanic[i].setVisible(false);
 	//            		labelGJNeutral[i].setVisible(false);
 	//            		labelGJAgg[i].setVisible(true);
@@ -158,7 +158,7 @@ public class Window {
 	            	}else if(body.getName() == Types.protestor_panic) {
 	            		Circle2d c = (Circle2d) body.getShape();
 	            		g.setColor(Color.YELLOW); 
-	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset - 5),(int) c.getY() - 5,10,10);
 	//            		labelGJAgg[i].setVisible(false);
 	//            		labelGJNeutral[i].setVisible(false);
 	//            		labelGJPanic[i].setVisible(true);
@@ -166,7 +166,7 @@ public class Window {
 	            	}else if(body.getName() == Types.protestor_neutral){//protestor neutral
 	            		Circle2d c = (Circle2d) body.getShape();
 	            		g.setColor(Color.GREEN); 
-	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset),(int) c.getY(),10,10);
+	            		g.fillOval((int)(c.getX() + ParamSimu.mapLeftOffset - 5),(int) c.getY() - 5,10,10);
 	//            		labelGJAgg[i].setVisible(false);
 	//            		labelGJPanic[i].setVisible(false);
 	//            		labelGJNeutral[i].setVisible(true);
