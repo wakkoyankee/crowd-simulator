@@ -4,7 +4,6 @@
 package crs_sim.^agent
 
 import crs_sim.environment.Percept
-import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
 import io.sarl.core.Logging
