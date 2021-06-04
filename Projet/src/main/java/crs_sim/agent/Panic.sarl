@@ -72,7 +72,7 @@ behavior Panic {
 		var beh = CalculateBeh(perceptions,body)
 		
 		if (beh == null) { //no change in behavior
-			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj)
+			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_panic)
 			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { //change in behavior

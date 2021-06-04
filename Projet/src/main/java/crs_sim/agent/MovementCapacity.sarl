@@ -4,6 +4,7 @@
 package crs_sim.^agent
 
 import crs_sim.environment.Percept
+import crs_sim.utils.Types
 import io.sarl.lang.core.DefaultSkill
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
@@ -16,5 +17,5 @@ import org.arakhne.afc.math.geometry.d2.d.Vector2d
  */
  @DefaultSkill(typeof(MovementSkill))
 capacity MovementCapacity {
-	def influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d
+	def influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d, type : Types) : Vector2d
 }

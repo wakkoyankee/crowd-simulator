@@ -16,17 +16,40 @@ public class ParamSimu {
 	public static final int minAggressive = 90;
 	public static final int nbProtestors = 45;
 	public static final int nbCRS = 3;
-	public static final int PanicForce = 1;
-	public static final int NeutralForce = 1;
-	public static final int AgressiveForce = 1;
+	
 	public static final int BuildingForce = 10;
-	public static final int CRSForce = 3;
-	public static final int TargetForce = 5;
-	public static final int RadiusPerceptProtestor = 100;
-
-	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	
 	public static final int PanicOnPanic = 5;
+	public static final int NeutralOnPanic = 1;
+	public static final int AgressiveOnPanic = 1;
+	public static final int CRSOnPanic = 3;
+	public static final int TargetPanic = 5;
+	
+	public static final int PanicOnNeutral = 5;
+	public static final int NeutralOnNeutral = 1;
+	public static final int AgressiveOnNeutral = 1;
+	public static final int CRSOnNeutral = 3;
+	public static final int TargetNeutral = 5;
+	
+	public static final int DestroyableOnAgressive = 10;
+	public static final int PanicOnAgressive = 5;
+	public static final int NeutralOnAgressive = 1;
+	public static final int AgressiveOnAgressive = 1;
+	public static final int CRSOnAgressive = 3;
+	public static final int TargetAgressive = 5;
+	
+	public static final int RadiusPerceptProtestor = 100;
+	
+	public static final int PanicOnCrs = 5;
+	public static final int NeutralOnCrs = 1;
+	public static final int AgressiveOnCrs = 1;
+	public static final int CRSOnCrs = 3;
+	public static final int TargetCrs = 5;
 	public static final int RadiusPerceptCrs = 100;
+	
+	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	
+	
 
 	//objectif neutre
 	//objectif agg
