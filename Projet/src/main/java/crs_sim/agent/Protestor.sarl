@@ -114,6 +114,7 @@ agent Protestor {
 	
 
 	on DeathEvent{
+		info("I am dying")
 		killMe
 	}
 

@@ -238,7 +238,8 @@ public class ParamSimu {
 //			new ProtestorBody(new Point2d(475, 375))
 //	};
 	public static final CRSBody[] initCollecCRS = {
-			new CRSBody(new Circle2d(375, 600, 1),Types.crs),
+			//new CRSBody(new Circle2d(375, 600, 1),Types.crs),
+			new CRSBody(new Circle2d(500, 500, 1),Types.crs),
 			new CRSBody(new Circle2d(425, 600, 1),Types.crs),
 			new CRSBody(new Circle2d(475, 600, 1),Types.crs)
 	};
@@ -271,15 +272,8 @@ public class ParamSimu {
 	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); //au pif
 	
 	public static final Destroyable[] aggObjs = {
-			new Destroyable(new Rectangle2d(350,725,25,75),Types.destroyable), 
-			new Destroyable(new Rectangle2d(275,725,25,75),Types.destroyable),
-			new Destroyable(new Rectangle2d(350,825,25,75),Types.destroyable), 
-			new Destroyable(new Rectangle2d(275,825,25,75),Types.destroyable), 
-			new Destroyable(new Rectangle2d(200,625,75,25),Types.destroyable), 
-			new Destroyable(new Rectangle2d(200,700,75,25),Types.destroyable), 
-			new Destroyable(new Rectangle2d(100,625,75,25),Types.destroyable), 
-			new Destroyable(new Rectangle2d(100,700,75,25),Types.destroyable), 
-			new Destroyable(new Rectangle2d(700,375,50,200),Types.destroyable)  
+			new Destroyable(new Rectangle2d(300,600,25,75),Types.destroyable), 
+			new Destroyable(new Rectangle2d(450,700,75,25),Types.destroyable)  
 
 	};
 }
