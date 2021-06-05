@@ -63,7 +63,7 @@ behavior Aggressive {
 		var body = occurrence.body as Circle2d
 		var perceptions = occurrence.perceptions as ArrayList
 		var isNeutralObj = occurrence.isNeutralObj
-		if (body.getDistanceSquared(obj) <= 10 && !isNeutralObj) { // assez proche du destroyable pour l'attaqué
+		if (body.getDistance(obj) <= 100 && !isNeutralObj) { // Cassé
 			var inf = new Influence(owner.getID(), Action.destroy, Types.protestor_agg, occurrence.uuidObj)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]	
 			return

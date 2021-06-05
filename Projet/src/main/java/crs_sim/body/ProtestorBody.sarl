@@ -45,7 +45,7 @@ class ProtestorBody extends MobileObject {
 	}
 	
 	def setArea(area : Shape2d<?>) : void {
-		this.area = area
+		this.position = area as Circle2d
 	}
 	
 	def setArea(x : int, y : int) : void {

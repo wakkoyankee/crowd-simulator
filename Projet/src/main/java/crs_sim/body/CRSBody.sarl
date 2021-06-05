@@ -13,7 +13,7 @@ import org.arakhne.afc.math.geometry.d2.d.Shape2d
  * 
  */
 class CRSBody extends MobileObject {
-	val position : Circle2d
+	var position : Circle2d
 	var type : Types
 
 	new (position : Circle2d, type: Types) {
@@ -33,8 +33,12 @@ class CRSBody extends MobileObject {
 		return type
 	}
 
+	def setType(type : Types) {
+		this.type = type
+	}
+
 	def setArea(area : Shape2d<?>) : void {
-		this.area = area
+		position = area as Circle2d
 	}
 	
 	def setArea(x : int, y : int) : void {
@@ -45,10 +49,6 @@ class CRSBody extends MobileObject {
 	def setArea(point: Point2d) : void {
 		position.setX(point.x)
 		position.setY(point.y)
-	}
-
-	override setType(type : Types) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 }

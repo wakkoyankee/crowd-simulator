@@ -179,11 +179,11 @@ public class Window {
 	            	i++;
 	            }
     		}
-            g.setColor(Color.GREEN);
+            /*g.setColor(Color.GREEN);
             g.fillRect((int) (ParamSimu.mapLeftOffset + ParamSimu.neutralObj.getMinX()),
             		(int) (ParamSimu.neutralObj.getMinY()),
             		(int) (ParamSimu.neutralObj.getMaxX() - ParamSimu.neutralObj.getMinX())
-            		,(int) (ParamSimu.neutralObj.getMaxY() - ParamSimu.neutralObj.getMinY()) );
+            		,(int) (ParamSimu.neutralObj.getMaxY() - ParamSimu.neutralObj.getMinY()) );*/
                    
         }
         

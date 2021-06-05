@@ -91,7 +91,7 @@ agent EnvironmentAgent {
 		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  rand.nextInt(101) //50.0
+			var r1 =  90//rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -203,8 +203,7 @@ agent EnvironmentAgent {
 
 	on AgentSpawned {
 		// Quand tout les protestors on spawn lance la simu
-		var cpt = this.agentSpawned.incrementAndGet()
-		if(this.agentSpawned == this.nbPro + this.nbCrs){
+		if (this.agentSpawned.incrementAndGet() == this.nbPro + this.nbCrs) {
 			info("All agents have spawned")
 			StartSim()
 		}
@@ -230,7 +229,7 @@ agent EnvironmentAgent {
 				for(p : percept){
 					if(p.getName()==Types.destroyable){
 						obj = p.getShape()
-						emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0,false))[it.UUID == id]
+						emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, p.getUuid(), 0,false))[it.UUID == id]
 						seeAggObj = true
 						break
 					}
@@ -239,8 +238,6 @@ agent EnvironmentAgent {
 					obj = ParamSimu.neutralObj
 					emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0,true))[it.UUID == id]
 				}
-				//if aggobj in percept -> attack else neutralobj //???????
-				//get closest aggobj
 			}
 			
 		}
@@ -275,7 +272,7 @@ agent EnvironmentAgent {
 		if (this.agentResp.incrementAndGet() == this.nbPro + this.nbCrs) { // si tout les protestors on donné leur influence
 			this.agentResp.set(0)
 
-			//resolveInfluences(this.influenceList)//par references ?
+			resolveInfluences(this.influenceList)//par references ?
 			
 			
 			for (entry : this.influenceList.entrySet()) { 
@@ -290,39 +287,62 @@ agent EnvironmentAgent {
 						body = this.crsList.get(influence.getUuid()) as CRSBody
 					}
 					//println(influence.getMove())
-					var move = body.getArea() as Circle2d + influence.getMove() 
-//					GraphSearch_Utils.printGraphDebug(rootTree, true, Types.protestor_neutral)
+					var move = body.getArea() as Circle2d + influence.getMove()
+					body.setArea(move as Shape2d<?>)
 					this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
+					//this.protestorList.get(influence.getUuid
 				}
 				
 				else if (action == Action.arrest) {
 					emit(new DeathEvent())[it.UUID == influence.getTarget()]
-					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), save)
+					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), null)
 					this.protestorList.remove(influence.getTarget())
+					nbPro--;
+					if (this.protestorList.size() == 0) {
+						println("End Simu")
+						return
+					}
+					try {
+						this.influenceList.remove(influence.getTarget())
+					} catch (e : Exception) {
+						e.printStackTrace()
+					}
+					
 					// BESOIN DE L'ENLEVER DE L ENV
 				}
 				
-//				else if (action == Action.destroy) {
-//					var obj = this.aggObjs.get(influence.getTarget())
-//					var life = obj.getLife()
-//					if(life>=10){
-//						obj.setLife(life-10) //references ????
-//						if(life -10 == 0){
-//							this.aggObjs.remove(influence.getTarget())
-//							//ENLEVER DANS L'ENV AUSSI
-//							if(this.aggObjs.size()==0){
-//								//FINIR PARTIE LES CASSEURS ON GAGNE
-//							}
-//						}
-//					}					
-//				}
+				else if (action == Action.destroy) {
+					print("######destroy#####")
+					var obj = this.aggObjs.get(influence.getTarget())
+					if(obj !== null){ 
+						var life = obj.getLife()
+						if(life>=1){
+							obj.setLife(life-1) //references ????
+							println(life-1)
+							if (life == 1) {
+								this.rootTree.deleteBody(this.aggObjs.get(influence.getTarget()), save)
+								this.aggObjs.remove(influence.getTarget())
+								//ENLEVER DANS L'ENV AUSSI
+								if(this.aggObjs.size()==0){
+									//FINIR PARTIE LES CASSEURS ON GAGNE
+									println("simulation fini")
+									redraw()
+									return
+								}
+							}
+						}
+					}
+				}
 				
 				else if (action == Action.despawn) {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
 					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), save)
 					this.protestorList.remove(influence.getUuid())
 					nbPro--;
-					//BESOIN DE L'ENLEVER DE L ENVgetUuid
+					if (this.protestorList.size() == 0) {
+						println("End Simu")
+						return
+					}
 					
 				} else if (action == Action.smoke) {
 					// nothing for now
@@ -376,11 +396,13 @@ agent EnvironmentAgent {
 			}
 		}
 		var rand : Random = new Random()
+		
 		for(var i =0; i < segs.size()-1; i++){
 			for (var j = i + 1; j < segs.size(); j++){
 				var seg2 = segs.get(j)
-				if (segs.get(i).intersects(seg2)) {
+				if (segs.get(i) != null && segs.get(j) != null && segs.get(i).intersects(seg2)) {
 					var id : UUID
+					println("############### COLISIONS######################")
 					if(rand.nextInt(2)==0){
 						id = ids.get(i)
 						segs.set(i, null)
