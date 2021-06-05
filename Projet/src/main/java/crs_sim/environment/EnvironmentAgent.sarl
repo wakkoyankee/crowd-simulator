@@ -14,6 +14,7 @@ import crs_sim.ui.Window
 import crs_sim.utils.Action
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.GraphSearch_Utils
+import crs_sim.utils.jsonGenerator_Utils
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
@@ -44,6 +45,7 @@ import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Segment2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
+import org.json.JSONObject
 
 /** 
  * @author hadrien
@@ -168,6 +170,7 @@ agent EnvironmentAgent {
 //		println("SW : " + rootTree.thirdChild)
 //		println("SE : " + rootTree.fourthChild)
 			
+		
 		// // INIT UI ////
 		this.win = new Window()
 		redraw()
@@ -182,6 +185,19 @@ agent EnvironmentAgent {
 			CRS.spawnInContextWithID(entry.getKey(), defaultContext)
 		}
 //		GraphSearch_Utils.printGraphDebug(rootTree, false)
+
+		// Generate JSON
+		jsonGenerator_Utils.jsonGenerator(rootTree);
+		
+		
+//		
+//		String jsonString = new JSONObject()
+//		                  .put("JSON1", "Hello World!")
+//		                  .put("JSON2", "Hello my World!")
+//		                  .put("JSON3", new JSONObject().put("key1", "value1"))
+//		                  .toString();
+//		
+//		System.out.println(jsonString);
 	}
 
 

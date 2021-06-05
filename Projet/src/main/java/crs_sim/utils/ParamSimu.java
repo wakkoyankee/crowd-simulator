@@ -11,22 +11,45 @@ public class ParamSimu {
 	public static final double mapSizeX = 1000;
 	public static final double mapSizeY = 1000;
 	public static final int mapLeftOffset = 460;
-	public static final double maxObjectsPerChild = 500;
-	public static final int maxPanic = 30;
-	public static final int minAggressive = 70;
-	public static final int nbProtestors = 35;
+	public static final double maxObjectsPerChild = 5;
+	public static final int maxPanic = 10;
+	public static final int minAggressive = 90;
+	public static final int nbProtestors = 40;
 	public static final int nbCRS = 3;
-	public static final int PanicForce = 1;
-	public static final int NeutralForce = 1;
-	public static final int AgressiveForce = 1;
+	
 	public static final int BuildingForce = 10;
-	public static final int CRSForce = 3;
-	public static final int TargetForce = 5;
-	public static final int RadiusPerceptProtestor = 100;
-
-	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	
 	public static final int PanicOnPanic = 5;
+	public static final int NeutralOnPanic = 1;
+	public static final int AgressiveOnPanic = 1;
+	public static final int CRSOnPanic = 3;
+	public static final int TargetPanic = 5;
+	
+	public static final int PanicOnNeutral = 5;
+	public static final int NeutralOnNeutral = 1;
+	public static final int AgressiveOnNeutral = 1;
+	public static final int CRSOnNeutral = 3;
+	public static final int TargetNeutral = 5;
+	
+	public static final int DestroyableOnAgressive = 10;
+	public static final int PanicOnAgressive = 5;
+	public static final int NeutralOnAgressive = 1;
+	public static final int AgressiveOnAgressive = 1;
+	public static final int CRSOnAgressive = 3;
+	public static final int TargetAgressive = 5;
+	
+	public static final int RadiusPerceptProtestor = 100;
+	
+	public static final int PanicOnCrs = 5;
+	public static final int NeutralOnCrs = 1;
+	public static final int AgressiveOnCrs = 1;
+	public static final int CRSOnCrs = 3;
+	public static final int TargetCrs = 5;
 	public static final int RadiusPerceptCrs = 100;
+	
+	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	
+	
 
 	//objectif neutre
 	//objectif agg
@@ -44,21 +67,21 @@ public class ParamSimu {
 			new Circle2d(70, 320, 1),
 			new Circle2d(80, 320, 1),
 			new Circle2d(90, 320, 1),
-			// rt b
+//			// rt b
 			new Circle2d(310, 50, 1),
 			new Circle2d(315, 50, 1),
 			new Circle2d(320, 50, 1),
 			new Circle2d(325, 50, 1),
 			new Circle2d(330, 50, 1),
-			// rt PEH
-			new Circle2d(610, 50, 1),
-			new Circle2d(615, 50, 1),
-			new Circle2d(620, 50, 1),
-			new Circle2d(625, 50, 1),
-			new Circle2d(630, 50, 1),
-			new Circle2d(635, 50, 1),
-			new Circle2d(640, 50, 1),
-			new Circle2d(645, 50, 1),
+//			// rt PEH
+//			new Circle2d(610, 50, 1),
+//			new Circle2d(615, 50, 1),
+//			new Circle2d(620, 50, 1),
+//			new Circle2d(625, 50, 1),
+//			new Circle2d(630, 50, 1),
+//			new Circle2d(635, 50, 1),
+//			new Circle2d(640, 50, 1),
+//			new Circle2d(645, 50, 1),
 //			new Circle2d(650, 50, 1),
 //			new Circle2d(655, 50, 1),
 //			new Circle2d(660, 50, 1),
@@ -239,7 +262,7 @@ public class ParamSimu {
 			new Building(new Rectangle2d(700,0,300,300),Types.building), // Bat 3
 			new Building(new Rectangle2d(0,350,300,200),Types.building), // Bat 4
 			new Building(new Rectangle2d(0,600,300,50),Types.building), // Bat 5
-			new Building(new Rectangle2d(700,375,300,200),Types.building), // Bat 6
+			new Building(new Rectangle2d(750,375,250,200),Types.building), // Bat 6
 			new Building(new Rectangle2d(0,700,300,300),Types.building), // Bat 7
 			new Building(new Rectangle2d(350,700,75,300),Types.building), // Bat 8
 			new Building(new Rectangle2d(475,700,75,300),Types.building), // Bat 9

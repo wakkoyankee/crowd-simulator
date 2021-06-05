@@ -52,7 +52,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 					 initChilds()
 					 //essayer de dispatcher les éléments dans les fils
 				}
-				switch (CRS_Sim_Utils.childFit(object.area,area)){
+				switch (CRS_Sim_Utils.childFitInsert(object.area,area)){
 					case 0:
 						//fit nowhere
 						addUserData(object)
@@ -64,6 +64,8 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 						thirdChild.insert(object)
 					case 4:
 						fourthChild.insert(object)
+					case 5:
+						addUserData(object)
 				}
 			} else {
 				// does not fit un current node
@@ -71,7 +73,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			}			
 		}
 		
-		def initChilds() {
+	def initChilds() {
 			var rect = new Rectangle2d()
 			var x1 = (area.getMinX) as int
 			var x2 = (area.getMinX + (area.getMaxX - area.getMinX) / 2) as int
@@ -86,17 +88,17 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				// -1 is to avoid the childs to be one on another 
 				// NW
 				setFirstChild(new QTNode(
-					new Rectangle2d(x1, y1, x2 - 1 - x1, y2 - 1 - y1)
+					new Rectangle2d(x1, y1, x2 - x1, y2 - y1)
 				))
 	
 				// NE
 	                setSecondChild(new QTNode(
-	                    new Rectangle2d(x2, y1, x3 - x2, y2 - 1 - y1)
+	                    new Rectangle2d(x2, y1, x3 - x2, y2 - y1)
 				))
 	
 				// SW
 				setThirdChild(new QTNode(
-	                    new Rectangle2d(x1, y2, x2 - 1 - x1, y3 - y2)
+	                    new Rectangle2d(x1, y2, x2 - x1, y3 - y2)
 				))
 	
 				// SE
@@ -162,6 +164,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 			// searching in which child the body is
 			try {
 				switch (CRS_Sim_Utils.childFit(body.position,area)) {
+					
 					case 0:
 						if (point.x > ParamSimu.mapSizeX || point.x < 0
 							|| point.y > ParamSimu.mapSizeY || point.y < 0) {
@@ -172,7 +175,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 								return
 							} else {
 								println("buddy your body is lost.. RIP
-								__body : " + body.type + " Position : " + body.position)
+								__body : " + body.type + " Position : " + body.position + "Body : " + body)
 								println("Result childFit : " + CRS_Sim_Utils.childFit(body.position, area))
 							}
 						
@@ -189,6 +192,8 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				print("Erreur de déplacement d'enfant \nLe résultat de childFit est : " +
 					CRS_Sim_Utils.childFit(body.position, area) + 
 					"body : " + body.type + " Position : " + body.position +"\nTargetted spot : " + point + "\n\n")
+				print(e)
+				print(" ")
 			}
 		}
 	}
