@@ -3,20 +3,28 @@ package crs_sim.environment;
 import com.google.common.base.Objects;
 import crs_sim.body.EnvObject;
 import crs_sim.body.MobileObject;
+import crs_sim.body.ProtestorBody;
 import crs_sim.environment.Percept;
 import crs_sim.utils.CRS_Sim_Utils;
 import crs_sim.utils.ParamSimu;
+import crs_sim.utils.Types;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
 import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
+import org.arakhne.afc.math.geometry.d2.d.Shape2d;
 import org.arakhne.afc.math.tree.node.QuadTreeNode;
 import org.eclipse.xtend.lib.annotations.AccessorType;
 import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 /**
@@ -52,8 +60,8 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
         if ((_notNullChildCount <= 0)) {
           this.initChilds();
         }
-        int _childFit = CRS_Sim_Utils.childFit(object.getArea(), this.area);
-        switch (_childFit) {
+        int _childFitInsert = CRS_Sim_Utils.childFitInsert(object.getArea(), this.area);
+        switch (_childFitInsert) {
           case 0:
             this.addUserData(object);
             break;
@@ -69,6 +77,9 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
           case 4:
             this.getFourthChild().insert(object);
             break;
+          case 5:
+            this.addUserData(object);
+            break;
         }
       } else {
         this.getParentNode().insert(object);
@@ -78,36 +89,36 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
   
   public boolean initChilds() {
     Rectangle2d rect = new Rectangle2d();
+    double _minX = this.area.getMinX();
+    int x1 = ((int) _minX);
+    double _minX_1 = this.area.getMinX();
+    double _maxX = this.area.getMaxX();
+    double _minX_2 = this.area.getMinX();
+    int x2 = ((int) (_minX_1 + ((_maxX - _minX_2) / 2)));
+    double _maxX_1 = this.area.getMaxX();
+    int x3 = ((int) _maxX_1);
+    double _minY = this.area.getMinY();
+    int y1 = ((int) _minY);
+    double _minY_1 = this.area.getMinY();
+    double _maxY = this.area.getMaxY();
+    double _minY_2 = this.area.getMinY();
+    int y2 = ((int) (_minY_1 + ((_maxY - _minY_2) / 2)));
+    double _maxY_1 = this.area.getMaxY();
+    int y3 = ((int) _maxY_1);
     if (((((!Objects.equal(this.getFirstChild(), null)) && (!Objects.equal(this.getSecondChild(), null))) && 
       (!Objects.equal(this.getThirdChild(), null))) && (!Objects.equal(this.getFourthChild(), null)))) {
       return false;
     } else {
-      double _minX = this.area.getMinX();
-      double _minY = this.area.getMinY();
-      double _maxX = this.area.getMaxX();
-      double _maxY = this.area.getMaxY();
-      Rectangle2d _rectangle2d = new Rectangle2d(_minX, _minY, (_maxX / 2), (_maxY / 2));
+      Rectangle2d _rectangle2d = new Rectangle2d(x1, y1, (x2 - x1), (y2 - y1));
       QTNode _qTNode = new QTNode(_rectangle2d);
       this.setFirstChild(_qTNode);
-      double _maxX_1 = this.area.getMaxX();
-      double _minY_1 = this.area.getMinY();
-      double _maxX_2 = this.area.getMaxX();
-      double _maxY_1 = this.area.getMaxY();
-      Rectangle2d _rectangle2d_1 = new Rectangle2d((_maxX_1 / 2), _minY_1, (_maxX_2 / 2), (_maxY_1 / 2));
+      Rectangle2d _rectangle2d_1 = new Rectangle2d(x2, y1, (x3 - x2), (y2 - y1));
       QTNode _qTNode_1 = new QTNode(_rectangle2d_1);
       this.setSecondChild(_qTNode_1);
-      double _minX_1 = this.area.getMinX();
-      double _maxY_2 = this.area.getMaxY();
-      double _maxX_3 = this.area.getMaxX();
-      double _maxY_3 = this.area.getMaxY();
-      Rectangle2d _rectangle2d_2 = new Rectangle2d(_minX_1, (_maxY_2 / 2), (_maxX_3 / 2), (_maxY_3 / 2));
+      Rectangle2d _rectangle2d_2 = new Rectangle2d(x1, y2, (x2 - x1), (y3 - y2));
       QTNode _qTNode_2 = new QTNode(_rectangle2d_2);
       this.setThirdChild(_qTNode_2);
-      double _maxX_4 = this.area.getMaxX();
-      double _maxY_4 = this.area.getMaxY();
-      double _maxX_5 = this.area.getMaxX();
-      double _maxY_5 = this.area.getMaxY();
-      Rectangle2d _rectangle2d_3 = new Rectangle2d((_maxX_4 / 2), (_maxY_4 / 2), (_maxX_5 / 2), (_maxY_5 / 2));
+      Rectangle2d _rectangle2d_3 = new Rectangle2d(x2, y2, (x3 - x2), (y3 - y2));
       QTNode _qTNode_3 = new QTNode(_rectangle2d_3);
       this.setFourthChild(_qTNode_3);
       return true;
@@ -116,32 +127,180 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
   
   @Pure
   public List<Percept> getBodies() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field type is undefined for the type EnvObject");
+    List<EnvObject> objects = this.getAllUserData();
+    List<Percept> result = new ArrayList<Percept>();
+    for (final EnvObject object : objects) {
+      Shape2d<?> _area = object.getArea();
+      UUID _uuid = object.getUuid();
+      Types _type = object.getType();
+      Percept _percept = new Percept(_area, _uuid, _type);
+      result.add(_percept);
+    }
+    return IterableExtensions.<Percept>toList(result);
   }
   
   @Pure
   public List<Percept> getPercept(final Circle2d perception) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field type is undefined for the type EnvObject");
+    List<EnvObject> objects = this.getAllUserData();
+    List<Percept> result = new ArrayList<Percept>();
+    for (final EnvObject object : objects) {
+      boolean _intersects = perception.intersects(object.getArea());
+      if (_intersects) {
+        Shape2d<?> _area = object.getArea();
+        UUID _uuid = object.getUuid();
+        Types _type = object.getType();
+        Percept _percept = new Percept(_area, _uuid, _type);
+        result.add(_percept);
+      }
+    }
+    return IterableExtensions.<Percept>toList(result);
   }
   
   public void moveBody(final MobileObject body, final Point2d point) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field position is undefined for the type MobileObject"
-      + "\nThe method or field position is undefined for the type MobileObject"
-      + "\nThe method or field type is undefined for the type MobileObject"
-      + "\nThe method or field position is undefined for the type MobileObject"
-      + "\nThe method or field type is undefined for the type MobileObject"
-      + "\nThe method or field position is undefined for the type MobileObject"
-      + "\nThe method or field position is undefined for the type MobileObject"
-      + "\nThe method or field type is undefined for the type MobileObject"
-      + "\nThe method or field position is undefined for the type MobileObject");
+    boolean _contains = this.getAllUserData().contains(body);
+    if (_contains) {
+      if (((((point.getX() > ParamSimu.mapSizeX) || (point.getX() < 0)) || (point.getY() > ParamSimu.mapSizeY)) || 
+        (point.getY() < 0))) {
+        Types _type = body.getType();
+        double _x = point.getX();
+        double _y = point.getY();
+        InputOutput.<String>println((((((("C\'est en dehors de la map ça " + _type) + " ") + " ! C\'est en x : ") + Double.valueOf(_x)) + " y : ") + Double.valueOf(_y)));
+        InputOutput.<String>println("Je te tp où tu étais");
+        return;
+      }
+      boolean _AinB = CRS_Sim_Utils.AinB(point, this.area);
+      if (_AinB) {
+        body.setArea(point);
+      } else {
+        this.removeUserData(body);
+        body.setArea(point);
+        this.insert(body);
+      }
+    } else {
+      try {
+        int _childFit = CRS_Sim_Utils.childFit(body.getPosition(), this.area);
+        switch (_childFit) {
+          case 0:
+            if (((((point.getX() > ParamSimu.mapSizeX) || (point.getX() < 0)) || (point.getY() > ParamSimu.mapSizeY)) || (point.getY() < 0))) {
+              Types _type_1 = body.getType();
+              UUID _uuid = body.getUuid();
+              double _x_1 = point.getX();
+              double _y_1 = point.getY();
+              InputOutput.<String>println(
+                ((((((("C\'est en dehors de la map ça " + _type_1) + " ") + _uuid) + " ! C\'est en x : ") + Double.valueOf(_x_1)) + " y : ") + Double.valueOf(_y_1)));
+              InputOutput.<String>println("Je te tp où tu étais");
+              return;
+            } else {
+              Types _type_2 = body.getType();
+              Point2d _position = body.getPosition();
+              InputOutput.<String>println(((((("buddy your body is lost.. RIP\r\n\t\t\t\t\t\t\t\t__body : " + _type_2) + " Position : ") + _position) + "Body : ") + body));
+              int _childFit_1 = CRS_Sim_Utils.childFit(body.getPosition(), this.area);
+              InputOutput.<String>println(("Result childFit : " + Integer.valueOf(_childFit_1)));
+            }
+            break;
+          case 1:
+            this.getFirstChild().moveBody(body, point);
+            break;
+          case 2:
+            this.getSecondChild().moveBody(body, point);
+            break;
+          case 3:
+            this.getThirdChild().moveBody(body, point);
+            break;
+          case 4:
+            this.getFourthChild().moveBody(body, point);
+            break;
+        }
+      } catch (final Throwable _t) {
+        if (_t instanceof Exception) {
+          final Exception e = (Exception)_t;
+          int _childFit_2 = CRS_Sim_Utils.childFit(body.getPosition(), this.area);
+          String _plus = (("Erreur de déplacement d\'enfant \nLe résultat de childFit est : " + Integer.valueOf(_childFit_2)) + 
+            "body : ");
+          Types _type_3 = body.getType();
+          String _plus_1 = ((_plus + _type_3) + " Position : ");
+          Point2d _position_1 = body.getPosition();
+          InputOutput.<String>print(((((_plus_1 + _position_1) + "\nTargetted spot : ") + point) + "\n\n"));
+          InputOutput.<Exception>print(e);
+          InputOutput.<String>print(" ");
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+    }
   }
   
-  public void deleteBody(final EnvObject body, final List<EnvObject> save) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field position is undefined for the type EnvObject");
+  public void changeBehavior(final EnvObject body, final Types state) {
+    if ((body instanceof ProtestorBody)) {
+      InputOutput.<String>print("you can\'t change the behavior of something else than a protestor");
+      return;
+    }
+    boolean _contains = this.getAllUserData().contains(body);
+    if (_contains) {
+      body.setType(state);
+    } else {
+      int _childFit = CRS_Sim_Utils.childFit(body.getPosition(), this.area);
+      switch (_childFit) {
+        case 0:
+          InputOutput.<String>print("buddy your body is lost.. RIP");
+          break;
+        case 1:
+          this.getFirstChild().changeBehavior(body, state);
+          break;
+        case 2:
+          this.getSecondChild().changeBehavior(body, state);
+          break;
+        case 3:
+          this.getThirdChild().changeBehavior(body, state);
+          break;
+        case 4:
+          this.getFourthChild().changeBehavior(body, state);
+          break;
+      }
+    }
+  }
+  
+  public void deleteBody(final EnvObject body, final ArrayList<EnvObject> save) {
+    boolean _contains = this.getAllUserData().contains(body);
+    if (_contains) {
+      this.removeUserData(body);
+      InputOutput.<String>print(("Body deleted : " + body));
+      return;
+    } else {
+      try {
+        int _childFit = CRS_Sim_Utils.childFit(body.getPosition(), this.area);
+        switch (_childFit) {
+          case 0:
+            InputOutput.<String>print("buddy your body is lost.. RIP");
+            break;
+          case 1:
+            this.getFirstChild().deleteBody(body, save);
+            break;
+          case 2:
+            this.getSecondChild().deleteBody(body, save);
+            break;
+          case 3:
+            this.getThirdChild().deleteBody(body, save);
+            break;
+          case 4:
+            this.getFourthChild().deleteBody(body, save);
+            break;
+        }
+      } catch (final Throwable _t) {
+        if (_t instanceof Exception) {
+          final Exception e = (Exception)_t;
+          int _childFit_1 = CRS_Sim_Utils.childFit(body.getPosition(), this.area);
+          String _plus = (("Erreur de suppression\nLe résultat de childFit est : " + Integer.valueOf(_childFit_1)) + "body : ");
+          Types _type = body.getType();
+          String _plus_1 = ((_plus + _type) + " Position : ");
+          Point2d _position = body.getPosition();
+          InputOutput.<String>print(((_plus_1 + _position) + "\n"));
+          InputOutput.<Exception>print(e);
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+    }
   }
   
   @Override
@@ -160,7 +319,7 @@ public class QTNode extends QuadTreeNode<EnvObject, QTNode> {
   }
   
   @SyntheticMember
-  private static final long serialVersionUID = 2373604325L;
+  private static final long serialVersionUID = 1271754376L;
   
   @Pure
   public Rectangle2d getArea() {

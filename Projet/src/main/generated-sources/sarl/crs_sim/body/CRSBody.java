@@ -1,6 +1,7 @@
 package crs_sim.body;
 
 import crs_sim.body.MobileObject;
+import crs_sim.utils.Types;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
@@ -18,18 +19,25 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class CRSBody extends MobileObject {
   private final Circle2d position;
   
-  public CRSBody(final Circle2d position) {
+  private Types type;
+  
+  public CRSBody(final Circle2d position, final Types type) {
     this.position = position;
+    this.type = type;
   }
   
   public Shape2d<?> getArea() {
     return this.position;
   }
   
-  public Point2d getPoition() {
+  public Point2d getPosition() {
     double _centerX = this.position.getCenterX();
     double _centerY = this.position.getCenterY();
     return new Point2d(_centerX, _centerY);
+  }
+  
+  public Types getType() {
+    return this.type;
   }
   
   public void setArea(final Shape2d<?> area) {
@@ -44,6 +52,11 @@ public class CRSBody extends MobileObject {
   public void setArea(final Point2d point) {
     this.position.setX(point.getX());
     this.position.setY(point.getY());
+  }
+  
+  @Override
+  public void setType(final Types type) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   @Override
