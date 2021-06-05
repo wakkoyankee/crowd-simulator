@@ -52,7 +52,7 @@ agent CRS {
 		for (percept : perceptions) {
 			if (percept.getName() == Types.protestor_agg) {//see aggressive
 				seeAgg = true
-				var tmp = body.getDistanceSquared(percept.getShape() as Circle2d)
+				var tmp = body.getDistance(percept.getShape() as Circle2d)
 				if (tmp < mindist){//get the closest aggressive protestor
 					mindist = tmp
 					obj = percept
@@ -65,12 +65,12 @@ agent CRS {
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		}
 		else{
-			if (mindist <= 5) { // if the aggressive protestor is close enough arrest
+			if (mindist <= 50) { // if the aggressive protestor is close enough arrest
 				var inf = new Influence(getID(), Action.arrest, Types.crs, obj.getUuid())
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}
 			else {
-				var inf = new Influence(getID(), Action.move, Types.crs, new Vector2d(1,1))//to change
+				var inf = new Influence(getID(), Action.move, Types.crs, new Vector2d(0,0))//to change
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}
 		}

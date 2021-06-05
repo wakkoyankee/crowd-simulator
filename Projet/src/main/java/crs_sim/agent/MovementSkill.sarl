@@ -44,9 +44,9 @@ skill MovementSkill implements MovementCapacity {
 	}
 	
 	def percent_distance_vector(V : Vector2d, T : int) : double{
-		println('% dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) / T)
+		/*println('% dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) / T)
 		println('dist = ' + Math.sqrt(V.getX() ** 2 + V.getY() ** 2) )
-		println('T = ' +  T)
+		println('T = ' +  T)*/
 		return Math.sqrt(V.getX() ** 2 + V.getY() ** 2) / T
 	}
 	
@@ -103,8 +103,8 @@ skill MovementSkill implements MovementCapacity {
 
 	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d) : Vector2d {
 		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
-		println('objectif x = ' + obj.getMinX())
-		println('objectif y = ' + obj.getMinY())
+		//println('objectif x = ' + obj.getMinX())
+		//println('objectif y = ' + obj.getMinY())
 		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
 		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / ParamSimu.TargetForce))
 		//println('tX = ' + v.getX())
@@ -183,17 +183,17 @@ skill MovementSkill implements MovementCapacity {
 			}
 			if (target.getName() == Types.building) {
 				var shape : Rectangle2d = target.getShape() as Rectangle2d
-				println('hey !')
+				//println('hey !')
 				if (position.getX() < shape.getMinX()) {
 					if (position.getY() < shape.getMinY()) { // pointe sud ouest du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMinY())
-						println('minminX position = ' + position.getX())
-						println('minminY position = ' + position.getY())
+						//println('minminX position = ' + position.getX())
+						/*println('minminY position = ' + position.getY())
 						println('minminX shape = ' + shape.getMinX())
-						println('minminY shape = ' + shape.getMinY())
+						println('minminY shape = ' + shape.getMinY())*/
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('minminX = ' + V.getX())
-						println('minminY = ' + V.getY())
+						/*println('minminX = ' + V.getX())
+						println('minminY = ' + V.getY())*/
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -206,8 +206,8 @@ skill MovementSkill implements MovementCapacity {
 					else if (position.getY() > shape.getMaxY()) { // pointe nord ouest du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMaxY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('minminX = ' + V.getX())
-						println('minmaxY = ' + V.getY())
+						/*println('minminX = ' + V.getX())
+						println('minmaxY = ' + V.getY())*/
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -216,7 +216,7 @@ skill MovementSkill implements MovementCapacity {
 					else { // cote ouest du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), 0)
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('min0X = ' + V.getX())
+						//println('min0X = ' + V.getX())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
 						
@@ -226,8 +226,6 @@ skill MovementSkill implements MovementCapacity {
 					if (position.getY() < shape.getMinY()) { // pointe sud est du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMinY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('maxminX = ' + V.getX())
-						println('maxminY = ' + V.getY())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -236,8 +234,6 @@ skill MovementSkill implements MovementCapacity {
 					 else if (position.getY() > shape.getMaxY()) { // pointe nord est du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMaxY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('maxmaxX = ' + V.getX())
-						println('maxmaxY = ' + V.getY())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
@@ -246,7 +242,6 @@ skill MovementSkill implements MovementCapacity {
 					 else { // cote est du rectangle
 						var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), 0)
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('max0X = ' + V.getX())
 						V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setX((V.getX() * P) + v.getX())
 					}
@@ -255,14 +250,12 @@ skill MovementSkill implements MovementCapacity {
 					if (position.getY() < shape.getMinY()) { // cote sud du rectangle
 						var V : Vector2d = new Vector2d(0, position.getY() - shape.getMinY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('0minY = ' + V.getY())
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setY((V.getY() * P) + v.getY())
 					}
 					else { // cote nord du rectangle
 						var V : Vector2d = new Vector2d(0, position.getY() - shape.getMaxY())
 					 	var P : double = (1 - percent_distance_vector(V, ParamSimu.RadiusPerceptProtestor))
-						println('0maxY = ' + V.getY())
 						V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / ParamSimu.BuildingForce))
 						v.setY((V.getY() * P) + v.getY())
 					}
