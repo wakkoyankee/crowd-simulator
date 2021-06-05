@@ -1,0 +1,38 @@
+/** 
+ * 
+ */
+package crs_sim.body
+
+import crs_sim.utils.Types
+import java.util.Date
+import java.util.UUID
+import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
+import org.eclipse.xtend.lib.annotations.Accessors
+
+/** 
+ * @author Thomas
+ * 
+ */
+class deletedAgent{
+	
+	@Accessors
+	var uuid : UUID
+	@Accessors
+	var type : Types
+	@Accessors
+	var deletedDate : long
+	@Accessors
+	var deletedPosition : Point2d
+	@Accessors
+	var deletedReason : String
+	
+	new ( uuid : UUID, type : Types, deletedDate : long,
+		deletedPosition : Point2d, deletedReason : String ) {
+		this.uuid = uuid
+		this.type = type
+		this.deletedDate = deletedDate
+		this.deletedPosition = deletedPosition
+		this.deletedReason = deletedReason
+	}
+}
