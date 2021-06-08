@@ -3,6 +3,7 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.DeathEvent
 import crs_sim.environment.Influence
 import crs_sim.environment.InfluenceEvent
 import crs_sim.environment.Percept
@@ -39,7 +40,6 @@ behavior Panic {
 	
 	var memory : Memory
 	var moveS : MovementSkill
-	val map =new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
 	
 	new (owner : Protestor, memory : Memory) {
 		super(owner)
@@ -52,6 +52,8 @@ behavior Panic {
 		setSkill(this.moveS)
 	}
 
+
+
 	on PerceptionEvent {
 		//info("Panic hello")
 		//get parameters
@@ -60,7 +62,7 @@ behavior Panic {
 		var obj = occurrence.obj as Rectangle2d
 
 		//check if out of the map first
-		if (!body.intersects(map)) {
+		if (body.intersects(obj)) {
 			var inf = new Influence(owner.getID(), Action.despawn, Types.protestor_panic)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			///////////////////////////////////////////////
