@@ -31,6 +31,7 @@ import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
 import io.sarl.lang.core.Address;
+import io.sarl.lang.core.Agent;
 import io.sarl.lang.core.AtomicSkillReference;
 import io.sarl.lang.core.Behavior;
 import io.sarl.lang.core.Scope;
@@ -57,8 +58,8 @@ public class Neutral extends Behavior {
   private MovementSkill moveS;
   
   public Neutral(final Protestor owner, final Memory memory) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Protestor to Agent");
+    super(owner);
+    this.memory = memory;
   }
   
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
@@ -113,7 +114,7 @@ public class Neutral extends Behavior {
     Types beh = this.CalculateBeh(perceptions);
     boolean _equals = Objects.equal(beh, null);
     if (_equals) {
-      Vector2d move = this.moveS.influenceKinematic(body, perceptions, obj);
+      Vector2d move = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_neutral);
       UUID _iD_1 = this.getOwner().getID();
       Influence inf_1 = new Influence(_iD_1, Action.move, Types.protestor_panic, move);
       DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
@@ -205,7 +206,7 @@ public class Neutral extends Behavior {
         }
       }
     }
-    int b = this.memory.getBehavior();
+    double b = this.memory.getBehavior();
     if ((b < ParamSimu.maxPanic)) {
       return Types.protestor_panic;
     } else {
@@ -218,8 +219,9 @@ public class Neutral extends Behavior {
   }
   
   public void Behaviourchange(final Types newbeh) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nCannot cast from Agent to Protestor");
+    Agent _owner = this.getOwner();
+    Protestor o = ((Protestor) _owner);
+    o.changeBehavior(newbeh);
   }
   
   private void $behaviorUnit$AgentSpawned$3(final AgentSpawned occurrence) {

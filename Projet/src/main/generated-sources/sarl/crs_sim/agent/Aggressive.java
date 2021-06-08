@@ -31,6 +31,7 @@ import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
 import io.sarl.lang.core.Address;
+import io.sarl.lang.core.Agent;
 import io.sarl.lang.core.AtomicSkillReference;
 import io.sarl.lang.core.Behavior;
 import io.sarl.lang.core.Scope;
@@ -57,8 +58,8 @@ public class Aggressive extends Behavior {
   private MovementSkill moveS;
   
   public Aggressive(final Protestor owner, final Memory memory) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Protestor to Agent");
+    super(owner);
+    this.memory = memory;
   }
   
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
@@ -76,8 +77,8 @@ public class Aggressive extends Behavior {
     Rectangle2d obj = ((Rectangle2d) occurrence.obj);
     Circle2d body = ((Circle2d) occurrence.body);
     ArrayList perceptions = ((ArrayList) occurrence.perceptions);
-    double _distanceSquared = body.getDistanceSquared(obj);
-    if ((_distanceSquared <= 10)) {
+    boolean isNeutralObj = occurrence.isNeutralObj;
+    if (((body.getDistanceSquared(obj) <= 10) && (!isNeutralObj))) {
       UUID _iD = this.getOwner().getID();
       Influence inf = new Influence(_iD, Action.destroy, Types.protestor_agg, occurrence.uuidObj);
       DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
@@ -110,12 +111,9 @@ public class Aggressive extends Behavior {
       _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(_influenceEvent, _function);
       return;
     }
-    Types beh = this.CalculateBeh(perceptions);
-    boolean _equals = Objects.equal(beh, null);
-    if (_equals) {
-      Vector2d move = this.moveS.influenceKinematic(body, perceptions, obj);
+    if ((body.intersects(obj) && isNeutralObj)) {
       UUID _iD_1 = this.getOwner().getID();
-      Influence inf_1 = new Influence(_iD_1, Action.move, Types.protestor_panic, move);
+      Influence inf_1 = new Influence(_iD_1, Action.despawn, Types.protestor_agg);
       DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1 = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
       InfluenceEvent _influenceEvent_1 = new InfluenceEvent(inf_1);
       class $SerializableClosureProxy_1 implements Scope<Address> {
@@ -144,9 +142,14 @@ public class Aggressive extends Behavior {
         }
       };
       _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1.emit(_influenceEvent_1, _function_1);
-    } else {
+      return;
+    }
+    Types beh = this.CalculateBeh(perceptions);
+    boolean _equals = Objects.equal(beh, null);
+    if (_equals) {
+      Vector2d move = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_agg);
       UUID _iD_2 = this.getOwner().getID();
-      Influence inf_2 = new Influence(_iD_2, Action.changeBeh, beh);
+      Influence inf_2 = new Influence(_iD_2, Action.move, Types.protestor_panic, move);
       DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_2 = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
       InfluenceEvent _influenceEvent_2 = new InfluenceEvent(inf_2);
       class $SerializableClosureProxy_2 implements Scope<Address> {
@@ -175,6 +178,37 @@ public class Aggressive extends Behavior {
         }
       };
       _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_2.emit(_influenceEvent_2, _function_2);
+    } else {
+      UUID _iD_3 = this.getOwner().getID();
+      Influence inf_3 = new Influence(_iD_3, Action.changeBeh, beh);
+      DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_3 = this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER();
+      InfluenceEvent _influenceEvent_3 = new InfluenceEvent(inf_3);
+      class $SerializableClosureProxy_3 implements Scope<Address> {
+        
+        private final UUID $_uUID;
+        
+        public $SerializableClosureProxy_3(final UUID $_uUID) {
+          this.$_uUID = $_uUID;
+        }
+        
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          return Objects.equal(_uUID, $_uUID);
+        }
+      }
+      final Scope<Address> _function_3 = new Scope<Address>() {
+        @Override
+        public boolean matches(final Address it) {
+          UUID _uUID = it.getUUID();
+          UUID _uUID_1 = occurrence.getSource().getUUID();
+          return Objects.equal(_uUID, _uUID_1);
+        }
+        private Object writeReplace() throws ObjectStreamException {
+          return new SerializableProxy($SerializableClosureProxy_3.class, occurrence.getSource().getUUID());
+        }
+      };
+      _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_3.emit(_influenceEvent_3, _function_3);
       this.Behaviourchange(beh);
     }
   }
@@ -205,7 +239,7 @@ public class Aggressive extends Behavior {
         }
       }
     }
-    int b = this.memory.getBehavior();
+    double b = this.memory.getBehavior();
     if ((b > ParamSimu.minAggressive)) {
       return null;
     } else {
@@ -218,8 +252,9 @@ public class Aggressive extends Behavior {
   }
   
   public void Behaviourchange(final Types newbeh) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nCannot cast from Agent to Protestor");
+    Agent _owner = this.getOwner();
+    Protestor o = ((Protestor) _owner);
+    o.changeBehavior(newbeh);
   }
   
   private void $behaviorUnit$AgentSpawned$3(final AgentSpawned occurrence) {

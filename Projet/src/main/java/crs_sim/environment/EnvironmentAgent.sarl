@@ -10,13 +10,14 @@ import crs_sim.body.Destroyable
 import crs_sim.body.EnvObject
 import crs_sim.body.MobileObject
 import crs_sim.body.ProtestorBody
+import crs_sim.body.deletedAgent
 import crs_sim.ui.Window
 import crs_sim.utils.Action
 import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.GraphSearch_Utils
-import crs_sim.utils.jsonGenerator_Utils
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
+import crs_sim.utils.jsonGenerator_Utils
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
@@ -45,7 +46,6 @@ import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Segment2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
-import org.json.JSONObject
 
 /** 
  * @author hadrien
@@ -76,7 +76,7 @@ agent EnvironmentAgent {
 	var time : int = 0
 	var nbPro = 0
 	var nbCrs = 0
-	var save : ArrayList<EnvObject>
+	var save : ArrayList<deletedAgent> = new ArrayList<deletedAgent>
 	
 //	var b = [1,2,3,4,5,6]
 //	var c = b[0]
@@ -188,7 +188,7 @@ agent EnvironmentAgent {
 //		GraphSearch_Utils.printGraphDebug(rootTree, false)
 
 		// Generate JSON
-		jsonGenerator_Utils.jsonGenerator(rootTree);
+//		jsonGenerator_Utils.jsonGenerator(rootTree);
 		
 		
 //		

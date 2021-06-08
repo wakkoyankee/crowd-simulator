@@ -31,7 +31,7 @@ public class ParamSimu {
 	public static final int CRSOnNeutral = 3;
 	public static final int TargetNeutral = 5;
 	
-	public static final int DestroyableOnAgressive = 10;
+	public static final int DestroyableOnAgressive = 1;
 	public static final int PanicOnAgressive = 5;
 	public static final int NeutralOnAgressive = 1;
 	public static final int AgressiveOnAgressive = 1;
