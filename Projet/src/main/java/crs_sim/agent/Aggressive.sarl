@@ -105,29 +105,29 @@ behavior Aggressive {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-//		for (percept : perceptions){
-//			var v = new Vector2d(0, 0)
-//			if (percept.getName() == Types.protestor_panic) {
-//				var shape : Circle2d = percept.getShape() as Circle2d
-//				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnAgressive)
-//				b += v.getX() + v.getY()
-//			}
-//			else if (percept.getName() == Types.protestor_neutral) {
-//				var shape : Circle2d = percept.getShape() as Circle2d
-//				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnAgressive)
-//				b += v.getX() + v.getY()
-//			}
-//			else if (percept.getName() == Types.protestor_agg) {
-//				var shape : Circle2d = percept.getShape() as Circle2d
-//				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnAgressive)
-//				b += v.getX() + v.getY()
-//			}
-//			else if (percept.getName() == Types.crs) {
-//				var shape : Circle2d = percept.getShape() as Circle2d
-//				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnAgressive)
-//				b += v.getX() + v.getY()
-//			}
-//		}
+		/*for (percept : perceptions){
+			var v = new Vector2d(0, 0)
+			if (percept.getName() == Types.protestor_panic) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnAgressive)
+				b += v.getX() + v.getY()
+			}
+		}*/
 		
 		
 		if (b > ParamSimu.minAggressive) {

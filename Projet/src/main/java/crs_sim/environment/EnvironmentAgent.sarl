@@ -366,10 +366,10 @@ agent EnvironmentAgent {
 					// nothing for now
 				}				
 				else if (action == Action.changeBeh){
-					/*var body = this.protestorList.get(influence.getUuid()) as ProtestorBody
+					var body = this.protestorList.get(influence.getUuid()) as ProtestorBody
+					this.rootTree.changeBehavior(body, influence.getAgentType())
 					body.setType(influence.getAgentType()) // copie ou ref ?
-					this.protestorList.replace(influence.getUuid(),body)*/
-					
+					this.protestorList.replace(influence.getUuid(), body) 
 					//BESOIN DE CHANGER DANS L'ENV AUSSI
 				}
 	
