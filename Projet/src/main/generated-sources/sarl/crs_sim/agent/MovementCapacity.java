@@ -10,7 +10,7 @@ import io.sarl.lang.core.Capacity;
 import io.sarl.lang.core.DefaultSkill;
 import java.util.ArrayList;
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
-import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
+import org.arakhne.afc.math.geometry.d2.d.Point2d;
 import org.arakhne.afc.math.geometry.d2.d.Vector2d;
 
 /**
@@ -22,7 +22,7 @@ import org.arakhne.afc.math.geometry.d2.d.Vector2d;
 @SarlElementType(20)
 @SuppressWarnings("all")
 public interface MovementCapacity extends Capacity {
-  public abstract Vector2d influenceKinematic(final Circle2d position, final ArrayList<Percept> ListOfTarget, final Rectangle2d obj, final Types type);
+  public abstract Vector2d influenceKinematic(final Circle2d position, final ArrayList<Percept> ListOfTarget, final Point2d obj, final Types type);
   
   /**
    * @ExcludeFromApidoc
@@ -32,7 +32,7 @@ public interface MovementCapacity extends Capacity {
       super(capacity, caller);
     }
     
-    public Vector2d influenceKinematic(final Circle2d position, final ArrayList<Percept> ListOfTarget, final Rectangle2d obj, final Types type) {
+    public Vector2d influenceKinematic(final Circle2d position, final ArrayList<Percept> ListOfTarget, final Point2d obj, final Types type) {
       try {
         ensureCallerInLocalThread();
         return this.capacity.influenceKinematic(position, ListOfTarget, obj, type);
