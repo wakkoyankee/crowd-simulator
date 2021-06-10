@@ -14,7 +14,7 @@ public class ParamSimu {
 	public static final double maxObjectsPerChild = 5;
 	public static final int maxPanic = 10;
 	public static final int minAggressive = 90;
-	public static final int nbProtestors = 40;
+	public static final int nbProtestors = 45;
 	public static final int nbCRS = 3;
 	
 	public static final int BuildingForce = 10;
@@ -220,26 +220,31 @@ public class ParamSimu {
 			new Circle2d(475, 375, 1),
 			new Circle2d(525, 375, 1),
 			new Circle2d(575, 375, 1),
+			
 			new Circle2d(625, 375, 1),
 			new Circle2d(375, 425, 1),
 			new Circle2d(425, 425, 1),
 			new Circle2d(475, 425, 1),
 			new Circle2d(525, 425, 1),
+			
 			new Circle2d(575, 425, 1),
 			new Circle2d(625, 425, 1),
 			new Circle2d(375, 475, 1),
 			new Circle2d(425, 475, 1),
 			new Circle2d(475, 475, 1),
+			
 			new Circle2d(525, 475, 1),
 			new Circle2d(575, 475, 1),
 			new Circle2d(625, 475, 1),
 			new Circle2d(375, 525, 1),
 			new Circle2d(425, 525, 1),
+			
 			new Circle2d(475, 525, 1),
 			new Circle2d(525, 525, 1),
 			new Circle2d(575, 525, 1),
 			new Circle2d(625, 525, 1),
 			new Circle2d(375, 575, 1),
+			
 			new Circle2d(425, 575, 1),
 			new Circle2d(475, 575, 1),
 			new Circle2d(525, 575, 1),
@@ -278,16 +283,16 @@ public class ParamSimu {
 			new Building(new Rectangle2d(0,600,300,50),Types.building), // Bat 5
 			new Building(new Rectangle2d(750,375,250,200),Types.building), // Bat 6
 			new Building(new Rectangle2d(0,700,300,300),Types.building), // Bat 7
-			new Building(new Rectangle2d(350,700,75,300),Types.building), // Bat 8
+			new Building(new Rectangle2d(350,650,75,350),Types.building), // Bat 8
 			new Building(new Rectangle2d(475,700,75,300),Types.building), // Bat 9
 			new Building(new Rectangle2d(700,650,300,350),Types.building), // Bat 10
 	};
 	
-	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); //au pif
-	
+	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); 
+	public static final Rectangle2d panicObj = new Rectangle2d(300,0,100,30);
 	public static final Destroyable[] aggObjs = {
 			new Destroyable(new Rectangle2d(300,600,25,75),Types.destroyable), 
-			new Destroyable(new Rectangle2d(450,700,75,25),Types.destroyable)  
+			new Destroyable(new Rectangle2d(550,500,75,25),Types.destroyable)  
 
 	};
 }

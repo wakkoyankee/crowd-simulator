@@ -3,6 +3,7 @@
  */
 package crs_sim.^agent
 
+import crs_sim.environment.DeathEvent
 import crs_sim.environment.Influence
 import crs_sim.environment.InfluenceEvent
 import crs_sim.environment.Percept
@@ -46,7 +47,7 @@ behavior Aggressive {
 	}
 	
 	on Initialize {
-		//info("Aggressive behavior was started.")
+		info("Aggressive behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
@@ -58,7 +59,6 @@ behavior Aggressive {
 	}
 
 	on PerceptionEvent {
-		//info("Agg hello")
 		var obj = occurrence.obj as Rectangle2d
 		var body = occurrence.body as Circle2d
 		var perceptions = occurrence.perceptions as ArrayList
@@ -79,7 +79,7 @@ behavior Aggressive {
 
 		if (beh == null) { //no change in behavior
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_agg)
-			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic,move)
+			var inf = new Influence(owner.getID(), Action.move, Types.protestor_agg,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { // change in behavior
 			var inf = new Influence(owner.getID(), Action.changeBeh, beh)
