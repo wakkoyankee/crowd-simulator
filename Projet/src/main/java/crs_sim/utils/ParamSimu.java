@@ -49,6 +49,20 @@ public class ParamSimu {
 	
 	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
 	
+	public static final int BehPanicOnPanic = 0;
+	public static final int BehNeutralOnPanic = 0;
+	public static final int BehAgressiveOnPanic = 0;
+	public static final int BehCRSOnPanic = 0;
+	
+	public static final int BehPanicOnNeutral = 0;
+	public static final int BehNeutralOnNeutral = 1;
+	public static final int BehAgressiveOnNeutral = 0;
+	public static final int BehCRSOnNeutral = 0;
+	
+	public static final int BehPanicOnAgressive = 0;
+	public static final int BehNeutralOnAgressive = 0;
+	public static final int BehAgressiveOnAgressive = 0;
+	public static final int BehCRSOnAgressive = 0;
 	
 
 	//objectif neutre

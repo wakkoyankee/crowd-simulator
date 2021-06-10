@@ -2,7 +2,7 @@
  * 
  */
 package crs_sim.^agent
-
+import crs_sim.^agent.MovementSkill
 import crs_sim.environment.Influence
 import crs_sim.environment.InfluenceEvent
 import crs_sim.environment.Percept
@@ -99,19 +99,30 @@ behavior Panic {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
+		
+		
+		
 		for (percept : perceptions){
+			var v = new Vector2d(0, 0)
 			if (percept.getName() == Types.protestor_panic) {
 				var shape : Circle2d = percept.getShape() as Circle2d
-				// b = b - ParamSimu.PanicOnPanic*(1 - ((Math.sqrt((shape.getX())**2 + (shape.getY())**2))*100 /ParamSimu.RadiusPerceptProtestor))
-			
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnPanic)
+				b += v.getX() + v.getY()
 			}
-			if (percept.getName() == Types.protestor_neutral) {
-			
-			
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnPanic)
+				b += v.getX() + v.getY()
 			}
-			if (percept.getName() == Types.protestor_agg) {
-			
-			
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnPanic)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnPanic)
+				b += v.getX() + v.getY()
 			}
 		}
 		

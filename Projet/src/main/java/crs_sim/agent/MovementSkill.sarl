@@ -46,9 +46,9 @@ skill MovementSkill implements MovementCapacity {
 		return distance_vector(V) / T
 	}
 	
-	def normalize_vector(V : Vector2d, T : int){
-		V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / T))
-		V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / T))
+	def normalize_vector(V : Vector2d, T : double){
+		V.setX((V.getX() / (Math.abs(V.getX()) + Math.abs(V.getY()))) * T)
+		V.setY((V.getY() / (Math.abs(V.getX()) + Math.abs(V.getY()))) * T)
 	}
 	
 	def normal_building(R : Rectangle2d, P : Circle2d, V : Vector2d){
@@ -110,8 +110,7 @@ skill MovementSkill implements MovementCapacity {
 			V.setY(0)
 		}
 		else {
-		V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
-		V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
+		normalize_vector(V, typeforce)
 		v.setX((V.getX() * P) + v.getX())
 		v.setY((V.getY() * P) + v.getY())
 				
@@ -124,16 +123,14 @@ skill MovementSkill implements MovementCapacity {
 			if (position.getY() < shape.getMinY()) { // pointe sud ouest du rectangle
 				var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMinY())
 			 	var P : double = (1 - percent_distance_vector(V, perception))
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
+				normalize_vector(V, typeforce)
 				v.setX((V.getX() * P) + v.getX())
 				v.setY((V.getY() * P) + v.getY())
 			}
 			else if (position.getY() > shape.getMaxY()) { // pointe nord ouest du rectangle
 				var V : Vector2d = new Vector2d(position.getX() - shape.getMinX(), position.getY() - shape.getMaxY())
 			 	var P : double = (1 - percent_distance_vector(V, perception))
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
+				normalize_vector(V, typeforce)
 				v.setX((V.getX() * P) + v.getX())
 				v.setY((V.getY() * P) + v.getY())
 			}
@@ -148,16 +145,14 @@ skill MovementSkill implements MovementCapacity {
 			if (position.getY() < shape.getMinY()) { // pointe sud est du rectangle
 				var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMinY())
 			 	var P : double = (1 - percent_distance_vector(V, perception))
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
+				normalize_vector(V, typeforce)
 				v.setX((V.getX() * P) + v.getX())
 				v.setY((V.getY() * P) + v.getY())
 			}
 			 else if (position.getY() > shape.getMaxY()) { // pointe nord est du rectangle
 				var V : Vector2d = new Vector2d(position.getX() - shape.getMaxX(), position.getY() - shape.getMaxY())
 			 	var P : double = (1 - percent_distance_vector(V, perception))
-				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
-				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / typeforce))
+				normalize_vector(V, typeforce)
 				v.setX((V.getX() * P) + v.getX())
 				v.setY((V.getY() * P) + v.getY())
 			}
@@ -186,25 +181,10 @@ skill MovementSkill implements MovementCapacity {
 
 	def SocialModelForce(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d, panic : float, neutral : float, agressive : float, crs : float, building : float, destroyable : float, speed : double, perception : float, arrival : float) : Vector2d {
 		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
-		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / arrival))
-		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / arrival))
+		normalize_vector(v, arrival)
 		
 		for (target : ListOfTarget) {
-			if (target.getName() == Types.protestor_panic){
-//				var shape : Circle2d = target.getShape() as Circle2d
-//				var V : Vector2d = new Vector2d(position.getX() - shape.getX(), position.getY() - shape.getY())
-//				var P : double = (1 - percent_distance_vector(V, perception))
-//				if (position.getX() == shape.getX() && position.getY() == shape.getY()){
-//					V.setX(0)
-//					V.setY(0)
-//				}
-//				else {
-//				V.setX(V.getX() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / panic))
-//				V.setY(V.getY() / ((Math.abs(V.getX()) + Math.abs(V.getY())) / panic))
-//				v.setX((V.getX() * P) + v.getX())
-//				v.setY((V.getY() * P) + v.getY())
-//				
-//				}
+			if (target.getName() == Types.protestor_panic) {
 				protestor(v, target, position, perception, panic)
 			}
 			if (target.getName() == Types.protestor_neutral) {
@@ -223,9 +203,7 @@ skill MovementSkill implements MovementCapacity {
 				build(v, target, position, perception, destroyable)
 			}
 		}
-		v.setX(v.getX() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / speed))
-		v.setY(v.getY() / ((Math.abs(v.getX()) + Math.abs(v.getY())) / speed))
-		
+		normalize_vector(v, speed)
 		
 		for (target : ListOfTarget) {
 			if (target.getName() == Types.building || target.getName() == Types.destroyable) {

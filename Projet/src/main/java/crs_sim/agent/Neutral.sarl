@@ -72,7 +72,7 @@ behavior Neutral {
 		}
 		
 		// Peut etre l'appellé tout les temps t sinon un peu lourd
-		var beh = CalculateBeh(perceptions)
+		var beh = CalculateBeh(perceptions, body)
 		
 		if (beh == null) {//no behavior change
 			
@@ -89,7 +89,7 @@ behavior Neutral {
 		
 	}
 
-	def CalculateBeh(perceptions : ArrayList<Percept>) {
+	def CalculateBeh(perceptions : ArrayList<Percept>, position : Circle2d) {
 		var numP = 0
 		var numA = 0
 		var numN = 0
@@ -106,6 +106,35 @@ behavior Neutral {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
+		for (percept : perceptions){
+			var v = new Vector2d(0, 0)
+			if (percept.getName() == Types.protestor_panic) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+		}
+		
+		
 		if (b < ParamSimu.maxPanic) {
 			return Types.protestor_panic
 		}

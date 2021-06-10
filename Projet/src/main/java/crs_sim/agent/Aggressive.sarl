@@ -75,7 +75,7 @@ behavior Aggressive {
 		}
 
 		
-		var beh = CalculateBeh(perceptions)
+		var beh = CalculateBeh(perceptions, body)
 
 		if (beh == null) { //no change in behavior
 			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_agg)
@@ -88,7 +88,7 @@ behavior Aggressive {
 		}
 	}
 
-	def CalculateBeh(perceptions : ArrayList<Percept>) {
+	def CalculateBeh(perceptions : ArrayList<Percept>, position : Circle2d) {
 		var numP = 0
 		var numA = 0
 		var numN = 0
@@ -104,7 +104,31 @@ behavior Aggressive {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-	
+		for (percept : perceptions){
+			var v = new Vector2d(0, 0)
+			if (percept.getName() == Types.protestor_panic) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnAgressive)
+				b += v.getX() + v.getY()
+			}
+		}
+		
+		
 		if (b > ParamSimu.minAggressive) {
 			return null
 		} else if (b < ParamSimu.maxPanic) {
