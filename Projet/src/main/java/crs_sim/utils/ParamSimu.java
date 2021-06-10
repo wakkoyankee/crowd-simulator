@@ -55,7 +55,7 @@ public class ParamSimu {
 	public static final int BehCRSOnPanic = 0;
 	
 	public static final int BehPanicOnNeutral = 0;
-	public static final int BehNeutralOnNeutral = 1;
+	public static final int BehNeutralOnNeutral = 0;
 	public static final int BehAgressiveOnNeutral = 0;
 	public static final int BehCRSOnNeutral = 0;
 	
