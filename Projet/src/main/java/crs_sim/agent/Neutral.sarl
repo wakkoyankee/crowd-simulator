@@ -109,7 +109,7 @@ behavior Neutral {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-		for (percept : perceptions){
+		/*for (percept : perceptions){
 			var v = new Vector2d(0, 0)
 			if (percept.getName() == Types.protestor_panic) {
 				var shape : Circle2d = percept.getShape() as Circle2d
@@ -135,7 +135,7 @@ behavior Neutral {
 				b += v.getX() + v.getY()
 				println('b = ' + b)
 			}
-		}
+		}*/
 		
 		
 		if (b < ParamSimu.maxPanic) {

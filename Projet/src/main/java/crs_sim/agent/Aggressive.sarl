@@ -104,7 +104,7 @@ behavior Aggressive {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-		for (percept : perceptions){
+		/*for (percept : perceptions){
 			var v = new Vector2d(0, 0)
 			if (percept.getName() == Types.protestor_panic) {
 				var shape : Circle2d = percept.getShape() as Circle2d
@@ -126,7 +126,7 @@ behavior Aggressive {
 				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnAgressive)
 				b += v.getX() + v.getY()
 			}
-		}
+		}*/
 		
 		
 		if (b > ParamSimu.minAggressive) {
