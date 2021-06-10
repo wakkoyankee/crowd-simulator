@@ -179,8 +179,15 @@ skill MovementSkill implements MovementCapacity {
 		}
 	}
 
-	def SocialModelForce(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d, panic : float, neutral : float, agressive : float, crs : float, building : float, destroyable : float, speed : double, perception : float, arrival : float) : Vector2d {
-		var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
+	def SocialModelForce(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Shape2d<?>, type : Types, panic : float, neutral : float, agressive : float, crs : float, building : float, destroyable : float, speed : double, perception : float, arrival : float) : Vector2d {
+		if (type == Types.crs){
+			var shape : Circle2d = obj.getShape() as Circle2d
+			var v = new Vector2d(obj.getX() - position.getX(), obj.getY() - position.getY())
+		}
+		else {
+			var shape : Circle2d = obj.getShape() as Rectangle2d
+			var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
+		}
 		normalize_vector(v, arrival)
 		
 		for (target : ListOfTarget) {
@@ -220,18 +227,18 @@ skill MovementSkill implements MovementCapacity {
 		
 	}
 	
-	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Rectangle2d, type : Types) : Vector2d {
+	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Shape2d<?>, type : Types) : Vector2d {
 		if (type == Types.protestor_panic){
-			SocialModelForce(position, ListOfTarget, obj, ParamSimu.PanicOnPanic, ParamSimu.NeutralOnPanic, ParamSimu.AgressiveOnPanic, ParamSimu.CRSOnPanic, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetPanic)
+			SocialModelForce(position, ListOfTarget, obj, type, ParamSimu.PanicOnPanic, ParamSimu.NeutralOnPanic, ParamSimu.AgressiveOnPanic, ParamSimu.CRSOnPanic, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetPanic)
 		}
 		else if (type == Types.protestor_neutral){
-			SocialModelForce(position, ListOfTarget, obj, ParamSimu.PanicOnNeutral, ParamSimu.NeutralOnNeutral, ParamSimu.AgressiveOnNeutral, ParamSimu.CRSOnNeutral, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetNeutral)
+			SocialModelForce(position, ListOfTarget, obj, type, ParamSimu.PanicOnNeutral, ParamSimu.NeutralOnNeutral, ParamSimu.AgressiveOnNeutral, ParamSimu.CRSOnNeutral, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetNeutral)
 		}
 		else if (type == Types.protestor_agg){
-			SocialModelForce(position, ListOfTarget, obj, ParamSimu.PanicOnAgressive, ParamSimu.NeutralOnAgressive, ParamSimu.AgressiveOnAgressive, ParamSimu.CRSOnAgressive, ParamSimu.BuildingForce, ParamSimu.DestroyableOnAgressive, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetAgressive)
+			SocialModelForce(position, ListOfTarget, obj, type, ParamSimu.PanicOnAgressive, ParamSimu.NeutralOnAgressive, ParamSimu.AgressiveOnAgressive, ParamSimu.CRSOnAgressive, ParamSimu.BuildingForce, ParamSimu.DestroyableOnAgressive, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetAgressive)
 		}
 		else if (type == Types.crs){
-			SocialModelForce(position, ListOfTarget, obj, ParamSimu.PanicOnCrs, ParamSimu.NeutralOnCrs, ParamSimu.AgressiveOnCrs, ParamSimu.CRSOnCrs, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptCrs, ParamSimu.TargetCrs)
+			SocialModelForce(position, ListOfTarget, obj, type, ParamSimu.PanicOnCrs, ParamSimu.NeutralOnCrs, ParamSimu.AgressiveOnCrs, ParamSimu.CRSOnCrs, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptCrs, ParamSimu.TargetCrs)
 		}
 	}
 }
