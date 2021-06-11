@@ -1,0 +1,15 @@
+package crs_sim
+
+import crs_sim.environment.EnvironmentAgent
+import io.sarl.bootstrap.SRE
+
+/** 
+ * @author Thomas
+ * 
+ */
+class main {
+	static def main(args : String*) {
+		var boot = SRE.getBootstrap
+		boot.startAgent(typeof(EnvironmentAgent))
+	}
+}

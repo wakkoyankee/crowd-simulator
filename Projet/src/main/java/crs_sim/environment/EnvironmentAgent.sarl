@@ -389,7 +389,7 @@ agent EnvironmentAgent {
 			this.time++
 			if (this.time < 5000) {
 				println(this.time + "  " + pastDate + "  " + pastDate.toNanoOfDay + "  " + (pastDate.toNanoOfDay + 10000000))
-				while (LocalTime.now().toNanoOfDay < (pastDate.toNanoOfDay + 50000000)) {}
+				while (LocalTime.now().toNanoOfDay < (pastDate.toNanoOfDay + 8000000)) {}
 				StartSim()
 				pastDate = LocalTime.now()
 				JsonGenerator_Utils.jsonGenerator(rootTree);
