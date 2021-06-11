@@ -21,11 +21,11 @@ public class ProtestorBody extends MobileObject {
   private Circle2d position;
   
   @Accessors
-  private Types type;
+  private Types protestorType;
   
-  public ProtestorBody(final Circle2d position, final Types type) {
+  public ProtestorBody(final Circle2d position, final Types protestorType) {
     this.position = position;
-    this.type = type;
+    this.protestorType = protestorType;
   }
   
   public ProtestorBody(final Circle2d position) {
@@ -36,18 +36,10 @@ public class ProtestorBody extends MobileObject {
     return this.position;
   }
   
-  public Point2d getPosition() {
+  public Point2d getPoition() {
     double _centerX = this.position.getCenterX();
     double _centerY = this.position.getCenterY();
     return new Point2d(_centerX, _centerY);
-  }
-  
-  public Types getType() {
-    return this.type;
-  }
-  
-  public void setType(final Types type) {
-    this.type = type;
   }
   
   public void setArea(final Shape2d<?> area) {
@@ -77,5 +69,14 @@ public class ProtestorBody extends MobileObject {
   public int hashCode() {
     int result = super.hashCode();
     return result;
+  }
+  
+  @Pure
+  public Types getProtestorType() {
+    return this.protestorType;
+  }
+  
+  public void setProtestorType(final Types protestorType) {
+    this.protestorType = protestorType;
   }
 }

@@ -4,9 +4,9 @@
 package crs_sim.body
 
 import crs_sim.utils.Types
+import java.time.LocalTime
 import java.util.Date
 import java.util.UUID
-import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -21,13 +21,13 @@ class deletedAgent{
 	@Accessors
 	var type : Types
 	@Accessors
-	var deletedDate : long
+	var deletedDate : LocalTime
 	@Accessors
 	var deletedPosition : Point2d
 	@Accessors
 	var deletedReason : String
 	
-	new ( uuid : UUID, type : Types, deletedDate : long,
+	new (uuid : UUID, type : Types, deletedDate : LocalTime,
 		deletedPosition : Point2d, deletedReason : String ) {
 		this.uuid = uuid
 		this.type = type

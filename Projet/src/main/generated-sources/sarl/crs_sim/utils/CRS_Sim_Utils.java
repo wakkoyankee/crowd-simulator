@@ -55,7 +55,7 @@ public class CRS_Sim_Utils extends Rectangle2d {
   
   @Pure
   public static boolean AinB(final Point2d A, final Rectangle2d B) {
-    return ((((((int) A.getX()) > ((int) B.getMinX())) && (((int) A.getX()) < ((int) B.getMaxX()))) && (((int) A.getY()) > ((int) B.getMinY()))) && (((int) A.getY()) < ((int) B.getMaxY())));
+    return ((((A.getX() > B.getMinX()) && (A.getX() < B.getMaxX())) && (A.getY() > B.getMinY())) && (A.getY() < B.getMaxY()));
   }
   
   @Pure
@@ -80,38 +80,34 @@ public class CRS_Sim_Utils extends Rectangle2d {
   
   @Pure
   public static int childFit(final Rectangle2d rect, final Rectangle2d area) {
-    double _minX = area.getMinX();
-    int x1 = ((int) _minX);
-    double _minX_1 = area.getMinX();
     double _maxX = area.getMaxX();
-    double _minX_2 = area.getMinX();
-    int x2 = ((int) (_minX_1 + ((_maxX - _minX_2) / 2)));
-    double _maxX_1 = area.getMaxX();
-    int x3 = ((int) _maxX_1);
-    double _minY = area.getMinY();
-    int y1 = ((int) _minY);
-    double _minY_1 = area.getMinY();
     double _maxY = area.getMaxY();
-    double _minY_2 = area.getMinY();
-    int y2 = ((int) (_minY_1 + ((_maxY - _minY_2) / 2)));
-    double _maxY_1 = area.getMaxY();
-    int y3 = ((int) _maxY_1);
-    boolean _containsRectangleRectangle = Rectangle2afp.containsRectangleRectangle(x1, y1, x2, y2, 
+    boolean _containsRectangleRectangle = Rectangle2afp.containsRectangleRectangle(
+      area.getMinX(), area.getMinY(), (_maxX / 2), (_maxY / 2), 
       rect.getMinX(), rect.getMinY(), rect.getMaxX(), rect.getMaxY());
     if (_containsRectangleRectangle) {
       return 1;
     } else {
-      boolean _containsRectangleRectangle_1 = Rectangle2afp.containsRectangleRectangle(x2, y1, x3, y2, 
+      double _maxX_1 = area.getMaxX();
+      double _maxY_1 = area.getMaxY();
+      boolean _containsRectangleRectangle_1 = Rectangle2afp.containsRectangleRectangle(
+        (_maxX_1 / 2), area.getMinY(), area.getMaxX(), (_maxY_1 / 2), 
         rect.getMinX(), rect.getMinY(), rect.getMaxX(), rect.getMaxY());
       if (_containsRectangleRectangle_1) {
         return 2;
       } else {
-        boolean _containsRectangleRectangle_2 = Rectangle2afp.containsRectangleRectangle(x1, y2, x2, y3, 
+        double _maxY_2 = area.getMaxY();
+        double _maxX_2 = area.getMaxX();
+        boolean _containsRectangleRectangle_2 = Rectangle2afp.containsRectangleRectangle(
+          area.getMinX(), (_maxY_2 / 2), (_maxX_2 / 2), area.getMaxY(), 
           rect.getMinX(), rect.getMinY(), rect.getMaxX(), rect.getMaxY());
         if (_containsRectangleRectangle_2) {
           return 3;
         } else {
-          boolean _containsRectangleRectangle_3 = Rectangle2afp.containsRectangleRectangle(x2, y2, x3, y3, 
+          double _maxX_3 = area.getMaxX();
+          double _maxY_3 = area.getMaxY();
+          boolean _containsRectangleRectangle_3 = Rectangle2afp.containsRectangleRectangle(
+            (_maxX_3 / 2), (_maxY_3 / 2), area.getMaxX(), area.getMaxY(), 
             rect.getMinX(), rect.getMinY(), rect.getMaxX(), rect.getMaxY());
           if (_containsRectangleRectangle_3) {
             return 4;
@@ -124,105 +120,37 @@ public class CRS_Sim_Utils extends Rectangle2d {
   
   @Pure
   public static int childFit(final Point2d point, final Rectangle2d area) {
-    double x1 = area.getMinX();
-    double _minX = area.getMinX();
     double _maxX = area.getMaxX();
-    double _minX_1 = area.getMinX();
-    double x2 = (_minX + ((_maxX - _minX_1) / 2));
-    double x3 = area.getMaxX();
-    double y1 = area.getMinY();
-    double _minY = area.getMinY();
     double _maxY = area.getMaxY();
-    double _minY_1 = area.getMinY();
-    double y2 = (_minY + ((_maxY - _minY_1) / 2));
-    double y3 = area.getMaxY();
-    double _x = point.getX();
-    double _y = point.getY();
-    boolean _containsRectanglePoint = Rectangle2afp.containsRectanglePoint(x1, y1, x2, y2, 
-      ((int) _x), ((int) _y));
+    boolean _containsRectanglePoint = Rectangle2afp.containsRectanglePoint(
+      area.getMinX(), area.getMinY(), (_maxX / 2), (_maxY / 2), 
+      point.getX(), point.getY());
     if (_containsRectanglePoint) {
       return 1;
     } else {
-      double _x_1 = point.getX();
-      double _y_1 = point.getY();
-      boolean _containsRectanglePoint_1 = Rectangle2afp.containsRectanglePoint(x2, y1, x3, y2, 
-        ((int) _x_1), ((int) _y_1));
+      double _maxX_1 = area.getMaxX();
+      double _maxY_1 = area.getMaxY();
+      boolean _containsRectanglePoint_1 = Rectangle2afp.containsRectanglePoint(
+        (_maxX_1 / 2), area.getMinY(), area.getMaxX(), (_maxY_1 / 2), 
+        point.getX(), point.getY());
       if (_containsRectanglePoint_1) {
         return 2;
       } else {
-        double _x_2 = point.getX();
-        double _y_2 = point.getY();
-        boolean _containsRectanglePoint_2 = Rectangle2afp.containsRectanglePoint(x1, y2, x2, y3, 
-          ((int) _x_2), ((int) _y_2));
+        double _maxY_2 = area.getMaxY();
+        double _maxX_2 = area.getMaxX();
+        boolean _containsRectanglePoint_2 = Rectangle2afp.containsRectanglePoint(
+          area.getMinX(), (_maxY_2 / 2), (_maxX_2 / 2), area.getMaxY(), 
+          point.getX(), point.getY());
         if (_containsRectanglePoint_2) {
           return 3;
         } else {
-          double _x_3 = point.getX();
-          double _y_3 = point.getY();
-          boolean _containsRectanglePoint_3 = Rectangle2afp.containsRectanglePoint(x2, y2, x3, y3, 
-            ((int) _x_3), ((int) _y_3));
+          double _maxX_3 = area.getMaxX();
+          double _maxY_3 = area.getMaxY();
+          boolean _containsRectanglePoint_3 = Rectangle2afp.containsRectanglePoint(
+            (_maxX_3 / 2), (_maxY_3 / 2), area.getMaxX(), area.getMaxY(), 
+            point.getX(), point.getY());
           if (_containsRectanglePoint_3) {
             return 4;
-          }
-        }
-      }
-    }
-    return 0;
-  }
-  
-  @Pure
-  public static int childFitInsert(final Shape2d<?> A, final Shape2d<?> B) {
-    if (((A instanceof Point2d) && (B instanceof Rectangle2d))) {
-      return CRS_Sim_Utils.childFitInsert(((Point2d) A), ((Rectangle2d) B));
-    }
-    return 0;
-  }
-  
-  @Pure
-  public static int childFitInsert(final Point2d point, final Rectangle2d area) {
-    double x1 = area.getMinX();
-    double _minX = area.getMinX();
-    double _maxX = area.getMaxX();
-    double _minX_1 = area.getMinX();
-    double x2 = (_minX + ((_maxX - _minX_1) / 2));
-    double x3 = area.getMaxX();
-    double y1 = area.getMinY();
-    double _minY = area.getMinY();
-    double _maxY = area.getMaxY();
-    double _minY_1 = area.getMinY();
-    double y2 = (_minY + ((_maxY - _minY_1) / 2));
-    double y3 = area.getMaxY();
-    if (((point.getX() == x2) && (point.getY() == y2))) {
-      return 5;
-    } else {
-      double _x = point.getX();
-      double _y = point.getY();
-      boolean _containsRectanglePoint = Rectangle2afp.containsRectanglePoint(x1, y1, x2, y2, 
-        ((int) _x), ((int) _y));
-      if (_containsRectanglePoint) {
-        return 1;
-      } else {
-        double _x_1 = point.getX();
-        double _y_1 = point.getY();
-        boolean _containsRectanglePoint_1 = Rectangle2afp.containsRectanglePoint(x2, y1, x3, y2, 
-          ((int) _x_1), ((int) _y_1));
-        if (_containsRectanglePoint_1) {
-          return 2;
-        } else {
-          double _x_2 = point.getX();
-          double _y_2 = point.getY();
-          boolean _containsRectanglePoint_2 = Rectangle2afp.containsRectanglePoint(x1, y2, x2, y3, 
-            ((int) _x_2), ((int) _y_2));
-          if (_containsRectanglePoint_2) {
-            return 3;
-          } else {
-            double _x_3 = point.getX();
-            double _y_3 = point.getY();
-            boolean _containsRectanglePoint_3 = Rectangle2afp.containsRectanglePoint(x2, y2, x3, y3, 
-              ((int) _x_3), ((int) _y_3));
-            if (_containsRectanglePoint_3) {
-              return 4;
-            }
           }
         }
       }
@@ -242,5 +170,5 @@ public class CRS_Sim_Utils extends Rectangle2d {
   }
   
   @SyntheticMember
-  private static final long serialVersionUID = 6303982497L;
+  private static final long serialVersionUID = 3917681936L;
 }

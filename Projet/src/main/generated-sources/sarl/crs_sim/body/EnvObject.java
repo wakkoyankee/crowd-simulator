@@ -1,6 +1,5 @@
 package crs_sim.body;
 
-import crs_sim.utils.Types;
 import io.sarl.lang.annotation.SarlElementType;
 import io.sarl.lang.annotation.SarlSpecification;
 import io.sarl.lang.annotation.SyntheticMember;
@@ -23,17 +22,13 @@ public abstract class EnvObject {
   
   public abstract Shape2d<?> getArea();
   
-  public abstract Types getType();
-  
-  public abstract Point2d getPosition();
+  public abstract Point2d getPoition();
   
   public abstract void setArea(final Shape2d<?> area);
   
   public abstract void setArea(final int x, final int y);
   
   public abstract void setArea(final Point2d point);
-  
-  public abstract void setType(final Types type);
   
   @Override
   @Pure
