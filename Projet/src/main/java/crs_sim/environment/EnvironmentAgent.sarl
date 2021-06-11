@@ -93,7 +93,7 @@ agent EnvironmentAgent {
 		var b : TreeMap<UUID, Double> = new TreeMap<UUID, Double>
 		var t : TreeMap<UUID, Integer> = new TreeMap<UUID, Integer>
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  rand.nextInt(101)
+			var r1 =  rand.nextInt(91)+10
 			var r2 =  rand.nextInt(11)
 			var pb : ProtestorBody
 			if (r1 < ParamSimu.maxPanic) {
@@ -307,18 +307,21 @@ agent EnvironmentAgent {
 				}
 				
 				else if (action == Action.arrest) {
-					emit(new DeathEvent())[it.UUID == influence.getTarget()]
-					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), save, "Arrested")
-					this.protestorList.remove(influence.getTarget())
-					//info("ask suicide agg" + influence.getTarget())
-					emit(new DeathEvent())[it.UUID == influence.getTarget()]
-					nbPro--;
-					if (this.protestorList.size() == 0) {
-						println("End Simu")
-						return
-					}
-					try {
+					try{
+						this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), save, "Arrested")
+						this.protestorList.remove(influence.getTarget())
+						//info("ask suicide agg" + influence.getTarget())
+						emit(new DeathEvent())[it.UUID == influence.getTarget()]
+						nbPro--;
+						
+					
+						if (this.protestorList.size() == 0) {
+							redraw()
+							println("End Simu")
+							return
+						}
 						this.influenceList.remove(influence.getTarget())
+						
 					} catch (e : Exception) {
 						e.printStackTrace()
 					}

@@ -4,6 +4,9 @@
 package crs_sim.^agent
 
 import crs_sim.environment.DeathEvent
+import crs_sim.environment.Influence
+import crs_sim.environment.InfluenceEvent
+import crs_sim.utils.Action
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
 import io.sarl.core.AgentKilled
@@ -22,6 +25,7 @@ import io.sarl.core.ParticipantJoined
 import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
+import java.util.UUID
 import org.eclipse.xtend.lib.annotations.Accessors
 
 /** 
@@ -84,7 +88,7 @@ agent Protestor {
 		//emit(new spawned)[it.UUID == envID]
 	}
 	
-	def changeBehavior(newBeh : Types):void{
+	def changeBehavior(newBeh : Types, uuid:UUID):void{
 		if(this.currBeh == Types.protestor_panic)
 		{this.P.unregisterBehavior}
 		else if(this.currBeh == Types.protestor_agg)
@@ -108,7 +112,9 @@ agent Protestor {
 			this.N.registerBehavior
 		}
 		this.currBeh = newBeh
-		
+
+		var inf = new Influence(getID(), Action.changeBeh, newBeh)
+		emit(new InfluenceEvent(inf))[it.UUID == uuid]
 		//println(memory.getBehavior()+" LA")
 	}
 	

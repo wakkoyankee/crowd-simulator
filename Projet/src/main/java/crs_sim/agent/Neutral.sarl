@@ -25,6 +25,7 @@ import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
+import java.util.UUID
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
@@ -86,57 +87,47 @@ behavior Neutral {
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		}
 		else {//behavior change
-			var inf = new Influence(owner.getID(), Action.changeBeh, beh)
-			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
-			Behaviourchange(beh)
+			Behaviourchange(beh,occurrence.source.UUID)
 		}
 		
 	}
 
 	def CalculateBeh(perceptions : ArrayList<Percept>, position : Circle2d) {
-		var numP = 0
-		var numA = 0
-		var numN = 0
-		var numC = 0
-		for (percept : perceptions) {
-			switch percept.getName() {
-				case Types.protestor_panic: numP++
-				case Types.protestor_agg: numA++
-				case Types.protestor_neutral: numN++
-				case Types.crs: numC++
-			}
-		}
 		
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-		/*for (percept : perceptions){
+		
+		
+		for (percept : perceptions){
 			var v = new Vector2d(0, 0)
 			if (percept.getName() == Types.protestor_panic) {
 				var shape : Circle2d = percept.getShape() as Circle2d
 				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnNeutral)
 				b += v.getX() + v.getY()
-				println('b = ' + b)
+				//println('b = ' + b)
 			}
 			else if (percept.getName() == Types.protestor_neutral) {
 				var shape : Circle2d = percept.getShape() as Circle2d
 				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnNeutral)
 				b += v.getX() + v.getY()
-				println('b = ' + b)
+				//println('b = ' + b)
 			}
 			else if (percept.getName() == Types.protestor_agg) {
 				var shape : Circle2d = percept.getShape() as Circle2d
 				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnNeutral)
 				b += v.getX() + v.getY()
-				println('b = ' + b)
+				//println('b = ' + b)
 			}
 			else if (percept.getName() == Types.crs) {
 				var shape : Circle2d = percept.getShape() as Circle2d
 				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnNeutral)
 				b += v.getX() + v.getY()
-				println('b = ' + b)
+				//println('b = ' + b)
 			}
-		}*/
+		}
+
+		this.memory.setBehavior(b)
 		
 		
 		if (b < ParamSimu.maxPanic) {
@@ -151,9 +142,9 @@ behavior Neutral {
 		}
 	}
 
-	def Behaviourchange(newbeh : Types) {
+	def Behaviourchange(newbeh : Types, uuid:UUID) {
 		var o = owner as Protestor
-		o.changeBehavior(newbeh)
+		o.changeBehavior(newbeh,uuid)
 	}
 
 	on AgentSpawned {

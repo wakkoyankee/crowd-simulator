@@ -25,6 +25,7 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
@@ -73,8 +74,9 @@ agent CRS {
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}
 			else {
-				//var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.crs)
-				var inf = new Influence(getID(), Action.move, Types.crs, new Vector2d(0,0))//to change
+				var obj2 = obj.getShape() as Circle2d
+				var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, new Point2d(obj2.getX(), obj2.getY()), Types.crs)
+				var inf = new Influence(getID(), Action.move, Types.crs, move)//to change
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}
 		}

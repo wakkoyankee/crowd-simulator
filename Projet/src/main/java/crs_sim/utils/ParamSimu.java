@@ -13,7 +13,7 @@ public class ParamSimu {
 	public static final int mapLeftOffset = 460;
 	public static final double maxObjectsPerChild = 5;
 	public static final int maxPanic = 10;
-	public static final int minAggressive = 90;
+	public static final int minAggressive = 80;
 	public static final int nbProtestors = 45;
 	public static final int nbCRS = 3;
 	
@@ -45,24 +45,24 @@ public class ParamSimu {
 	public static final int AgressiveOnCrs = 1;
 	public static final int CRSOnCrs = 3;
 	public static final int TargetCrs = 5;
-	public static final int RadiusPerceptCrs = 100;
+	public static final int RadiusPerceptCrs = 150;
 	
 	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
 	
-	public static final int BehPanicOnPanic = 0;
-	public static final int BehNeutralOnPanic = 0;
-	public static final int BehAgressiveOnPanic = 0;
-	public static final int BehCRSOnPanic = 0;
+	public static final float BehPanicOnPanic = -0.02f;
+	public static final float BehNeutralOnPanic = 0.02f;
+	public static final float BehAgressiveOnPanic = 0.02f;
+	public static final float BehCRSOnPanic = 0.02f;
 	
-	public static final int BehPanicOnNeutral = 0;
-	public static final int BehNeutralOnNeutral = 0;
-	public static final int BehAgressiveOnNeutral = 0;
-	public static final int BehCRSOnNeutral = 0;
+	public static final float BehPanicOnNeutral = -0.02f;
+	public static final float BehNeutralOnNeutral = 0;
+	public static final float BehAgressiveOnNeutral = 0.5f;
+	public static final float BehCRSOnNeutral = 0.5f;
 	
-	public static final int BehPanicOnAgressive = 0;
-	public static final int BehNeutralOnAgressive = 0;
-	public static final int BehAgressiveOnAgressive = 0;
-	public static final int BehCRSOnAgressive = 0;
+	public static final float BehPanicOnAgressive = -0.02f;
+	public static final float BehNeutralOnAgressive = -0.02f;
+	public static final float BehAgressiveOnAgressive = 0.05f;
+	public static final float BehCRSOnAgressive = 0.05f;
 	
 
 	//objectif neutre
@@ -70,11 +70,11 @@ public class ParamSimu {
 	
 	public static final  Circle2d[] initCollecProtestor= {
 //			//rt JT
-			new Circle2d(950, 320, 1),
-			new Circle2d(960, 320, 1),
-			new Circle2d(970, 320, 1),
-			new Circle2d(980, 320, 1),
-			new Circle2d(990, 320, 1),
+			new Circle2d(740, 320, 1),
+			new Circle2d(750, 320, 1),
+			new Circle2d(760, 320, 1),
+			new Circle2d(770, 320, 1),
+			new Circle2d(780, 320, 1),
 			// rt AP
 			new Circle2d(50, 320, 1),
 			new Circle2d(60, 320, 1),
@@ -277,7 +277,7 @@ public class ParamSimu {
 
 	public static final Building[]  initplaceDesJacobins = {
 			new Building(new Rectangle2d(0,0,300,300),Types.building), // Bat 1
-			new Building(new Rectangle2d(400,0,200,300),Types.building), // Bat 2
+			new Building(new Rectangle2d(420,0,200,300),Types.building), // Bat 2
 			new Building(new Rectangle2d(700,0,300,300),Types.building), // Bat 3
 			new Building(new Rectangle2d(0,350,300,200),Types.building), // Bat 4
 			new Building(new Rectangle2d(0,600,300,50),Types.building), // Bat 5
@@ -286,6 +286,8 @@ public class ParamSimu {
 			new Building(new Rectangle2d(350,650,75,350),Types.building), // Bat 8
 			new Building(new Rectangle2d(475,700,75,300),Types.building), // Bat 9
 			new Building(new Rectangle2d(700,650,300,350),Types.building), // Bat 10
+			
+			//new Building(new Rectangle2d(995,310,5,50),Types.building), 
 	};
 	
 	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); 
