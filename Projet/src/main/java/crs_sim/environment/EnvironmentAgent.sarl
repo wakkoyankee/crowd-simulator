@@ -17,7 +17,6 @@ import crs_sim.utils.CRS_Sim_Utils
 import crs_sim.utils.GraphSearch_Utils
 import crs_sim.utils.ParamSimu
 import crs_sim.utils.Types
-import crs_sim.utils.jsonGenerator_Utils
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
@@ -34,6 +33,7 @@ import io.sarl.core.ParticipantLeft
 import io.sarl.core.Schedules
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
+import java.time.LocalTime
 import java.util.ArrayList
 import java.util.Random
 import java.util.TreeMap
@@ -46,6 +46,7 @@ import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Segment2d
 import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
+import crs_sim.utils.JsonGenerator_Utils
 
 /** 
  * @author hadrien
@@ -77,6 +78,7 @@ agent EnvironmentAgent {
 	var nbPro = 0
 	var nbCrs = 0
 	var save : ArrayList<deletedAgent> = new ArrayList<deletedAgent>
+	var pastDate : LocalTime
 	
 //	var b = [1,2,3,4,5,6]
 //	var c = b[0]
@@ -91,7 +93,7 @@ agent EnvironmentAgent {
 		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
 		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  90//rand.nextInt(101) 
+			var r1 =  rand.nextInt(101) 
 			var r2 =  rand.nextInt(11)
 			b.set(i, r1)
 			t.set(i, r2)
@@ -197,7 +199,8 @@ agent EnvironmentAgent {
 //		                  .put("JSON3", new JSONObject().put("key1", "value1"))
 //		                  .toString();
 //		
-//		System.out.println(jsonString);
+		// System.out.println(jsonString);
+		pastDate = java.time.LocalTime.now()
 	}
 
 
@@ -275,7 +278,7 @@ agent EnvironmentAgent {
 			resolveInfluences(this.influenceList)//par references ?
 			
 			
-			for (entry : this.influenceList.entrySet()) { 
+			for (entry : this.influenceList.entrySet()) {
 				var influence = entry.getValue()
 				var action : Action = influence.getAction()
 
@@ -295,7 +298,7 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.arrest) {
 					emit(new DeathEvent())[it.UUID == influence.getTarget()]
-					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), null)
+					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), save, "Arrested")
 					this.protestorList.remove(influence.getTarget())
 					nbPro--;
 					if (this.protestorList.size() == 0) {
@@ -313,14 +316,20 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.destroy) {
 					print("######destroy#####")
-					var obj = this.aggObjs.get(influence.getTarget())
+					var obj : Destroyable = null
+					try {
+						obj = this.aggObjs.get(influence.getTarget())
+					} catch (e : Exception) {
+						e.printStackTrace()
+					}
+					
 					if(obj !== null){ 
 						var life = obj.getLife()
 						if(life>=1){
 							obj.setLife(life-1) //references ????
 							println(life-1)
 							if (life == 1) {
-								this.rootTree.deleteBody(this.aggObjs.get(influence.getTarget()), save)
+								this.rootTree.deleteBody(this.aggObjs.get(influence.getTarget()), save, "Destroyed")
 								this.aggObjs.remove(influence.getTarget())
 								//ENLEVER DANS L'ENV AUSSI
 								if(this.aggObjs.size()==0){
@@ -336,7 +345,7 @@ agent EnvironmentAgent {
 				
 				else if (action == Action.despawn) {
 					emit(new DeathEvent())[it.UUID == influence.getUuid()]
-					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), save)
+					this.rootTree.deleteBody(this.protestorList.get(influence.getUuid()), save, "Despawned")
 					this.protestorList.remove(influence.getUuid())
 					nbPro--;
 					if (this.protestorList.size() == 0) {
@@ -362,11 +371,17 @@ agent EnvironmentAgent {
 			redraw()
 			this.influenceList.clear()
 			this.time++
-			if (this.time < 15000) {
-				println(this.time)
+			if (this.time < 5000) {
+				println(this.time + "  " + pastDate + "  " + pastDate.toNanoOfDay + "  " + (pastDate.toNanoOfDay + 10000000))
+				while (LocalTime.now().toNanoOfDay < (pastDate.toNanoOfDay + 1000000)) {}
 				StartSim()
+				pastDate = LocalTime.now()
+				JsonGenerator_Utils.jsonGenerator(rootTree);
 				//trouver un wait meilleur
-			
+			}else if (this.time == 5000){
+				for(deleteBody : save){
+					println("Type : " + deleteBody.type + " Motif : " + deleteBody.deletedReason + " Date : " + deleteBody.deletedDate)
+				}
 			}
 			
 //			GraphSearch_Utils.printGraphDebug(rootTree, false)
