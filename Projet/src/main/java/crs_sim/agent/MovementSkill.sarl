@@ -180,16 +180,10 @@ skill MovementSkill implements MovementCapacity {
 		}
 	}
 
-	def SocialModelForce(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Shape2d<?>, type : Types, panic : float, neutral : float, agressive : float, crs : float, building : float, destroyable : float, speed : double, perception : float, arrival : float) : Vector2d {
-		var v : Vector2d
-		if (type == Types.crs){
-			var shape : Circle2d = obj as Circle2d
-			v = new Vector2d(obj.getX() - position.getX(), obj.getY() - position.getY())
-		}
-		else {
-			var shape : Rectangle2d = obj as Rectangle2d
-			v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
-		}
+	def SocialModelForce(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Point2d, type : Types, panic : float, neutral : float, agressive : float, crs : float, building : float, destroyable : float, speed : double, perception : float, arrival : float) : Vector2d {
+		
+		var v = new Vector2d(obj.getX() - position.getX(), obj.getY() - position.getY())
+		
 		normalize_vector(v, arrival)
 		
 		for (target : ListOfTarget) {
@@ -229,7 +223,7 @@ skill MovementSkill implements MovementCapacity {
 		
 	}
 	
-	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Shape2d<?>, type : Types) : Vector2d {
+	override influenceKinematic(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Point2d, type : Types) : Vector2d {
 		if (type == Types.protestor_panic){
 			SocialModelForce(position, ListOfTarget, obj, type, ParamSimu.PanicOnPanic, ParamSimu.NeutralOnPanic, ParamSimu.AgressiveOnPanic, ParamSimu.CRSOnPanic, ParamSimu.BuildingForce, ParamSimu.BuildingForce, ParamSimu.Speed, ParamSimu.RadiusPerceptProtestor, ParamSimu.TargetPanic)
 		}

@@ -3,7 +3,6 @@
  */
 package crs_sim.^agent
 
-import crs_sim.environment.DeathEvent
 import crs_sim.environment.Influence
 import crs_sim.environment.InfluenceEvent
 import crs_sim.environment.Percept
@@ -27,6 +26,7 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
@@ -76,9 +76,10 @@ behavior Aggressive {
 
 		
 		var beh = CalculateBeh(perceptions, body)
+		var obj2 = new Point2d((obj.getMinX + obj.getMaxX)/2, (obj.getMinY + obj.getMaxY)/2)
 
 		if (beh == null) { //no change in behavior
-			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_agg)
+			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj2, Types.protestor_agg)
 			var inf = new Influence(owner.getID(), Action.move, Types.protestor_agg,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { // change in behavior
