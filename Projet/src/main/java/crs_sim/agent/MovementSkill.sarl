@@ -11,6 +11,7 @@ import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
+import org.arakhne.afc.math.geometry.d2.d.Shape2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
 /** 
@@ -180,13 +181,14 @@ skill MovementSkill implements MovementCapacity {
 	}
 
 	def SocialModelForce(position : Circle2d, ListOfTarget : ArrayList<Percept>, obj : Shape2d<?>, type : Types, panic : float, neutral : float, agressive : float, crs : float, building : float, destroyable : float, speed : double, perception : float, arrival : float) : Vector2d {
+		var v : Vector2d
 		if (type == Types.crs){
-			var shape : Circle2d = obj.getShape() as Circle2d
-			var v = new Vector2d(obj.getX() - position.getX(), obj.getY() - position.getY())
+			var shape : Circle2d = obj as Circle2d
+			v = new Vector2d(obj.getX() - position.getX(), obj.getY() - position.getY())
 		}
 		else {
-			var shape : Circle2d = obj.getShape() as Rectangle2d
-			var v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
+			var shape : Rectangle2d = obj as Rectangle2d
+			v = new Vector2d(obj.getMinX() - position.getX(), obj.getMinY() - position.getY());
 		}
 		normalize_vector(v, arrival)
 		
