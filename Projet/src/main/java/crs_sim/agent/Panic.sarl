@@ -26,6 +26,7 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
@@ -39,7 +40,6 @@ behavior Panic {
 	
 	var memory : Memory
 	var moveS : MovementSkill
-	val map =new Rectangle2d(0, 0, ParamSimu.mapSizeX, ParamSimu.mapSizeY)
 	
 	new (owner : Protestor, memory : Memory) {
 		super(owner)
@@ -52,6 +52,8 @@ behavior Panic {
 		setSkill(this.moveS)
 	}
 
+
+
 	on PerceptionEvent {
 		//info("Panic hello")
 		//get parameters
@@ -60,7 +62,7 @@ behavior Panic {
 		var obj = occurrence.obj as Rectangle2d
 
 		//check if out of the map first
-		if (!body.intersects(map)) {
+		if (body.intersects(obj)) {
 			var inf = new Influence(owner.getID(), Action.despawn, Types.protestor_panic)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			///////////////////////////////////////////////
@@ -70,9 +72,10 @@ behavior Panic {
 
 		
 		var beh = CalculateBeh(perceptions,body)
+		var obj2 = new Point2d((obj.getMinX + obj.getMaxX)/2, (obj.getMinY + obj.getMaxY)/2)
 		
 		if (beh == null) { //no change in behavior
-			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_panic)
+			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj2, Types.protestor_panic)
 			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { //change in behavior
@@ -99,21 +102,32 @@ behavior Panic {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-		for (percept : perceptions){
+		
+		
+		
+		/*for (percept : perceptions){
+			var v = new Vector2d(0, 0)
 			if (percept.getName() == Types.protestor_panic) {
 				var shape : Circle2d = percept.getShape() as Circle2d
-				// b = b - ParamSimu.PanicOnPanic*(1 - ((Math.sqrt((shape.getX())**2 + (shape.getY())**2))*100 /ParamSimu.RadiusPerceptProtestor))
-			
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnPanic)
+				b += v.getX() + v.getY()
 			}
-			if (percept.getName() == Types.protestor_neutral) {
-			
-			
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnPanic)
+				b += v.getX() + v.getY()
 			}
-			if (percept.getName() == Types.protestor_agg) {
-			
-			
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnPanic)
+				b += v.getX() + v.getY()
 			}
-		}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnPanic)
+				b += v.getX() + v.getY()
+			}
+		}*/
 		
 		
 		if(b >= ParamSimu.maxPanic){

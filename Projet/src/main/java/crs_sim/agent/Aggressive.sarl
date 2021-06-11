@@ -26,6 +26,7 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
@@ -46,7 +47,7 @@ behavior Aggressive {
 	}
 	
 	on Initialize {
-		//info("Aggressive behavior was started.")
+		info("Aggressive behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
@@ -58,7 +59,6 @@ behavior Aggressive {
 	}
 
 	on PerceptionEvent {
-		//info("Agg hello")
 		var obj = occurrence.obj as Rectangle2d
 		var body = occurrence.body as Circle2d
 		var perceptions = occurrence.perceptions as ArrayList
@@ -75,11 +75,12 @@ behavior Aggressive {
 		}
 
 		
-		var beh = CalculateBeh(perceptions)
+		var beh = CalculateBeh(perceptions, body)
+		var obj2 = new Point2d((obj.getMinX + obj.getMaxX)/2, (obj.getMinY + obj.getMaxY)/2)
 
 		if (beh == null) { //no change in behavior
-			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_agg)
-			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic,move)
+			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj2, Types.protestor_agg)
+			var inf = new Influence(owner.getID(), Action.move, Types.protestor_agg,move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		} else { // change in behavior
 			var inf = new Influence(owner.getID(), Action.changeBeh, beh)
@@ -88,7 +89,7 @@ behavior Aggressive {
 		}
 	}
 
-	def CalculateBeh(perceptions : ArrayList<Percept>) {
+	def CalculateBeh(perceptions : ArrayList<Percept>, position : Circle2d) {
 		var numP = 0
 		var numA = 0
 		var numN = 0
@@ -104,7 +105,31 @@ behavior Aggressive {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
-	
+		/*for (percept : perceptions){
+			var v = new Vector2d(0, 0)
+			if (percept.getName() == Types.protestor_panic) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnAgressive)
+				b += v.getX() + v.getY()
+			}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnAgressive)
+				b += v.getX() + v.getY()
+			}
+		}*/
+		
+		
 		if (b > ParamSimu.minAggressive) {
 			return null
 		} else if (b < ParamSimu.maxPanic) {

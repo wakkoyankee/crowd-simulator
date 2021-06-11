@@ -23,7 +23,7 @@ class Destroyable extends EnvObject{
 	new (area : Rectangle2d, type: Types) {
 		super();
 		this.area = area
-		this.life = 10000
+		this.life = 2000
 		this.type = type
 	}
 

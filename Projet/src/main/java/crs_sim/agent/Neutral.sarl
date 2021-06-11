@@ -26,6 +26,7 @@ import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
+import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
 
@@ -46,7 +47,7 @@ behavior Neutral {
 	}
 	
 	on Initialize {
-		//info("Neutral behavior was started.")
+		info("Neutral behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
@@ -56,6 +57,8 @@ behavior Neutral {
 		// You should put all the resource releasing statements in this block of code.
 		info("Neutral behavior was stopped.")
 	}
+
+
 
 	on PerceptionEvent {
 		//info("Neutral hello")
@@ -72,13 +75,14 @@ behavior Neutral {
 		}
 		
 		// Peut etre l'appellé tout les temps t sinon un peu lourd
-		var beh = CalculateBeh(perceptions)
+		var beh = CalculateBeh(perceptions, body)
+		var obj2 = new Point2d((obj.getMinX + obj.getMaxX)/2, (obj.getMinY + obj.getMaxY)/2)
 		
 		if (beh == null) {//no behavior change
 			
-			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.protestor_neutral)
+			var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj2, Types.protestor_neutral)
 			//info(move)
-			var inf = new Influence(owner.getID(), Action.move, Types.protestor_panic, move)
+			var inf = new Influence(owner.getID(), Action.move, Types.protestor_neutral, move)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		}
 		else {//behavior change
@@ -89,7 +93,7 @@ behavior Neutral {
 		
 	}
 
-	def CalculateBeh(perceptions : ArrayList<Percept>) {
+	def CalculateBeh(perceptions : ArrayList<Percept>, position : Circle2d) {
 		var numP = 0
 		var numA = 0
 		var numN = 0
@@ -106,6 +110,35 @@ behavior Neutral {
 		// //behavior calculation
 		// this.memory.setBehavior()
 		var b = this.memory.getBehavior()
+		/*for (percept : perceptions){
+			var v = new Vector2d(0, 0)
+			if (percept.getName() == Types.protestor_panic) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehPanicOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+			else if (percept.getName() == Types.protestor_neutral) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehNeutralOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+			else if (percept.getName() == Types.protestor_agg) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehAgressiveOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+			else if (percept.getName() == Types.crs) {
+				var shape : Circle2d = percept.getShape() as Circle2d
+				this.moveS.protestor(v, percept, position, ParamSimu.RadiusPerceptProtestor, ParamSimu.BehCRSOnNeutral)
+				b += v.getX() + v.getY()
+				println('b = ' + b)
+			}
+		}*/
+		
+		
 		if (b < ParamSimu.maxPanic) {
 			return Types.protestor_panic
 		}

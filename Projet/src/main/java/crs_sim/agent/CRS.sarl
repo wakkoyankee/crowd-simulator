@@ -34,12 +34,15 @@ import org.arakhne.afc.math.geometry.d2.d.Vector2d
 agent CRS {
 	uses Logging
 	uses DefaultContextInteractions
+
+	var moveS : MovementSkill
 	
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		info("The agent CRS was started.")
-		
+		this.moveS = new MovementSkill
+		setSkill(this.moveS)
 	}
 
 	on PerceptionEvent {
@@ -70,6 +73,7 @@ agent CRS {
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}
 			else {
+				//var move : Vector2d = this.moveS.influenceKinematic(body, perceptions, obj, Types.crs)
 				var inf = new Influence(getID(), Action.move, Types.crs, new Vector2d(0,0))//to change
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}

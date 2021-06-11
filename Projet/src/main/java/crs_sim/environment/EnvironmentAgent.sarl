@@ -90,13 +90,11 @@ agent EnvironmentAgent {
 		// INIT BEHAVIORS, TOLERANCES AND PROTESTORBODY LIST
 		this.protestorList = new TreeMap<UUID, ProtestorBody>
 		var rand : Random = new Random()
-		var b : double[] = newDoubleArrayOfSize(ParamSimu.nbProtestors) // creer ist de behavior  et tolerance quon donne aux agents
-		var t : int[] = newIntArrayOfSize(ParamSimu.nbProtestors)
+		var b : TreeMap<UUID, Double> = new TreeMap<UUID, Double>
+		var t : TreeMap<UUID, Integer> = new TreeMap<UUID, Integer>
 		for (var i = 0; i < ParamSimu.nbProtestors; i++) {
-			var r1 =  rand.nextInt(101) 
+			var r1 =  rand.nextInt(101)
 			var r2 =  rand.nextInt(11)
-			b.set(i, r1)
-			t.set(i, r2)
 			var pb : ProtestorBody
 			if (r1 < ParamSimu.maxPanic) {
 				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_panic)
@@ -105,9 +103,11 @@ agent EnvironmentAgent {
 			} else {
 				pb = new ProtestorBody(ParamSimu.initCollecProtestor.get(i), Types.protestor_neutral)
 			}
-			
+			b.put(pb.getUuid(), r1 as Double)
+			t.put(pb.getUuid(), r2)
 			this.protestorList.put(pb.getUuid(),pb)//Ajout le protestor body cree
 		}
+		
 		
 		// INIT AGG OBJS //
 		
@@ -179,9 +179,10 @@ agent EnvironmentAgent {
 		// // SPAWN DES AGENTS  ////
 		var cpt : int = 0
 		for (entry : this.protestorList.entrySet()) { // CREATE PROTESTOR AGENT
-			Protestor.spawnInContextWithID(entry.getKey(), defaultContext, b.get(cpt), t.get(cpt))
+			Protestor.spawnInContextWithID(entry.getKey(), defaultContext, b.get(entry.getKey()),t.get(entry.getKey()))
 			cpt++
 		}
+		
 		
 		for (entry : this.crsList.entrySet()) { // CREATE PROTESTOR AGENT
 			CRS.spawnInContextWithID(entry.getKey(), defaultContext)
@@ -224,10 +225,14 @@ agent EnvironmentAgent {
 			var percept = GraphSearch_Utils.PerceptBFS(this.rootTree, perceptionZone)
 			var obj : Shape2d<?>
 			var uuidObj :UUID = null
-			if (entry.getValue().getType() != Types.protestor_agg) {
+			if (entry.getValue().getType() == Types.protestor_neutral) {
 				obj = ParamSimu.neutralObj
 				emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0))[it.UUID == id]
-			}else{
+			} else if (entry.getValue().getType() == Types.protestor_panic) {
+				obj = ParamSimu.panicObj
+				emit(new PerceptionEvent(body as Shape2d<?>, percept, obj, uuidObj, 0))[it.UUID == id]
+			}
+			else{ //si aggressif
 				var seeAggObj = false
 				for(p : percept){
 					if(p.getName()==Types.destroyable){
@@ -290,9 +295,14 @@ agent EnvironmentAgent {
 						body = this.crsList.get(influence.getUuid()) as CRSBody
 					}
 					//println(influence.getMove())
-					var move = body.getArea() as Circle2d + influence.getMove()
-					body.setArea(move as Shape2d<?>)
-					this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
+					try {
+						var move = body.getArea() as Circle2d + influence.getMove()
+						body.setArea(move as Shape2d<?>)
+						this.rootTree.moveBody(body, new Point2d(move.getX(), move.getY()))
+					} catch (e : Exception) {
+						e.printStackTrace()
+					}
+					
 					//this.protestorList.get(influence.getUuid
 				}
 				
@@ -300,6 +310,8 @@ agent EnvironmentAgent {
 					emit(new DeathEvent())[it.UUID == influence.getTarget()]
 					this.rootTree.deleteBody(this.protestorList.get(influence.getTarget()), save, "Arrested")
 					this.protestorList.remove(influence.getTarget())
+					//info("ask suicide agg" + influence.getTarget())
+					emit(new DeathEvent())[it.UUID == influence.getTarget()]
 					nbPro--;
 					if (this.protestorList.size() == 0) {
 						println("End Simu")
@@ -315,31 +327,31 @@ agent EnvironmentAgent {
 				}
 				
 				else if (action == Action.destroy) {
-					print("######destroy#####")
-					var obj : Destroyable = null
-					try {
+					//println("######destroy#####")
+					var obj : Destroyable
+					try{
 						obj = this.aggObjs.get(influence.getTarget())
-					} catch (e : Exception) {
-						e.printStackTrace()
-					}
-					
-					if(obj !== null){ 
-						var life = obj.getLife()
-						if(life>=1){
-							obj.setLife(life-1) //references ????
-							println(life-1)
-							if (life == 1) {
-								this.rootTree.deleteBody(this.aggObjs.get(influence.getTarget()), save, "Destroyed")
-								this.aggObjs.remove(influence.getTarget())
-								//ENLEVER DANS L'ENV AUSSI
-								if(this.aggObjs.size()==0){
-									//FINIR PARTIE LES CASSEURS ON GAGNE
-									println("simulation fini")
-									redraw()
-									return
+						if (obj !== null) {
+							println("######destroy#####")
+							var life = obj.getLife()
+							if (life >= 1) {
+								obj.setLife(life - 1) // references ????
+								println(life - 1)
+								if (life == 1) {
+									this.rootTree.deleteBody(this.aggObjs.get(influence.getTarget()), save, "Destroyed")
+									this.aggObjs.remove(influence.getTarget())
+									// ENLEVER DANS L'ENV AUSSI
+									if (this.aggObjs.size() == 0) {
+										// FINIR PARTIE LES CASSEURS ON GAGNE
+										println("simulation fini")
+										redraw()
+										return
+									}
 								}
 							}
 						}
+					} catch (e : Exception) {
+						e.printStackTrace()
 					}
 				}
 				
@@ -349,6 +361,7 @@ agent EnvironmentAgent {
 					this.protestorList.remove(influence.getUuid())
 					nbPro--;
 					if (this.protestorList.size() == 0) {
+						redraw()
 						println("End Simu")
 						return
 					}
@@ -358,9 +371,9 @@ agent EnvironmentAgent {
 				}				
 				else if (action == Action.changeBeh){
 					var body = this.protestorList.get(influence.getUuid()) as ProtestorBody
+					this.rootTree.changeBehavior(body, influence.getAgentType())
 					body.setType(influence.getAgentType()) // copie ou ref ?
-					this.protestorList.replace(influence.getUuid(),body)
-					
+					this.protestorList.replace(influence.getUuid(), body) 
 					//BESOIN DE CHANGER DANS L'ENV AUSSI
 				}
 	
