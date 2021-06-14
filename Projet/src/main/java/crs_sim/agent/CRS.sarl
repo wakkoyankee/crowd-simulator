@@ -24,6 +24,7 @@ import io.sarl.core.ParticipantLeft
 import io.sarl.core.SpaceCreated
 import io.sarl.core.SpaceDestroyed
 import java.util.ArrayList
+import java.util.Random
 import org.arakhne.afc.math.geometry.d2.d.Circle2d
 import org.arakhne.afc.math.geometry.d2.d.Point2d
 import org.arakhne.afc.math.geometry.d2.d.Vector2d
@@ -52,7 +53,7 @@ agent CRS {
 		var mindist : double = 100000.0
 		var seeAgg = false
 		var obj : Percept
-		
+		var rand : Random = new Random()
 		for (percept : perceptions) {
 			if (percept.getName() == Types.protestor_agg) {//see aggressive
 				seeAgg = true
@@ -68,8 +69,9 @@ agent CRS {
 			var inf = new Influence(getID(), Action.standby, Types.crs)
 			emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 		}
-		else{
-			if (mindist <= 50) { // if the aggressive protestor is close enough arrest
+		else {
+			var r = rand.nextInt(15);
+			if (mindist <= 50 && r==14) { // if the aggressive protestor is close enough arrest
 				var inf = new Influence(getID(), Action.arrest, Types.crs, obj.getUuid())
 				emit(new InfluenceEvent(inf))[it.UUID == occurrence.source.UUID]
 			}
