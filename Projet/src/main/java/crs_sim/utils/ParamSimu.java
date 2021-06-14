@@ -301,7 +301,7 @@ public class ParamSimu {
 	//___________________V2___________________
 	
 	public static final Building[] initplaceDesJacobins = {
-			new Building(new Rectangle2d(400,25,250,275),Types.building), // Bat 1
+			new Building(new Rectangle2d(400,50,250,250),Types.building), // Bat 1
 			new Building(new Rectangle2d(0,350,75,100),Types.building), // Bat 2
 			new Building(new Rectangle2d(0,700,250,300),Types.building), // Bat 3
 			new Building(new Rectangle2d(450,700,550,300),Types.building), // Bat 4
