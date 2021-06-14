@@ -14,7 +14,7 @@ public class ParamSimu {
 	public static final double maxObjectsPerChild = 5;
 	public static final int maxPanic = 10;
 	public static final int minAggressive = 80;
-	public static final int nbProtestors = 45;
+	public static final int nbProtestors = 609;
 	public static final int nbCRS = 3;
 	
 	public static final int BuildingForce = 10;
@@ -40,53 +40,53 @@ public class ParamSimu {
 	
 	public static final int RadiusPerceptProtestor = 100;
 	
-	public static final int PanicOnCrs = 5;
-	public static final int NeutralOnCrs = 1;
-	public static final int AgressiveOnCrs = 1;
-	public static final int CRSOnCrs = 3;
+	public static final int PanicOnCrs = 0;
+	public static final int NeutralOnCrs = 0;
+	public static final int AgressiveOnCrs = 0;
+	public static final int CRSOnCrs = 0;
 	public static final int TargetCrs = 5;
 	public static final int RadiusPerceptCrs = 150;
 	
-	public static final double Speed = 0.4; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
+	public static final double Speed = 1; //raporter la distance de la speed au temps en seconde d'un tic 1 TICK = 0.5 sec
 	
-	public static final float BehPanicOnPanic = -0.02f;
-	public static final float BehNeutralOnPanic = 0.02f;
-	public static final float BehAgressiveOnPanic = 0.02f;
-	public static final float BehCRSOnPanic = 0.02f;
+	public static final float BehPanicOnPanic = -0.002f;
+	public static final float BehNeutralOnPanic = 0.002f;
+	public static final float BehAgressiveOnPanic = 0.002f;
+	public static final float BehCRSOnPanic = 0.002f;
 	
-	public static final float BehPanicOnNeutral = -0.02f;
-	public static final float BehNeutralOnNeutral = 0;
-	public static final float BehAgressiveOnNeutral = 0.5f;
-	public static final float BehCRSOnNeutral = 0.5f;
+	public static final float BehPanicOnNeutral = -0.002f;
+	public static final float BehNeutralOnNeutral = 0.000001f;
+	public static final float BehAgressiveOnNeutral = 0.05f;
+	public static final float BehCRSOnNeutral = 0.05f;
 	
-	public static final float BehPanicOnAgressive = -0.02f;
-	public static final float BehNeutralOnAgressive = -0.02f;
-	public static final float BehAgressiveOnAgressive = 0.05f;
-	public static final float BehCRSOnAgressive = 0.05f;
+	public static final float BehPanicOnAgressive = -0.002f;
+	public static final float BehNeutralOnAgressive = -0.002f;
+	public static final float BehAgressiveOnAgressive = 0.005f;
+	public static final float BehCRSOnAgressive = 0.005f;
 	
 
 	//objectif neutre
 	//objectif agg
 	
-	public static final  Circle2d[] initCollecProtestor= {
+//	public static final  Circle2d[] initCollecProtestor= {
 //			//rt JT
-			new Circle2d(740, 320, 1),
-			new Circle2d(750, 320, 1),
-			new Circle2d(760, 320, 1),
-			new Circle2d(770, 320, 1),
-			new Circle2d(780, 320, 1),
-			// rt AP
-			new Circle2d(50, 320, 1),
-			new Circle2d(60, 320, 1),
-			new Circle2d(70, 320, 1),
-			new Circle2d(80, 320, 1),
-			new Circle2d(90, 320, 1),
-//			// rt b
-			new Circle2d(310, 50, 1),
-			new Circle2d(315, 50, 1),
-			new Circle2d(320, 50, 1),
-			new Circle2d(325, 50, 1),
-			new Circle2d(330, 50, 1),
+//			new Circle2d(740, 320, 1),
+//			new Circle2d(750, 320, 1),
+//			new Circle2d(760, 320, 1),
+//			new Circle2d(770, 320, 1),
+//			new Circle2d(780, 320, 1),
+//			// rt AP
+//			new Circle2d(50, 320, 1),
+//			new Circle2d(60, 320, 1),
+//			new Circle2d(70, 320, 1),
+//			new Circle2d(80, 320, 1),
+//			new Circle2d(90, 320, 1),
+////			// rt b
+//			new Circle2d(310, 50, 1),
+//			new Circle2d(315, 50, 1),
+//			new Circle2d(320, 50, 1),
+//			new Circle2d(325, 50, 1),
+//			new Circle2d(330, 50, 1),
 //			// rt PEH
 //			new Circle2d(610, 50, 1),
 //			new Circle2d(615, 50, 1),
@@ -214,87 +214,767 @@ public class ParamSimu {
 //			new Circle2d(685, 300, 1),
 //			new Circle2d(690, 300, 1),
 //			new Circle2d(695, 300, 1),
-			// place
-			new Circle2d(375, 375, 1),
-			new Circle2d(425, 375, 1),
-			new Circle2d(475, 375, 1),
-			new Circle2d(525, 375, 1),
-			new Circle2d(575, 375, 1),
-			
-			new Circle2d(625, 375, 1),
-			new Circle2d(375, 425, 1),
-			new Circle2d(425, 425, 1),
-			new Circle2d(475, 425, 1),
-			new Circle2d(525, 425, 1),
-			
-			new Circle2d(575, 425, 1),
-			new Circle2d(625, 425, 1),
-			new Circle2d(375, 475, 1),
-			new Circle2d(425, 475, 1),
-			new Circle2d(475, 475, 1),
-			
-			new Circle2d(525, 475, 1),
-			new Circle2d(575, 475, 1),
-			new Circle2d(625, 475, 1),
-			new Circle2d(375, 525, 1),
-			new Circle2d(425, 525, 1),
-			
-			new Circle2d(475, 525, 1),
-			new Circle2d(525, 525, 1),
-			new Circle2d(575, 525, 1),
-			new Circle2d(625, 525, 1),
-			new Circle2d(375, 575, 1),
-			
-			new Circle2d(425, 575, 1),
-			new Circle2d(475, 575, 1),
-			new Circle2d(525, 575, 1),
-			new Circle2d(575, 575, 1),
-			new Circle2d(625, 575, 1)
-	};
+//			// place
+//			new Circle2d(375, 375, 1),
+//			new Circle2d(425, 375, 1),
+//			new Circle2d(475, 375, 1),
+//			new Circle2d(525, 375, 1),
+//			new Circle2d(575, 375, 1),
+//			
+//			new Circle2d(625, 375, 1),
+//			new Circle2d(375, 425, 1),
+//			new Circle2d(425, 425, 1),
+//			new Circle2d(475, 425, 1),
+//			new Circle2d(525, 425, 1),
+//			
+//			new Circle2d(575, 425, 1),
+//			new Circle2d(625, 425, 1),
+//			new Circle2d(375, 475, 1),
+//			new Circle2d(425, 475, 1),
+//			new Circle2d(475, 475, 1),
+//			
+//			new Circle2d(525, 475, 1),
+//			new Circle2d(575, 475, 1),
+//			new Circle2d(625, 475, 1),
+//			new Circle2d(375, 525, 1),
+//			new Circle2d(425, 525, 1),
+//			
+//			new Circle2d(475, 525, 1),
+//			new Circle2d(525, 525, 1),
+//			new Circle2d(575, 525, 1),
+//			new Circle2d(625, 525, 1),
+//			new Circle2d(375, 575, 1),
+//			
+//			new Circle2d(425, 575, 1),
+//			new Circle2d(475, 575, 1),
+//			new Circle2d(525, 575, 1),
+//			new Circle2d(575, 575, 1),
+//			new Circle2d(625, 575, 1)
+//	};
 //	public static final ProtestorBody[]  initCollecProtestor = {
 //			new ProtestorBody(new Point2d(375, 375)),
 //			new ProtestorBody(new Point2d(425, 375)),
 //			new ProtestorBody(new Point2d(475, 375))
 //	};
-	public static final CRSBody[] initCollecCRS = {
-			//new CRSBody(new Circle2d(375, 600, 1),Types.crs),
-			new CRSBody(new Circle2d(500, 500, 1),Types.crs),
-			new CRSBody(new Circle2d(425, 600, 1),Types.crs),
-			new CRSBody(new Circle2d(475, 600, 1),Types.crs)
-	};
+//	public static final CRSBody[] initCollecCRS = {
+//			//new CRSBody(new Circle2d(375, 600, 1),Types.crs),
+//			new CRSBody(new Circle2d(500, 500, 1),Types.crs),
+//			new CRSBody(new Circle2d(425, 600, 1),Types.crs),
+//			new CRSBody(new Circle2d(475, 600, 1),Types.crs)
+//	};
 //	public static final CRSBody[] initCollecCRS = {
 //			new CRSBody(new Point2d(600, 375)),
 //			new CRSBody(new Point2d(600, 375)),
 //			new CRSBody(new Point2d(600, 375))
 //	};
-	public static final Building[]  initCollecBuilding = {
-			new Building(new Rectangle2d(0,0,1000,100),Types.building),//gros haut
-			new Building(new Rectangle2d(0,900,1000,100),Types.building),//gros bas
-			new Building(new Rectangle2d(100,200,50,50),Types.building),// petit 1
-			new Building(new Rectangle2d(200,200,50,50),Types.building),// petit 2
-			new Building(new Rectangle2d(300,200,50,50),Types.building)//petit 3
-	};
-
-	public static final Building[]  initplaceDesJacobins = {
-			new Building(new Rectangle2d(0,0,300,300),Types.building), // Bat 1
-			new Building(new Rectangle2d(420,0,200,300),Types.building), // Bat 2
-			new Building(new Rectangle2d(700,0,300,300),Types.building), // Bat 3
-			new Building(new Rectangle2d(0,350,300,200),Types.building), // Bat 4
-			new Building(new Rectangle2d(0,600,300,50),Types.building), // Bat 5
-			new Building(new Rectangle2d(750,375,250,200),Types.building), // Bat 6
-			new Building(new Rectangle2d(0,700,300,300),Types.building), // Bat 7
-			new Building(new Rectangle2d(350,650,75,350),Types.building), // Bat 8
-			new Building(new Rectangle2d(475,700,75,300),Types.building), // Bat 9
-			new Building(new Rectangle2d(700,650,300,350),Types.building), // Bat 10
-			
-			//new Building(new Rectangle2d(995,310,5,50),Types.building), 
+//	public static final Building[]  initCollecBuilding = {
+//			new Building(new Rectangle2d(0,0,1000,100),Types.building),//gros haut
+//			new Building(new Rectangle2d(0,900,1000,100),Types.building),//gros bas
+//			new Building(new Rectangle2d(100,200,50,50),Types.building),// petit 1
+//			new Building(new Rectangle2d(200,200,50,50),Types.building),// petit 2
+//			new Building(new Rectangle2d(300,200,50,50),Types.building)//petit 3
+//	};
+//
+//	public static final Building[]  initplaceDesJacobins = {
+//			new Building(new Rectangle2d(0,0,300,300),Types.building), // Bat 1
+//			new Building(new Rectangle2d(420,0,200,300),Types.building), // Bat 2
+//			new Building(new Rectangle2d(700,0,300,300),Types.building), // Bat 3
+//			new Building(new Rectangle2d(0,350,300,200),Types.building), // Bat 4
+//			new Building(new Rectangle2d(0,600,300,50),Types.building), // Bat 5
+//			new Building(new Rectangle2d(750,375,250,200),Types.building), // Bat 6
+//			new Building(new Rectangle2d(0,700,300,300),Types.building), // Bat 7
+//			new Building(new Rectangle2d(350,650,75,350),Types.building), // Bat 8
+//			new Building(new Rectangle2d(475,700,75,300),Types.building), // Bat 9
+//			new Building(new Rectangle2d(700,650,300,350),Types.building), // Bat 10
+//			
+//			//new Building(new Rectangle2d(995,310,5,50),Types.building), 
+//	};
+//	
+//	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); 
+//	public static final Rectangle2d panicObj = new Rectangle2d(300,0,100,30);
+//	public static final Destroyable[] aggObjs = {
+//			new Destroyable(new Rectangle2d(300,600,25,75),Types.destroyable), 
+//			new Destroyable(new Rectangle2d(550,500,75,25),Types.destroyable)  
+//
+//	};
+	
+	//___________________V2___________________
+	
+	public static final Building[] initplaceDesJacobins = {
+			new Building(new Rectangle2d(400,25,250,275),Types.building), // Bat 1
+			new Building(new Rectangle2d(0,350,75,100),Types.building), // Bat 2
+			new Building(new Rectangle2d(0,700,250,300),Types.building), // Bat 3
+			new Building(new Rectangle2d(450,700,550,300),Types.building), // Bat 4
+			new Building(new Rectangle2d(700,350,300,250),Types.building), // Bat 5
+			// contour de la map
+			new Building(new Rectangle2d(0,0,1000,5),Types.building),
+			new Building(new Rectangle2d(0,0,5,1000),Types.building),
+			new Building(new Rectangle2d(995,0,5,1000),Types.building),
+			new Building(new Rectangle2d(0,995,995,5),Types.building)
 	};
 	
-	public static final Rectangle2d neutralObj = new Rectangle2d(550,970,150,30); 
-	public static final Rectangle2d panicObj = new Rectangle2d(300,0,100,30);
+	public static final Rectangle2d neutralObj = new Rectangle2d(250,950,200,50); 
+	public static final Rectangle2d panicObj = new Rectangle2d(0,5,400,20);
 	public static final Destroyable[] aggObjs = {
-			new Destroyable(new Rectangle2d(300,600,25,75),Types.destroyable), 
-			new Destroyable(new Rectangle2d(550,500,75,25),Types.destroyable)  
+//			new Destroyable(new Rectangle2d(650,600,25,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(650,650,25,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(600,650,25,25),Types.destroyable),
+//			new Destroyable(new Rectangle2d(25,475,25,25),Types.destroyable), 
+			new Destroyable(new Rectangle2d(75,525,25,25),Types.destroyable), 
+//			new Destroyable(new Rectangle2d(25,575,25,25),Types.destroyable),
+			new Destroyable(new Rectangle2d(75,625,25,25),Types.destroyable)
+	};
 
+	public static final CRSBody[] initCollecCRS = {
+			new CRSBody(new Circle2d(125, 500, 1),Types.crs),
+			new CRSBody(new Circle2d(125, 550, 1),Types.crs),
+			new CRSBody(new Circle2d(125, 600, 1),Types.crs),
+			new CRSBody(new Circle2d(550, 650, 1),Types.crs),
+			new CRSBody(new Circle2d(600, 600, 1),Types.crs),
+			new CRSBody(new Circle2d(650, 550, 1),Types.crs)
+	};
+
+	public static final  Circle2d[] initCollecProtestor= {
+			new Circle2d(10, 10, 1),
+			new Circle2d(30, 10, 1),
+			new Circle2d(50, 10, 1),
+			new Circle2d(70, 10, 1),
+			new Circle2d(90, 10, 1),
+			new Circle2d(110, 10, 1),
+			new Circle2d(130, 10, 1),
+			new Circle2d(150, 10, 1),
+			new Circle2d(170, 10, 1),
+			new Circle2d(190, 10, 1),
+			new Circle2d(210, 10, 1),
+			new Circle2d(230, 10, 1),
+			new Circle2d(250, 10, 1),
+			new Circle2d(270, 10, 1),
+			new Circle2d(290, 10, 1),
+			new Circle2d(310, 10, 1),
+			new Circle2d(330, 10, 1),
+			new Circle2d(350, 10, 1),
+			new Circle2d(370, 10, 1),
+			new Circle2d(390, 10, 1),
+
+			new Circle2d(10, 30, 1),
+			new Circle2d(30, 30, 1),
+			new Circle2d(50, 30, 1),
+			new Circle2d(70, 30, 1),
+			new Circle2d(90, 30, 1),
+			new Circle2d(110, 30, 1),
+			new Circle2d(130, 30, 1),
+			new Circle2d(150, 30, 1),
+			new Circle2d(170, 30, 1),
+			new Circle2d(190, 30, 1),
+			new Circle2d(210, 30, 1),
+			new Circle2d(230, 30, 1),
+			new Circle2d(250, 30, 1),
+			new Circle2d(270, 30, 1),
+			new Circle2d(290, 30, 1),
+			new Circle2d(310, 30, 1),
+			new Circle2d(330, 30, 1),
+			new Circle2d(350, 30, 1),
+			new Circle2d(370, 30, 1),
+			new Circle2d(390, 30, 1),
+
+			new Circle2d(10, 50, 1),
+			new Circle2d(30, 50, 1),
+			new Circle2d(50, 50, 1),
+			new Circle2d(70, 50, 1),
+			new Circle2d(90, 50, 1),
+			new Circle2d(110, 50, 1),
+			new Circle2d(130, 50, 1),
+			new Circle2d(150, 50, 1),
+			new Circle2d(170, 50, 1),
+			new Circle2d(190, 50, 1),
+			new Circle2d(210, 50, 1),
+			new Circle2d(230, 50, 1),
+			new Circle2d(250, 50, 1),
+			new Circle2d(270, 50, 1),
+			new Circle2d(290, 50, 1),
+			new Circle2d(310, 50, 1),
+			new Circle2d(330, 50, 1),
+			new Circle2d(350, 50, 1),
+			new Circle2d(370, 50, 1),
+			new Circle2d(390, 50, 1),
+
+			new Circle2d(10, 70, 1),
+			new Circle2d(30, 70, 1),
+			new Circle2d(50, 70, 1),
+			new Circle2d(70, 70, 1),
+			new Circle2d(90, 70, 1),
+			new Circle2d(110, 70, 1),
+			new Circle2d(130, 70, 1),
+			new Circle2d(150, 70, 1),
+			new Circle2d(170, 70, 1),
+			new Circle2d(190, 70, 1),
+			new Circle2d(210, 70, 1),
+			new Circle2d(230, 70, 1),
+			new Circle2d(250, 70, 1),
+			new Circle2d(270, 70, 1),
+			new Circle2d(290, 70, 1),
+			new Circle2d(310, 70, 1),
+			new Circle2d(330, 70, 1),
+			new Circle2d(350, 70, 1),
+			new Circle2d(370, 70, 1),
+			new Circle2d(390, 70, 1),
+
+			new Circle2d(10, 90, 1),
+			new Circle2d(30, 90, 1),
+			new Circle2d(50, 90, 1),
+			new Circle2d(70, 90, 1),
+			new Circle2d(90, 90, 1),
+			new Circle2d(110, 90, 1),
+			new Circle2d(130, 90, 1),
+			new Circle2d(150, 90, 1),
+			new Circle2d(170, 90, 1),
+			new Circle2d(190, 90, 1),
+			new Circle2d(210, 90, 1),
+			new Circle2d(230, 90, 1),
+			new Circle2d(250, 90, 1),
+			new Circle2d(270, 90, 1),
+			new Circle2d(290, 90, 1),
+			new Circle2d(310, 90, 1),
+			new Circle2d(330, 90, 1),
+			new Circle2d(350, 90, 1),
+			new Circle2d(370, 90, 1),
+			new Circle2d(390, 90, 1),
+
+			new Circle2d(10, 110, 1),
+			new Circle2d(30, 110, 1),
+			new Circle2d(50, 110, 1),
+			new Circle2d(70, 110, 1),
+			new Circle2d(90, 110, 1),
+			new Circle2d(110, 110, 1),
+			new Circle2d(130, 110, 1),
+			new Circle2d(150, 110, 1),
+			new Circle2d(170, 110, 1),
+			new Circle2d(190, 110, 1),
+			new Circle2d(210, 110, 1),
+			new Circle2d(230, 110, 1),
+			new Circle2d(250, 110, 1),
+			new Circle2d(270, 110, 1),
+			new Circle2d(290, 110, 1),
+			new Circle2d(310, 110, 1),
+			new Circle2d(330, 110, 1),
+			new Circle2d(350, 110, 1),
+			new Circle2d(370, 110, 1),
+			new Circle2d(390, 110, 1),
+
+			new Circle2d(10, 130, 1),
+			new Circle2d(30, 130, 1),
+			new Circle2d(50, 130, 1),
+			new Circle2d(70, 130, 1),
+			new Circle2d(90, 130, 1),
+			new Circle2d(110, 130, 1),
+			new Circle2d(130, 130, 1),
+			new Circle2d(150, 130, 1),
+			new Circle2d(170, 130, 1),
+			new Circle2d(190, 130, 1),
+			new Circle2d(210, 130, 1),
+			new Circle2d(230, 130, 1),
+			new Circle2d(250, 130, 1),
+			new Circle2d(270, 130, 1),
+			new Circle2d(290, 130, 1),
+			new Circle2d(310, 130, 1),
+			new Circle2d(330, 130, 1),
+			new Circle2d(350, 130, 1),
+			new Circle2d(370, 130, 1),
+			new Circle2d(390, 130, 1),
+
+			new Circle2d(10, 150, 1),
+			new Circle2d(30, 150, 1),
+			new Circle2d(50, 150, 1),
+			new Circle2d(70, 150, 1),
+			new Circle2d(90, 150, 1),
+			new Circle2d(110, 150, 1),
+			new Circle2d(130, 150, 1),
+			new Circle2d(150, 150, 1),
+			new Circle2d(170, 150, 1),
+			new Circle2d(190, 150, 1),
+			new Circle2d(210, 150, 1),
+			new Circle2d(230, 150, 1),
+			new Circle2d(250, 150, 1),
+			new Circle2d(270, 150, 1),
+			new Circle2d(290, 150, 1),
+			new Circle2d(310, 150, 1),
+			new Circle2d(330, 150, 1),
+			new Circle2d(350, 150, 1),
+			new Circle2d(370, 150, 1),
+			new Circle2d(390, 150, 1),
+
+			new Circle2d(10, 170, 1),
+			new Circle2d(30, 170, 1),
+			new Circle2d(50, 170, 1),
+			new Circle2d(70, 170, 1),
+			new Circle2d(90, 170, 1),
+			new Circle2d(110, 170, 1),
+			new Circle2d(130, 170, 1),
+			new Circle2d(150, 170, 1),
+			new Circle2d(170, 170, 1),
+			new Circle2d(190, 170, 1),
+			new Circle2d(210, 170, 1),
+			new Circle2d(230, 170, 1),
+			new Circle2d(250, 170, 1),
+			new Circle2d(270, 170, 1),
+			new Circle2d(290, 170, 1),
+			new Circle2d(310, 170, 1),
+			new Circle2d(330, 170, 1),
+			new Circle2d(350, 170, 1),
+			new Circle2d(370, 170, 1),
+			new Circle2d(390, 170, 1),
+
+			new Circle2d(10, 190, 1),
+			new Circle2d(30, 190, 1),
+			new Circle2d(50, 190, 1),
+			new Circle2d(70, 190, 1),
+			new Circle2d(90, 190, 1),
+			new Circle2d(110, 190, 1),
+			new Circle2d(130, 190, 1),
+			new Circle2d(150, 190, 1),
+			new Circle2d(170, 190, 1),
+			new Circle2d(190, 190, 1),
+			new Circle2d(210, 190, 1),
+			new Circle2d(230, 190, 1),
+			new Circle2d(250, 190, 1),
+			new Circle2d(270, 190, 1),
+			new Circle2d(290, 190, 1),
+			new Circle2d(310, 190, 1),
+			new Circle2d(330, 190, 1),
+			new Circle2d(350, 190, 1),
+			new Circle2d(370, 190, 1),
+			new Circle2d(390, 190, 1),
+
+			new Circle2d(10, 210, 1),
+			new Circle2d(30, 210, 1),
+			new Circle2d(50, 210, 1),
+			new Circle2d(70, 210, 1),
+			new Circle2d(90, 210, 1),
+			new Circle2d(110, 210, 1),
+			new Circle2d(130, 210, 1),
+			new Circle2d(150, 210, 1),
+			new Circle2d(170, 210, 1),
+			new Circle2d(190, 210, 1),
+			new Circle2d(210, 210, 1),
+			new Circle2d(230, 210, 1),
+			new Circle2d(250, 210, 1),
+			new Circle2d(270, 210, 1),
+			new Circle2d(290, 210, 1),
+			new Circle2d(310, 210, 1),
+			new Circle2d(330, 210, 1),
+			new Circle2d(350, 210, 1),
+			new Circle2d(370, 210, 1),
+			new Circle2d(390, 210, 1),
+
+			new Circle2d(10, 230, 1),
+			new Circle2d(30, 230, 1),
+			new Circle2d(50, 230, 1),
+			new Circle2d(70, 230, 1),
+			new Circle2d(90, 230, 1),
+			new Circle2d(110, 230, 1),
+			new Circle2d(130, 230, 1),
+			new Circle2d(150, 230, 1),
+			new Circle2d(170, 230, 1),
+			new Circle2d(190, 230, 1),
+			new Circle2d(210, 230, 1),
+			new Circle2d(230, 230, 1),
+			new Circle2d(250, 230, 1),
+			new Circle2d(270, 230, 1),
+			new Circle2d(290, 230, 1),
+			new Circle2d(310, 230, 1),
+			new Circle2d(330, 230, 1),
+			new Circle2d(350, 230, 1),
+			new Circle2d(370, 230, 1),
+			new Circle2d(390, 230, 1),
+
+			new Circle2d(10, 250, 1),
+			new Circle2d(30, 250, 1),
+			new Circle2d(50, 250, 1),
+			new Circle2d(70, 250, 1),
+			new Circle2d(90, 250, 1),
+			new Circle2d(110, 250, 1),
+			new Circle2d(130, 250, 1),
+			new Circle2d(150, 250, 1),
+			new Circle2d(170, 250, 1),
+			new Circle2d(190, 250, 1),
+			new Circle2d(210, 250, 1),
+			new Circle2d(230, 250, 1),
+			new Circle2d(250, 250, 1),
+			new Circle2d(270, 250, 1),
+			new Circle2d(290, 250, 1),
+			new Circle2d(310, 250, 1),
+			new Circle2d(330, 250, 1),
+			new Circle2d(350, 250, 1),
+			new Circle2d(370, 250, 1),
+			new Circle2d(390, 250, 1),
+
+			new Circle2d(10, 270, 1),
+			new Circle2d(30, 270, 1),
+			new Circle2d(50, 270, 1),
+			new Circle2d(70, 270, 1),
+			new Circle2d(90, 270, 1),
+			new Circle2d(110, 270, 1),
+			new Circle2d(130, 270, 1),
+			new Circle2d(150, 270, 1),
+			new Circle2d(170, 270, 1),
+			new Circle2d(190, 270, 1),
+			new Circle2d(210, 270, 1),
+			new Circle2d(230, 270, 1),
+			new Circle2d(250, 270, 1),
+			new Circle2d(270, 270, 1),
+			new Circle2d(290, 270, 1),
+			new Circle2d(310, 270, 1),
+			new Circle2d(330, 270, 1),
+			new Circle2d(350, 270, 1),
+			new Circle2d(370, 270, 1),
+			new Circle2d(390, 270, 1),
+
+			new Circle2d(10, 290, 1),
+			new Circle2d(30, 290, 1),
+			new Circle2d(50, 290, 1),
+			new Circle2d(70, 290, 1),
+			new Circle2d(90, 290, 1),
+			new Circle2d(110, 290, 1),
+			new Circle2d(130, 290, 1),
+			new Circle2d(150, 290, 1),
+			new Circle2d(170, 290, 1),
+			new Circle2d(190, 290, 1),
+			new Circle2d(210, 290, 1),
+			new Circle2d(230, 290, 1),
+			new Circle2d(250, 290, 1),
+			new Circle2d(270, 290, 1),
+			new Circle2d(290, 290, 1),
+			new Circle2d(310, 290, 1),
+			new Circle2d(330, 290, 1),
+			new Circle2d(350, 290, 1),
+			new Circle2d(370, 290, 1),
+			new Circle2d(390, 290, 1),
+
+			new Circle2d(10, 310, 1),
+			new Circle2d(30, 310, 1),
+			new Circle2d(50, 310, 1),
+			new Circle2d(70, 310, 1),
+			new Circle2d(90, 310, 1),
+			new Circle2d(110, 310, 1),
+			new Circle2d(130, 310, 1),
+			new Circle2d(150, 310, 1),
+			new Circle2d(170, 310, 1),
+			new Circle2d(190, 310, 1),
+			new Circle2d(210, 310, 1),
+			new Circle2d(230, 310, 1),
+			new Circle2d(250, 310, 1),
+			new Circle2d(270, 310, 1),
+			new Circle2d(290, 310, 1),
+			new Circle2d(310, 310, 1),
+			new Circle2d(330, 310, 1),
+			new Circle2d(350, 310, 1),
+			new Circle2d(370, 310, 1),
+			new Circle2d(390, 310, 1),
+			
+			new Circle2d(660, 10, 1),
+			new Circle2d(680, 10, 1),
+			new Circle2d(700, 10, 1),
+			new Circle2d(720, 10, 1),
+			new Circle2d(740, 10, 1),
+			new Circle2d(760, 10, 1),
+			new Circle2d(780, 10, 1),
+			new Circle2d(800, 10, 1),
+			new Circle2d(820, 10, 1),
+			new Circle2d(840, 10, 1),
+			new Circle2d(860, 10, 1),
+			new Circle2d(880, 10, 1),
+			new Circle2d(900, 10, 1),
+			new Circle2d(920, 10, 1),
+			new Circle2d(940, 10, 1),
+			new Circle2d(960, 10, 1),
+			new Circle2d(980, 10, 1),
+
+			new Circle2d(660, 30, 1),
+			new Circle2d(680, 30, 1),
+			new Circle2d(700, 30, 1),
+			new Circle2d(720, 30, 1),
+			new Circle2d(740, 30, 1),
+			new Circle2d(760, 30, 1),
+			new Circle2d(780, 30, 1),
+			new Circle2d(800, 30, 1),
+			new Circle2d(820, 30, 1),
+			new Circle2d(840, 30, 1),
+			new Circle2d(860, 30, 1),
+			new Circle2d(880, 30, 1),
+			new Circle2d(900, 30, 1),
+			new Circle2d(920, 30, 1),
+			new Circle2d(940, 30, 1),
+			new Circle2d(960, 30, 1),
+			new Circle2d(980, 30, 1),
+
+			new Circle2d(660, 50, 1),
+			new Circle2d(680, 50, 1),
+			new Circle2d(700, 50, 1),
+			new Circle2d(720, 50, 1),
+			new Circle2d(740, 50, 1),
+			new Circle2d(760, 50, 1),
+			new Circle2d(780, 50, 1),
+			new Circle2d(800, 50, 1),
+			new Circle2d(820, 50, 1),
+			new Circle2d(840, 50, 1),
+			new Circle2d(860, 50, 1),
+			new Circle2d(880, 50, 1),
+			new Circle2d(900, 50, 1),
+			new Circle2d(920, 50, 1),
+			new Circle2d(940, 50, 1),
+			new Circle2d(960, 50, 1),
+			new Circle2d(980, 50, 1),
+
+			new Circle2d(660, 70, 1),
+			new Circle2d(680, 70, 1),
+			new Circle2d(700, 70, 1),
+			new Circle2d(720, 70, 1),
+			new Circle2d(740, 70, 1),
+			new Circle2d(760, 70, 1),
+			new Circle2d(780, 70, 1),
+			new Circle2d(800, 70, 1),
+			new Circle2d(820, 70, 1),
+			new Circle2d(840, 70, 1),
+			new Circle2d(860, 70, 1),
+			new Circle2d(880, 70, 1),
+			new Circle2d(900, 70, 1),
+			new Circle2d(920, 70, 1),
+			new Circle2d(940, 70, 1),
+			new Circle2d(960, 70, 1),
+			new Circle2d(980, 70, 1),
+
+			new Circle2d(660, 90, 1),
+			new Circle2d(680, 90, 1),
+			new Circle2d(700, 90, 1),
+			new Circle2d(720, 90, 1),
+			new Circle2d(740, 90, 1),
+			new Circle2d(760, 90, 1),
+			new Circle2d(780, 90, 1),
+			new Circle2d(800, 90, 1),
+			new Circle2d(820, 90, 1),
+			new Circle2d(840, 90, 1),
+			new Circle2d(860, 90, 1),
+			new Circle2d(880, 90, 1),
+			new Circle2d(900, 90, 1),
+			new Circle2d(920, 90, 1),
+			new Circle2d(940, 90, 1),
+			new Circle2d(960, 90, 1),
+			new Circle2d(980, 90, 1),
+
+			new Circle2d(660, 110, 1),
+			new Circle2d(680, 110, 1),
+			new Circle2d(700, 110, 1),
+			new Circle2d(720, 110, 1),
+			new Circle2d(740, 110, 1),
+			new Circle2d(760, 110, 1),
+			new Circle2d(780, 110, 1),
+			new Circle2d(800, 110, 1),
+			new Circle2d(820, 110, 1),
+			new Circle2d(840, 110, 1),
+			new Circle2d(860, 110, 1),
+			new Circle2d(880, 110, 1),
+			new Circle2d(900, 110, 1),
+			new Circle2d(920, 110, 1),
+			new Circle2d(940, 110, 1),
+			new Circle2d(960, 110, 1),
+			new Circle2d(980, 110, 1),
+
+			new Circle2d(660, 130, 1),
+			new Circle2d(680, 130, 1),
+			new Circle2d(700, 130, 1),
+			new Circle2d(720, 130, 1),
+			new Circle2d(740, 130, 1),
+			new Circle2d(760, 130, 1),
+			new Circle2d(780, 130, 1),
+			new Circle2d(800, 130, 1),
+			new Circle2d(820, 130, 1),
+			new Circle2d(840, 130, 1),
+			new Circle2d(860, 130, 1),
+			new Circle2d(880, 130, 1),
+			new Circle2d(900, 130, 1),
+			new Circle2d(920, 130, 1),
+			new Circle2d(940, 130, 1),
+			new Circle2d(960, 130, 1),
+			new Circle2d(980, 130, 1),
+
+			new Circle2d(660, 150, 1),
+			new Circle2d(680, 150, 1),
+			new Circle2d(700, 150, 1),
+			new Circle2d(720, 150, 1),
+			new Circle2d(740, 150, 1),
+			new Circle2d(760, 150, 1),
+			new Circle2d(780, 150, 1),
+			new Circle2d(800, 150, 1),
+			new Circle2d(820, 150, 1),
+			new Circle2d(840, 150, 1),
+			new Circle2d(860, 150, 1),
+			new Circle2d(880, 150, 1),
+			new Circle2d(900, 150, 1),
+			new Circle2d(920, 150, 1),
+			new Circle2d(940, 150, 1),
+			new Circle2d(960, 150, 1),
+			new Circle2d(980, 150, 1),
+
+			new Circle2d(660, 170, 1),
+			new Circle2d(680, 170, 1),
+			new Circle2d(700, 170, 1),
+			new Circle2d(720, 170, 1),
+			new Circle2d(740, 170, 1),
+			new Circle2d(760, 170, 1),
+			new Circle2d(780, 170, 1),
+			new Circle2d(800, 170, 1),
+			new Circle2d(820, 170, 1),
+			new Circle2d(840, 170, 1),
+			new Circle2d(860, 170, 1),
+			new Circle2d(880, 170, 1),
+			new Circle2d(900, 170, 1),
+			new Circle2d(920, 170, 1),
+			new Circle2d(940, 170, 1),
+			new Circle2d(960, 170, 1),
+			new Circle2d(980, 170, 1),
+
+			new Circle2d(660, 190, 1),
+			new Circle2d(680, 190, 1),
+			new Circle2d(700, 190, 1),
+			new Circle2d(720, 190, 1),
+			new Circle2d(740, 190, 1),
+			new Circle2d(760, 190, 1),
+			new Circle2d(780, 190, 1),
+			new Circle2d(800, 190, 1),
+			new Circle2d(820, 190, 1),
+			new Circle2d(840, 190, 1),
+			new Circle2d(860, 190, 1),
+			new Circle2d(880, 190, 1),
+			new Circle2d(900, 190, 1),
+			new Circle2d(920, 190, 1),
+			new Circle2d(940, 190, 1),
+			new Circle2d(960, 190, 1),
+			new Circle2d(980, 190, 1),
+
+			new Circle2d(660, 210, 1),
+			new Circle2d(680, 210, 1),
+			new Circle2d(700, 210, 1),
+			new Circle2d(720, 210, 1),
+			new Circle2d(740, 210, 1),
+			new Circle2d(760, 210, 1),
+			new Circle2d(780, 210, 1),
+			new Circle2d(800, 210, 1),
+			new Circle2d(820, 210, 1),
+			new Circle2d(840, 210, 1),
+			new Circle2d(860, 210, 1),
+			new Circle2d(880, 210, 1),
+			new Circle2d(900, 210, 1),
+			new Circle2d(920, 210, 1),
+			new Circle2d(940, 210, 1),
+			new Circle2d(960, 210, 1),
+			new Circle2d(980, 210, 1),
+			
+			new Circle2d(660, 230, 1),
+			new Circle2d(680, 230, 1),
+			new Circle2d(700, 230, 1),
+			new Circle2d(720, 230, 1),
+			new Circle2d(740, 230, 1),
+			new Circle2d(760, 230, 1),
+			new Circle2d(780, 230, 1),
+			new Circle2d(800, 230, 1),
+			new Circle2d(820, 230, 1),
+			new Circle2d(840, 230, 1),
+			new Circle2d(860, 230, 1),
+			new Circle2d(880, 230, 1),
+			new Circle2d(900, 230, 1),
+			new Circle2d(920, 230, 1),
+			new Circle2d(940, 230, 1),
+			new Circle2d(960, 230, 1),
+			new Circle2d(980, 230, 1),
+
+			new Circle2d(660, 250, 1),
+			new Circle2d(680, 250, 1),
+			new Circle2d(700, 250, 1),
+			new Circle2d(720, 250, 1),
+			new Circle2d(740, 250, 1),
+			new Circle2d(760, 250, 1),
+			new Circle2d(780, 250, 1),
+			new Circle2d(800, 250, 1),
+			new Circle2d(820, 250, 1),
+			new Circle2d(840, 250, 1),
+			new Circle2d(860, 250, 1),
+			new Circle2d(880, 250, 1),
+			new Circle2d(900, 250, 1),
+			new Circle2d(920, 250, 1),
+			new Circle2d(940, 250, 1),
+			new Circle2d(960, 250, 1),
+			new Circle2d(980, 250, 1),
+
+			new Circle2d(660, 270, 1),
+			new Circle2d(680, 270, 1),
+			new Circle2d(700, 270, 1),
+			new Circle2d(720, 270, 1),
+			new Circle2d(740, 270, 1),
+			new Circle2d(760, 270, 1),
+			new Circle2d(780, 270, 1),
+			new Circle2d(800, 270, 1),
+			new Circle2d(820, 270, 1),
+			new Circle2d(840, 270, 1),
+			new Circle2d(860, 270, 1),
+			new Circle2d(880, 270, 1),
+			new Circle2d(900, 270, 1),
+			new Circle2d(920, 270, 1),
+			new Circle2d(940, 270, 1),
+			new Circle2d(960, 270, 1),
+			new Circle2d(980, 270, 1),
+
+			new Circle2d(660, 290, 1),
+			new Circle2d(680, 290, 1),
+			new Circle2d(700, 290, 1),
+			new Circle2d(720, 290, 1),
+			new Circle2d(740, 290, 1),
+			new Circle2d(760, 290, 1),
+			new Circle2d(780, 290, 1),
+			new Circle2d(800, 290, 1),
+			new Circle2d(820, 290, 1),
+			new Circle2d(840, 290, 1),
+			new Circle2d(860, 290, 1),
+			new Circle2d(880, 290, 1),
+			new Circle2d(900, 290, 1),
+			new Circle2d(920, 290, 1),
+			new Circle2d(940, 290, 1),
+			new Circle2d(960, 290, 1),
+			new Circle2d(980, 290, 1),
+
+			new Circle2d(660, 310, 1),
+			new Circle2d(680, 310, 1),
+			new Circle2d(700, 310, 1),
+			new Circle2d(720, 310, 1),
+			new Circle2d(740, 310, 1),
+			new Circle2d(760, 310, 1),
+			new Circle2d(780, 310, 1),
+			new Circle2d(800, 310, 1),
+			new Circle2d(820, 310, 1),
+			new Circle2d(840, 310, 1),
+			new Circle2d(860, 310, 1),
+			new Circle2d(880, 310, 1),
+			new Circle2d(900, 310, 1),
+			new Circle2d(920, 310, 1),
+			new Circle2d(940, 310, 1),
+			new Circle2d(960, 310, 1),
+			new Circle2d(980, 310, 1),
+
+			new Circle2d(660, 330, 1),
+			new Circle2d(680, 330, 1),
+			new Circle2d(700, 330, 1),
+			new Circle2d(720, 330, 1),
+			new Circle2d(740, 330, 1),
+			new Circle2d(760, 330, 1),
+			new Circle2d(780, 330, 1),
+			new Circle2d(800, 330, 1),
+			new Circle2d(820, 330, 1),
+			new Circle2d(840, 330, 1),
+			new Circle2d(860, 330, 1),
+			new Circle2d(880, 330, 1),
+			new Circle2d(900, 330, 1),
+			new Circle2d(920, 330, 1),
+			new Circle2d(940, 330, 1),
+			new Circle2d(960, 330, 1),
+			new Circle2d(980, 330, 1)
 	};
 }

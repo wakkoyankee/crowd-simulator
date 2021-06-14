@@ -387,9 +387,9 @@ agent EnvironmentAgent {
 			redraw()
 			this.influenceList.clear()
 			this.time++
-			if (this.time < 5000) {
+			if (this.time < 50000) {
 				println(this.time + "  " + pastDate + "  " + pastDate.toNanoOfDay + "  " + (pastDate.toNanoOfDay + 10000000))
-				while (LocalTime.now().toNanoOfDay < (pastDate.toNanoOfDay + 8000000)) {}
+				while (LocalTime.now().toNanoOfDay < (pastDate.toNanoOfDay + 100000000)) {}
 				StartSim()
 				pastDate = LocalTime.now()
 				JsonGenerator_Utils.jsonGenerator(rootTree);

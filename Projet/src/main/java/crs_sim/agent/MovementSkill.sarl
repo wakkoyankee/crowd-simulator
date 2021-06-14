@@ -56,25 +56,25 @@ skill MovementSkill implements MovementCapacity {
 		if (P.getX() == R.getMaxX() && P.getY() < R.getMaxY() && P.getY() > R.getMinY()){
 			if (V.getX() < 0){
 				V.setX(0)
-				V.setY(ParamSimu.Speed)
+				V.setY(ParamSimu.Speed * (V.getY / Math.abs(V.getY)))
 			}
 		}
 		else if (P.getX() == R.getMinX() && P.getY() < R.getMaxY() && P.getY() > R.getMinY()){
 			if (V.getX() > 0){
 				V.setX(0)
-				V.setY(ParamSimu.Speed)
+				V.setY(ParamSimu.Speed * (V.getY / Math.abs(V.getY)))
 			}
 		}
 		if (P.getY() == R.getMaxY() && P.getX() < R.getMaxX() && P.getX() > R.getMinX()){
 			if (V.getY() < 0){
 				V.setY(0)
-				V.setX(ParamSimu.Speed)
+				V.setX(ParamSimu.Speed * (V.getX / Math.abs(V.getX)))
 			}
 		}
 		else if (P.getY() == R.getMinY() && P.getX() < R.getMaxX() && P.getX() > R.getMinX()){
 			if (V.getY() > 0){
 				V.setY(0)
-				V.setX(ParamSimu.Speed)
+				V.setX(ParamSimu.Speed * (V.getX / Math.abs(V.getX)))
 			}
 		}
 	}
