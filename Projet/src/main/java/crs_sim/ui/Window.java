@@ -26,10 +26,6 @@ import crs_sim.utils.Types;
 public class Window {
 	public JFrame _win;
 	public Panel _pan;
-	public JCheckBox modeAuto;
-	public JCheckBox modeDrole;
-	public JButton buttonNext;
-	public JButton buttonStart;
 	// one label instance per body
 	JLabel[] labelCRS = new JLabel[ParamSimu.nbProtestors + ParamSimu.nbCRS];
 	JLabel[] labelGJPanic = new JLabel[ParamSimu.nbProtestors + ParamSimu.nbCRS];
@@ -54,29 +50,6 @@ public class Window {
 		this._win.setVisible(true);
 		this._pan = new Panel((int)ParamSimu.mapSizeX, (int)ParamSimu.mapSizeY);
 		this._win.add(_pan);
-
-		buttonStart= new JButton("Start");
-		buttonStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){  
-	            System.out.println("click") ;
-	        }  
-		});
-		buttonNext = new JButton("Next");
-		buttonNext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){  
-	            System.out.println("click") ;
-	        }  
-		});
-		modeAuto = new JCheckBox("Mode Auto");
-		modeAuto.setSelected(false);
-
-		modeDrole = new JCheckBox("Drole");
-		modeDrole.setSelected(false);
-
-		_pan.add(buttonStart);
-		_pan.add(buttonNext);
-		_pan.add(modeAuto);
-		_pan.add(modeDrole);
 		
 		
 		try {
@@ -129,11 +102,7 @@ public class Window {
             super.paintComponent(g);
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(ParamSimu.mapLeftOffset,0,(int) ParamSimu.mapSizeX,(int) ParamSimu.mapSizeY);
-
-            modeAuto.setLocation(75, 10);
-            modeDrole.setLocation(75, 50);
-    		buttonStart.setLocation(10, 10);
-    		buttonNext.setLocation(10, 50);
+            
     		if(bodies != null) {
 	            for(Percept body : bodies) {
 	            	

@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.arakhne.afc.math.geometry.d2.d.Circle2d;
 import org.arakhne.afc.math.geometry.d2.d.Rectangle2d;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 import crs_sim.environment.Percept;
 import crs_sim.environment.QTNode;
@@ -39,7 +39,7 @@ public class JsonGenerator_Utils {
 		//Write JSON file
         try (FileWriter file = new FileWriter("display.json")) {
             //We can write any JSONArray or JSONObject instance to the file
-            file.write(json.toJSONString()); 
+            file.write(json.toString()); 
             file.flush();
  
         } catch (IOException e) {
