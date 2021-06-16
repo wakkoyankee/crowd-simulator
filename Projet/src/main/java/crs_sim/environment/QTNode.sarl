@@ -201,7 +201,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 
 	def changeBehavior(body : EnvObject, state : Types) : void {
 		if (body instanceof ProtestorBody) {
-			print("you can't change the behavior of something else than a protestor")
+//			print("you can't change the behavior of something else than a protestor")
 			return
 		}
 		// the body your looking for is in this node
@@ -235,7 +235,7 @@ class QTNode extends QuadTreeNode<EnvObject, QTNode> {
 				deletedReason
 			))
 			removeUserData(body)
-			print("Body deleted : " + body)
+//			print("Body deleted : " + body)
 			return
 		} else {
 			try {

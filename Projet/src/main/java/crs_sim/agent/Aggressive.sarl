@@ -48,7 +48,7 @@ behavior Aggressive {
 	}
 	
 	on Initialize {
-		info("Aggressive behavior was started.")
+//		info("Aggressive behavior was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}
@@ -56,7 +56,7 @@ behavior Aggressive {
 	on Destroy {
 		// Event trigger when the behavior is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("Aggressive behavior was stopped.")
+//		info("Aggressive behavior was stopped.")
 	}
 
 	on PerceptionEvent {

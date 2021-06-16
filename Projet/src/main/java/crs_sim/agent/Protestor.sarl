@@ -64,7 +64,7 @@ agent Protestor {
 		// You should put all the initialization statements in this block of code.
 		//info("The agent Protester was started.")
 	
-		println(occurrence.parameters.get(0) + " " + occurrence.parameters.get(1))
+//		println(occurrence.parameters.get(0) + " " + occurrence.parameters.get(1))
 		this.memory = new Memory(occurrence.parameters.get(0) as Double, occurrence.parameters.get(1) as Integer)
 		
 		//info(this.memory.getBehavior() + " " + this.memory.getTolerance())
@@ -127,7 +127,7 @@ agent Protestor {
 	on Destroy {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("The agent Protester was stopped.")
+//		info("The agent Protester was stopped.")
 	}
 
 

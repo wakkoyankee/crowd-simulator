@@ -137,7 +137,7 @@ behavior Panic {
 	on Destroy {
 		// Event trigger when the behavior is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("Panic behavior was stopped.")
+//		info("Panic behavior was stopped.")
 	}
 
 	on AgentSpawned {

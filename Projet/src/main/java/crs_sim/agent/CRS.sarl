@@ -42,7 +42,7 @@ agent CRS {
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
-		info("The agent CRS was started.")
+//		info("The agent CRS was started.")
 		this.moveS = new MovementSkill
 		setSkill(this.moveS)
 	}

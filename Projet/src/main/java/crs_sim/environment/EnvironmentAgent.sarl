@@ -335,18 +335,17 @@ agent EnvironmentAgent {
 					try{
 						obj = this.aggObjs.get(influence.getTarget())
 						if (obj !== null) {
-							println("######destroy#####")
+//							println("######destroy#####")
 							var life = obj.getLife()
 							if (life >= 1) {
 								obj.setLife(life - 1) // references ????
-								println(life - 1)
+//								println(life - 1)
 								if (life == 1) {
 									this.rootTree.deleteBody(this.aggObjs.get(influence.getTarget()), save, "Destroyed")
 									this.aggObjs.remove(influence.getTarget())
 									// ENLEVER DANS L'ENV AUSSI
 									if (this.aggObjs.size() == 0) {
 										// FINIR PARTIE LES CASSEURS ON GAGNE
-										println("simulation fini")
 										redraw()
 										return
 									}
@@ -388,13 +387,13 @@ agent EnvironmentAgent {
 			this.influenceList.clear()
 			this.time++
 			if (this.time < 50000) {
-				println(this.time + "  " + pastDate + "  " + pastDate.toNanoOfDay + "  " + (pastDate.toNanoOfDay + 10000000))
+				println(this.time + "  " + pastDate)
 				while (LocalTime.now().toNanoOfDay < (pastDate.toNanoOfDay + 100000000)) {}
 				StartSim()
 				pastDate = LocalTime.now()
 				JsonGenerator_Utils.jsonGenerator(rootTree);
 				//trouver un wait meilleur
-			}else if (this.time == 5000){
+			} else if (this.time == 50000 ) {
 				for(deleteBody : save){
 					println("Type : " + deleteBody.type + " Motif : " + deleteBody.deletedReason + " Date : " + deleteBody.deletedDate)
 				}
@@ -433,7 +432,7 @@ agent EnvironmentAgent {
 				var seg2 = segs.get(j)
 				if (segs.get(i) != null && segs.get(j) != null && segs.get(i).intersects(seg2)) {
 					var id : UUID
-					println("############### COLISIONS######################")
+//					println("############### COLISIONS######################")
 					if(rand.nextInt(2)==0){
 						id = ids.get(i)
 						segs.set(i, null)
